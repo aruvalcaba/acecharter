@@ -70,7 +70,7 @@ else if( Session::has('success') )
         <div class="wow fadeInLeft" >
                 <div class="service-box">
           <div class="service-icon">
-            <img src="https://s3.amazonaws.com/teachtogether.co/assets/img/service-icon-1.png" alt="" />
+            <img src="/img/service-icon-1.png" alt="" />
           </div>
           <div class="service-desc">
             <h5>Inform</h5>
@@ -84,7 +84,7 @@ else if( Session::has('success') )
         <div class="wow fadeInUp" >
                 <div class="service-box">
           <div class="service-icon">
-            <img src="https://s3.amazonaws.com/teachtogether.co/assets/img/service-icon-3.png" alt="" />
+            <img src="/img/service-icon-3.png" alt="" />
           </div>
           <div class="service-desc">
             <h5>Empower</h5>
@@ -100,7 +100,7 @@ else if( Session::has('success') )
         <div class="wow fadeInUp" >
                 <div class="service-box">
           <div class="service-icon">
-            <img src="https://s3.amazonaws.com/teachtogether.co/assets/img/service-icon-2.png" alt="" />
+            <img src="/img/service-icon-2.png" alt="" />
           </div>
           <div class="service-desc">
             <h5>Celebrate</h5>
@@ -161,7 +161,7 @@ else if( Session::has('success') )
     <div class="row">
     <div class="container">
       <div class="col-md-2 col-md-offset-3" > 
-        <img src="https://s3.amazonaws.com/teachtogether.co/assets/img/result.png">
+        <img src="/img/result.png">
        </div>
       <div class="col-md-4 col-md-offset-0" >
         <p>Thirty years of research shows that when families are involved with their children’s education, 
