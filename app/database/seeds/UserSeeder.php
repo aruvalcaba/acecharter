@@ -19,11 +19,11 @@ class UserSeeder extends Seeder {
         $admin = Sentry::register([
                                     'first_name'=>'Admin',
                                     'email'=>'admin@tt.co',
-                                    'password'=>$_ENV['ADMIN_PWD'],
+                                    'password'=>'admin',
                                     'activated'=>1,
                                     'traits_type'=>'TT\Models\AdminTrait'
                                     ]);
-
+        
         $adminGroup = Sentry::findGroupByName('Admin'); 
         
         $admin->addGroup($adminGroup); 
@@ -46,7 +46,6 @@ class UserSeeder extends Seeder {
                                         'activated'=>1,
                                         'traits_id'=>$trait->id
                                         ]);
-
             $trait = $teacherTraitRepo->create(['grade'=>'K']);
 
             $harpreet = $teacherRepo->create([
@@ -72,10 +71,6 @@ class UserSeeder extends Seeder {
                                         'traits_id'=>$trait->id
                                         ]);
 
-            
-            $sophie->addGroup($teacherGroup);
-            $harpreet->addGroup($teacherGroup);
-            $thea->addGroup($teacherGroup);
         }    
 	}
 

@@ -4,7 +4,7 @@
     <meta name="author" content="">
 
     <!-- icon -->
-    <link rel="icon" type="image/png" href="https://s3.amazonaws.com/teachtogether.co/assets/img/logo.png" />
+    <link rel="icon" type="image/png" href="../img/logo.png" />
 
     <!-- Bootstrap Core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css">

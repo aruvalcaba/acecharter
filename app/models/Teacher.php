@@ -2,7 +2,7 @@
 
 use TT\Traits\UserTeacherTrait;
 
-class Teacher extends \Eloquent
+class Teacher extends User
 {
     use UserTeacherTrait;
 
@@ -16,12 +16,15 @@ class Teacher extends \Eloquent
                             'activated'
                           ];
     
-    protected static $modelTraitType = 'TT\Models\TeacherTrait';
     protected $table = 'users';
+    
+    public function __construct() {
+        $this->modelTraitType = 'TT\Models\Teachertrait';
+    }
 
     public function fill(array $fillable)
     {
-        $fillable = array_add($fillable,'traits_type',self::$modelTraitType);
+        $fillable = array_add($fillable,'traits_type',$this->modelTraitType);
 
         parent::fill($fillable);
     }

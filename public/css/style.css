@@ -533,8 +533,10 @@ form#contact-form input:focus,form#contact-form select:focus,form#contact-form t
 
 footer {
 	text-align: center;
-	padding: 50px 0 ;
-	
+	position: absolute;
+	width: 100%;
+	height: 200px;
+	bottom: 0;
 }
 
 footer p {

@@ -33,8 +33,8 @@ class HomeController extends BaseController {
             $activities = $this->activityService->all();
             $parents = $this->parentService->all();
             $teachers = $this->teacherService->all();
-
-            return $view
+            
+           return $view
                     ->with('user_type',$userType)
                     ->with('user',Authenticator::user())
                     ->with('activities',$activities)

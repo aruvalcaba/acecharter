@@ -8,10 +8,17 @@ class User extends CartalystUser
     use SoftDeletingTrait;
 
     protected $table = 'users';
+    protected $modelTraitType;
 
     public function __construct()
     {
         $this->setHasher(new \Cartalyst\Sentry\Hashing\NativeHasher);
+    }
+    
+    public function index() {
+        $models = self::where('traits_type','=',$this->modelTraitType)->get();
+
+        return !empty($models) ? $models : [];   
     }
 
     public function scopeEmail($query,$email)

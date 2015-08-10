@@ -3,10 +3,9 @@
 use TT\Traits\UserStudentTrait;
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
-class Student extends \Eloquent
+class Student extends User
 {
     use UserStudentTrait;
-    use SoftDeletingTrait;
 
     protected $fillable = [ 'first_name',
                             'last_name',
@@ -18,8 +17,11 @@ class Student extends \Eloquent
                             'activated'
                           ];
     
-    protected static $modelTraitType = 'TT\Models\StudentTrait';
     protected $table = 'users';
+    
+    public function __construct() {
+        $this->modelTraitType = 'TT\Models\StudentTrait';
+    }
 
     public function scopeEmail($query,$email)
     {
@@ -58,7 +60,7 @@ class Student extends \Eloquent
 
     public function fill(array $fillable)
     {
-        $fillable = array_add($fillable,'traits_type',self::$modelTraitType);
+        $fillable = array_add($fillable,'traits_type',$this->modelTraitType);
         $fillable = array_add($fillable,'password',str_random(16));
         $fillable = array_add($fillable,'email',$this->generateEmail());
         parent::fill($fillable);

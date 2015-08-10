@@ -17,7 +17,7 @@ abstract class ModelRepository
 
     public function getAll()
     {
-        return $this->model->all();
+        return $this->model->index();
     }
 
     public function getAllPaginated($count)

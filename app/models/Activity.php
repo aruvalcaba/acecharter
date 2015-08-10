@@ -7,6 +7,12 @@ class Activity extends \Eloquent
     protected $table = 'activities';
     
     protected $fillable = ['title','description_url','activity_url','time'];
+    
+    public function index() {
+        $models = self::all()->get();
+        dd($models);
+        return !empty($models) ? $models : [];
+    }
 
     public function avgRating()
     {

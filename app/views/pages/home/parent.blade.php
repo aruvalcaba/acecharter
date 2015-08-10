@@ -74,7 +74,7 @@ if( count($activities) === 0 )
       <button type="button" class="close" data-dismiss="modal">
           <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button></h2></div>
       <div class="modal-body"><center>
-        <img style="text-align:center;" src="https://s3.amazonaws.com/teachtogether.co/assets/img/letter.png"></center>
+        <img style="text-align:center;" src="/img/letter.png"></center>
       </div>
    
     </div>
@@ -90,7 +90,7 @@ if( count($activities) === 0 )
       <button type="button" class="close" data-dismiss="modal">
           <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button></h2></div>
       <div class="modal-body"><center>
-        <img style="text-align:center;" src="https://s3.amazonaws.com/teachtogether.co/assets/img/sounds.png"></center>
+        <img style="text-align:center;" src="/img/sounds.png"></center>
       </div>
    
     </div>
