@@ -26,7 +26,7 @@ $("#print_codes").click(function()
                 success: function(data)
                 {
                     var url = data.url;
-                    $.fileDownload(url);
+                    window.location.href = url;
                 },
                 error: function(x,status,error) 
                 {
