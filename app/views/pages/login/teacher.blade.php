@@ -7,7 +7,11 @@
         <div class="container">
   
         <div class="row">
-        <h2>Login below or <span class="btn btn-skin" data-toggle="modal" data-target="#signupModal">Signup for free</span></h2>
+        <h2>Login below
+        <!--
+         or <span class="btn btn-skin" data-toggle="modal" data-target="#signupModal">Signup for free</span>
+
+       --></h2>
         <i class="fa fa-2x fa-angle-down"></i>
       </div>
       </div>
@@ -31,8 +35,8 @@
           
             <div class="panel-group" id="accordion">
               <div class="panel panel-success">
-                <div class="panel-heading unselectable"  onclick="javascript:ShowTab(this);">
-                  <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#teacherLogin">Teacher Login</a></h4>
+                <div class="panel-heading unselectable"  >
+                  <h4 class="panel-title">Teacher Login</h4>
                 </div>
                 <div id="teacherLogin" class="panel-collapse collapse in">
                   <div class="panel-body">
@@ -47,10 +51,10 @@
                         <div class="form-group">
                         <div class="col-md-2 col-md-offset-2">
 
-                              <label for="email">Email: </label>
+                              <label >Email: </label>
                             </div>
                             <div class="col-md-4 col-md-offset-1">
-                              <input type="email" class="form-control" id="email" required="required" />
+                              <input type="text" class="form-control" id="email" required="required" />
                       </div>
                     </div>
                     </div>
@@ -58,18 +62,21 @@
                     <div class="row">
                       <div class="form-group">
                       <div class="col-md-2 col-md-offset-2">
-                              <label for="name">Password:</label>
+                              <label for="password">Password:</label>
                               </div>
                               <div class="col-md-4 col-md-offset-1"> 
                                 <input type="password" class="form-control" id="password" />
                       </div></div>
                     </div>
-<div class="row">&nbsp;</div>
+
                       <div class="row">
+                        <br><br>
                         
 
           <span class="btn btn-default" data-toggle="modal" data-target="#forgotPasswordModal">Forgot Password</span>
-          <span type="submit" id="login" class="btn btn-skin" >Log in</span>
+        
+
+          <span type="submit" id="login" class="btn btn-success fleft" >Log in</span>
                       </form>
                        </div>
                   </div>

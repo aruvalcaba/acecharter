@@ -29,6 +29,10 @@ else if( Session::has('success') )
 </ul>
 </div>
 @endif
+@stop
+
+    <!--
+
     <div class="slogan" >
       <h2 style="font-size:300%"><br>
         TRANSFORM PARENTS INTO <SPAN style="color:orange">PARTNERS</spam></h2>
@@ -40,8 +44,7 @@ else if( Session::has('success') )
     </div><br><br><br><br><br>
   </div>
     </section>
-  <!-- /Section: intro -->
-    <!-- Section: services -->
+
     <section id="service" class="home-section text-center">
     
     <div class="heading-about">
@@ -110,30 +113,12 @@ else if( Session::has('success') )
         </div>
             </div>
   
-      <!--
-      <div class="col-sm-3 col-md-3">
-        <div class="wow fadeInRight" >
-                <div class="service-box">
-          <div class="service-icon">
-            <img src="https://s3.amazonaws.com/teachtogether.co/assets/img/service-icon-4.png" alt="" />
-          </div>
-          <div class="service-desc">
-            <h5>Coordinate</h5>
-            <p>Teachers and parents can efficiently coordinate calendars.</div>
-                </div>
-        </div>
-            </div>
-
-          -->
+    
         </div>    
     </div>
   </section>
 
 
-  <!-- /Section: services -->
-
-
-  <!-- Impact section -->
 
   <section id="service" class="home-section text-center bg-gray">
     
@@ -173,7 +158,7 @@ else if( Session::has('success') )
   </div>
 </div>
 </section>
-<!-- /Impact section -->
+
  
 <section id="service" class="home-section text-center bg-info">
     
@@ -222,11 +207,7 @@ else if( Session::has('success') )
 
 
 
-<!-- Section: contact -->
 
-
-
-<!--
     <section id="contact" class="home-section text-center">
     <div class="heading-contact">
       <div class="container">
@@ -304,4 +285,3 @@ else if( Session::has('success') )
   </section>
 
 -->
-@stop

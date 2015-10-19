@@ -1,35 +1,35 @@
 <section id="service" class="home-section text-center">
-<!--
- <div class="col-md-6 col-md-offset-4 btn-group text-center" role="group"  aria-label="...">
-    <a class="btn-navbar btn active btn-default" role="button" href="">
-          <img src="https://s3.amazonaws.com/teachtogether.co/assets/img/service-icon-3.png"  class="img-circle" alt="" /><br>
-    Class</a>
 
+
+ <div class="col-lg-8 col-lg-offset-2 btn-group pull-left" role="group"  aria-label="...">
+     <button type="button" class="btn btn-default active">
+    Registration</button>
+
+     <button type="button" class="btn btn-default">
+          
+    All Students</button>
+
+
+    <div class="btn-group">
         <a class="btn-navbar btn btn-default" role="button" href="#" class="btn dropdown-toggle" data-toggle="dropdown">
-        <img src="https://s3.amazonaws.com/teachtogether.co/assets/img/service-icon-5.png" class="img-circle"  alt="" /><br>
-    Activities <span class="caret"></span></a>
+       
+    Groups <span class="caret"></span></a>
 
             <ul class="dropdown-menu" role="menu">
-                <li><a href="" >Math</a>
-                </li><br>
-                <li><a href="" >Literacy</a>
-                </li><br>
-                <li><a href="" >Character</a>
+                <li><a href="" >Group Name One</a>
                 </li>
+                <li><a href="" >Group Name Two</a>
+                </li>
+                
             </ul>
+        </div>
+    </div>
         
-        <a class="btn-navbar btn  btn-default" role="button" href="">
-          <img src="https://s3.amazonaws.com/teachtogether.co/assets/img/service-icon-1.png" class="img-circle"  alt="" /><br>
-    Reports</a>
 
-        <a class="btn-navbar btn btn-default" role="button" href="">
-          <img src="https://s3.amazonaws.com/teachtogether.co/assets/img/service-icon-4.png" class="img-circle"  alt="" /><br>
-    Messages</a>
 
-        <br> 
-</div>
--->
-
+<div class="row">
+      <Br><br><br>
+    </div>
     <div class="container">
 
  <div class="row col-lg-8 col-lg-offset-2" >
@@ -39,10 +39,9 @@
              
    <div class="row col-lg-6 col-lg-offset-3 bg-info collapse" id="codes">
                    
-<p class="col-lg-6 col-lg-offset-3 bg-info"><br>
-<b><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>&nbsp;</b>To register parents, send a note home that gives them the registration info. 
-You can automatically print
-parent notes using the button below.<br><br>
+<p class="col-lg-8 col-lg-offset-2 bg-info"><br>
+<b><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>&nbsp;</b>To register, parents will need a student code. 
+You can automatically print a note home with student code using the button below.<br><br>
 
 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#StudentCodes">
     <span class="glyphicon glyphicon-print" aria-hidden="true"></span> &nbsp; Print Parent Notes</button></p>
@@ -65,14 +64,17 @@ parent notes using the button below.<br><br>
 <div class="container-fluid" id="dispData">
      <table class="table table-bordered sttable table-striped">
         
-        <col width="25%">
-        <col width="60%">
-        <col width="15%">
+        <col width="35%">
+        <col width="35%">
+        <col width="30%">
+ 
                 <thead>
         <tr>
-            <th style="vertical-align:bottom">Student Name</th>
-            <th style="vertical-align:bottom">Parent Info</th>
-            <th style="vertical-align:bottom" data-sortable="true">Time Spent</th>
+            <th style="vertical-align:bottom">Student Name [Code]</th>
+            
+            <th style="vertical-align:bottom">Registered Family Member</th>
+            
+            <th style="vertical-align:bottom" data-sortable="true">Last login</th>
         </tr></thead>
         <tbody >
                 <?php $students = $user->students()->get() ?>              
@@ -80,14 +82,14 @@ parent notes using the button below.<br><br>
                 <tr>
           
                     <td style="text-align:left; vertical-align:middle"> 
-                    <?php echo $student->fullname ?> </td>
-                    <?php $relationship = $student->partners()->first()->relationship ?>
-                  
+                    <?php echo $student->fullname ?> <br><small>[Code]</small></td>
                     <td style="text-align:left; vertical-align:middle"> 
+                    Member name <br>
+                    <small><?php $relationship = $student->partners()->first()->relationship ?>
                     <?php $format = '%s\'s ';?>
-                    <?php echo sprintf($format,$student->first_name). $relationship.' has signed up successfully.'?></td>
-                      <td style="text-align:left; vertical-align:middle"> 
-                     <?php echo $student->traits()->first()->activity_total_time; ?> 
+                    <?php echo $relationship ?></small></td>
+                    <td style="text-align:left; vertical-align:middle"> 
+                     <?php echo $student->traits()->first()->activity_total_time; ?> days ago
                      </td> 
                 @endforeach
                 
@@ -98,56 +100,54 @@ parent notes using the button below.<br><br>
 </div>
     </div>
   </div>
-  
- <!--
+
   <div class="row">
-      <div class="col-lg-2 col-lg-offset-5">
-        <hr class="marginbot-50">
-      </div>
-    </div>
-  <div class="row">
-        <h3>Inactive Students</h3>
+       <h3>ACE Goals&nbsp;
+        <span class="glyphicon glyphicon-info-sign" data-toggle="modal" data-target="#goalsinfo" 
+        aria-hidden="true"></span></h3>
         
       </div>
+<div class="row">
 
-      <div class="row">
-        <div class="col-lg-8 col-lg-offset-2">
+<div class="col-lg-8 col-lg-offset-2">
    
 <div class="container-fluid" id="dispData">
-    <table class="table table-bordered sttable table-striped">
-        <col width="30%">
+     <table class="table table-bordered sttable table-striped">
         
         <col width="35%">
-        <col width="35%"
+        <col width="35%">
+        <col width="30%">
+ 
                 <thead>
-                <tr>
-            <th></th>
+        <tr>
+            <th style="vertical-align:bottom">Student Name [Code]</th>
             
-            <th style="text-align:left; vertical-align:middle">Student Name</th>
-            <th style="text-align:left; vertical-align:middle">Options</th>
+            <th style="vertical-align:bottom" data-sortable="true">Goal1</th>
+            
+            <th style="vertical-align:bottom" data-sortable="true">Goal2</th>
         </tr></thead>
-        <tbody>
-            <tr>
-              <td>
-                <button type="button" class="btn btn-info " data-toggle="modal" data-target="#EditStudent">
-    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> &nbsp; </button>
-    <button type="button" class="btn btn-danger" disabled="disabled">
-    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> &nbsp; </button></td>
-                <td style="text-align:left; vertical-align:middle">Example line</td>
-                <td style="text-align:left; vertical-align:middle">
-                  <button type="button" class="btn btn-danger">Delete student</button>
-                    </td>
-            </tr>
+        <tbody >
+                <?php $students = $user->students()->get() ?>              
+                @foreach($students as $student)
+                <tr>
+          
+                    <td style="text-align:left; vertical-align:middle"> 
+                    <?php echo $student->fullname ?> </td>
+                    <td style="text-align:left; vertical-align:middle"> 
+                    0/1 </td>
+                    <td style="text-align:left; vertical-align:middle"> 
+                    0/1 </td> 
+                @endforeach
+                
         </tbody>
     </table>
-</div>
 
     
-
+</div>
     </div>
   </div>
-</div>
--->
+  
+
 </section>
 
 
@@ -172,11 +172,10 @@ parent notes using the button below.<br><br>
                             <div id="message">
                             <hr><div class="row"><br><br></div>
                             Dear Parent,<br><br>
-                            I\'m using a new service called Teach Together to help me connect with my students\' parents. 
-                            To register for the service, use your smartphone or computer and visit this website and 
-                            click the \'Parents\' tab.</p>
+                            ACE is starting a new service called Family Link. 
+                            To register for the service, use your smartphone or computer and visit this website:</p>
                             <br><br>
-                            <b>Website:</b> teachtogether.co <br>
+                            <b>Website:</b> acecharter.org/family <br>
                             
                             </div>'; 
             ?>
@@ -197,8 +196,24 @@ parent notes using the button below.<br><br>
 
       </div>
       <div class="modal-body">
-       <p class="booktext">When parents have registered, their information shows up in the active students list. If parents do not register,
+       <p class="booktext">When family members register, their information shows up in the active students list. If they do not register,
     please follow up with email, phone call or text to support them with the sign-up process.</p>
+      </div>
+      <div class="modal-footer">
+        <span type="button" class="btn btn-default" data-dismiss="modal">Got It</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="goalsinfo" tabindex="-1" role="dialog" aria-labelledby="NotesModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+
+      </div>
+      <div class="modal-body">
+       <p class="booktext">The panel below is the summary of every student's progress toward goals. Parents have access to this data for their child.</p>
       </div>
       <div class="modal-footer">
         <span type="button" class="btn btn-default" data-dismiss="modal">Got It</span>

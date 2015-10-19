@@ -6,7 +6,7 @@
     @include('base.head')
 </head>
 
-<body id="page-top" data-spy="scroll" data-target=".navbar-custom">
+<body id="page-top" data-spy="scroll" data-target=".navbar-custom" style="background-color:#F0F0F0">
 @include('base.nav')
 @yield('content')
 @include('js.welcome')

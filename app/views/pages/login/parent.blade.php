@@ -6,7 +6,7 @@
         <div class="container">
   
         <div class="row">
-        <h2>Login below or <span class="btn btn-skin" data-toggle="modal" data-target="#signupModal">Signup with code</span></h2>
+        <h2>Login <small>iniciar sesión</small> </h2>
         <i class="fa fa-2x fa-angle-down"></i>
       </div>
       </div>
@@ -18,46 +18,62 @@
     </div>
 
     </div>
-    <div class="row">
+    
    
-
+<form>
     <div class="col-md-6 col-md-offset-3">
     
         <!-- to calculate that do (12-6)/2. The 12 is total number of md columns, subtract by the number  and then divide by 2 -->          
             <div class="panel-group" id="accordion">
              
               <div class="panel panel-primary">
-                  <div class="panel-heading unselectable" onclick="javascript:ShowTab(this);">
-                  <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#parentLogin">Parent Login</a></h4>
-                </div>
+                 
                    <div id="parentLogin" class="panel-collapse collapse in">
                   <div class="panel-body">
                     <div class="row">
-                      <div class="col-md-2 col-md-offset-2">
-                              <label>Email: </label>
+                      <div class="col-md-6 col-md-offset-1" style="text-align:left">
+                              <label>Email/correo electrónico: </label>
                             </div>
-                            <div class="col-md-4 col-md-offset-1">
+                            <div class="col-md-4">
                               <input type="text" class="form-control" id="email">
                       </div>
                     </div>
                     <div class="row">&nbsp;</div>
                     <div class="row">
-                      <div class="col-md-2 col-md-offset-2">
-                              <label>Password:</label>
+                      <div class="col-md-6 col-md-offset-1" style="text-align:left">
+                              <label>Password/contraseña:</label>
                               </div>
-                              <div class="col-md-4 col-md-offset-1"> <input type="password" class="form-control" id="password">
+                              <div class="col-md-4"> <input type="password" class="form-control" id="password">
                       </div>
                     </div>
 <div class="row">&nbsp;</div>
                       <div class="row">
                         
+                         <span id="login" class="btn btn-success fleft col-lg-6 col-lg-offset-3 col-sm-10 col-sm-offset-1" >Login &nbsp;&nbsp;<small>INICIAR SESIÓN</small></span>
+                          </div>
 
-          <span class="btn btn-default" data-toggle="modal" data-target="#forgotPasswordModal">Forgot Password</span><span id="login" class="btn btn-success fleft" >Log in</span>
+                          <div class="row">
+                          <br><hr><br></div>
+
+          <span class="btn btn-default col-lg-6 col-lg-offset-3 col-sm-10 col-sm-offset-1" data-toggle="modal" data-target="#forgotPasswordModal">Forgot Password<br>
+            <small>¿Has olvidado la contraseña?</small></span>
+
+       <div class="row">
+                          <br></div>
+                          
+
+                          <div class="row">
+<br><br>
+<span class="btn btn-info col-lg-6 col-lg-offset-3 col-sm-10 col-sm-offset-1" data-toggle="modal" data-target="#signupModal">Register <small>inscribirse</small> </span>
+
+           
                        </div>
+                          </div>
                   </div>
                 </div>
               </div>
             </div>
+            </form>
 </div>
 
 
@@ -65,6 +81,9 @@
             <!-- /panel-group -->
 
 </div></div>
+
+
+
   </section>
   
   <!-- /Section: services -->
@@ -78,31 +97,72 @@
       <h2 class="modal-title" id="signupModalLabel">Welcome Parent
       <button type="button" class="close" data-dismiss="modal">
       <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button></h2></div>
+
       <div class="modal-body" style="position: static">
         <div id="signup_alert" class="alert alert-danger hidden" role="alert">
             <ul id="signup_errors">
             </ul>
         </div>
-        <form>
-            <div class="form-group">
-                <label>Parent email</label>
-                <input type="email" class="form-control" id="email">
+
+        <form class="horizontal-form" role="form">
+
+
+            <div class="form-group row">
+
+              
+                <label class="control-label col-lg-4">Parent Full Name</label>
+
+              <div class="col-lg-8">
+                <input type="text" class="form-control" id="parent_fullname" placeholder="Enter your full name">
+              </div>
+
             </div>
-            <div class="form-group">
-                <label>Parent Full Name</label>
-                <input type="text" class="form-control" id="parent_fullname">
+      
+            <div class="form-group row">
+            
+                <label class="control-label col-lg-4 " >Parent E-mail</label>
+            
+               <div class="col-lg-8 ">
+                <input type="email" class="form-control" id="email" placeholder="Enter your e-mail address">
+              </div>
+
             </div>
-            <div class="form-group">
-                <label>Student Full Name</label>
+          
+
+            <div class="form-group row">
+
+              <div class="col-md-4">
+                <label class="control-label">Student Full Name</label>
+              </div>
+
+              <div class="col-md-8">
                 <input type="text" class="form-control" id="student_fullname">
+
+              </div>
+
             </div>
-            <div class="form-group">
-                <label>Student Code</label>
-                <input type="text" maxlength="6" class="form-control" id="student_code">
+    
+            <div class="form-group row">
+
+              <div class="col-md-4">
+                <label class="control-label">Student Code</label>
+              </div>
+
+              <div class="col-md-8">
+                <input type="text" maxlength="6" class="form-control" id="student_code" placeholder="Enter code received from teacher">
+              </div>
+
             </div>
-            <div class="form-group">
-                <label>Parent relationship with student</label>
+ 
+            <div class="form-group row">
+
+              <div class="col-md-4">
+                <label class="control-label">Parent relationship with student</label>
+              </div>
+              <div class="col-md-8">
                 {{ Form::select('relationship',FormList::relationships(),null,array('id'=>'relationship','class'=>'form-control')) }}
+              </div>
+
             </div>
         </form>
       </div>
