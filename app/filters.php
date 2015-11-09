@@ -37,9 +37,9 @@ Route::filter('auth.parent',function() {
         if( ! Sentry::getUser()->isParent() ) {
             return Redirect::route('not.auth');
         }
-    }
 
-    return Redirect::route('login.parent.get');
+        return;
+    }
 });
 
 Route::filter('auth.teacher',function() {
@@ -47,9 +47,9 @@ Route::filter('auth.teacher',function() {
         if( ! Sentry::getUser()->isTeacher() ) {
             return Redirect::route('not.auth');
         }
-    }
 
-    return Redirect::route('login.teacher.get');
+        return;
+    }
 });
 
 Route::filter('auth.admin',function() {
@@ -57,6 +57,8 @@ Route::filter('auth.admin',function() {
         if( ! Sentry::getUser()->isAdmin() ) {
             return Redirect::route('not.auth');
         }
+
+        return;
     }
 
     return Redirect::route('login.admin.get');
