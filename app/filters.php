@@ -38,6 +38,8 @@ Route::filter('auth.parent',function() {
             return Redirect::route('not.auth');
         }
     }
+
+    return Redirect::route('login.parent.get');
 });
 
 Route::filter('auth.teacher',function() {
@@ -46,6 +48,8 @@ Route::filter('auth.teacher',function() {
             return Redirect::route('not.auth');
         }
     }
+
+    return Redirect::route('login.teacher.get');
 });
 
 Route::filter('auth.admin',function() {
@@ -54,6 +58,8 @@ Route::filter('auth.admin',function() {
             return Redirect::route('not.auth');
         }
     }
+
+    return Redirect::route('login.admin.get');
 });
 
 Route::filter('login.parent',function() {
