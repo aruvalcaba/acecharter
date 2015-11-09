@@ -1,2 +1,7 @@
-A project for the client toPoint, a startup from Columbia University. 
-Teachtogether is an educational product that brings the learning experience of parents, teachers and children together.
+Web application for Ace Charter schools.
+
+Built using Laravel 4.2 with the Action Domain Responder pattern.
+Heavily relies on Aura packages.
+
+Senior PHP Developer: Alan Ruvalcaba
+PHP Developer: Neeru Bansal
