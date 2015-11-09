@@ -125,7 +125,6 @@ return array(
         'TT\Provider\UserEventsProvider',
         'TT\Provider\UserProvider',
         'TT\Provider\ValidationServiceProvider',
-        'Maxxscho\LaravelTcpdf\LaravelTcpdfServiceProvider',
 	),
 
 	/*

@@ -1,23 +1,22 @@
 <?php namespace TT\Service;
 
+use DB;
+use Log;
+use Event;
 use Sentry;
+use Exception;
 use BaseController;
 
-class PasswordService
-{
-
-    public function changePassword(array $input,BaseController $listener)
-    {
+class PasswordService {
+    public function changePassword(array $input,BaseController $listener) {
         $newPassword = $input['password'];
 
         $user = Sentry::getUser();
 
         $resetCode = $user->getResetPasswordCode();
 
-        if( $user->checkResetPasswordCode($resetCode) )
-        {
-            if( $user->attemptResetPassword($resetCode,$newPassword) )
-                {
+        if( $user->checkResetPasswordCode($resetCode) ) {
+            if( $user->attemptResetPassword($resetCode,$newPassword) ) {
                     $listener->setMsg('messages.pwd_changed_success');
                     return true;
                 }
@@ -28,11 +27,9 @@ class PasswordService
         return false;      
     }
 
-    public function resetPassword(array $input)
-    {
-        try
-        {
-            \DB::beginTransaction();
+    public function resetPassword(array $input) {
+        try {
+            DB::beginTransaction();
 
             $email = $input['email'];
             
@@ -46,8 +43,8 @@ class PasswordService
 
                 if( $user->attemptResetPassword($resetCode,$newPassword) )
                 {
-                    \Event::fire('user.resetpwd',[$user,$newPassword]);
-                    \DB::commit();
+                    Event::fire('user.resetpwd',[$user,$newPassword]);
+                    DB::commit();
                     
                     return true;
                 }
@@ -59,10 +56,9 @@ class PasswordService
             return false;
         }
 
-        catch(\Exception $ex)
-        {   
-            \Log::error($ex);
-            \DB::rollback();
+        catch(Exception $ex) {   
+            Log::error($ex);
+            DB::rollback();
             return false;        
         }
     }

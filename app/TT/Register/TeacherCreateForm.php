@@ -1,12 +1,9 @@
-<?php namespace TT\Teacher;
+<?php namespace TT\Register;
 
-use Validator;
 use TT\Support\FormModel;
 
-class TeacherCreateForm extends FormModel 
-{
-    protected function getPreparedRules()
-    {
+class TeacherCreateForm extends FormModel {
+    protected function getPreparedRules() {
         return [
                 'first_name' => 'required',
                 'last_name' => 'required',
@@ -17,8 +14,7 @@ class TeacherCreateForm extends FormModel
                ];
     }
 
-    protected function getMessages()
-    {
+    protected function getMessages() {
         return [ 
         'first_name.required' => 'First name is required.',
         'last_name.required' => 'Last name is required.',
@@ -31,8 +27,7 @@ class TeacherCreateForm extends FormModel
         ];
     }
 
-    protected function getCustomAttributes()
-    {
+    protected function getCustomAttributes() {
         return [];
     }
 }

@@ -24,5 +24,7 @@ return [
     'invite_failure' => 'Failed to send invitation to :email. Contact admin.',
     'not_admin'=>'You are not an admin.',
     'not_teacher'=>'You are not a teacher.',
-    'not_parent'=>'You are not a parent.'
+    'not_parent'=>'You are not a parent.',
+    'grades_input_placeholder'=>'Select a grade',
+    'titles_input_placeholder'=>'Select a title'
 ];

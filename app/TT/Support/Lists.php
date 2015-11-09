@@ -1,9 +1,7 @@
 <?php namespace TT\Support;
 
-class Lists 
-{
-    public static function relationships()
-    {
+class Lists  {
+    public static function relationships() {
         return [
                 ''=>'Select a relationship',
                 'Mother'=>'Mother',
@@ -17,8 +15,7 @@ class Lists
                 ];
     }
 
-    public static function confirm()
-    {
+    public static function confirm() {
         return [
                 ''=>'',
                 1=>'Yes',
@@ -26,12 +23,19 @@ class Lists
                 ];
     }
 
-    public static function experience()
-    {
+    public static function experience() {
         return [
                 ''=>'',
                 1=>'Fun',
                 0=>'Boring'
                 ];
+    }
+
+    public static function honorifics() {
+        return ['Mr'=>'Mr','Mrs'=>'Mrs','Ms'=>'Ms'];
+    }
+
+    public static function grades() {
+        return ['K'=>'Kindergarten','1'=>'First'];
     }
 }

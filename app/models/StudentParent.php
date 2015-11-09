@@ -3,7 +3,7 @@
 use TT\Traits\UserParentTrait;
 use Illuminate\Database\Eloquent\SoftDeletingTrait;
 
-class Partner extends User
+class StudentParent extends User
 {
     use UserParentTrait;
 
@@ -23,39 +23,9 @@ class Partner extends User
         $this->modelTraitType = 'TT\Models\ParentTrait';
     }
 
-    public function scopeEmail($query,$email)
-    {
-        return $query->where('email','=',$email)->first();
-    }
-
-    public function getFullNameAttribute()
-    {
-        return $this->first_name . ' ' . $this->last_name;
-    }
-
-    public function traits()
-    {
-        return $this->morphTo();
-    }
-
     public function groups()
     {   
         return $this->belongsToMany(static::$groupModel, static::$userGroupsPivot, 'user_id', 'group_id');
-    }
-
-    public function isTeacher()
-    {
-        return $this->hasAnyAccess(['teacher']);
-    }
-
-    public function isAdmin()
-    {
-        return $this->hasAnyAccess(['admin']);
-    }
-
-    public function isParent()
-    {
-        return $this->hasAnyAccess(['parent']);
     }
 
     public function student()

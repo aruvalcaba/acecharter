@@ -1,75 +1,68 @@
 <?php namespace TT\Service;
 
+use DB;
 use App;
+use Log;
 use View;
+use Event;
 use Sentry;
+use Exception;
 use TT\Auth\Authenticator;
 use TT\Code\CodeRepository;
 use TT\Parent\ParentRepository;
 use TT\Student\StudentRepository;
 use TT\Student\StudentTraitRepository;
 
-class ParentService 
-{
+class ParentService  {
     private $parentRepo = null;
     private $studentRepo = null;
     private $studentTraitRepo = null;
     private $codeRepo = null;
 
-    public function __construct(ParentRepository $parentRepo, StudentRepository $studentRepo, CodeRepository $codeRepo, StudentTraitRepository $studentTraitRepo)
-    {
+    public function __construct(ParentRepository $parentRepo, StudentRepository $studentRepo, CodeRepository $codeRepo, StudentTraitRepository $studentTraitRepo) {
         $this->parentRepo = $parentRepo;
         $this->studentRepo = $studentRepo;
         $this->studentTraitRepo = $studentTraitRepo;
         $this->codeRepo = $codeRepo;
     }
     
-    public function all()
-    {
-        try
-        {
+    public function all() {
+        try {
             return $this->parentRepo->getAll();
         }
 
-        catch(\Exception $ex)
-        {
-            \Log::error($ex);
+        catch(Exception $ex) {
+            Log::error($ex);
         }
     }
    
-    public function createWithStudent($data)
-    {
-        try
-        {
-            \DB::beginTransaction();
+    public function createWithStudent($data) {
+        try {
+            DB::beginTransaction();
 
             $parentFullName = array_pull($data,'parent_fullname');
             $studentFullName = array_pull($data,'student_fullname');
 
             $index = strpos($parentFullName,' ');
 
-            if( $index <= 0 )
-            {
+            if( $index <= 0 ) {
                 $parentFirstName = $parentFullName;
                 $parentLastName = '';
             }
 
-            else
-            {
+            else {
                 $parentFirstName = substr($parentFullName,0,$index);
                 $parentLastName = substr($parentFullName,$index+1);
             }
 
             $index = strpos($studentFullName,' ');
 
-            if( $index <= 0 )
-            {
+            if( $index <= 0 ) {
                 $studentFirstName = $studentFullName;
                 $studentLastName = '';
             }
 
-            else
-            {
+            else {
                 $studentFirstName = substr($studentFullName,0,$index);
                 $studentLastName = substr($studentFullName,$index+1);
             }
@@ -119,23 +112,21 @@ class ParentService
             $parent->students()->attach($student->id,['relationship'=>$relation]);
             $teacher->students()->attach($student->id);
 
-            \Event::fire('user.created',[$parent,$parentPassword]);            
+            Event::fire('user.created',[$parent,$parentPassword]);            
 
-            \DB::commit();
+            DB::commit();
 
             return true;
         }
 
-        catch(\Exception $ex)
-        {
-            \Log::error($ex);
-            \DB::rollback();
+        catch(Exception $ex) {
+            Log::error($ex);
+            DB::rollback();
             return false;
         }
     }
 
-    public function find($id)
-    {
+    public function find($id) {
         return $this->parentRepo->getById($id);
     }
 }

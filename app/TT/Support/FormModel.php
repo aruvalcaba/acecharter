@@ -66,7 +66,7 @@ class FormModel
 
     public function getErrors()
     {
-        return $this->validator->errors()->toArray();
+        return array_values($this->validator->errors()->toArray());
     }
 
     protected function getPreparedRules()

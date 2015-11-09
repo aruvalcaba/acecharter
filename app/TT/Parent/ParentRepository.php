@@ -1,12 +1,12 @@
 <?php namespace TT\Parent;
 
 use Sentry;
-use TT\Models\Partner;
+use TT\Models\StudentParent;
 use TT\Support\ModelRepository;
 
 class ParentRepository extends ModelRepository
 {
-    public function __construct(Partner $parent)
+    public function __construct(StudentParent $parent)
     {
         $this->model = $parent;
     }

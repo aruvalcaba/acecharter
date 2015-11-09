@@ -13,7 +13,6 @@
 
 App::before(function($request)
 {
-	//
 });
 
 
@@ -33,78 +32,78 @@ App::after(function($request, $response)
 |
 */
 
-Route::filter('session',function()
-{
-    
-    if( ! Session::has('user_type') )
-    {
-        if (Request::ajax())
-		{
-			return Response::make('Nice try', 403);
+Route::filter('auth.parent',function() {
+    if( Sentry::check() ) {
+        if( ! Sentry::getUser()->isParent() ) {
+            return Redirect::route('not.auth');
         }
-
-		else
-		{
-			return Redirect::route('welcome');
-		}
-    }
-
-    if( TT\Auth\Authenticator::auth() )
-    {
-        return Redirect::route('home');
-    }
-
-});
-
-Route::filter('auth', function()
-{
-	if ( !TT\Auth\Authenticator::auth() )
-    {
-        if( Route::input('user_type') )
-        {
-            $userType = Route::input('user_type');
-
-            Session::put('user_type',$userType);
-        }
-
-		if (Request::ajax())
-		{
-			return Response::make('Not logged in.', 403);
-        }
-
-		else
-		{
-			return Redirect::route('login.get');
-		}
     }
 });
 
-Route::filter('nocache',function($route, $request, $response)
-{
+Route::filter('auth.teacher',function() {
+    if( Sentry::check() ) {
+        if( ! Sentry::getUser()->isTeacher() ) {
+            return Redirect::route('not.auth');
+        }
+    }
+});
+
+Route::filter('auth.admin',function() {
+    if( Sentry::check() ) {
+        if( ! Sentry::getUser()->isAdmin() ) {
+            return Redirect::route('not.auth');
+        }
+    }
+});
+
+Route::filter('login.parent',function() {
+    if( Sentry::check() ) {
+        if( Sentry::getUser()->isParent() ) {
+            return Redirect::route('home.parent');
+        }
+
+        else {
+            return Redirect::route('not.auth');
+        }
+    }
+});
+
+Route::filter('login.teacher',function() {
+    if( Sentry::check() ) {
+        if( Sentry::getUser()->isTeacher() ) {
+            return Redirect::route('home.teacher');
+        }
+
+        else {
+            return Redirect::route('not.auth');
+        }
+    }
+});
+
+Route::filter('login.admin',function() {
+    if( Sentry::check() ) {
+        if( Sentry::getUser()->isAdmin() ) {
+            return Redirect::route('home.admin');
+        }
+
+        else {
+            return Redirect::route('not.auth');
+        }
+    }
+});
+
+Route::filter('logout',function() {
+    if( Sentry::check() ) {
+        Sentry::logout();
+    }
+
+    return Redirect::route('home');
+});
+
+Route::filter('nocache',function($route, $request, $response) {
     // No caching for pages, you can do some checks before
         $response->header("Pragma", "no-cache");
         $response->header("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0");
-});
-
-Route::filter('auth.basic', function()
-{
-	return Auth::basic();
-});
-
-/*
-|--------------------------------------------------------------------------
-| Guest Filter
-|--------------------------------------------------------------------------
-|
-| The "guest" filter is the counterpart of the authentication filters as
-| it simply checks that the current user is not logged in. A redirect
-| response will be issued if they are, which you may freely change.
-|
-*/
-
-Route::filter('guest', function()
-{
-	if (Auth::check()) return Redirect::to('/');
 });
 
 /*

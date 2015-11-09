@@ -2,8 +2,13 @@
 
 use TT\Models\Teacher;
 use TT\Models\TeacherTrait;
+use TT\Models\StudentParent;
+
+use TT\Parent\ParentRepository;
+
 use TT\Teacher\TeacherRepository;
 use TT\Teacher\TeacherTraitRepository;
+
 
 class UserSeeder extends Seeder {
 
@@ -69,8 +74,19 @@ class UserSeeder extends Seeder {
                                         'password'=>'letmein1',
                                         'activated'=>1,
                                         'traits_id'=>$trait->id
-                                        ]);
+                                    ]);
+            
+            $parentGroup = Sentry::findGroupByName('Parent');
+            $parentRepo = new ParentRepository(new StudentParent);
 
+            $alan = $parentRepo->create([
+                                        'first_name'=>'Alan',
+                                        'last_name'=>'Ruvalcaba',
+                                        'title'=>'Mr',
+                                        'email'=>'aruval3@gmail.com',
+                                        'password'=>'letmein1',
+                                        'activated'=>'1',
+                                        ]);
         }    
 	}
 

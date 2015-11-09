@@ -1,8 +1,12 @@
 <?php namespace TT\Service;
 
+use DB;
 use App;
+use Log;
+use File;
 use View;
 use Sentry;
+use Exception;
 use BaseController;
 use TT\Models\User;
 use TT\Models\Activity;
@@ -10,35 +14,28 @@ use TT\Auth\Authenticator;
 use TT\Activity\ActivityRepository;
 use TT\Student\StudentTraitRepository;
 
-class ActivityService 
-{
-    private $activityRepo = null;
+class ActivityService {
+    private $activity_repo = null;
     private $studentTraitRepo = null;
 
-    public function __construct(ActivityRepository $activityRepo, StudentTraitRepository $studentTraitRepo)
-    {
+    public function __construct(ActivityRepository $activityRepo, StudentTraitRepository $studentTraitRepo) {
         $this->activityRepo = $activityRepo;
         $this->studentTraitRepo = $studentTraitRepo;
     }
 
-    public function all()
-    {
-        try
-        {
+    public function all() {
+        try {
             return $this->activityRepo->getAll();
         }
 
-        catch(\Exception $ex)
-        {
-            \Log::error($ex);
+        catch(Exception $ex) {
+            Log::error($ex);
         }
     }
 
-    public function create($data, BaseController $listener)
-    {
-        try
-        {
-            \DB::beginTransaction();
+    public function create($data, BaseController $listener) {
+        try {
+            DB::beginTransaction();
 
             $activity = array_pull($data,'activity');
             $description = array_pull($data,'description');
@@ -74,9 +71,9 @@ class ActivityService
             
             $activity = $this->activityRepo->create($data);
 
-            \DB::table('activities_ratings')->insert(['activity_id'=>$activity->id]);
+            DB::table('activities_ratings')->insert(['activity_id'=>$activity->id]);
 
-            \DB::commit();
+            DB::commit();
 
             $listener->setMsg('messages.entity_store_success',['name'=>$data['title']]);
 
@@ -84,33 +81,28 @@ class ActivityService
         }
 
         
-        catch(\Exception $ex)
-        {
-            \Log::error($ex);
-            \DB::rollback();
+        catch(Exception $ex) {
+            Log::error($ex);
+            DB::rollback();
             $listener->setMsg('messages.entity_store_failure',['name'=>$data['title']]);
             return false;
         }
     }
 
-    public function update($id, $data,BaseController $listener)
-    {
+    public function update($id, $data,BaseController $listener) {
 
         $activity = $this->activityRepo->getById($id);
 
-        if( is_null($activity) )
-        {
+        if( is_null($activity) ) {
             $listener->setMsg('messages.entity_not_found',['entity'=>'Activity']);
             return false;
         }
 
-        try
-        {
-            \DB::beginTransaction();
+        try {
+            DB::beginTransaction();
 
 
-            if( ! empty($data['activity']) )
-            {
+            if( ! empty($data['activity']) ) {
                 
                 $format = '%s/%s';
                 
@@ -127,15 +119,15 @@ class ActivityService
 
                 $path = sprintf($format,public_path(),$activity->activity_url);
                 
-                \Log::info($path);
+                Log::info($path);
 
-                \File::delete($path);
+                File::delete($path);
 
                 $format = '/activities/%s';
                 $relativePath = sprintf($format,$activityFileName);
                 $data = array_add($data,'activity_url',$relativePath);
 
-                \Log::info($activityFileName);    
+                Log::info($activityFileName);    
                 $activityFile->move($activitiesPath,$activityFileName);
             }
             
@@ -158,20 +150,20 @@ class ActivityService
 
                 $path = sprintf($format,public_path(),$activity->description_url);
                 
-                \Log::info($path);
-                \File::delete($path);
+                Log::info($path);
+                File::delete($path);
 
                 $format = '/descriptions/%s';
                 $relativePath = sprintf($format,$descriptionFileName);
                 $data = array_add($data,'description_url',$relativePath);
                 
-                \Log::info($descriptionFileName);    
+                Log::info($descriptionFileName);    
                 $descriptionFile->move($descriptionsPath,$descriptionFileName);
             }
                         
             $this->activityRepo->update($activity,$data);
     
-            \DB::commit();
+            DB::commit();
 
             $listener->setMsg('messages.entity_update_success',['name'=>$data['title']]);
 
@@ -179,10 +171,9 @@ class ActivityService
         }
 
         
-        catch(\Exception $ex)
-        {
-            \Log::error($ex);
-            \DB::rollback();
+        catch(Exception $ex){
+            Log::error($ex);
+            DB::rollback();
             $listener->setMsg('messages.entity_update_failure',['name'=>$data['title']]);
             return false;
         }
@@ -190,12 +181,10 @@ class ActivityService
 
 
 
-    public function destroy($id,$listener = null)
-    {   
+    public function destroy($id,$listener = null) {   
         $activity = null;
 
-        try
-        {
+        try {
             $activity = $this->find($id);
 
             $publicPath = public_path();
@@ -207,44 +196,42 @@ class ActivityService
             $relativePath = $activity->description_url;
             $descriptionPath = sprintf($format,$publicPath,$relativePath);
 
-            \File::delete([$activityPath,$descriptionPath]);
+            File::delete([$activityPath,$descriptionPath]);
             
             $this->activityRepo->destroy($id);
             
-            if( ! is_null($listener) )
-            {
+            if( ! is_null($listener) ) {
                 $listener->setMsg('messages.entity_delete_success',['name'=>$activity->title]);
             }
 
-            \DB::table('activities_ratings')->where('activity_id','=',$id)->delete();
+            DB::table('activities_ratings')->where('activity_id','=',$id)->delete();
 
             return true;
         }
 
-        catch(\Exception $ex)
-        {
-            \Log::error($ex);
+        catch(\Exception $ex) {
+            Log::error($ex);
 
-            if( ! is_null($listener) )
-            {
+            if( ! is_null($listener) ) {
                 $listener->setMsg('messages.entity_delete_failure',['name'=>$activity->title]);
             }
-
 
             return false;
         }
     }
 
-    public function find($id)
-    {
+    public function find($id) {
         return $this->activityRepo->getById($id);
     }
 
-    public function getActivities(User $user)
-    {
-        try
-        {
+    public function getActivities(User $user) {
+        try {
+
             $student = $user->students()->first();
+
+            if( empty($student) ) {
+                return [];
+            }
 
             $studentActivities = $student->activities()->lists('id');
 
@@ -262,23 +249,18 @@ class ActivityService
             return $this->find($activities);
         }
 
-        catch(\Exception $ex)
-        {
-            \Log::error($ex);
-
+        catch(Exception $ex) {
+            Log::error($ex);
             return [];
         }
     }
 
-    public function complete(Activity $activity, array $data, User $user, BaseController $listener)
-    {
-        try
-        {
+    public function complete(Activity $activity, array $data, User $user, BaseController $listener) {
+        try {
             $student = $user->students()->first();
 
             
-            if( $activity->id == 1)
-            {
+            if( $activity->id == 1) {
                 $student->activities()->attach($activity->id); 
                 $listener->setMsg('messages.activity_complete',['name'=>$activity->title]);
 
@@ -289,12 +271,11 @@ class ActivityService
             $appropriate = $data['appropriate'];
             $experience = $data['experience'];
 
-            \DB::beginTransaction();
+            DB::beginTransaction();
 
-            $survey = \DB::table('activities_surveys')->where('activity_id','=',$activity->id)->where('parent_id','=',$user->id)->first();
+            $survey = DB::table('activities_surveys')->where('activity_id','=',$activity->id)->where('parent_id','=',$user->id)->first();
 
-            if( ! is_null($survey) )
-            {
+            if( ! is_null($survey) ) {
                 $listener->setMsg('messages.activity_already_rated');
                 return false;
             }
@@ -310,27 +291,26 @@ class ActivityService
             $this->studentTraitRepo->update($traits,['activity_total_time'=>$totalTime]);
 
 
-            \DB::table('activities_ratings')->where('activity_id','=',$activity->id)->increment('count');
-            \DB::table('activities_ratings')->where('activity_id','=',$activity->id)->increment('total',$rating);
-            \DB::table('activities_surveys')->insert([
+            DB::table('activities_ratings')->where('activity_id','=',$activity->id)->increment('count');
+            DB::table('activities_ratings')->where('activity_id','=',$activity->id)->increment('total',$rating);
+            DB::table('activities_surveys')->insert([
                                                         'activity_id'=>$activity->id,
                                                         'parent_id'=>$user->id,
                                                         'q1'=>$experience,
                                                         'q2'=>$appropriate
                                                      ]);
 
-            \DB::commit();
+            DB::commit();
 
             $listener->setMsg('messages.activity_complete',['name'=>$activity->title]);
 
             return true;
         }
 
-        catch(\Exception $ex)
-        {
-            \Log::error($ex);
+        catch(Exception $ex) {
+            Log::error($ex);
             
-            \DB::rollback();
+            DB::rollback();
             
             $listener->setMsg('messages.activity_failure',['name'=>$activity->title]);
 
@@ -338,11 +318,9 @@ class ActivityService
         }
     }
 
-    public function getAvgActivityTime()
-    {
-        try
-        {
-            $avg = \DB::table('activities')->join('users_activities',
+    public function getAvgActivityTime() {
+        try {
+            $avg = DB::table('activities')->join('users_activities',
                                            'activities.id',
                                            '=',
                                            'users_activities.activity_id')
@@ -351,8 +329,7 @@ class ActivityService
             return (int)$avg;
         }
 
-        catch(\Exception $ex)
-        {
+        catch(Exception $ex) {
             return 0;
         }
     }

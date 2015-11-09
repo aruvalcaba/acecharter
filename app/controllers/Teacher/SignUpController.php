@@ -9,8 +9,7 @@ class SignUpController extends BaseController {
 
     private $teacherService = null;
 
-    public function __construct(TeacherService $teacherService)
-    {
+    public function __construct(TeacherService $teacherService) {
         $this->teacherService = $teacherService;
     }
 
@@ -19,8 +18,7 @@ class SignUpController extends BaseController {
 	 *
 	 * @return Response
 	 */
-	public function store()
-    {
+	public function store() {
         $form = new TeacherCreateForm();
         
         $input = Input::all();

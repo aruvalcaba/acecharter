@@ -1,43 +1,42 @@
 <?php namespace TT\Service;
 
+use DB;
+use PDF;
 use App;
+use Log;
 use View;
+use Event;
 use Sentry;
+use Exception;
 use TT\Auth\Authenticator;
 use TT\Code\CodeRepository;
 use TT\School\SchoolRepository;
 use TT\Teacher\TeacherRepository;
 use TT\Teacher\TeacherTraitRepository;
 
-class TeacherService 
-{
+class TeacherService  {
     private $teacherRepo = null;
     private $schoolRepo = null;
     private $teacherTraitRepo = null;
 
-    public function __construct(TeacherRepository $teacherRepo, SchoolRepository $schoolRepo, TeacherTraitRepository $teacherTraitRepo,CodeRepository $codeRepo)
-    {
+    public function __construct(TeacherRepository $teacherRepo, SchoolRepository $schoolRepo, TeacherTraitRepository $teacherTraitRepo,CodeRepository $codeRepo) {
         $this->teacherRepo = $teacherRepo;
         $this->schoolRepo = $schoolRepo;
         $this->teacherTraitRepo = $teacherTraitRepo;
         $this->codeRepo = $codeRepo;
     }
 
-    public function all()
-    {
-        try
-        {
+    public function all() {
+        try {
             return $this->teacherRepo->getAll();
         }
 
-        catch(\Exception $ex)
-        {
-            \Log::error($ex);
+        catch(Exception $ex) {
+            Log::error($ex);
         }
     }
    
-    public function generateCodes(array $data)
-    {
+    public function generateCodes(array $data) {
         $count = (int)$data['count'];
         $teacherId = $data['teacher_id'];
         $message = $data['message'];
@@ -45,20 +44,17 @@ class TeacherService
         if( is_null($count) || is_null($teacherId) )
             return false;
         
-        else
-        {
-            try
-            {
-                \DB::beginTransaction();
+        else {
+            try {
+                DB::beginTransaction();
                 
                 $teacher = Authenticator::user($teacherId);
 
-                \PDF::setPrintHeader(false);
-                \PDF::setPrintFooter(false);
-                \PDF::AddPage();
+                PDF::setPrintHeader(false);
+                PDF::setPrintFooter(false);
+                PDF::AddPage();
                 
-                for($i = 0; $i < $count; $i++)
-                {
+                for($i = 0; $i < $count; $i++) {
                     $code = $this->codeRepo->generateCode();
 
                     $data = array();
@@ -72,18 +68,18 @@ class TeacherService
                     
                     $html = View::make('pages.code')->with('code',$code)->render();
                     
-                    if($i % 5 === 0 && $i !== 0)
-                    {
-                        \PDF::AddPage();
-                        \PDF::writeHTML($html,false,false,false,false,'L');
+                    if($i % 5 === 0 && $i !== 0) {
+                        PDF::AddPage();
+                        PDF::writeHTML($html,false,false,false,false,'L');
                     }
 
-                    else
-                         \PDF::writeHTML($html,false,false,false,false,'L');
+                    else {
+                        PDF::writeHTML($html,false,false,false,false,'L');
+                    }
                 }
 
-                \PDF::SetCreator('');
-                \PDF::SetAuthor('');
+                PDF::SetCreator('');
+                PDF::SetAuthor('');
 
                 $format = '%s/%s.pdf';
                 $subpath = sprintf($format,'pdfs',$teacherId);
@@ -91,27 +87,24 @@ class TeacherService
                 $format = '/%s/%s';
                 $fullpath = sprintf($format,public_path(),$subpath);
 
-                \PDF::Output($fullpath,'F');
-                \DB::commit();
+                PDF::Output($fullpath,'F');
+                DB::commit();
 
                 return $subpath;
             }
 
-            catch(\Exception $ex)
-            {
-                \Log::error($ex);
-                \DB::rollback();
+            catch(Exception $ex) {
+                Log::error($ex);
+                DB::rollback();
                 return false;        
             }
         }
     }
 
     
-    public function create(array $data)
-    {
-        try
-        {
-            \DB::beginTransaction();
+    public function create(array $data) {
+        try {
+            DB::beginTransaction();
             
             $teacherTraitData = array();
             $teacherTraitData['grade'] = $data['grade'];
@@ -140,23 +133,21 @@ class TeacherService
 
             $teacher->schools()->attach($school->id);
 
-            \Event::fire('user.created',[$teacher,$password]);            
+            Event::fire('user.created',[$teacher,$password]);            
             
-            \DB::commit();
+            DB::commit();
 
             return true;
         }
 
-        catch(\Exception $ex)
-        {
-            \Log::error($ex);
-            \DB::rollback();
+        catch(Exception $ex) {
+            Log::error($ex);
+            DB::rollback();
             return false;
         }
     }
 
-    public function find($id)
-    {
+    public function find($id) {
         return $this->teacherRepo->getById($id);
     }
 }

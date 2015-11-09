@@ -36,3 +36,32 @@ footer {
   background-color: #a42a4e;
   border-color: #a42a4e;
 }
+
+.parent-login{
+    background-color: #f0f0f0;
+}
+
+.ui-widget-header,.ui-state-default, ui-button {
+    background: #a42a4e;
+}
+
+.ui-state-default .ui-icon {
+    background-image: url('/img/ui-icons_a42a4e_256x240.png');
+}
+
+.ui-state-default, .ui-widget-content, .ui-state-default {
+    color: #666;
+}
+
+.main {
+    padding-top: 110px;
+    position: relative;
+}
+
+.panel {
+    margin-top: 20px;
+}
+
+.panel-login > .row {
+    padding: 5px 0px;
+}

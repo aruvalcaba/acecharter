@@ -7,7 +7,14 @@
 		"laravel/framework": "4.2.*",
         "cartalyst/sentry" : "2.1.*",
         "guzzlehttp/guzzle": "~4.0",
-        "maxxscho/laravel-tcpdf": "0.*"
+        "tecnickcom/tcpdf": "6.2.12",
+        "aura/view": "2.1.1",
+        "aura/web": "2.0.3",
+        "aura/html": "2.4.1",
+        "aura/sql": "2.4.3",
+        "aura/accept": "2.2.2",
+        "aura/payload-interface": "3.x-dev",
+        "aura/payload": "3.x-dev"
 	},
 	"autoload": {
         "classmap": [
