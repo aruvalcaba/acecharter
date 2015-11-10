@@ -3,17 +3,13 @@
 use TT\Support\EventHandler;
 use TT\Email\EmailNewUser;
 
-class EventUserCreated extends EventHandler 
-{
-    public function handler($user,$password)
-    {
-        if( is_null($user) )
-        {
+class EventUserCreated extends EventHandler  {
+    public function handler($user,$password) {
+        if( is_null($user) ) {
             return;
         }
 
-        else
-        {
+        else {
             $email = new EmailNewUser;
             $email->send($user,$password);
         }

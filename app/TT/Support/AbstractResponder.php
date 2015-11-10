@@ -6,8 +6,7 @@ use Aura\Accept\Accept;
 use Aura\Payload\Payload;
 use Aura\Payload_Interface\PayloadInterface;
 
-abstract class AbstractResponder
-{
+abstract class AbstractResponder {
     protected $accept;
     
     protected $available = [ 'text/html'=>'','application/json'=>'.json' ];
@@ -31,15 +30,13 @@ abstract class AbstractResponder
         $this->init();
     }
 
-    protected function init()
-    {
+    protected function init() {
         if ( ! isset( $this->payload_method[Payload::ERROR] ) ) {
             $this->payload_method[Payload::ERROR] = 'error';
         }
     }
 
-    public function __invoke()
-    {
+    public function __invoke() {
         $status = $this->payload->getStatus();
         $method = isset($this->payload_method[$status])
                 ? $this->payload_method[$status]
@@ -48,21 +45,18 @@ abstract class AbstractResponder
         return \Response::make($this->response->content->get(),$this->response->status->getCode());
     }
 
-    public function setPayload(PayloadInterface $payload)
-    {
+    public function setPayload(PayloadInterface $payload) {
         $this->payload = $payload;
     }
 
-    protected function notRecognized()
-    {
+    protected function notRecognized() {
         $domain_status = $this->payload->getStatus();
         $this->response->status->set(500);
         $this->response->content->set("Unknown domain payload status: '$domain_status'");
         return $this->response;
     }
 
-    protected function negotiateMediaType()
-    {
+    protected function negotiateMediaType() {
         if (! $this->available || ! $this->accept) {
             return true;
         }
@@ -80,8 +74,7 @@ abstract class AbstractResponder
         return true;
     }
 
-    protected function renderView($view)
-    {
+    protected function renderView($view) {
         $content_type = $this->response->content->getType();
         if ($content_type) {
             $view .= $this->available[$content_type];
@@ -92,15 +85,12 @@ abstract class AbstractResponder
         $this->response->content->set($this->view->__invoke());
     }
 
-    protected function notFound()
-    {
+    protected function notFound() {
         $this->response->status->set(404);
         $this->response->content->set("<html><head><title>404 Not found</title></head><body>404 Not found</body></html>");
     }
 
-    protected function error()
-    {
-        //$e = $this->payload->get('exception');
+    protected function error() {
         $this->response->status->set(500);
         $this->response->content->set('Oops something went wrong');
     }

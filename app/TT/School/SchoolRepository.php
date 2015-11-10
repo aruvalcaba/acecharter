@@ -3,15 +3,12 @@
 use TT\Models\School;
 use TT\Support\ModelRepository;
 
-class SchoolRepository extends ModelRepository
-{
-    public function __construct(School $school)
-    {
+class SchoolRepository extends ModelRepository {
+    public function __construct(School $school) {
         $this->model = $school;
     }
 
-    public function create(array $data)
-    {
+    public function create(array $data) {
         
         $data['name'] = $data['school'];
 
@@ -22,8 +19,7 @@ class SchoolRepository extends ModelRepository
         return $this->model;
     }
 
-    public function findOrCreate(array $data)
-    {
+    public function findOrCreate(array $data) {
         
         $school = $this->model->where('name','=',$data['school'])->first();
 

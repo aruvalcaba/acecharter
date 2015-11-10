@@ -3,10 +3,8 @@
 use Validator;
 use TT\Support\FormModel;
 
-class ParentCreateForm extends FormModel 
-{
-    protected function getPreparedRules()
-    {
+class ParentCreateForm extends FormModel  {
+    protected function getPreparedRules() {
         return [
                 'parent_fullname' => 'required',
                 'student_fullname' => 'required',
@@ -16,8 +14,7 @@ class ParentCreateForm extends FormModel
                ];
     }
 
-    protected function getMessages()
-    {
+    protected function getMessages() {
         return [ 
         'parent_fullname.required' => 'Parent full name is required.',
         'student_fullname.required' => 'Student full name is required.',
@@ -31,8 +28,7 @@ class ParentCreateForm extends FormModel
         ];
     }
 
-    protected function getCustomAttributes()
-    {
+    protected function getCustomAttributes() {
         return [];
     }
 }

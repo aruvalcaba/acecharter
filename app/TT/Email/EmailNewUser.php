@@ -3,14 +3,12 @@
 use Mail;
 use TT\Models\User;
 
-class EmailNewUser
-{
+class EmailNewUser {
     private $layout = 'emails.welcome';
     private $from = 'no-reply@teachtogether.co';
     private $subject = 'Welcome to TeachTogether!';
 
-    public function send(User $user, $password)
-    {
+    public function send(User $user, $password) {
         $data['user'] = $user;
         $data['password'] = $password;
 

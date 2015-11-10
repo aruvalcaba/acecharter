@@ -33,13 +33,13 @@ class RegisterService extends AbstractRegisterService {
         else {
             if( $this->teacher_service->create($input) ) {
                 $payload->setStatus(Payload::CREATED);
-                $messages = [$this->getMsg('messages.entity_create_success',['name'=>'Account'])];
+                $messages = [$this->getMsg('messages.entity_store_success',['name'=>'Account'])];
                 $payload->setOutput(['response'=>['messages'=>$messages]]);   
             }
 
             else {
                 $payload->setStatus(Payload::NOT_CREATED);
-                $messages = [$this->getMsg('messages.entity_create_failure',['name'=>'Account'])];
+                $messages = [$this->getMsg('messages.entity_store_failure',['name'=>'Account'])];
                 $payload->setOutput(['response'=>['messages'=>$messages]]);  
             }
         }

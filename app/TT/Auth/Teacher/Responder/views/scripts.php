@@ -106,10 +106,10 @@
         var firstName = $("#first_name").val();
         var lastName = $("#last_name").val();
         var email = $("#signup_email").val();
-        var grade = $("#grade").val();
+        var grade = ( $("#grade").val() == null ) ? '' : $("#grade").val();
         var zipcode = $("#zipcode").val();
-        var school = $("#school").val();
-        var title = $("#title").val();
+        var school = ( $("#school").val() == null ) ? '' : $("#school").val();
+        var title = ( $("#title").val() == null ) ? '' : $("#title").val();
 
         var dataString = 'first_name='+firstName+
                          '&last_name='+lastName+
@@ -142,7 +142,9 @@
                         else {
                             message = messages[0];
                         }
-                        
+
+                        $('#signupModal').modal('hide');
+
                         var dialog = $('<div></div>').dialog({modal:true,height:'auto',title:'Alert',buttons: { Ok: function() { dialog.dialog('close'); }}});
                         dialog.html(message);
                         dialog.dialog('open');

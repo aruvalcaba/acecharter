@@ -2,10 +2,8 @@
 
 use TT\Support\TeacherScope;
 
-trait UserTeacherTrait
-{
-    public static function bootUserTeacherTrait()
-    {
+trait UserTeacherTrait {
+    public static function bootUserTeacherTrait() {
         static::addGlobalScope(new TeacherScope);
     }
 }

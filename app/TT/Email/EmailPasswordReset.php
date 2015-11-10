@@ -3,14 +3,12 @@
 use Mail;
 use TT\Models\User;
 
-class EmailPasswordReset
-{
+class EmailPasswordReset {
     private $layout = 'emails.password-reset';
     private $from = 'no-reply@teachtogether.co';
     private $subject = 'Password Reset';
 
-    public function send($user, $password)
-    {
+    public function send($user, $password) {
         $data['user'] = $user;
         $data['password'] = $password;
 

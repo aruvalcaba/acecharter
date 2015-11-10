@@ -7,7 +7,6 @@ use File;
 use View;
 use Sentry;
 use Exception;
-use BaseController;
 use TT\Models\User;
 use TT\Models\Activity;
 use TT\Auth\Authenticator;
@@ -33,7 +32,7 @@ class ActivityService {
         }
     }
 
-    public function create($data, BaseController $listener) {
+    public function create($data) {
         try {
             DB::beginTransaction();
 
@@ -75,8 +74,6 @@ class ActivityService {
 
             DB::commit();
 
-            $listener->setMsg('messages.entity_store_success',['name'=>$data['title']]);
-
             return true;
         }
 
@@ -84,17 +81,15 @@ class ActivityService {
         catch(Exception $ex) {
             Log::error($ex);
             DB::rollback();
-            $listener->setMsg('messages.entity_store_failure',['name'=>$data['title']]);
             return false;
         }
     }
 
-    public function update($id, $data,BaseController $listener) {
+    public function update($id) {
 
         $activity = $this->activityRepo->getById($id);
 
         if( is_null($activity) ) {
-            $listener->setMsg('messages.entity_not_found',['entity'=>'Activity']);
             return false;
         }
 
@@ -165,8 +160,6 @@ class ActivityService {
     
             DB::commit();
 
-            $listener->setMsg('messages.entity_update_success',['name'=>$data['title']]);
-
             return true;
         }
 
@@ -174,14 +167,13 @@ class ActivityService {
         catch(Exception $ex){
             Log::error($ex);
             DB::rollback();
-            $listener->setMsg('messages.entity_update_failure',['name'=>$data['title']]);
             return false;
         }
     }
 
 
 
-    public function destroy($id,$listener = null) {   
+    public function destroy($id) {   
         $activity = null;
 
         try {
@@ -199,23 +191,14 @@ class ActivityService {
             File::delete([$activityPath,$descriptionPath]);
             
             $this->activityRepo->destroy($id);
-            
-            if( ! is_null($listener) ) {
-                $listener->setMsg('messages.entity_delete_success',['name'=>$activity->title]);
-            }
 
             DB::table('activities_ratings')->where('activity_id','=',$id)->delete();
 
             return true;
         }
 
-        catch(\Exception $ex) {
+        catch(Exception $ex) {
             Log::error($ex);
-
-            if( ! is_null($listener) ) {
-                $listener->setMsg('messages.entity_delete_failure',['name'=>$activity->title]);
-            }
-
             return false;
         }
     }
@@ -255,15 +238,13 @@ class ActivityService {
         }
     }
 
-    public function complete(Activity $activity, array $data, User $user, BaseController $listener) {
+    public function complete(Activity $activity, array $data, User $user) {
         try {
             $student = $user->students()->first();
 
             
             if( $activity->id == 1) {
                 $student->activities()->attach($activity->id); 
-                $listener->setMsg('messages.activity_complete',['name'=>$activity->title]);
-
                 return true;
             }
 
@@ -274,9 +255,8 @@ class ActivityService {
             DB::beginTransaction();
 
             $survey = DB::table('activities_surveys')->where('activity_id','=',$activity->id)->where('parent_id','=',$user->id)->first();
-
-            if( ! is_null($survey) ) {
-                $listener->setMsg('messages.activity_already_rated');
+            
+            if( is_null($survey) ) {
                 return false;
             }
 
@@ -302,8 +282,6 @@ class ActivityService {
 
             DB::commit();
 
-            $listener->setMsg('messages.activity_complete',['name'=>$activity->title]);
-
             return true;
         }
 
@@ -312,8 +290,6 @@ class ActivityService {
             
             DB::rollback();
             
-            $listener->setMsg('messages.activity_failure',['name'=>$activity->title]);
-
             return false;
         }
     }

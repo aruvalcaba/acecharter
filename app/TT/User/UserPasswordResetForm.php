@@ -2,26 +2,23 @@
 
 use TT\Support\FormModel;
 
-class UserPasswordResetForm extends FormModel{
+class UserPasswordResetForm extends FormModel {
 
-	protected function getPreparedRules()
-    {
+	protected function getPreparedRules() {
         return
 			  [ 
 			  	'email' => 'email|exists:users,email',
 			];
     }
 
-	protected function getMessages(){
-
+	protected function getMessages() {
 		return [
 				'exist' => 'The email was not found in our records.',
 			 ];
 			   
 	}
 
-	protected function getCustomAttributes(){
-
+	protected function getCustomAttributes() {
 		return [];	
 	}
 

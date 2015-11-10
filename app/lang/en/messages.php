@@ -26,5 +26,6 @@ return [
     'not_teacher'=>'You are not a teacher.',
     'not_parent'=>'You are not a parent.',
     'grades_input_placeholder'=>'Select a grade',
-    'titles_input_placeholder'=>'Select a title'
+    'titles_input_placeholder'=>'Select a title',
+    'schools_input_placeholder'=>'Select a school'
 ];

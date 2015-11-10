@@ -54,8 +54,9 @@ class LoginService extends AbstractLoginService {
                 'pwd_input' => ['type'=>'password','name'=>'password','attribs'=>['class'=>'form-control','id'=>'password']],
                 'login_btn' => ['type'=>'submit','name'=>'login','value'=>'Login in','attribs'=>['id'=>'login','class'=>'btn btn-success fleft']],
                 'forgot_pwd_btn' => ['type'=>'button','name'=>'forgot_pwd','value'=>'Forgot Password','attribs'=>['class'=>'btn btn-default','data-toggle'=>'modal','data-target'=>'#forgotPasswordModal']],
-                'titles_input'=>['type'=>'select','name'=>'title','value'=>'','attribs'=>['class'=>'form-control','placeholder'=>$this->getMsg('messages.titles_input_placeholder')],'options'=> Lists::honorifics()],
-                'grades_input'=>['type'=>'select','name'=>'grade','value'=>'','attribs'=>['class'=>'form-control','placeholder'=>$this->getMsg('messages.grades_input_placeholder')],'options'=> Lists::grades()],
+                'titles_input'=>['type'=>'select','name'=>'title','value'=>'','attribs'=>['id'=>'title','class'=>'form-control','placeholder'=>$this->getMsg('messages.titles_input_placeholder')],'options'=> Lists::honorifics()],
+                'grades_input'=>['type'=>'select','name'=>'grade','value'=>'','attribs'=>['id'=>'grade','class'=>'form-control','placeholder'=>$this->getMsg('messages.grades_input_placeholder')],'options'=> Lists::grades()],
+                'schools_input'=>['type'=>'select','name'=>'school','value'=>'','attribs'=>['id'=>'school','class'=>'form-control','placeholder'=>$this->getMsg('messages.schools_input_placeholder')],'options'=> Lists::schools()],
         ];
     }
 }

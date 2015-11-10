@@ -5,13 +5,11 @@
  */
 use Validator;
 
-class FormModel
-{
+class FormModel {
     private $validator;
     protected $inputData;
 
-    public function __construct()
-    {
+    public function __construct() {
     }
 
 	/*
@@ -41,13 +39,11 @@ class FormModel
 		return $default; 
 	}
 
-    public function getInputData()
-    {
+    public function getInputData() {
         return $this->inputData;
     }
 
-    public function isValid(array $input)
-    {
+    public function isValid(array $input) {
 		$this->inputData = $input;
         
         $this->beforeValidation();
@@ -59,27 +55,25 @@ class FormModel
         return $this->validator->passes();
     }
 
-	public function getValidator(){
+	public function getValidator() {
 	
 		return $this->validator;
 	}
 
-    public function getErrors()
-    {
+    public function getErrors() {
         return array_values($this->validator->errors()->toArray());
     }
 
-    protected function getPreparedRules()
-    {
+    protected function getPreparedRules() {
         return [];
     }
 
-	protected function getMessages(){
+	protected function getMessages() {
 
 		return [];	
 	}
 
-	protected function getCustomAttributes(){
+	protected function getCustomAttributes() {
 
 		return [];	
 	}

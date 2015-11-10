@@ -3,17 +3,14 @@
 use Illuminate\Database\Eloquent\Builder; 
 use Illuminate\Database\Eloquent\ScopeInterface;
 
-class StudentScope implements ScopeInterface
-{
+class StudentScope implements ScopeInterface {
     protected static $studentTraitModel = 'TT\Models\StudentTrait';
 
-    public function apply(Builder $builder)
-    {
+    public function apply(Builder $builder) {
         $builder->where('traits_type','=',self::$studentTraitModel);
     }
     
-    public function remove(Builder $builder)
-    {
+    public function remove(Builder $builder){
         return;
     }
 }

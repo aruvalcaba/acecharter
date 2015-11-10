@@ -39,7 +39,14 @@ class CustomValidation extends Validator {
         catch(\Cartalyst\Sentry\Users\UserSuspendedException $e) {
             return false;
         }
-    }
 
+        catch(\Cartalyst\Sentry\Groups\NameRequiredException $e) {
+            return false;
+        }
+
+        catch(\Cartalyst\Sentry\Groups\GroupExistsException $e) {
+            return false;
+        }
+    }
 }
 ?>

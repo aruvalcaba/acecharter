@@ -1,17 +1,15 @@
 <?php namespace TT\Provider;
 
+use Event;
 use Illuminate\Support\ServiceProvider;
 
-class UserEventsProvider extends ServiceProvider 
-{
-    public function boot()
-    {
-        \Event::listen('user.created', 'TT\User\EventUserCreated');
-        \Event::listen('user.resetpwd','TT\User\EventPasswordReset');
+class UserEventsProvider extends ServiceProvider  {
+    public function boot() {
+        Event::listen('user.created', 'TT\User\EventUserCreated');
+        Event::listen('user.resetpwd','TT\User\EventPasswordReset');
     }
 
-    public function register()
-    {
+    public function register() {
         return;
     }
 }

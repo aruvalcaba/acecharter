@@ -5,10 +5,9 @@ use Log;
 use Event;
 use Sentry;
 use Exception;
-use BaseController;
 
 class PasswordService {
-    public function changePassword(array $input,BaseController $listener) {
+    public function changePassword(array $input) {
         $newPassword = $input['password'];
 
         $user = Sentry::getUser();
@@ -17,12 +16,9 @@ class PasswordService {
 
         if( $user->checkResetPasswordCode($resetCode) ) {
             if( $user->attemptResetPassword($resetCode,$newPassword) ) {
-                    $listener->setMsg('messages.pwd_changed_success');
                     return true;
                 }
         } 
-        
-        $listener->setMsg('messages.pwd_changed_failure');
         
         return false;      
     }

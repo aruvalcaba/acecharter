@@ -2,10 +2,8 @@
 
 use TT\Support\ParentScope;
 
-trait UserParentTrait
-{
-    public static function bootUserParentTrait()
-    {
+trait UserParentTrait {
+    public static function bootUserParentTrait() {
         static::addGlobalScope(new ParentScope);
     }
 }

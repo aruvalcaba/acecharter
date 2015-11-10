@@ -30,7 +30,7 @@ abstract class AbstractService {
         }
 
         else 
-            return Lang::get($msg_path,$args);
+            return trans($msg_path,$args);
     }
 
     abstract function getData();
