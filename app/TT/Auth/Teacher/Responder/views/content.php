@@ -56,7 +56,7 @@ $helper->tag('/main');
             </div>
             <div class="form-group">
                 <label>School name</label>
-                <input type="text" class="form-control" id="school">
+                <?php echo $helper->input($data['schools']); ?>
             </div>
         </form>
       <div class="modal-footer">

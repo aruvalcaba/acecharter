@@ -23,7 +23,7 @@ class UserSeeder extends Seeder {
         
         $admin = Sentry::register([
                                     'first_name'=>'Admin',
-                                    'email'=>'admin@tt.co',
+                                    'email'=>'admin@acecharter.org',
                                     'password'=>'admin',
                                     'activated'=>1,
                                     'traits_type'=>'TT\Models\AdminTrait'
@@ -46,7 +46,7 @@ class UserSeeder extends Seeder {
                                         'first_name'=>'Sophie',
                                         'last_name'=>'Nazerian',
                                         'title'=>'Ms',
-                                        'email'=>'sn2595@tc.columbia.edu',
+                                        'email'=>'teacher1@acecharter.org',
                                         'password'=>'letmein1',
                                         'activated'=>1,
                                         'traits_id'=>$trait->id
@@ -57,7 +57,7 @@ class UserSeeder extends Seeder {
                                         'first_name'=>'Harpreet',
                                         'last_name'=>'Gill',
                                         'title'=>'Mr',
-                                        'email'=>'hg2355@columbia.edu',
+                                        'email'=>'teacher2@acecharter.org',
                                         'password'=>'letmein1',
                                         'activated'=>1,
                                         'traits_id'=>$trait->id
@@ -70,7 +70,7 @@ class UserSeeder extends Seeder {
                                         'first_name'=>'Thea',
                                         'last_name'=>'Hogarth',
                                         'title'=>'Ms',
-                                        'email'=>'teh2115@tc.columbia.edu',
+                                        'email'=>'teacher3@acecharter.org',
                                         'password'=>'letmein1',
                                         'activated'=>1,
                                         'traits_id'=>$trait->id
@@ -84,6 +84,14 @@ class UserSeeder extends Seeder {
                                         'last_name'=>'Ruvalcaba',
                                         'title'=>'Mr',
                                         'email'=>'aruval3@gmail.com',
+                                        'password'=>'letmein1',
+                                        'activated'=>'1',
+                                    ]);
+            $neeru = $parentRepo->create([
+                                        'first_name'=>'Neeru',
+                                        'last_name'=>'Bansal',
+                                        'title'=>'Ms',
+                                        'email'=>'nbansal@acecharter.org',
                                         'password'=>'letmein1',
                                         'activated'=>'1',
                                         ]);
