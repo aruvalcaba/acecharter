@@ -11,5 +11,5 @@ return [
         'grandfather'=>'Grandfather',
         'registration'=>'Registration',
         'all_students'=>'All Students',
-        'how_register_parents'=>'How do I register parents ? ',
+        'how_register_parents'=>'How do I register parents ?',
 ];
