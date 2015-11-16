@@ -2,14 +2,13 @@
 
 use TT\Service\TeacherService;
 
-use Aura\Payload\Payload;
-
 use Aura\Payload\PayloadFactory;
 
 use TT\Register\RegisterFormFactory;
 
 use TT\Register\AbstractRegisterService;
 
+use Aura\Payload_Interface\PayloadStatus;
 
 class RegisterService extends AbstractRegisterService {
     public function __construct( TeacherService $teacher_service, RegisterFormFactory $register_factory, PayloadFactory $payload_factory ) {
@@ -25,20 +24,20 @@ class RegisterService extends AbstractRegisterService {
         if( ! $form->isValid($input) ) {
             $messages = $form->getErrors();
             
-            $payload->setStatus(Payload::NOT_ACCEPTED);
+            $payload->setStatus(PayloadStatus::NOT_ACCEPTED);
             $payload->setOutput(['response'=>['messages'=>$messages]]);
 
         }
 
         else {
             if( $this->teacher_service->create($input) ) {
-                $payload->setStatus(Payload::CREATED);
+                $payload->setStatus(PayloadStatus::CREATED);
                 $messages = [$this->getMsg('messages.entity_store_success',['name'=>'Account'])];
                 $payload->setOutput(['response'=>['messages'=>$messages]]);   
             }
 
             else {
-                $payload->setStatus(Payload::NOT_CREATED);
+                $payload->setStatus(PayloadStatus::NOT_CREATED);
                 $messages = [$this->getMsg('messages.entity_store_failure',['name'=>'Account'])];
                 $payload->setOutput(['response'=>['messages'=>$messages]]);  
             }

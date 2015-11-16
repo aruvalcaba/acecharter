@@ -1,11 +1,11 @@
 <?php namespace TT\Auth;
 
-use Aura\Payload\Payload;
-
 use TT\Support\AbstractResponder;
 
+use Aura\Payload_Interface\PayloadStatus;
+
 abstract class AbstractLoginResponder extends AbstractResponder {
-    protected $payload_method = [ Payload::SUCCESS=>'getLogin', Payload::AUTHENTICATED=>'authenticated', Payload::NOT_AUTHENTICATED => 'notAuthenticated' ];
+    protected $payload_method = [ PayloadStatus::SUCCESS=>'getLogin', PayloadStatus::AUTHENTICATED=>'authenticated', PayloadStatus::NOT_AUTHENTICATED => 'notAuthenticated' ];
 
     protected function init() {
         parent::init();

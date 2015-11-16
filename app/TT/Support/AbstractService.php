@@ -1,8 +1,10 @@
 <?php namespace TT\Support;
 
 use Lang;
-use Aura\Payload\Payload;
+
 use Aura\Payload\PayloadFactory;
+
+use Aura\Payload_Interface\PayloadStatus;
 
 abstract class AbstractService {
     public function __construct(PayloadFactory $payload_factory) {
@@ -11,16 +13,15 @@ abstract class AbstractService {
 
     protected function success($output = []) {
         $payload = $this->payload_factory->newInstance();
-        $payload->setStatus(Payload::SUCCESS);
+        $payload->setStatus(PayloadStatus::SUCCESS);
         $payload->setOutput($output);
         return $payload;
     }
 
     protected function error($output = []) {
         $payload = $this->payload_factory->newInstance();
-        $payload->setStatus(Payload::ERROR);
+        $payload->setStatus(PayloadStatus::ERROR);
         $payload->setOutput($output);
-        $payload->setMessages(['exception'=>$msg]);
         return $payload;
     }
 
@@ -33,5 +34,5 @@ abstract class AbstractService {
             return trans($msg_path,$args);
     }
 
-    abstract function getData();
+    protected function getData() {}
 }

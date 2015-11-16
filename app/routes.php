@@ -14,13 +14,9 @@
 /**
 Route::group(['before'=>'session','namespace' => 'TT\Controllers'],function()
 {
-    //Route::get('/login', array('as'=>'login.get','uses'=>'LoginController@getLogin'));
-    //Route::post('/login', array('as'=>'login.post','uses'=>'LoginController@postLogin'));
-
     Route::post('/teacher',array('as'=>'teacher.post','uses'=>'Teacher\SignUpController@store'));
     Route::post('/parent',array('as'=>'parent.post','uses'=>'Parent\SignUpController@store'));
     Route::post('/pwd/reset', array('as'=>'pwd.reset.post','uses'=>'PasswordResetController@postReset'));
-
 });
 **/
 Route::group(['namespace'=>'TT','before'=>'logout'], function() {
@@ -60,13 +56,13 @@ Route::group(['namespace' => 'TT'], function() {
     Route::post('/teacher/login', array('as'=>'login.teacher.post','uses'=>'Auth\Teacher\Action\LoginPostAction@act'));
     Route::post('/admin/login', array('as'=>'login.admin.post','uses'=>'Auth\Admin\Action\LoginPostAction@act'));
     Route::post('/teacher',array('as'=>'teacher.post','uses'=>'Register\Teacher\Action\RegisterAction@act'));
+    Route::post('/print-codes',array('as'=>'printcodes.teacher','uses'=>'Teacher\Codes\Action\PrintCodesAction@act'));
 });
 
 
 /**
 Route::group(['namespace' => 'TT\Controllers'],function() 
 {
-    Route::get('/admin',array('as'=>'admin','uses'=>'AdminController@show'));
     //Route::get('/privacy', array('as'=>'privacy','uses'=>'HomeController@getPrivacy'));
     //Route::get('/terms-of-service', array('as'=>'tos','uses'=>'HomeController@getTOS'));
 
@@ -76,10 +72,6 @@ Route::group(['namespace' => 'TT\Controllers'],function()
 
 Route::group(['before' => 'auth','after' => 'nocache', 'namespace' => 'TT\Controllers'], function()
 {
-    //Route::get('/logout',array('as'=>'logout.get','uses'=>'LoginController@getLogout'));
-    //Route::get('/home',array('as'=>'home','uses'=>'HomeController@showHome'));
-    //Route::get('/{user_type}/home',array('as'=>'home.user','uses'=>'HomeController@getHome'));
-
     Route::post('/print-codes',array('as'=>'print.codes','uses'=>'Teacher\StudentController@printCodes'));
     Route::resource('activity','ActivityController');
 

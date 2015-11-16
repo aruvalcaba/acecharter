@@ -94,7 +94,6 @@ return array(
 	*/
 
 	'providers' => array(
-
 		'Illuminate\Foundation\Providers\ArtisanServiceProvider',
 		'Illuminate\Auth\AuthServiceProvider',
 		'Illuminate\Cache\CacheServiceProvider',
@@ -121,6 +120,7 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
         'Illuminate\Workbench\WorkbenchServiceProvider',
+        'Maxxscho\LaravelTcpdf\LaravelTcpdfServiceProvider',
         'Cartalyst\Sentry\SentryServiceProvider',
         'TT\Provider\UserEventsProvider',
         'TT\Provider\UserProvider',
@@ -152,7 +152,6 @@ return array(
 	*/
 
 	'aliases' => array(
-
 		'App'             => 'Illuminate\Support\Facades\App',
 		'Artisan'         => 'Illuminate\Support\Facades\Artisan',
 		'Auth'            => 'Illuminate\Support\Facades\Auth',
@@ -191,7 +190,7 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
         'View'            => 'Illuminate\Support\Facades\View',
-        'Sentry' => 'Cartalyst\Sentry\Facades\Laravel\Sentry',
+        'Sentry' =>  'Cartalyst\Sentry\Facades\Laravel\Sentry',
         'FormList'=> 'TT\Support\Lists'
 	),
 

@@ -8,5 +8,7 @@ return [
         'aunt'=>'T&#205;a',
         'uncle'=>'T&#205;o',
         'grandmother'=>'Abuela',
-        'grandfather'=>'Abuelo'
+        'grandfather'=>'Abuelo',
+        'registration'=>'registro',
+        'all_students'=>'Todos los estudiantes'
 ];

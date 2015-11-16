@@ -2,13 +2,13 @@
 
 use Sentry;
 
-use Aura\Payload\Payload;
-
 use Aura\Payload\PayloadFactory;
 
 use TT\Auth\AuthFormFactory;
 
 use TT\Auth\AbstractLoginService;
+
+use Aura\Payload_Interface\PayloadStatus;
 
 class LoginService extends AbstractLoginService {
     public function __construct(PayloadFactory $payload_factory, AuthFormFactory $form_factory ) {
@@ -24,7 +24,7 @@ class LoginService extends AbstractLoginService {
         if( ! $form->isValid($credentials) ) {
             $messages = $form->getErrors();
 
-            $payload->setStatus(Payload::NOT_AUTHENTICATED);
+            $payload->setStatus(PayloadStatus::NOT_AUTHENTICATED);
             $payload->setOutput(['response'=>['messages'=>$messages]]);
             return $payload;
         }
@@ -32,13 +32,13 @@ class LoginService extends AbstractLoginService {
         try {
             $user = Sentry::authenticate($credentials,true);
             
-            $payload->setStatus(Payload::AUTHENTICATED);
+            $payload->setStatus(PayloadStatus::AUTHENTICATED);
             $payload->setOutput(['response'=>[]]);
             return $payload;
         }
 
         catch(\Cartalyst\Sentry\Users\WrongPasswordException $e) {
-            $payload->setStatus(Payload::NOT_AUTHENTICATED);
+            $payload->setStatus(PayloadStatus::NOT_AUTHENTICATED);
             $messages = [$this->getMsg('messages.password_required')];
             $payload->setOutput(['response'=>['messages'=>$messages]]);
             return $payload;

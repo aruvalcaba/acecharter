@@ -7,7 +7,7 @@ use Addata\Support\Exceptions\EntityNotFoundException;
 abstract class ModelRepository {
     protected $model;
 
-    public function __construct($model = null) {
+    public function __construct(Model $model) {
         $this->model = $model;
     }
 

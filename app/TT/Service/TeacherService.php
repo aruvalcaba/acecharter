@@ -1,29 +1,55 @@
 <?php namespace TT\Service;
 
 use DB;
+
 use PDF;
+
 use App;
+
 use Log;
+
 use View;
+
 use Event;
+
 use Sentry;
+
 use Exception;
-use TT\Auth\Authenticator;
+
 use TT\Code\CodeRepository;
+
 use TT\School\SchoolRepository;
+
 use TT\Teacher\TeacherRepository;
+
 use TT\Teacher\TeacherTraitRepository;
 
-class TeacherService  {
+use TT\Teacher\Codes\CodeFormFactory;
+
+use TT\Support\AbstractService;
+
+use Aura\Payload\PayloadFactory;
+
+use Aura\Payload_Interface\PayloadStatus;
+
+class TeacherService extends AbstractService {
     private $teacherRepo = null;
     private $schoolRepo = null;
     private $teacherTraitRepo = null;
 
-    public function __construct(TeacherRepository $teacherRepo, SchoolRepository $schoolRepo, TeacherTraitRepository $teacherTraitRepo,CodeRepository $codeRepo) {
+    public function __construct(
+                                TeacherRepository $teacherRepo, 
+                                SchoolRepository $schoolRepo, 
+                                TeacherTraitRepository $teacherTraitRepo, 
+                                CodeRepository $codeRepo, 
+                                PayloadFactory $payload_factory,
+                                CodeFormFactory $code_form_factory) {
         $this->teacherRepo = $teacherRepo;
         $this->schoolRepo = $schoolRepo;
         $this->teacherTraitRepo = $teacherTraitRepo;
         $this->codeRepo = $codeRepo;
+        $this->payload_factory = $payload_factory;
+        $this->code_form_factory = $code_form_factory;
     }
 
     public function all() {
@@ -37,32 +63,35 @@ class TeacherService  {
     }
    
     public function generateCodes(array $data) {
-        $count = (int)$data['count'];
-        $teacherId = $data['teacher_id'];
-        $message = $data['message'];
 
-        if( is_null($count) || is_null($teacherId) )
-            return false;
+        $payload = $this->payload_factory->newInstance();
+        $form = $this->code_form_factory->newPrintCodesForm();
+
+        if( ! $form->isValid($data) ) {
+            $messages = $form->getErrors();
+
+            $payload->setStatus(PayloadStatus::NOT_ACCEPTED);
+            $payload->setOutput(['response'=>['messages'=>$messages]]);
+            return $payload;
+        }
         
         else {
             try {
                 DB::beginTransaction();
                 
-                $teacher = Authenticator::user($teacherId);
-
                 PDF::setPrintHeader(false);
                 PDF::setPrintFooter(false);
                 PDF::AddPage();
+
+                $count = (int)$data['count'];
                 
                 for($i = 0; $i < $count; $i++) {
                     $code = $this->codeRepo->generateCode();
 
                     $data = array();
                     $data = array_add($data,'student_code',$code);
-                    $data = array_add($data,'teacher_id',$teacherId);
 
                     $code = $this->codeRepo->create($data);
-                    $code->message = $message;
 
                     $this->codeRepo->clearModel();
                     
@@ -82,21 +111,21 @@ class TeacherService  {
                 PDF::SetAuthor('');
 
                 $format = '%s/%s.pdf';
-                $subpath = sprintf($format,'pdfs',$teacherId);
+                $subpath = sprintf($format,'pdfs',str_random(32));
 
                 $format = '/%s/%s';
                 $fullpath = sprintf($format,public_path(),$subpath);
 
                 PDF::Output($fullpath,'F');
                 DB::commit();
-
-                return $subpath;
+                
+                return $this->success(['response'=>['path'=>sprintf('/%s',$subpath)]]);      
             }
 
-            catch(Exception $ex) {
-                Log::error($ex);
+            catch(Exception $e) {
+                Log::error($e);
                 DB::rollback();
-                return false;        
+                return $this->error(['exception'=>$e->getMessage()]);
             }
         }
     }

@@ -1,11 +1,11 @@
 <?php namespace TT\Home;
 
-use Aura\Payload\Payload;
-
 use TT\Support\AbstractResponder;
 
+use Aura\Payload_Interface\PayloadStatus;
+
 abstract class AbstractHomeResponder extends AbstractResponder {
-    protected $payload_method = [Payload::SUCCESS=>'home'];
+    protected $payload_method = [PayloadStatus::SUCCESS=>'home'];
 
     protected function init() {
         $view_names =  ['home'];

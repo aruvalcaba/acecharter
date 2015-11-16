@@ -1,11 +1,11 @@
 <?php namespace TT\Common\Responder;
 
-use Aura\Payload\Payload; 
-
 use TT\Support\AbstractResponder;
 
+use Aura\Payload_Interface\PayloadStatus; 
+
 class NotAuthResponder extends AbstractResponder {
-    protected $payload_method = [ Payload::SUCCESS => 'notAuthorized' ];
+    protected $payload_method = [ PayloadStatus::SUCCESS => 'notAuthorized' ];
     protected $views_path = __DIR__;
 
     protected function init() {

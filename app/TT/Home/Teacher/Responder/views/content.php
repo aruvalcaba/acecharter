@@ -1,5 +1,22 @@
 <main>
 <section id="service" class="home-section text-center">
+
+
+<?php
+
+$data = $this->data;
+
+echo $helper->tag('div') .
+    $helper->tag('div',['class'=>'col-md-8']) .
+        $helper->input($data['register_btn']) .   
+        $helper->input($data['all_students_btn']) .   
+    $helper->tag('/div') .
+    $helper->tag('div',['class'=>'col-md-4']) .
+        $helper->tag('button',['class'=>'btn btn-info','type'=>'button','data-toggle'=>'collapse','data-target'=>'#codes']) . $h($data['how_register_parents']) . $helper->tag('span',['class'=>'glyphicon glyphicon-info-sign','aria-hidden'=>'true']) . $helper->tag('/span') . $helper->tag('/button') .
+    $helper->tag('/div') .
+$helper->tag('/div');
+?>
+<!--
  <div class="col-lg-8 col-lg-offset-2 btn-group pull-left" role="group"  aria-label="...">
      <button type="button" class="btn btn-default active">
     Registration</button>
@@ -33,8 +50,9 @@
  <button type="button" class="btn btn-info pull-right" data-toggle="collapse" data-target="#codes">
   <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>&nbsp;
   How do I register parents?</button></div>
-             
-   <div class="row col-lg-6 col-lg-offset-3 bg-info collapse" id="codes">
+   -->          
+
+<div class="row col-lg-6 col-lg-offset-3 bg-info collapse" id="codes">
                    
 <p class="col-lg-8 col-lg-offset-2 bg-info"><br>
 <b><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>&nbsp;</b>To register, parents will need a student code. 

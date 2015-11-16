@@ -23,7 +23,7 @@ class HomeService extends AbstractService {
 
                 $output['user'] = $user;
                 $output['students'] = ! empty($students) ? $students : [];
-                $output['text'] = $this->getData();
+                $output['data'] = $this->getData();
                 $payload->setOutput($output);
             }
             
@@ -36,6 +36,10 @@ class HomeService extends AbstractService {
     }
 
     public function getData() {
-         return [];
+        return [
+                'register_btn'=>['type'=>'button','name'=>'register_btn','value'=>$this->getMsg('constants.registration'),'attribs'=>['id'=>'register_btn','class'=>'btn btn-default active']],
+                'all_students_btn'=>['type'=>'button','name'=>'all_students_btn','value'=>$this->getMsg('constants.all_students'),'attribs'=>['id'=>'all_students_btn','class'=>'btn btn-default']],
+                'how_register_parents'=>$this->getMsg('constants.how_register_parents')
+               ];
     }
 }

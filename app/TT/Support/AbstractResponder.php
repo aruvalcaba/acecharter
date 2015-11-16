@@ -4,6 +4,7 @@ use Aura\View\View;
 use Aura\Web\Response;
 use Aura\Accept\Accept;
 use Aura\Payload\Payload;
+use Aura\Payload_Interface\PayloadStatus;
 use Aura\Payload_Interface\PayloadInterface;
 
 abstract class AbstractResponder {
@@ -31,8 +32,8 @@ abstract class AbstractResponder {
     }
 
     protected function init() {
-        if ( ! isset( $this->payload_method[Payload::ERROR] ) ) {
-            $this->payload_method[Payload::ERROR] = 'error';
+        if ( ! isset( $this->payload_method[PayloadStatus::ERROR] ) ) {
+            $this->payload_method[PayloadStatus::ERROR] = 'error';
         }
     }
 

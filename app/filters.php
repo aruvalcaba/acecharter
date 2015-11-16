@@ -40,6 +40,7 @@ Route::filter('auth.parent',function() {
 
         return;
     }
+    return Redirect::route('login.parent.get');
 });
 
 Route::filter('auth.teacher',function() {
@@ -50,6 +51,8 @@ Route::filter('auth.teacher',function() {
 
         return;
     }
+
+    return Redirect::route('login.teacher.get');
 });
 
 Route::filter('auth.admin',function() {
