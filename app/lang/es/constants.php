@@ -10,5 +10,6 @@ return [
         'grandmother'=>'Abuela',
         'grandfather'=>'Abuelo',
         'registration'=>'registro',
-        'all_students'=>'Todos los estudiantes'
+        'all_students'=>'Todos los estudiantes',
+		'how_register_parents'=>'How do I register parents ? '
 ];
