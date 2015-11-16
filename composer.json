@@ -27,7 +27,6 @@
         
         "psr-4": {
         "TT\\" : "app/TT",
-        "TT\\Controllers\\" : "app/controllers",
         "TT\\Models\\" : "app/models"
         },
 
