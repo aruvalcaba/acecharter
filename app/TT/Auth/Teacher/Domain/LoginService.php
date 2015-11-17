@@ -57,6 +57,7 @@ class LoginService extends AbstractLoginService {
                 'titles_input'=>['type'=>'select','name'=>'title','value'=>'','attribs'=>['id'=>'title','class'=>'form-control','placeholder'=>$this->getMsg('messages.titles_input_placeholder')],'options'=> Lists::honorifics()],
                 'grades_input'=>['type'=>'select','name'=>'grade','value'=>'','attribs'=>['id'=>'grade','class'=>'form-control','placeholder'=>$this->getMsg('messages.grades_input_placeholder')],'options'=> Lists::grades()],
                 'schools_input'=>['type'=>'select','name'=>'school','value'=>'','attribs'=>['id'=>'school','class'=>'form-control','placeholder'=>$this->getMsg('messages.schools_input_placeholder')],'options'=> Lists::schools()],
+				'cancel_btn' => ['type'=>'button', 'name'=>'cancel', 'value'=>'cancel','attribs'=>['class'=>'btn btn-default','data-dismiss'=>'modal']],
         ];
     }
 }

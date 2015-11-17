@@ -17,9 +17,57 @@ $helper->tag('section',['class'=>'home-section text-center']) .
         $helper->tag('/div') .
     $helper->tag('/div') . 
 $helper->tag('/section') .
-$helper->tag('/main');
+$helper->tag('/main') .
+$helper->tag('div',['class'=>'modal fade','id'=>'signupModal','tableindex'=>'-1','role'=>'dialog','aria-labelledby'=>'signupModallabel','aria-hidden'=>'true']) .
+	$helper->tag('div',['class'=>'modal-dialog']) . 
+		$helper->tag('div',['class'=>'modal-content']) .
+			$helper->tag('div',['class'=>'modal-header']) .
+				$helper->tag('h2',['class' =>'modal-title','id'=>'signupModalLabel']) . $h('welcome teacher') .	 
+					$helper->label('&times',['aria-hidden'=>'true']) .
+					$helper->label('close',['class'=>'sr-only']) . 
+				$helper->tag('/h2') .
+			$helper->tag('/div') .	
+			$helper->tag('div',['class'=>'modal-body']) .
+				$helper->form() .
+					$helper->tag('div',['class'=>'form-group']) .
+						$helper->label('title') .
+						$helper->input($data['titles_input']) .
+					$helper->tag('/div') .
+					$helper->tag('div',['class'=>'form-group']) .
+						$helper->label('first_name') .
+						$helper->input(array('type'=>'text','name'=>'first_name','attribs'=>array('id'=>'first_name','class'=>'form-control'))) . 
+					$helper->tag('/div') .
+					$helper->tag('div',['class'=>'form-group']) .
+						$helper->label('last_name') .
+						$helper->input(array('type'=>'text','name'=>'last_name','attribs'=>array('id'=>'last_name','class'=>'form-control'))) . 
+					$helper->tag('/div') .
+					$helper->tag('div',['class'=>'form-group']) .
+						$helper->label('email') .
+						$helper->input($data['email_input']) . 
+					$helper->tag('/div') .
+					$helper->tag('div',['class'=>'form-group']) .
+						$helper->label('Grade You are Teaching') .
+						$helper->input($data['grades_input']). 
+					$helper->tag('/div') .
+					$helper->tag('div',['class'=>'form-group']) .
+						$helper->label('zipcode') .
+						$helper->input(array('type'=>'text','name'=>'zipcode','attribs'=>array('id'=>'zipcode','class'=>'form-control'))) .
+					$helper->tag('/div') .
+					$helper->tag('div',['class'=>'form-group']) .
+						$helper->label('school_name') .
+						$helper->input($data['schools_input']) . 
+					$helper->tag('/div') .
+				$helper->tag('/form') .
+				$helper->tag('div',['class'=>'model-footer']) .
+					$helper->input($data['cancel_btn']) .
+					$helper->input(array('type'=>'button','name'=>'create_account', 'value'=>'Create Acoount','attribs'=>array('id'=>'teacher_signup','class'=>'btn btn-success'))) .
+				$helper->tag('/div') .
+			$helper->tag('/div') .
+		$helper->tag('/div') .		
+	$helper->tag('/div') .
+$helper->tag('/div');
 ?>
-
+<!--
 <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -67,7 +115,7 @@ $helper->tag('/main');
   </div>
 </div>
 </div>
-
+-->
 <!-- Modal -->
 <div class="modal fade" id="signupSuccessModal" tabindex="-1" role="dialog" aria-labelledby="signupSuccessModalLabel" aria-hidden="true">
   <div class="modal-dialog">
