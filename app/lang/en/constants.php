@@ -49,6 +49,7 @@ return [
 		'zip_code' => 'Zip Code',
 		'school_name' => 'School Name',
 		'create_account' => 'Create Account',
-		
+		'ok' => 'OK',
+		'reset_password' => 'Reset Password' ,
 
 ];

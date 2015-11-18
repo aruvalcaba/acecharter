@@ -66,7 +66,65 @@ $helper->tag('div',['class'=>'modal fade','id'=>'signupModal','tableindex'=>'-1'
 			$helper->tag('/div') .
 		$helper->tag('/div') .		
 	$helper->tag('/div') .
-$helper->tag('/div');
+$helper->tag('/div') .
+//--modal--//
+$helper->tag('div',['class'=>'modal fade','id'=>'signupSuccessModal','tabindex'=>'-1','role'=>'dialog','aria-labelledby'=>'signupSuccessModalLabel','aria-hidden'=>'true']) .
+	$helper->tag('div',['class'=>'modal-dialog']) .
+		$helper->tag('div',['class'=>'modal-content']) .
+			$helper->tag('div',['class'=>'modal-header']) .
+				$helper->input(array('type'=>'button','name'=>'close','attribs'=>array('class'=>'close','data-dismiss'=>'modal'))) .
+				$helper->tag('h2',['class'=>'modal-title','id'=>'signupSuccessModalLabel']) . $data['signup_success']['val'] .
+				$helper->tag('/h2') .
+			$helper->tag('/div') .
+			$helper->tag('div',['class'=>'modal-footer']) .
+				$helper->input($data['ok']) . 
+			$helper->tag('/div') .
+		$helper->tag('/div') .
+	$helper->tag('/div') .
+$helper->tag('/div') .
+//---Modal----
+$helper->tag('div',['class'=>'modal fade','id'=>'forgotPasswordModal','tabindex'=>'-1','role'=>'dialog','aria-labelledby'=>'forgotPasswordModalLabel','aria-hidden'=>'true']) .
+	$helper->tag('div',['class'=>'modal-dialog']) .
+		$helper->tag('div',['class'=>'modal-content']) .
+			$helper->tag('div',['class'=>'modal-header']) .
+				$helper->input(array('type'=>'button','name'=>'close','attribs'=>array('class'=>'close','data-dismiss'=>'modal'))) .
+				$helper->tag('h2',['class'=>'modal-title','id'=>'forgotPasswordModalLabel']) . $data['reset_password']['val'] . $helper->tag('/h2') .
+			$helper->tag('/div') .
+			$helper->tag('div',['class'=>'modal-body']) ;
+?>
+				
+        <table class="frmTable">
+            <tr class="text-danger text-center hidden"><td colspan="2" id="errorText"></td></tr>
+            <tr>
+                <td>Your registered E-mail address:</td>
+                <td><input type="text" id="email" class="form-control"></td>
+                 <input type="hidden" id="forgotType" value="1" />
+            </tr>
+        </table>
+<?php echo
+			$helper->tag('/div') .
+			$helper->tag('div',['class'=>'modal-footer']) .
+				$helper->input($data['cancel_btn']) .
+				$helper->input($data['reset_pwd_btn']) .
+			$helper->tag('/div') .
+		$helper->tag('/div') .
+	$helper->tag('/div').
+$helper->tag('/div') .
+//--modal---
+$helper->tag('div',['class'=>'modal fade','id'=>'forgotPasswordSuccessModal','tabindex'=>'-1','role'=>'dialog','aria-labelledby'=>'signupSuccessModalLabel','aria-hidden'=>'true']) .
+	$helper->tag('div',['class'=>'modal-dialog']) .
+		$helper->tag('div',['class'=>'modal-content']) .
+			$helper->tag('div',['class'=>'modal-header']) .
+				$helper->input(array('type'=>'button','name'=>'close','attribs'=>array('class'=>'close','data-dismiss'=>'modal'))) .
+				$helper->tag('h2',['class'=>'modal-title','id'=>'signupSuccessModalLabel']) . $data['pwd_success']['val'] . $helper->tag('/h2') .
+			$helper->tag('/div') .
+			$helper->tag('div',['class'=>'modal-footer']) .
+				$helper->input($data['ok']) . 
+			$helper->tag('/div') .
+		$helper->tag('/div') .
+	$helper->tag('/div') .
+$helper->tag('/div') ;
+			
 ?>
 <!--
 <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">
@@ -118,6 +176,7 @@ $helper->tag('/div');
 </div>
 -->
 <!-- Modal -->
+<!--
 <div class="modal fade" id="signupSuccessModal" tabindex="-1" role="dialog" aria-labelledby="signupSuccessModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -131,8 +190,10 @@ $helper->tag('/div');
     </div>
   </div>
 </div>
+-->
     
 <!-- Modal -->
+<!--
 <div class="modal fade" id="forgotPasswordModal" tabindex="-1" role="dialog" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -157,8 +218,9 @@ $helper->tag('/div');
     </div>
   </div>
 </div>
-
+-->
 <!-- Modal -->
+<!--
 <div class="modal fade" id="forgotPasswordSuccessModal" tabindex="-1" role="dialog" aria-labelledby="signupSuccessModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -172,3 +234,4 @@ $helper->tag('/div');
     </div>
   </div>
 </div>
+-->

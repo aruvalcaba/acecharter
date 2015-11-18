@@ -29,6 +29,8 @@ return [
     	'titles_input_placeholder'=>'Select a title',
     	'schools_input_placeholder'=>'Select a school',
 		'sent_you_an_invitation_for' => 'Sent you an invitation for',
-		'a_parent_teacher_conference' => 'a parent teacher conference'
+		'a_parent_teacher_conference' => 'a parent teacher conference',
+		'signup_success' => 'Signup successful. Login credentials were sent to your email address.',
+		'pwd_success' => 'A new password was sent to your email to login with.'
 		
 ];
