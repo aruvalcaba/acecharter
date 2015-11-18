@@ -41,4 +41,12 @@ return [
 		'relationship_student' => 'relationship with student',
 		'cancel' => 'Cancel',
 		'sign_up' => 'Sign Up'
+		'close' => 'Close',
+		'title' => 'Title',
+		'first_name' => 'First Name',
+		'last_name' => 'Last Name',
+		'grade_teaching' => 'Grade you are teaching',
+		'zip_code' => 'Zip Code',
+		'school_name' => 'School Name',
+		'create_account' => 'Create Account',
 ];
