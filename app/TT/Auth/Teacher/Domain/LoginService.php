@@ -57,6 +57,7 @@ class LoginService extends AbstractLoginService {
                 'titles_input'=>['type'=>'select','name'=>'title','value'=>'','attribs'=>['id'=>'title','class'=>'form-control','placeholder'=>$this->getMsg('messages.titles_input_placeholder')],'options'=> Lists::honorifics()],
                 'grades_input'=>['type'=>'select','name'=>'grade','value'=>'','attribs'=>['id'=>'grade','class'=>'form-control','placeholder'=>$this->getMsg('messages.grades_input_placeholder')],'options'=> Lists::grades()],
                 'schools_input'=>['type'=>'select','name'=>'school','value'=>'','attribs'=>['id'=>'school','class'=>'form-control','placeholder'=>$this->getMsg('messages.schools_input_placeholder')],'options'=> Lists::schools()],
+<<<<<<< HEAD
 				'cancel_btn' => ['type'=>'button', 'name'=>'cancel', 'value'=>$this->getMsg('constants.cancel'),'attribs'=>['class'=>'btn btn-default','data-dismiss'=>'modal']],
 				'welcome' => ['val'=>$this->getMsg('constants.welcome')],
 				'title' => ['val'=>$this->getMsg('constants.title')],
@@ -66,6 +67,9 @@ class LoginService extends AbstractLoginService {
 				'zip_code' => ['val'=>$this->getMsg('constants.zip_code')],
 				'school_name' => ['val'=>$this->getMsg('constants.school_name')],
 				'create_account_btn' => ['type'=>'button','name'=>'create_account', 'value'=>$this->getMsg('constants.create_account'),'attribs'=>array('id'=>'teacher_signup','class'=>'btn btn-success')],
+=======
+				'cancel_btn' => ['type'=>'button', 'name'=>'cancel', 'value'=>'cancel','attribs'=>['class'=>'btn btn-default','data-dismiss'=>'modal']],
+>>>>>>> 02b1cd363deb5b285ec187a8c219ee9d9b66213a
         ];
     }
 }

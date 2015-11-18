@@ -25,6 +25,7 @@ $helper->tag('div',['class'=>'modal fade','id'=>'signupModal','tableindex'=>'-1'
 				$helper->tag('h2',['class' =>'modal-title','id'=>'signupModalLabel']) . $data['welcome']['val'] .	
 					$helper->input(array('type'=>'button','name'=>'close','attribs'=>array('class'=>'close','data-dismiss'=>'modal'))) .
 					$helper->label('',['aria-hidden'=>'true']) .					
+
 				$helper->tag('/h2') .
 			$helper->tag('/div') .	
 			$helper->tag('div',['class'=>'modal-body']) .
