@@ -5,7 +5,7 @@ use TT\Support\AbstractResponder;
 use Aura\Payload_Interface\PayloadStatus;
 
 abstract class AbstractRegisterResponder extends AbstractResponder {
-    protected $payload_method = [ PayloadStatus::NOT_CREATED=>'notCreated', Payload::CREATED => 'created', Payload::NOT_ACCEPTED=>'notAccepted' ];
+    protected $payload_method = [ PayloadStatus::NOT_CREATED=>'notCreated', PayloadStatus::CREATED => 'created', PayloadStatus::NOT_ACCEPTED=>'notAccepted' ];
 
     protected function init() {
         parent::init();
