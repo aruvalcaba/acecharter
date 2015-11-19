@@ -23,9 +23,7 @@ $helper->tag('div',['class'=>'modal fade','id'=>'signupModal','tableindex'=>'-1'
 		$helper->tag('div',['class'=>'modal-content']) .
 			$helper->tag('div',['class'=>'modal-header']) .
 				$helper->tag('h2',['class' =>'modal-title','id'=>'signupModalLabel']) . $data['welcome']['val'] .	
-					$helper->input(array('type'=>'button','name'=>'close','attribs'=>array('class'=>'close','data-dismiss'=>'modal'))) .
-					$helper->label('',['aria-hidden'=>'true']) .					
-
+					$helper->input(array('type'=>'button','name'=>'close','value'=>'X	','attribs'=>array('class'=>'close','data-dismiss'=>'modal'))) .
 				$helper->tag('/h2') .
 			$helper->tag('/div') .	
 			$helper->tag('div',['class'=>'modal-body']) .
@@ -90,18 +88,16 @@ $helper->tag('div',['class'=>'modal fade','id'=>'forgotPasswordModal','tabindex'
 				$helper->input(array('type'=>'button','name'=>'close','attribs'=>array('class'=>'close','data-dismiss'=>'modal'))) .
 				$helper->tag('h2',['class'=>'modal-title','id'=>'forgotPasswordModalLabel']) . $data['reset_password']['val'] . $helper->tag('/h2') .
 			$helper->tag('/div') .
-			$helper->tag('div',['class'=>'modal-body']) ;
-?>
-				
-        <table class="frmTable">
-            <tr class="text-danger text-center hidden"><td colspan="2" id="errorText"></td></tr>
-            <tr>
-                <td>Your registered E-mail address:</td>
-                <td><input type="text" id="email" class="form-control"></td>
-                 <input type="hidden" id="forgotType" value="1" />
-            </tr>
-        </table>
-<?php echo
+			$helper->tag('div',['class'=>'modal-body']) .
+				$helper->tag('table',['class'=>'frmTable']) .
+					$helper->tag('tr',['class'=>'text-danger text-center hidden']) . $helper->tag(
+'td',['colspan'=>'2','id'=>'errorText']) . $helper->tag('/td') . $helper->tag('/tr') .
+					$helper->tag('tr') .
+						$helper->tag('td') . $helper->label($data['registered_email']['val']) . $helper->tag('/td') .
+						$helper->tag('td') . $helper->input(array('type'=>'text','name'=>'email','attribs'=>array('id'=>'email','class'=>'form-control'))) .$helper->tag('/td') .
+						$helper->input(array('type'=>'hidden','value'=>'1','name'=>'forgotType','attribs'=>array('id'=>'forgotType'))) .
+					$helper->tag('/tr') .
+				$helper->tag('/table') .
 			$helper->tag('/div') .
 			$helper->tag('div',['class'=>'modal-footer']) .
 				$helper->input($data['cancel_btn']) .

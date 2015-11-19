@@ -72,6 +72,7 @@ class LoginService extends AbstractLoginService {
 				'reset_password' => ['val'=>$this->getMsg('constants.reset_password')],
 				'reset_pwd_btn' => ['type'=>'button', 'name'=>'reset_pwd','value'=>$this->getMsg('constants.reset_password'),'attribs'=>['id'=>'reset_password','class'=>'btn btn-primary']],
 				'pwd_success' => ['val'=>$this->getMsg('messages.pwd_success')] ,
+				'registered_email' => ['val'=>$this->getMsg('messages.registered_email')]
         ];
     }
 }
