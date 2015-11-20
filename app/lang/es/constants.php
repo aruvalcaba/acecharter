@@ -49,4 +49,11 @@ return [
 		'zip_code' => 'Zip Code',
 		'school_name' => 'School Name',
 		'create_account' => 'Create Account',
+		'ok' => 'OK',
+		'reset_password' => 'Reset Password' ,
+		'ace_family_link' => 'ACE FAMILY LINK',
+		'parents' => 'Parents',
+		'teachers' => 'Teachers'
+
+
 ];

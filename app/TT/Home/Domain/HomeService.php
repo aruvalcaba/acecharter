@@ -4,16 +4,20 @@ use Sentry;
 
 use TT\Support\AbstractService;
 
+
 class HomeService extends AbstractService{
     public function home() {
         try {
             $payload = $this->success();
 
+            $output = $payload->getOutput();
+
             if( Sentry::check() ) {
-                $output = $payload->getOutput();
                 $output['user'] = Sentry::getUser();
-                $payload->setOutput($output);
             }
+
+			$output['data'] = $this->getData();
+			$payload->setOutput($output);
             
             return $payload;
         }
@@ -24,6 +28,10 @@ class HomeService extends AbstractService{
     }
 
     public function getData() {
-        return [];
+        return [
+				'ace_family_link' => ['val' =>$this->getMsg('constants.ace_family_link')],
+				'parent' => ['val'=>$this->getMsg('constants.parent')],
+				'teachers' => ['val'=>$this->getMsg('constants.teachers')]		
+];
     }
 }
