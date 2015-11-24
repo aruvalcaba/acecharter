@@ -58,4 +58,5 @@ return [
 		'invitation' => 'Invitation',
 		'admin' => 'Admin',
 
+
 ];
