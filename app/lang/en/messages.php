@@ -32,6 +32,6 @@ return [
 		'a_parent_teacher_conference' => 'a parent teacher conference',
 		'signup_success' => 'Signup successful. Login credentials were sent to your email address.',
 		'pwd_success' => 'A new password was sent to your email to login with.',
-		'registered_email' => 'Your registered E-mail address:'
-		
+        'registered_email' => 'Your registered E-mail address:'
+        'activity_upload' => ':title has been upload successfully'
 ];

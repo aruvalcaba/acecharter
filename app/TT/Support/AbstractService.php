@@ -25,6 +25,20 @@ abstract class AbstractService {
         return $payload;
     }
 
+    protected function accepted($output = []) {
+        $payload = $this->payload_factory->newInstance();
+        $payload->setStatus(PayloadStatus::ACCEPTED);
+        $payload->setOutput($output);
+        return $payload;
+    }
+
+    protected function not_accepted($output = []) {
+        $payload = $this->payload_factory->newInstance();
+        $payload->setStatus(PayloadStatus::NOT_ACCEPTED);
+        $payload->setOutput($output);
+        return $payload;
+    }
+
     protected function getMsg($msg_path, array $args = []) {
         if( empty($msg_path) ) {
             return '';

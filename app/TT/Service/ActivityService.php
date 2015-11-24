@@ -9,17 +9,19 @@ use Sentry;
 use Exception;
 use TT\Models\User;
 use TT\Models\Activity;
-use TT\Auth\Authenticator;
+use TT\Support\AbstractService;
+use Aura\Payload\PayloadFactory;
 use TT\Activity\ActivityRepository;
+use TT\Activity\ActivityFormFactory;
 use TT\Student\StudentTraitRepository;
+use Aura\Payload_Interface\PayloadStatus;
 
-class ActivityService {
-    private $activity_repo = null;
-    private $studentTraitRepo = null;
-
-    public function __construct(ActivityRepository $activityRepo, StudentTraitRepository $studentTraitRepo) {
+class ActivityService extends AbstractService {
+    public function __construct(ActivityRepository $activityRepo, StudentTraitRepository $studentTraitRepo, PayloadFactory $payload_factory, ActivityFormFactory $activity_form_factory ) {
         $this->activityRepo = $activityRepo;
         $this->studentTraitRepo = $studentTraitRepo;
+        $this->payload_factory = $payload_factory;
+        $this->activity_form_factory = $activity_form_factory;
     }
 
     public function all() {
@@ -33,55 +35,69 @@ class ActivityService {
     }
 
     public function create($data) {
-        try {
-            DB::beginTransaction();
-
-            $activity = array_pull($data,'activity');
-            $description = array_pull($data,'description');
-
-            $format = '%s/%s';
-            $activitiesPath = sprintf($format,public_path(),'activities');
-            $descriptionsPath = sprintf($format,public_path(),'descriptions');
-
-            $activityFileName = $data['title'].'.php';
-
-            $descriptionFileName = $data['title'].'.php';
-
-            $activityFileName = strtolower($activityFileName);
-            $activityFileName = str_replace(' ','-',$activityFileName);
-
-            $descriptionFileName = strtolower($descriptionFileName);
-            $descriptionFileName = str_replace(' ','-',$descriptionFileName);
-
-
-            $activityFilePath = sprintf($format,$activitiesPath,$activityFileName);
-            $descriptionFilePath = sprintf($format,$descriptionsPath,$descriptionFileName);
-            
-            $activity->move($activitiesPath,$activityFileName);
-            $description->move($descriptionsPath,$descriptionFileName);
-
-            $format = '/activities/%s';
-            $relativePath = sprintf($format,$activityFileName);
-            $data = array_add($data,'activity_url',$relativePath);
-            
-            $format = '/descriptions/%s';
-            $relativePath = sprintf($format,$descriptionFileName);
-            $data = array_add($data,'description_url',$relativePath);
-            
-            $activity = $this->activityRepo->create($data);
-
-            DB::table('activities_ratings')->insert(['activity_id'=>$activity->id]);
-
-            DB::commit();
-
-            return true;
-        }
-
         
-        catch(Exception $ex) {
-            Log::error($ex);
-            DB::rollback();
-            return false;
+        $payload = $this->payload_factory->newInstance();
+        $form = $this->activity_form_factory->newCreateForm();
+
+        if( ! $form->isValid($data) ) {
+            $messages = $form->getErrors();
+
+            return $this->not_accepted(['response'=>['messages'=>$messages]]);
+        }
+        
+        else {
+            try {
+                DB::beginTransaction();
+
+                $activity = array_pull($data,'activity');
+                $description = array_pull($data,'description');
+
+                $format = '%s/%s';
+                $activitiesPath = sprintf($format,public_path(),'activities');
+                $descriptionsPath = sprintf($format,public_path(),'descriptions');
+
+                $activityFileName = $data['title'].'.php';
+
+                $descriptionFileName = $data['title'].'.php';
+
+                $activityFileName = strtolower($activityFileName);
+                $activityFileName = str_replace(' ','-',$activityFileName);
+
+                $descriptionFileName = strtolower($descriptionFileName);
+                $descriptionFileName = str_replace(' ','-',$descriptionFileName);
+
+
+                $activityFilePath = sprintf($format,$activitiesPath,$activityFileName);
+                $descriptionFilePath = sprintf($format,$descriptionsPath,$descriptionFileName);
+            
+                $activity->move($activitiesPath,$activityFileName);
+                $description->move($descriptionsPath,$descriptionFileName);
+
+                $format = '/activities/%s';
+                $relativePath = sprintf($format,$activityFileName);
+                $data = array_add($data,'activity_url',$relativePath);
+            
+                $format = '/descriptions/%s';
+                $relativePath = sprintf($format,$descriptionFileName);
+                $data = array_add($data,'description_url',$relativePath);
+            
+                $activity = $this->activityRepo->create($data);
+
+                DB::table('activities_ratings')->insert(['activity_id'=>$activity->id]);
+
+                DB::commit();
+                
+                $message = $this->getMsg('messages.activity_upload',['title'=>$data['title']]);
+
+                return $this->success(['response'=>['message'=>$message]]);
+            }
+
+            catch(Exception $e) {
+                Log::error($e);
+                DB::rollback();
+                $message = $this->getMessage('messages.oops');
+                return $this->error(['response'=>['message'=>$message,'exception'=>$e->getMessage()]]);
+            }
         }
     }
 
@@ -164,7 +180,7 @@ class ActivityService {
         }
 
         
-        catch(Exception $ex){
+        catch(Exception $ex) {
             Log::error($ex);
             DB::rollback();
             return false;

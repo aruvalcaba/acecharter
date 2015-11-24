@@ -93,8 +93,6 @@ class TeacherService extends AbstractService {
 
                     $code = $this->codeRepo->create($data);
 
-                    $this->codeRepo->clearModel();
-                    
                     $html = View::make('pages.code')->with('code',$code)->render();
                     
                     if($i % 5 === 0 && $i !== 0) {

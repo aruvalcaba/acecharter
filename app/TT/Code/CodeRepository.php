@@ -20,10 +20,6 @@ class CodeRepository extends ModelRepository {
         return Code::where('student_code','=',$code)->first();
     }
 
-    public function clearModel() {
-        $this->model = new Code;
-    }
-
     public function deleteCode($code) {
         if( is_null($code) )
             return;
