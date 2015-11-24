@@ -1,23 +1,40 @@
-<section id="service" class="home-section text-center">
-    <div class="container">
-    <div class="heading-about">
-        <div class="row col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2">
-        <h2>Welcome,&nbsp; <?php echo $h($this->user->first_name);?> </h2>
-        <i class="fa fa-2x fa-angle-down"></i>
-      </div>
-        <div class="row">
-      <div class="col-lg-2 col-lg-offset-5">
-       <br><br>
-        
-      </div>
-    </div>
+<?php
+$data = $this->data;
 
-    <!-- start of activity box -->
-  <div class="col-lg-6 col-lg-offset-3 alert" role="alert">
+echo
+$helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
+	$helper->tag('div',['class'=>'container']) .
+		$helper->tag('div',['class'=>'heading-about']) .
+			$helper->tag('div',['class'=>'row col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2']) .
+				$helper->tag('h2') . $data['welcome']['val'] .'&nbsp;' . '&nbsp;' . $h($this->user->first_name) . $helper->tag('/h2') .
+				$helper->tag('i',['class'=>'fa fa-2x fa-angle-down']) . $helper->tag('/i') .
+			$helper->tag('/div') .
+      	$helper->tag('/div') .
+	$helper->tag('/div') .
+	//<!-- start of activity box -->
+	$helper->tag('div',['class'=>'col-lg-6 col-lg-offset-3 alert','role'=>'alert']) .
+		$helper->tag('div',['class'=>'activity alert row col-lg-10 col-md-8 col-sm-8 col-lg-offset-1 col-md-offset-2 col-sm-offset-2']) .
+		//<!-- description -->
+        $helper->tag('div') .
+			$helper->tag('h4') . $data['invitation']['val'] . $helper->tag('/h4') .
+			$helper->tag('p') . $data['invitation_conference']['val'] . $helper->tag('/p') ; ?>
+				
+          	<button type="button" class="btn btn-primary ">
+          		<span class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#invitation"></span>&nbsp;View</button>
+          		<span style="color:red"><?php echo $h('Please read before Tuesday, Aug 28, 2015.'); ?></span>
+          </button><?php echo
+
+      	$helper->tag('/div') .
+           
+    $helper->tag('/div') ;
+?>
+<!-- end of activity box -->
+
+  <!--<div class="col-lg-6 col-lg-offset-3 alert" role="alert">
         <div class="activity alert row col-lg-10 col-md-8 col-sm-8 col-lg-offset-1 col-md-offset-2 col-sm-offset-2">
           
           <!-- description -->
-          <div >
+   <!--       <div >
         <h4>Invitation</h4>
         
         <p><?php echo $h('Teacher sent you an invitation for a parent teacher conference.'); ?><p>
@@ -28,7 +45,7 @@
 
       </div>
            
-    </div>
+    </div>-->
 <!-- end of activity box -->
 <!-- start of activity spacing -->
 <div class="row">
@@ -96,7 +113,7 @@
         include($path);
     }
 ?>
-
+<!--
      
 <div class="row center-block">
     <table class="table">
@@ -109,7 +126,7 @@
         <td><?php echo $h($this->avg); ?></td>
     </tr>
     </table>    
-</div>  
+</div> --> 
 
      <div class="row">
       <div class="col-lg-2 col-lg-offset-5">

@@ -37,5 +37,6 @@ return [
 		'login_below' => 'Login Below or',
 		'full_name_placeholder' => 'Enter your Full Name',
 		'email_placeholder' =>'Enter your e-mail address',
-		'student_code_placeholder' => 'Enter code received from teacher'
+		'student_code_placeholder' => 'Enter code received from teacher',
+		'invitation_conference' => 'Teacher sent you an invitation for a parent teacher conference.',
 ];

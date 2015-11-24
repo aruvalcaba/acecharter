@@ -5,53 +5,27 @@ echo
 $helper->tag('main',['id'=>'page-top']) .
 //<!-- Section: main -->
 $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
-	$helper->tag('div',['class'=>'container']) .
-	$helper->tag('div',['class'=>'heading-about']) .
-		$helper->tag('div',['class'=>'wow bounceInDown','data-wow-delay'=>'0.4s']) .
-			$helper->tag('div',['class'=>'container']) .
-				$helper->tag('div',['class'=>'row']) .
-					$helper->tag('h2') . $h($data['login_msg']['val']) . $helper->tag('/h2') .
-				$helper->tag('/div') .
-				$helper->tag('div',['class'=>'row']) . $helper->input($data['register_btn']) . $helper->tag('/div') .
-			$helper->tag('/div') .
-		$helper->tag('/div') .
-	$helper->tag('/div') .
+	$helper->tag('div',['class'=>'container wow bounceInDown','data-wow-delay'=>'2s']) .
+		$helper->tag('div',['class'=>'row']) . $helper->tag('h2') . $h($data['login_msg']['val']) . $helper->tag('/h2') . $helper->tag('/div') .
+		$helper->tag('div',['class'=>'row']) . $helper->input($data['register_btn']) . $helper->tag('/div') .	
 	$helper->tag('/div') .
 	$helper->form() .
-		$helper->tag('div',['class'=>'col-md-6 col-md-offset-3']) .
+		$helper->tag('div',['class'=>'col-md-6 col-md-offset-3 panel panel-success panel-login']) .
 		//<!-- to calculate that do (12-6)/2. The 12 is total number of md columns, subtract by the number  and then divide by 2 -->    
-		$helper->tag('div',['class'=>'panel-group','id'=>'accordion']) .
-			$helper->tag('div',['class'=>'panel panel-primary']) .
-				$helper->tag('div',['id'=>'parentLogin','class'=>'panel-collapse collapse in']) .
-					$helper->tag('div',['class'=>'panel-body']) .
-					$helper->tag('div',['class'=>'row']) .
-						$helper->tag('div',['class'=>'col-md-6 col-md-offset-1','style'=>'text-align:left']) .
-							$helper->label($data['email_label']['val']) .    
-						$helper->tag('/div') .
-						$helper->tag('div',['class'=>'col-md-4']) .
-							$helper->input($data['email_input']) .
-						$helper->tag('/div') .
+					
+									
+					$helper->tag('div',['class'=>'row']) .						
+							$helper->label($data['email_label']['val'])->before($helper->input($data['email_input'])) .		
 					$helper->tag('/div') .
-					$helper->tag('div',['class'=>'row']) . $helper->label('') . $helper->tag('/div') .
-					$helper->tag('div',['class'=>'row']) .
-						$helper->tag('div',['class'=>'col-md-6 col-md-offset-1','style'=>'text-align:left']) .
-							$helper->label($data['pwd_label']['val']) .
-						$helper->tag('/div') .
-							$helper->tag('div',['class'=>'col-md-4']) . $helper->input($data['pwd_input']) . $helper->tag('/div') .
-					$helper->tag('/div') .
-					$helper->tag('div',['class'=>'row']) . $helper->label('') . $helper->tag('/div') .
-					$helper->tag('div',['class'=>'row']) . $helper->input($data['login_btn']) . $helper->tag('/div') .
+					$helper->tag('div',['class'=>'row']) . 
 						
-                        
-                         //<span id="login" class="btn btn-success fleft col-lg-6 col-lg-offset-3 col-sm-10 col-sm-offset-1" >Login &nbsp;&nbsp;<small>INICIAR SESIÓN</small></span>       <div class="row">             <br><hr><br></div>
-					$helper->tag('div',['class'=>'row']) . $helper->label('') . $helper->tag('/div') .
+							$helper->label($data['pwd_label']['val'])->before($helper->input($data['pwd_input'])) .
+					$helper->tag('/div') .					
+					$helper->tag('div',['class'=>'row']) . $helper->input($data['login_btn']) . $helper->tag('/div') .      
+                         //<span id="login" class="btn btn-success fleft col-lg-6 col-lg-offset-3 col-sm-10 col-sm-offset-1" >Login &nbsp;&nbsp;<small>INICIAR SESIÓN</small></span>       <div class="row">             <br><hr><br></div>				
 					$helper->tag('div',['class'=>'row']) . $helper->input($data['forgot_pwd_btn']) . $helper->tag('/div') . 
-					$helper->tag('div',['class'=>'row']) . $helper->label('') . $helper->tag('/div') .
-          			
-                    $helper->tag('/div') .
-				$helper->tag('/div') .
-			$helper->tag('/div') .
-		$helper->tag('/ div') .
+							
+		
 		$helper->tag('/div') .
 	$helper->tag('/form') .
 //<!-- /panel-group -->

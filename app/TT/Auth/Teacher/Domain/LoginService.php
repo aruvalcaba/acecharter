@@ -49,7 +49,7 @@ class LoginService extends AbstractLoginService {
         return [
                 'signup_btn' => ['type'=>'button','name'=>'signup','value'=>'Signup for free','attribs'=>['id'=>'signup','class'=>'btn btn-skin','data-toggle'=>'modal','data-target'=>'#signupModal']],
                 'email_label'=> ['val'=>$this->getMsg('constants.email')],
-                'email_input' => ['type'=>'text','name'=>'email','attribs'=>['class'=>'form-control','id'=>'email']],
+                'email_input' => ['type'=>'text','name'=>'email','attribs'=>['class'=>'form-control','id'=>'email','placeholder'=>$this->getMsg('messages.email_placeholder')]],
                 'pwd_label'=> ['val'=>$this->getMsg('constants.password')],
                 'pwd_input' => ['type'=>'password','name'=>'password','attribs'=>['class'=>'form-control','id'=>'password']],
                 'login_btn' => ['type'=>'submit','name'=>'login','value'=>$this->getMsg('constants.login'),'attribs'=>['id'=>'login','class'=>'btn btn-success fleft']],

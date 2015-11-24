@@ -24,6 +24,8 @@ class HomeService extends AbstractService {
                 $output['user'] = $user;
                 $output['activities'] = $this->activity_service->getActivities($user);
                 $output['avg'] = $this->activity_service->getAvgActivityTime();
+				$output['data'] = $this->getData();
+
                 $payload->setOutput($output);
             }
             
@@ -36,6 +38,15 @@ class HomeService extends AbstractService {
     }
 
     public function getData() {
-        return [];
+        return [
+				'welcome' => ['val'=>$this->getMsg('constants.welcome')],
+				'changed_pwd' => $this->getMsg('constants.change_password'),
+				'ace_family_link' => ['val' =>$this->getMsg('constants.ace_family_link')],
+				'parents' => ['val'=>$this->getMsg('constants.parents')],
+				'teachers' => ['val'=>$this->getMsg('constants.teachers')],
+				'logout' => $this->getMsg('logout'),
+				'invitation' => ['val'=>$this->getMsg('constants.invitation')],
+				'invitation_conference' => ['val'=>$this->getMsg('messages.invitation_conference')],
+];
     }
 }

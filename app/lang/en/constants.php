@@ -55,5 +55,6 @@ return [
 		'parents' => 'Parents',
 		'teachers' => 'Teachers',
 		'sign_up_free' => 'Sign Up for free',
+		'invitation' => 'Invitation'
 
 ];
