@@ -32,5 +32,9 @@ return [
 		'a_parent_teacher_conference' => 'una conferencia de padres y maestros'
 		'signup_success' => 'Signup successful. Login credentials were sent to your email address.',
 		'pwd_success' => 'A new password was sent to your email to login with.',
-		'registered_email' => 'Your registered E-mail address:'
+		'registered_email' => 'Your registered E-mail address:',
+		'login_below' => 'Login Below or',
+		'full_name_placeholder' => 'Enter your Full Name',
+		'email_placeholder' =>'Enter your e-mail address',
+		'student_code_placeholder' => 'Enter code received from teacher',
        ];
