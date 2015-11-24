@@ -2,7 +2,7 @@
 $data = $this->data;
 
 echo 
-$helper->tag('main',['id'=>'page-top','class'=>'parent-login','data-spy'=>'scroll','data-target'=>'.navbar-custom']) .
+$helper->tag('main',['id'=>'page-top']) .
 //<!-- Section: main -->
 $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 	$helper->tag('div',['class'=>'container']) .
@@ -68,38 +68,35 @@ $helper->tag('div',['class'=>'modal fade','id'=>'signupModal','tabindex'=>'-1','
 			$helper->tag('div',['class'=>'modal-body','style'=>'position: static']) .
 				$helper->tag('div',['id'=>'signup_alert','class'=>'alert alert-danger hidden','role'=>'alert']) .
 					$helper->tag('ul',['id'=>'signup_errors']) . $helper->tag('/ul') .
+				$helper->tag('/div') .			
+				$helper->form() .
+				$helper->tag('div',['class'=>'form-group']) .
+					$helper->label($data['parent']['val'].$data['full_name']['val']) .
+					$helper->input($data['parent_fullname_input']) .
 				$helper->tag('/div') .
-			$helper->tag('/div') .
-			$helper->form(array(['class'=>'horizontal-form','role'=>'form'])) .
-				$helper->tag('div',['class'=>'form-group row']) .
-					$helper->label($data['parent']['val'].$data['full_name']['val'],['class'=>'control-label col-lg-4']) .
-					$helper->tag('div',['class'=>'col-lg-8']) . $helper->input($data['parent_fullname_input']) . $helper->tag('/div') .
+				$helper->tag('div',['class'=>'form-group']) .
+					$helper->label($data['parent']['val'].$data['email_label']['val']) .
+					$helper->input($data['email_input']) .
 				$helper->tag('/div') .
-				$helper->tag('div',['class'=>'form-group row']) .
-					$helper->label($data['parent']['val'].$data['email_label']['val'],['class'=>'control-label col-lg-4']) .
-					$helper->tag('div',['class'=>'col-lg-8']) . $helper->input($data['email_input']) . $helper->tag('/div') .
+				$helper->tag('div',['class'=>'form-group']) .
+					$helper->label($data['student']['val'].$data['full_name']['val']) .
+					$helper->input($data['student_fullname_input']) .
 				$helper->tag('/div') .
-				$helper->tag('div',['class'=>'form-group row']) .
-					$helper->tag('div',['class'=>'col-md-4']) . $helper->label($data['student']['val'].$data['full_name']['val'],['class'=>'control-label']) . $helper->tag('/div') .
-					$helper->tag('div',['class'=>'col-mg-8']) . $helper->input($data['student_fullname_input']) . $helper->tag('/div') .
+				$helper->tag('div',['class'=>'form-group']) .
+					$helper->label($data['student']['val'].$data['code']['val']) .
+					$helper->input($data['student_code_input']) .
 				$helper->tag('/div') .
-				$helper->tag('div',['class'=>'form-group row']) .
-					$helper->tag('div',['class'=>'col-md-4']) . $helper->label($data['student']['val'].$data['code']['val'],['class'=>'control-label']) . $helper->tag('/div') .
-					$helper->tag('div',['class'=>'col-mg-8']) . $helper->input($data['student_code_input']) . $helper->tag('/div') .
-				$helper->tag('/div') .
-				$helper->tag('div',['class'=>'form-group row']) .
-					$helper->tag('div',['class'=>'col-md-4']) . $helper->label($data['parent']['val'].$data['relationship_student']['val'],['class'=>'control-label']) . $helper->tag('/div') .
-					$helper->tag('div',['class'=>'col-mg-8']) .
- 
+				$helper->tag('div',['class'=>'form-group']) .
+					$helper->label($data['parent']['val'].$data['relationship_student']['val']) .
 					  Form::select('relationship',FormList::relationships(),null,array('id'=>'relationship','class'=>'form-control')) .
-					$helper->tag('/div') .
 				$helper->tag('/div') .
-			$helper->tag('/form') .
+				$helper->tag('div',['class'=>'modal-footer']) .
+					$helper->input($data['cancel_btn']) .
+					$helper->input($data['signup_btn']) .			        	
+    			$helper->tag('/div') .
+				$helper->tag('/form') .
+			$helper->tag('/div') .
 		$helper->tag('/div') .
-		$helper->tag('div',['class'=>'modal-footer']) .
-			$helper->input($data['cancel_btn']) .
-			$helper->input($data['signup_btn']) .			        	
-    	$helper->tag('/div') .
     $helper->tag('/div') .	
 $helper->tag('/div') .
 //<!-- Modal -->
