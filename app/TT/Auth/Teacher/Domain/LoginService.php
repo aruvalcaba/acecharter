@@ -75,7 +75,8 @@ class LoginService extends AbstractLoginService {
 				'registered_email' => ['val'=>$this->getMsg('messages.registered_email')],
 				'ace_family_link' => ['val' =>$this->getMsg('constants.ace_family_link')],
 				'parents' => ['val'=>$this->getMsg('constants.parents')],
-				'teachers' => ['val'=>$this->getMsg('constants.teachers')]
+				'teachers' => ['val'=>$this->getMsg('constants.teachers')],
+				'login_msg' => ['val'=>$this->getMsg('messages.login_below')]
         ];
     }
 }
