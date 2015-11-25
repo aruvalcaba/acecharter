@@ -51,6 +51,7 @@ Route::group(['namespace'=>'TT','before'=>'login.admin'],function() {
 Route::group(['namespace' => 'TT'], function() {
     Route::get('/', array('as'=>'home','uses'=>'Home\Action\HomeAction@act'));
     Route::get('/unauthorized',array('as'=>'not.auth','uses'=>'Common\Action\NotAuthAction@act'));
+
     /**
     Route::get('/{lang}',function($lang){
 								Session::put('lang',$lang);								

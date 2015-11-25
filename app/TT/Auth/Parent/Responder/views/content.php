@@ -15,7 +15,6 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 		//<!-- to calculate that do (12-6)/2. The 12 is total number of md columns, subtract by the number  and then divide by 2 --> 							
 		$helper->tag('div',['class'=>'row']) .						
 			$helper->label($data['email_label']['val'])->before($helper->input($data['email_input'])) .	
-
 		$helper->tag('/div') .
 		$helper->tag('div',['class'=>'row']) . 						
 			$helper->label($data['pwd_label']['val'])->before($helper->input($data['pwd_input'])) .
