@@ -54,5 +54,5 @@ return [
 		'ace_family_link'=>'ACE PARENTESCO',
 		'parents'=>'Padres',
 		'teachers'=>'Profesores',
-		'admin'=>'Administración',
+		'admin'=>'Administración,
 ];
