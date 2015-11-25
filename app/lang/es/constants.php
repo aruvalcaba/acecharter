@@ -11,7 +11,7 @@ return [
         'grandfather'=>'Abuelo',
         'registration'=>'registro',
         'all_students'=>'Todos los estudiantes',
-		'how_register_parents'=>'How do I register parents ? '
+		'how_register_parents'=>'How do I register parents ? ',
 		'login' => 'Login',
 		'email' => 'Email',
 		'password' => 'Password',
@@ -40,7 +40,7 @@ return [
 		'code' => 'Code',
 		'relationship_student' => 'relationship with student',
 		'cancel' => 'Cancel',
-		'sign_up' => 'Sign Up'
+		'sign_up' => 'Sign Up',
 		'close' => 'Close',
 		'title' => 'Title',
 		'first_name' => 'First Name',
@@ -52,7 +52,7 @@ return [
 		'ok' => 'OK',
 		'reset_password' => 'Reset Password' ,
 		'ace_family_link' => 'ACE FAMILY LINK',
-		'parents' => 'Parents',
+		'parents' => 'Padres',
 		'teachers' => 'Teachers'
 
 

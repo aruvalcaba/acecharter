@@ -51,12 +51,17 @@ Route::group(['namespace'=>'TT','before'=>'login.admin'],function() {
 Route::group(['namespace' => 'TT'], function() {
     Route::get('/', array('as'=>'home','uses'=>'Home\Action\HomeAction@act'));
     Route::get('/unauthorized',array('as'=>'not.auth','uses'=>'Common\Action\NotAuthAction@act'));
+	Route::get('/{lang}',function($lang){
+								Session::put('lang',$lang);								
+								return Redirect::back();
+							});
 
     Route::post('/parent/login', array('as'=>'login.parent.post','uses'=>'Auth\Parent\Action\LoginPostAction@act'));
     Route::post('/teacher/login', array('as'=>'login.teacher.post','uses'=>'Auth\Teacher\Action\LoginPostAction@act'));
     Route::post('/admin/login', array('as'=>'login.admin.post','uses'=>'Auth\Admin\Action\LoginPostAction@act'));
     Route::post('/teacher',array('as'=>'teacher.post','uses'=>'Register\Teacher\Action\RegisterAction@act'));
     Route::post('/print-codes',array('as'=>'printcodes.teacher','uses'=>'Teacher\Codes\Action\PrintCodesAction@act'));
+	
 });
 
 

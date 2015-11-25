@@ -9,27 +9,24 @@ $helper->tag('nav',['class'=>'navbar navbar-custom navbar-fixed-top','role'=>'na
 				//$helper->tag('i',['class'=>'fa fa-bars']) . $helper->tag('/i') .
 				$helper->a('/','',array('class'=>'navbar-brand')) .	
 				$helper->tag('h1',['class'=>'navbar-brand','style'=>'color:#FFF']) . $data['ace_family_link']['val'] . $helper->tag('/h1') .
-		$helper->tag('/div') ;
+		$helper->tag('/div') .
+		$helper->tag('div',['class'=>'collapse navbar-collapse navbar-right navbar-main-collapse']) ;
 		if( ! Sentry::check() ) { 
 		echo 
-			$helper->tag('div',['class'=>'collapse navbar-collapse navbar-right navbar-main-collapse','style'=>'background-color: #a42a4e']) .
-				$helper->ul(array('class'=>'nav navbar-nav')) .
-					$helper->ul()->rawItems(array($helper->a('/parent/login', $data['parents']['val'],array('style'=>'background-color: #a42a4e')) , $helper->a('/teacher/login', $data['teachers']['val'],array('class'=>'active','style'=>'background-color: #a42a4e')))) .
-			$helper->tag('/div') ;
+			$helper->ul(array('class'=>'nav navbar-nav')) .
+					$helper->ul()->rawItems(array($helper->a('/parent/login', $data['parents']['val'],array('style'=>'background-color: #a42a4e')) , $helper->a('/teacher/login', $data['teachers']['val'],array('class'=>'active','style'=>'background-color: #a42a4e')))) ;
+			
          } else { 
-		echo
-			$helper->tag('div',['class'=>'collapse navbar-collapse navbar-right navbar-main-collapse']) .
-				$helper->tag('ul',['class'=>'nav navbar-nav']) .
-					$helper->tag('li', ['class'=>'dropdown','style'=>'background-color: #a42a4e']) .
+		echo			
+			$helper->tag('ul',['class'=>'nav navbar-nav']) .
+				$helper->tag('li', ['class'=>'dropdown','style'=>'background-color: #a42a4e']) .
 						$helper->a('#', $h($this->user->first_name) , array('class'=>'dropdown-toggle','data-toggle'=>'dropdown')) .
-					$helper->tag('ul',['class'=>'dropdown-menu']) .
+				$helper->tag('ul',['class'=>'dropdown-menu']) .
 						$helper->tag('li') . $helper->a('/pwd/change',$data['changed_pwd'] , array('style'=>'color:black')) . $helper->tag('/li') .
 						$helper->tag('li') . $helper->a('/logout', $data['logout'] ,array('style'=>'color:black')) . $helper->tag('/li') .
-					$helper->tag('/ul') .               
+				$helper->tag('/ul') .               
                 $helper->tag('/li') .
-			$helper->tag('/ul') .
-
-			
+			$helper->tag('/ul') ;	
 			
 			//$helper->ul(array('class'=>'nav navbar-nav')) .
 			//	$helper->ul()->rawItem($helper->a('#', $h($this->user->first_name), array('class'=>'dropdown-toggle','data-toggle'=>'dropdown')), array('class'=>'dropdown','style'=>'background-color: #a42a4e')) .
@@ -37,9 +34,20 @@ $helper->tag('nav',['class'=>'navbar navbar-custom navbar-fixed-top','role'=>'na
 			//	$helper->ul(array('class'=>'dropdown-menu')) .
 			//		$helper->ul()->rawItems(array($helper->a('/pwd/change',$data['changed_pwd']) => array('style'=>'color:black'), $helper->a('/logout', $data['logout'])=>array('style'=>'color:black'))) .				
 				
-		$helper->tag('/div') ;
+			
 		}
-	echo $helper->tag('/div') .
+		if(Session::get('lang')=='en'){
+			echo
+			$helper->ul(array('class'=>'nav navbar-nav')) .
+					$helper->ul()->rawItems(array($helper->a('/es','Esponal',array('style'=>'background-color: #a42a4e')))) ;
+		}
+		else { 
+			echo
+			$helper->ul(array('class'=>'nav navbar-nav')) .
+					$helper->ul()->rawItems(array($helper->a('/en','English',array('style'=>'background-color: #a42a4e')))) ;
+		} echo
+		$helper->tag('/div') .
+	 $helper->tag('/div') .
 $helper->tag('/nav') ;
 ?>
 <!-- <nav class="navbar navbar-custom navbar-fixed-top " role="navigation" style="background-color: #a42a4e">

@@ -13,6 +13,8 @@
 
 App::before(function($request)
 {
+	$lang = Session::get('lang','en');
+	App::setLocale($lang);
 });
 
 
