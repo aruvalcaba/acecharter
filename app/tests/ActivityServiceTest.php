@@ -1,7 +1,5 @@
 <?php 
 
-use Mockery;
-
 use TT\Models\ModelFactory;
 
 use TT\Service\ActivityService;
@@ -13,6 +11,8 @@ use TT\Activity\ActivityFormFactory;
 use TT\Student\StudentTraitRepository;
 
 use Aura\Payload_Interface\PayloadStatus;
+
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class ActivityServiceTest extends TestCase {
 
@@ -34,26 +34,34 @@ class ActivityServiceTest extends TestCase {
         $format = '%s/%s/%s.php';
 
         $activity_path = sprintf($format,public_path(),'activities','test');
-        $descriptions_path = sprintf($format,public_path(),'descriptions','test');
+        $description_path = sprintf($format,public_path(),'descriptions','test');
 
-        $this->activity = new UploadFile(
+        $content = '<?php echo phpinfo(); ';
+        
+        File::put($activity_path,$content);
+        File::put($description_path,$content);
+
+        $activity = new UploadedFile(
                                             $activity_path,
                                             sprintf('%s.%s',File::name($activity_path),File::extension($activity_path)),
-                                            File::mimeType($activity_path),
+                                            mime_content_type($activity_path),
                                             File::size($activity_path),
                                             null,
                                             true
                                         );
 
-        $this->activity = new UploadFile(
+        $description = new UploadedFile(
                                             $description_path,
                                             sprintf('%s.%s',File::name($description_path),File::extension($description_path)),
-                                            File::mimeType($description_path),
+                                            mime_content_type($description_path),
                                             File::size($description_path),
                                             null,
                                             true
                                             );
+        $title = 'activity1';
+        $time = 1;
 
+        $this->data = [ 'activity' => $activity, 'description' => $description, 'title' => $title, 'time' => $time ];
     }
 
     public function tearDown() {
@@ -63,81 +71,120 @@ class ActivityServiceTest extends TestCase {
 
     public function testCreateActivityWithNoInput() {
         $input = [];
-
+        
         $result = $this->activity_service->create($input);
-
+        
         $this->assertEquals($result->getStatus(),PayloadStatus::NOT_ACCEPTED);
     }
 
 
     public function testCreateActivityWithNoTitle() {
-        
-        $input = [
-                    'description'=> File::get(),
-                    'activity'=> File::get(sprintf($format,public_path(),'activities','test')),
-                    'time'=> 1  
-                ]; 
-        
+        $input = array_except($this->data,['title']);
+
         $result = $this->activity_service->create($input);
 
         $this->assertEquals($result->getStatus(),PayloadStatus::NOT_ACCEPTED);
     }
 
     public function testCreateActivityWithNoDescription() {
-        $format = '%s/%s/%s.php';
+        $input = array_except($this->data,['description']);
 
-        $input = [
-                    'title'=> 'activity1',
-                    'activity'=> File::get(),
-                    'time'=> 1  
-                ]; 
-        
         $result = $this->activity_service->create($input);
 
         $this->assertEquals($result->getStatus(),PayloadStatus::NOT_ACCEPTED);
     }
 
     public function testCreateActivityWithNoActivity() {
-        $format = '%s/%s/%s.php';
+        $input = array_except($this->data,['activity']);
 
-        $input = [
-                    'title'=> 'activity1',
-                    'description'=> File::get(sprintf($format,public_path(),'descriptions','test')),
-                    'time'=> 1  
-                ]; 
-        
         $result = $this->activity_service->create($input);
 
         $this->assertEquals($result->getStatus(),PayloadStatus::NOT_ACCEPTED);
     }
 
     public function testCreateActivityWithNoTime() {
-        $format = '%s/%s/%s.php';
+        $input = array_except($this->data,['time']);
+       
+        $result = $this->activity_service->create($input);
 
-        $input = [
-                    'title'=> 'activity1',
-                    'activity'=> File::get(sprintf($format,public_path(),'activities','test')),
-                    'description'=> File::get(sprintf($format,public_path(),'descriptions','test'))
-                ]; 
+        $this->assertEquals($result->getStatus(),PayloadStatus::NOT_ACCEPTED);
+    }
+
+    public function testCreateActivityWithDuplicateTitle() {
+        $activity = $this->activity_service->getFirst()->getOutput()['activity'];
+
+        $input = $this->data;
+        $input['title'] = $activity['title'];
         
         $result = $this->activity_service->create($input);
 
         $this->assertEquals($result->getStatus(),PayloadStatus::NOT_ACCEPTED);
     }
 
-    public function testCreateActivityWithInput() {
-        $format = '%s/%s/%s.php';
-
-        $input = [
-                    'title'=> 'activity1',
-                    'description'=> File::get(sprintf($format,public_path(),'descriptions','test')),
-                    'activity'=> File::get(sprintf($format,public_path(),'activities','test')),
-                    'time'=> 1  
-                ]; 
+    public function testCreateActivityWithUniqueTitle() {
+        $input = $this->data;
+        $input['title'] = sprintf('%s%s','activity',str_random(32));
         
         $result = $this->activity_service->create($input);
 
         $this->assertEquals($result->getStatus(),PayloadStatus::CREATED);
+    }
+
+    public function testUpdateActivityWithNoInput() {
+        $input = [];
+        $id = 1;
+
+        $result = $this->activity_service->update($input,$id);
+        
+        $this->assertEquals($result->getStatus(),PayloadStatus::NOT_ACCEPTED);
+    }
+
+    public function testUpdateActivityWithExistingId() {
+        $input = $this->data;
+
+        $activity = $this->activity_service->getFirst()->getOutput()['activity'];
+        $id = $activity->id;
+
+        $result = $this->activity_service->update($input,$id);
+        
+        $this->assertEquals($result->getstatus(),PayloadStatus::SUCCESS);
+    }
+    
+    public function testUpdateActivityWithNotExistingId() {
+        $input = $this->data;
+        $input['title'] = sprintf('%s%s','activity',str_random(32));
+
+        $id = -1;
+
+        $result = $this->activity_service->update($input,$id);
+        
+        $this->assertEquals($result->getStatus(),PayloadStatus::NOT_FOUND);
+    }
+
+    public function testUpdateActivityWithNewData() {
+        $input = $this->data;
+        
+        $updated_title = str_random(32);
+        $input['title'] = $updated_title;
+
+        $activity = $this->activity_service->getFirst()->getOutput()['activity'];
+        $id = $activity->id;
+
+        $result = $this->activity_service->update($input,$id);
+        
+        $activity = $this->activity_service->find($id)->getOutput()['activity'];
+
+        $this->assertEquals($activity->title,$updated_title);   
+    }
+    
+    public function testActivityDestroy() {
+        $activity = $this->activity_service->getFirst()->getOutput()['activity'];
+
+        $id = $activity->id;
+
+        $result = $this->activity_service->destroy($id);
+
+        $this->assertEquals($result->getStatus(),PayloadStatus::DELETED);
     }
 
 }

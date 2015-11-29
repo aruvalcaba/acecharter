@@ -5,8 +5,8 @@ class ActivityFormFactory {
         return new ActivityRateForm();
     }
 
-    public function newUpdateForm() {
-        return new ActivityUpdateForm();
+    public function newUpdateForm($id) {
+        return new ActivityUpdateForm($id);
     }
 
     public function newCreateForm() {

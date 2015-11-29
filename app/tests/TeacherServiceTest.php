@@ -1,7 +1,5 @@
 <?php 
 
-use Mockery;
-
 use TT\Models\ModelFactory;
 
 use TT\Service\TeacherService;

@@ -14,9 +14,10 @@ class ActivitiesRatings extends Migration {
 	{
 		Schema::create('activities_ratings', function(Blueprint $table)
         {
-            $table->integer('activity_id');
+            $table->integer('activity_id')->unsigned();
             $table->integer('total');
             $table->integer('count');
+            $table->foreign('activity_id')->references('id')->on('activities')->onDelete('cascade');
 		});
 	}
 

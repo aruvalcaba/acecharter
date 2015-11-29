@@ -36,7 +36,6 @@ class ActivityService extends AbstractService {
 
     public function create($data) {
         
-        $payload = $this->payload_factory->newInstance();
         $form = $this->activity_form_factory->newCreateForm();
 
         if( ! $form->isValid($data) ) {
@@ -89,111 +88,118 @@ class ActivityService extends AbstractService {
                 
                 $message = $this->getMsg('messages.activity_upload',['title'=>$data['title']]);
 
-                return $this->success(['response'=>['message'=>$message]]);
+                return $this->created(['response'=>['message'=>$message]]);
             }
 
             catch(Exception $e) {
-                Log::error($e);
-                DB::rollback();
-                $message = $this->getMessage('messages.oops');
-                return $this->error(['response'=>['message'=>$message,'exception'=>$e->getMessage()]]);
+               return $this->error($e);
             }
         }
     }
 
-    public function update($id) {
+    public function update($data, $id) {
+        $form = $this->activity_form_factory->newUpdateForm($id);
 
-        $activity = $this->activityRepo->getById($id);
-
-        if( is_null($activity) ) {
-            return false;
+        if( ! $form->isValid($data) ) {
+            $messages = $form->getErrors();
+            return $this->not_accepted(['response'=>['messages'=>$messages]]);
         }
 
-        try {
-            DB::beginTransaction();
+        else {
+            try {
+                                
+                $activity = $this->activityRepo->getbyId($id);
+
+                if( is_null($activity) ) {
+                    $message = $this->getMsg('messages.entity_not_found',['entity'=>'Activity']);
+
+                    return $this->not_found(['response'=>['message'=>$message]]);                   
+                }
+
+                else {
+                    DB::beginTransaction();
 
 
-            if( ! empty($data['activity']) ) {
+                    if( ! empty($data['activity']) ) {
                 
-                $format = '%s/%s';
+                    $format = '%s/%s';
                 
-                $activityFile = array_pull($data,'activity');
-                $activitiesPath = sprintf($format,public_path(),'activities');
-                $activityFileName = $data['title'].'.php';
+                    $activityFile = array_pull($data,'activity');
+                    $activitiesPath = sprintf($format,public_path(),'activities');
+                    $activityFileName = $data['title'].'.php';
 
-                $activityFileName = strtolower($activityFileName);
-                $activityFileName = str_replace(' ','-',$activityFileName);
+                    $activityFileName = strtolower($activityFileName);
+                    $activityFileName = str_replace(' ','-',$activityFileName);
 
-                $activityFilePath = sprintf($format,$activitiesPath,$activityFileName);
+                    $activityFilePath = sprintf($format,$activitiesPath,$activityFileName);
                 
-                $format = '%s%s';
+                    $format = '%s%s';
 
-                $path = sprintf($format,public_path(),$activity->activity_url);
+                    $path = sprintf($format,public_path(),$activity->activity_url);
                 
-                Log::info($path);
+                    Log::info($path);
 
-                File::delete($path);
+                    File::delete($path);
 
-                $format = '/activities/%s';
-                $relativePath = sprintf($format,$activityFileName);
-                $data = array_add($data,'activity_url',$relativePath);
+                    $format = '/activities/%s';
+                    $relativePath = sprintf($format,$activityFileName);
+                    $data = array_add($data,'activity_url',$relativePath);
 
-                Log::info($activityFileName);    
-                $activityFile->move($activitiesPath,$activityFileName);
-            }
+                    Log::info($activityFileName);    
+                    $activityFile->move($activitiesPath,$activityFileName);
+                }
             
 
-            if( ! empty($data['description']) )
-            {
+                if( ! empty($data['description']) ) {
                 
-                $format = '%s/%s';
+                    $format = '%s/%s';
                 
-                $descriptionFile = array_pull($data,'description');
-                $descriptionsPath = sprintf($format,public_path(),'descriptions');
-                $descriptionFileName = $data['title'].'.php';
+                    $descriptionFile = array_pull($data,'description');
+                    $descriptionsPath = sprintf($format,public_path(),'descriptions');
+                    $descriptionFileName = $data['title'].'.php';
 
-                $descriptionFileName = strtolower($descriptionFileName);
-                $descriptionFileName = str_replace(' ','-',$descriptionFileName);
+                    $descriptionFileName = strtolower($descriptionFileName);
+                    $descriptionFileName = str_replace(' ','-',$descriptionFileName);
 
-                $descriptionFilePath = sprintf($format,$descriptionsPath,$descriptionFileName);
+                    $descriptionFilePath = sprintf($format,$descriptionsPath,$descriptionFileName);
             
-                $format = '%s%s';
+                    $format = '%s%s';
 
-                $path = sprintf($format,public_path(),$activity->description_url);
+                    $path = sprintf($format,public_path(),$activity->description_url);
                 
-                Log::info($path);
-                File::delete($path);
+                    Log::info($path);
+                    File::delete($path);
 
-                $format = '/descriptions/%s';
-                $relativePath = sprintf($format,$descriptionFileName);
-                $data = array_add($data,'description_url',$relativePath);
+                    $format = '/descriptions/%s';
+                    $relativePath = sprintf($format,$descriptionFileName);
+                    $data = array_add($data,'description_url',$relativePath);
                 
-                Log::info($descriptionFileName);    
-                $descriptionFile->move($descriptionsPath,$descriptionFileName);
-            }
+                    Log::info($descriptionFileName);    
+                    $descriptionFile->move($descriptionsPath,$descriptionFileName);
+                }
                         
-            $this->activityRepo->update($activity,$data);
+                    $this->activityRepo->update($activity,$data);
     
-            DB::commit();
+                    DB::commit();
 
-            return true;
-        }
+                    $message = $this->getMsg('messages.entity_update_success',['name'=>$data['title']]);
 
-        
-        catch(Exception $ex) {
-            Log::error($ex);
-            DB::rollback();
-            return false;
+                    return $this->success(['response'=>['message'=>$message]]);
+                }
+            }
+
+            catch(Exception $e) {
+                return $this->error($e);
+            }
         }
     }
-
 
 
     public function destroy($id) {   
         $activity = null;
 
         try {
-            $activity = $this->find($id);
+            $activity = $this->find($id)->getOutput()['activity'];
 
             $publicPath = public_path();
             
@@ -206,21 +212,48 @@ class ActivityService extends AbstractService {
 
             File::delete([$activityPath,$descriptionPath]);
             
-            $this->activityRepo->destroy($id);
+            $result = $this->activityRepo->destroy($id);
 
-            DB::table('activities_ratings')->where('activity_id','=',$id)->delete();
+            if( $result ) {
+                $message = $this->getMsg('messages.entity_delete_success',['name'=>$activity['title']]);
 
-            return true;
+                return $this->deleted(['response'=>['message'=>$message]]);
+            }
+
+            else {
+                $message = $this->getMsg('messages.entity_delete_failure',['name'=>$activity['title']]);
+
+                return $this->not_deleted(['response'=>['message'=>$message]]);
+            }
         }
 
-        catch(Exception $ex) {
-            Log::error($ex);
-            return false;
+        catch(Exception $e) {
+            return $this->error($e);
         }
     }
 
     public function find($id) {
-        return $this->activityRepo->getById($id);
+        try {
+            $activity = $this->activityRepo->getById($id);
+            $output['activity'] = $activity;
+            return $this->success($output);
+        }
+
+        catch(Exception $e) {
+            return $this->error($e);
+        }
+    }
+
+    public function getFirst() {
+         try {
+            $activity = $this->activityRepo->getFirst();
+            $output['activity'] = $activity;
+            return $this->success($output);
+        }
+
+        catch(Exception $e) {
+            return $this->error($e);
+        }
     }
 
     public function getActivities(User $user) {

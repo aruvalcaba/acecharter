@@ -15,7 +15,8 @@ class CreateTeachersCodes extends Migration {
 		Schema::create('teachers_codes', function(Blueprint $table)
 		{
             $table->string('student_code','6');
-            $table->integer('teacher_id');
+            $table->integer('teacher_id')->unsigned();
+            $table->foreign('teacher_id')->references('id')->on('users')->onDelete('cascade');
 		});
 	}
 

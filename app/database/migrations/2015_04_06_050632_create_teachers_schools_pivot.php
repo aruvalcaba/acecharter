@@ -14,11 +14,13 @@ class CreateTeachersSchoolsPivot extends Migration {
 	{
 		Schema::create('teachers_schools', function(Blueprint $table)
         {
-            $table->integer('teacher_id');
-            $table->integer('school_id');
+            $table->integer('teacher_id')->unsigned();
+            $table->integer('school_id')->unsigned();
 
             $table->engine = 'InnoDB';
             $table->primary(['teacher_id','school_id']);
+            $table->foreign('teacher_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('school_id')->references('id')->on('schools')->onDelete('cascade');
 		});
 	}
 

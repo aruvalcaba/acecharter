@@ -17,16 +17,16 @@ class ActivityRepository extends ModelRepository
 
     public function update(Activity $activity, array $data) {
         $activity->fill($data);
-        $activity->save();
+        return $activity->save();
     }
 
     public function destroy($id) {
-        Activity::destroy($id);
+        return Activity::destroy($id);
     }
 
     public function getFirst() {
         $activity =  Activity::where('id','>','0')->first();
 
-        return is_null($activity) ? [] : [$activity];
+        return $activity;
     }
 }

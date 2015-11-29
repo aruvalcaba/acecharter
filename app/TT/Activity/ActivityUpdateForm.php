@@ -12,7 +12,7 @@ class ActivityUpdateForm extends FormModel
     protected function getPreparedRules()
     {
         return [
-                'title' => 'required|unique:activities,title,'.$this->id,
+                'title' => 'required|unique:activities,title,'.$this->id,//Enforce a unique rule to ignore a given ID
                 'time' => 'required|numeric|min:1',
                ];
     }
