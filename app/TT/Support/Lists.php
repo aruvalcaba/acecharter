@@ -54,4 +54,11 @@ class Lists  {
                 'ACE Create Arts'=>'ACE Create Arts' 
                ];
     }
+
+    public static function langs() {
+        return [
+                'en',
+                'es'
+               ];
+    }
 }

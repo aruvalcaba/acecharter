@@ -1,10 +1,19 @@
 <?php namespace TT\Support;
 
+use Redirect;
+
 use Aura\View\View;
+
 use Aura\Web\Response;
+
 use Aura\Accept\Accept;
+
 use Aura\Payload\Payload;
+
+use Response as LaraResponse;
+
 use Aura\Payload_Interface\PayloadStatus;
+
 use Aura\Payload_Interface\PayloadInterface;
 
 abstract class AbstractResponder {
@@ -19,6 +28,8 @@ abstract class AbstractResponder {
     protected $payload_method = array();
 
     protected $view;
+    
+    protected $redirect;
 
     public function __construct(
         Accept $accept,
@@ -42,8 +53,16 @@ abstract class AbstractResponder {
         $method = isset($this->payload_method[$status])
                 ? $this->payload_method[$status]
                 : 'notRecognized';
+        
         $this->$method();
-        return \Response::make($this->response->content->get(),$this->response->status->getCode());
+        
+        if( $this->redirect ) {
+            return $this->redirect;
+        }
+
+        else {
+            return LaraResponse::make($this->response->content->get(),$this->response->status->getCode());
+        }
     }
 
     public function setPayload(PayloadInterface $payload) {
