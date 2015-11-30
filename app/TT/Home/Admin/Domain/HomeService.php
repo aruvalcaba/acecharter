@@ -35,6 +35,7 @@ class HomeService extends AbstractService {
                 $output['activities'] = $this->activity_service->all();
                 $output['parents'] = $this->parent_service->all();
                 $output['teachers'] = $this->teacher_service->all();
+				$output['data'] = $this->getData();
                 $payload->setOutput($output);
             }
             
@@ -47,6 +48,12 @@ class HomeService extends AbstractService {
     }
 
     public function getData() {
-        return [];
+        return [
+				'ace_family_link' => ['val' =>$this->getMsg('constants.ace_family_link')],
+				'parents' => ['val'=>$this->getMsg('constants.parents')],
+				'teachers' => ['val'=>$this->getMsg('constants.teachers')],
+				'changed_pwd' => $this->getMsg('constants.change_password'),
+				'logout' => $this->getMsg('logout'),
+];
     }
 }

@@ -53,7 +53,8 @@ return [
 		'reset_password' => 'Reset Password' ,
 		'ace_family_link' => 'ACE FAMILY LINK',
 		'parents' => 'Padres',
-		'teachers' => 'Teachers'
+		'teachers' => 'Teachers',
+		'admin' => 'Admin',
 
 
 ];
