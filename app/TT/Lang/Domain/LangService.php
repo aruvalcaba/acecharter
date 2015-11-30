@@ -23,6 +23,8 @@ class LangService extends AbstractService {
         if( in_array($lang,$langs) ) {
             $payload->setOutput([]);
             $payload->setStatus(PayloadStatus::FOUND);
+
+            Session::put('lang',$lang);
         }
 
         else {
