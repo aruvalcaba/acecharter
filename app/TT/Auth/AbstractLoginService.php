@@ -9,7 +9,7 @@ use Aura\Payload\Payload;
 
 use TT\Support\AbstractService;
 
-abstract class AbstractLoginService extends AbstractService implements AuthInterface{
+abstract class AbstractLoginService extends AbstractService implements AuthInterface {
     public function fetchLogin() {
         try {
                 $payload = $this->success();
@@ -25,7 +25,7 @@ abstract class AbstractLoginService extends AbstractService implements AuthInter
         }
 
         catch(Exception $e) {
-            return $this->error($e->getMessage());
+            return $this->error($e);
         }
     }
 
