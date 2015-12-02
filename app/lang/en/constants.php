@@ -62,6 +62,4 @@ return [
 		'time' => 'Time',
 		'description' => 'Description',
 		'activities' => 'Activities',
- 
-
 ];
