@@ -32,11 +32,7 @@ return [
 		'a_parent_teacher_conference' => 'a parent teacher conference',
 		'signup_success' => 'Signup successful. Login credentials were sent to your email address.',
 		'pwd_success' => 'A new password was sent to your email to login with.',
-<<<<<<< HEAD
         'registered_email' => 'Your registered E-mail address:',
-=======
- 		'registered_email' => 'Your registered E-mail address:',
->>>>>>> c54b08a... html changes
         'activity_upload' => ':title has been upload successfully',
 		'login_below' => 'Login Below or',
 		'full_name_placeholder' => 'Enter your Full Name',

@@ -55,12 +55,8 @@ return [
 		'parents' => 'Parents',
 		'teachers' => 'Teachers',
 		'sign_up_free' => 'Sign Up for free',
-<<<<<<< HEAD
 		'invitation' => 'Invitation',
 		'admin' => 'Admin',
 
-=======
-		'invitation' => 'Invitation'
->>>>>>> c54b08a... html changes
 
 ];
