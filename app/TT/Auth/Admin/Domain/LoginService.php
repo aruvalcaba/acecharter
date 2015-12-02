@@ -39,7 +39,7 @@ class LoginService extends AbstractLoginService {
 
         catch(\Cartalyst\Sentry\Users\WrongPasswordException $e) {
             $payload->setStatus(PayloadStatus::NOT_AUTHENTICATED);
-            $messages = [$this->getMsg('messages.password_required')];
+            $messages = [$this->getMsg('messages.wrong_password')];
             $payload->setOutput(['response'=>['messages'=>$messages]]);
             return $payload;
         }   

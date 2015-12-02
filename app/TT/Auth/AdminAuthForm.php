@@ -27,5 +27,3 @@ class AdminAuthForm extends FormModel {
         return [];
     }
 }
-
-?>

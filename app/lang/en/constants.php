@@ -57,5 +57,4 @@ return [
 		'sign_up_free' => 'Sign Up for free',
 		'invitation' => 'Invitation',
 		'admin' => 'Admin',
-
 ];
