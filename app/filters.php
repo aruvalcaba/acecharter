@@ -110,7 +110,7 @@ Route::filter('logout',function() {
         Sentry::logout();
     }
 
-    return Redirect::route('home');
+    return Redirect::route('login.parent.get');
 });
 
 Route::filter('nocache',function($route, $request, $response) {

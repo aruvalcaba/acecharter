@@ -49,12 +49,18 @@ Route::group(['namespace'=>'TT','before'=>'login.teacher'], function() {
 Route::group(['namespace'=>'TT','before'=>'login.admin'],function() {
     Route::get('/admin/login',array('as'=>'login.admin.get','uses'=>'Auth\Admin\Action\LoginGetAction@act'));
 });
+Route::group(['namespace'=>'TT','before'=>'login.parent'],function() {
+    Route::get('/',array('as'=>'login.parent.get','uses'=>'Auth\Parent\Action\LoginGetAction@act'));
+});
+
+
 
 
 Route::group(['namespace' => 'TT'], function() {
-    Route::get('/', array('as'=>'home','uses'=>'Home\Action\HomeAction@act'));
+    //Route::get('/', array('as'=>'home','uses'=>'Home\Action\HomeAction@act'));
     Route::get('/unauthorized',array('as'=>'not.auth','uses'=>'Common\Action\NotAuthAction@act'));
     Route::get('/{lang}',array('as'=>'lang','uses'=>'Lang\Action\LangAction@act'));
+
     Route::post('/parent/login', array('as'=>'login.parent.post','uses'=>'Auth\Parent\Action\LoginPostAction@act'));
     Route::post('/teacher/login', array('as'=>'login.teacher.post','uses'=>'Auth\Teacher\Action\LoginPostAction@act'));
     Route::post('/admin/login', array('as'=>'login.admin.post','uses'=>'Auth\Admin\Action\LoginPostAction@act'));

@@ -39,7 +39,7 @@ $helper->tag('nav',['class'=>'navbar navbar-custom navbar-fixed-top','role'=>'na
 		if(Session::get('lang')=='en'){
 			echo
 			$helper->ul(array('class'=>'nav navbar-nav')) .
-					$helper->ul()->rawItems(array($helper->a('/es','Esponal',array('style'=>'background-color: #a42a4e')))) ;
+					$helper->ul()->rawItems(array($helper->a('/es','Español',array('style'=>'background-color: #a42a4e')))) ;
 		}
 		else { 
 			echo
