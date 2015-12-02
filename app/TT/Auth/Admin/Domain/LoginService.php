@@ -46,6 +46,18 @@ class LoginService extends AbstractLoginService {
     }
 
     public function getData() {
+		return [
+				'ace_family_link' => ['val' =>$this->getMsg('constants.ace_family_link')],
+				'parents' => ['val'=>$this->getMsg('constants.parents')],
+				'teachers' => ['val'=>$this->getMsg('constants.teachers')],
+				'admin' => ['val'=>$this->getmsg('constants.admin')],
+				'login' => ['val'=>$this->getMsg('constants.login')],
+				'email_label'=> ['val'=>$this->getMsg('constants.email')],
+				'email_input' => ['type'=>'text','name'=>'email','attribs'=>['class'=>'form-control','id'=>'email','placeholder'=>$this->getMsg('messages.email_placeholder')]],
+                'pwd_label'=> ['val'=>$this->getMsg('constants.password')],
+                'pwd_input' => ['type'=>'password','name'=>'password','attribs'=>['class'=>'form-control','id'=>'password']],
+                'login_btn' => ['type'=>'submit','name'=>'login','value'=>$this->getMsg('constants.login'),'attribs'=>['id'=>'login','class'=>'btn btn-success fleft']],
+		];
     
     }
 }
