@@ -1,5 +1,7 @@
 <?php namespace TT\Support;
 
+use Aura\Payload_Interface\PayloadStatus;
+
 class AbstractCreateResponder extends AbstractResponder {
     protected $payload_method = [ PayloadStatus::SUCCESS=>'getCreate' ];
 

@@ -1,7 +1,7 @@
 <?php namespace TT\Activity\Crud\Create\Responder;
 
-use TT\Support\CreateAbstractResponder;
+use TT\Support\AbstractCreateResponder;
 
-class CreateResponder extends CreateAbstractResponder {
+class CreateResponder extends AbstractCreateResponder {
     protected $views_path = __DIR__;
 }

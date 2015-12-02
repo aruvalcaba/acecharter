@@ -3,6 +3,7 @@
 use TT\Support\AbstractAction;
 
 use TT\Activity\Crud\Create\Domain\CreateService;
+use TT\Activity\Crud\Create\Responder\CreateResponder;
 
 class CreateAction extends AbstractAction {
     public function __construct (CreateService $domain, CreateResponder $responder) {
@@ -12,7 +13,7 @@ class CreateAction extends AbstractAction {
 
     public function act() {
         $payload = $this->domain->fetchCreate();
-        $this->responder->sePayload($payload);
+        $this->responder->setPayload($payload);
         return $this->responder->__invoke();
     }
 }
