@@ -28,10 +28,11 @@ class HomeService extends AbstractService{
     }
 
     public function getData() {
-        return [
+        return [	
 				'ace_family_link' => ['val' =>$this->getMsg('constants.ace_family_link')],
 				'parents' => ['val'=>$this->getMsg('constants.parents')],
-				'teachers' => ['val'=>$this->getMsg('constants.teachers')]		
+				'teachers' => ['val'=>$this->getMsg('constants.teachers')],
+	
 ];
     }
 }
