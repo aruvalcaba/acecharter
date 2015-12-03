@@ -26,7 +26,6 @@ class CreateService extends AbstractService {
 		return [
 				'title_label' => ['val'=>$this->getMsg('constants.title')],
 				'title_input' => ['type'=>'text','name'=>'title','attribs'=>['class'=>'form-control','id'=>'title','required'=>'required']],
-
 				'activity_label' => ['val'=>$this->getMsg('constants.activity')],
 				'activity_input' => ['type'=>'file','name'=>'activity','attribs'=>['class'=>'form-control','id'=>'activity']],
 				'description_label' => ['val'=>$this->getMsg('constants.description')],
