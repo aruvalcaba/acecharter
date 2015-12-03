@@ -65,3 +65,9 @@ footer {
 .panel-login > .row {
     padding: 5px 0px;
 }
+
+.panel-admin {
+	margin-top: 20px;
+	padding-left: 30px;
+	border-color: #D6E9C6;
+}
