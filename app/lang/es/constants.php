@@ -55,4 +55,8 @@ return [
 		'parents'=>'Padres',
 		'teachers'=>'Profesores',
 		'admin'=>'Administración',
+		'create' => 'Create',
+		'activity' => 'Activity',
+		'time' => 'Time',
+		'description' => 'Description',
 ];
