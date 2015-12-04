@@ -37,7 +37,7 @@ Route::group(['namespace'=>'TT','before'=>'auth.admin'],function() {
     //Activites Resource
     Route::get('/activity/create',array('as'=>'activity.create','uses'=>'Activity\Crud\Create\Action\CreateAction@act'));
     Route::post('/activity',array('as'=>'activity.store','uses'=>'Activity\Crud\Store\Action\StoreAction@act'));
-
+	Route::get('/activity/edit/{id}',array('as'=>'activity.edit','uses'=>'Activity\Crud\Edit\Action\EditAction@act'));
 });
 
 Route::group(['namespace'=>'TT','before'=>'login.parent'], function() {
