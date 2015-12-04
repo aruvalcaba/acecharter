@@ -39,4 +39,5 @@ return [
 		'email_placeholder' =>'Enter your e-mail address',
 		'student_code_placeholder' => 'Enter code received from teacher',
 		'invitation_conference' => 'Teacher sent you an invitation for a parent teacher conference.',
+		'upload_activity' => 'Upload New Activity',
 ];

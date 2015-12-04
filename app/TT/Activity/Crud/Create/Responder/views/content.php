@@ -25,7 +25,7 @@ $helper->tag('main') .
 				$helper->input($data['time_input']) .
 				$helper->tag('/div') .
 			$helper->input($data['hidden_input']) .
-			$helper->tag('div',['class'=>'row']) . $helper->input($data['create_btn']) . $helper->tag('/div') .
+			$helper->tag('div',['class'=>'row']) . $helper->input($data['create_btn']) . $helper->input($data['cancel_btn']) .$helper->tag('/div') .			
 		$helper->tag('/form') .
 		$helper->tag('/div') .			
 	$helper->tag('/div') .
