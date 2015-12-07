@@ -41,7 +41,7 @@ class ActivityService extends AbstractService {
         if( ! $form->isValid($data) ) {
             $messages = $form->getErrors();
 
-            return $this->not_accepted(['response'=>['messages'=>$messages]]);
+            return $this->not_accepted(['alerts'=>['messages'=>$messages,'class'=>['class'=>'alert alert-danger']]]);
         }
         
         else {
@@ -235,8 +235,15 @@ class ActivityService extends AbstractService {
     public function find($id) {
         try {
             $activity = $this->activityRepo->getById($id);
-            $output['activity'] = $activity;
-            return $this->success($output);
+            $output = [];
+
+            if( $activity ) {
+                $output['activity'] = $activity;
+                return $this->success($output);
+            }
+            else {
+                return $this->not_found($output);
+            }
         }
 
         catch(Exception $e) {
@@ -247,8 +254,14 @@ class ActivityService extends AbstractService {
     public function getFirst() {
          try {
             $activity = $this->activityRepo->getFirst();
-            $output['activity'] = $activity;
-            return $this->success($output);
+            
+            if( $activity ) {
+                $output['activity'] = $activity;
+                return $this->success($output);
+            }
+            else {
+                return $this->not_found($output);
+            }
         }
 
         catch(Exception $e) {
