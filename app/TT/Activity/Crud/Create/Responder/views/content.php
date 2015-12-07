@@ -8,6 +8,7 @@ $helper->tag('main') .
 		$helper->tag('div',['class'=>'row']) . $helper->tag('h2') . $h('Create Activity') . $helper->tag('/h2') . $helper->tag('/div') .
 		$helper->tag('div',['class'=>'col-xs-6 col-xs-offset-3 panel panel-admin']) .
         $helper->form(array('method'=>'post','action'=>'/activity','accept-charset'=>'UTF-8','enctype'=>'multipart/form-data'));
+
             include (sprintf('%s/views/base/%s',app_path(),'alerts.php'));
 
 			echo $helper->tag('div',['class'=>'form-group']) .

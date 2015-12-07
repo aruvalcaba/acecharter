@@ -41,7 +41,7 @@ class ActivityService extends AbstractService {
         if( ! $form->isValid($data) ) {
             $messages = $form->getErrors();
 
-            return $this->not_accepted(['alerts'=>['messages'=>$messages,'class'=>['class'=>'alert alert-danger','style'=>'margin-top: 10px']]]);
+            return $this->not_accepted(['alerts'=>['messages'=>$messages,'class'=>['class'=>'alert alert-danger m-t']]]);
         }
         
         else {
@@ -86,9 +86,8 @@ class ActivityService extends AbstractService {
 
                 DB::commit();
                 
-                $message = $this->getMsg('messages.activity_upload',['title'=>$data['title']]);
-
-                return $this->created(['response'=>['message'=>$message]]);
+                $messages = [$this->getMsg('messages.activity_upload',['title'=>$data['title']])];
+                return $this->created(['alerts'=>['messages'=>$messages,'class'=>['class'=>'alert alert-success m-t']]]);
             }
 
             catch(Exception $e) {

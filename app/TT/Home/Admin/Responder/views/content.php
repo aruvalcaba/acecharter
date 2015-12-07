@@ -8,60 +8,8 @@ $helper->tag('main') .
 			$helper->tag('h2') . $data['activites'] . $helper->tag('/h2') .
 			$helper->a('/activity/create', $data['upload_activity'] , array('class'=>'btn btn-large btn-danger')) ;
 
+include (sprintf('%s/views/base/%s',app_path(),'alerts.php'));
 
-/**
-$teachersCount = count($teachers);
-
-if( $teachersCount === 0)
-{
-    echo '<div class="alert alert-info" role="alert" style="margin-top: 15px">No teachers registered.</div>';
-}
-
-else
-{
-    echo '<div class="table-responsive" style="margin-top: 15px">';
-    echo '<table class="table table-striped table-bordered" style="margin-top: 15px">';
-
-    echo '<tr><td style="text-align: left"><b>'.$teachersCount.' registered teacher(s)'.'</b></td></tr>';
-    echo '<tr><td>Name</td><td>Email</td>';
-
-    foreach($teachers as $teacher)
-    {
-        echo '<tr>';
-        echo '<td>'.$teacher->fullname.'</td>';
-        echo '<td>'.$teacher->email.'</td>';
-        echo '</tr>';
-    }
-
-    echo '</table>';
-}
-
-$parentsCount = count($parents);
-
-if( $parentsCount === 0)
-{
-    echo '<div class="alert alert-info" role="alert" style="margin-top: 15px">No parents registered.</div>';
-}
-
-else
-{
-    echo '<div class="table-responsive" style="margin-top: 15px">';
-    echo '<table class="table table-striped table-bordered" style="margin-top: 15px">';
-
-    echo '<tr><td style="text-align: left"><b>'.$parentsCount.' registered parent(s)'.'</b></td></tr>';
-    echo '<tr><td>Name</td><td>Email</td>';
-
-    foreach($parents as $parent)
-    {
-        echo '<tr>';
-        echo '<td>'.$parent->fullname.'</td>';
-        echo '<td>'.$parent->email.'</td>';
-        echo '</tr>';
-    }
-
-    echo '</table>';
-}
-**/
 echo
 $helper->tag('div',['class'=>'table-responsive','style'=>'margin-top: 15px']) .
 	$helper->tag('table',['class'=>'table table-striped table-bordered','style'=>'margin-top: 15px']) .

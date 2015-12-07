@@ -926,3 +926,7 @@ img {
   width:1%;
   text-align:center;
 }
+
+.m-t {
+    margin-top: 10px;
+}
