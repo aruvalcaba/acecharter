@@ -16,12 +16,12 @@ class StoreResponder extends AbstractResponder {
     public function notAccepted() {
         $alerts = $this->payload->getOutput()['alerts'];
         Session::flash('alerts',$alerts);
-        $this->redirect = Redirect::back();
+        $this->redirect = Redirect::back()->withInput();
     }
 
     public function created() {
         $alerts = $this->payload->getOutput()['alerts'];
         Session::flash('alerts',$alerts);
-        $this->redirect = Redirect::route('home.admin');
+        $this->redirect = Redirect::route('home.admin')->withInput();
     }
 }
