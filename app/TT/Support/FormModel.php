@@ -61,7 +61,24 @@ class FormModel {
 	}
 
     public function getErrors() {
-        return array_values($this->validator->errors()->toArray());
+        $errors = array_values($this->validator->errors()->toArray());
+        $messages = [];
+
+        $this->flatten($errors,$messages);
+
+        return $messages;
+    }
+
+    private function flatten(array $values, array &$result) {
+        foreach($values as $value) {
+            if( is_array($value) ) {
+                $this->flatten($value,$result);
+            }
+
+            else {
+                $result[] = $value;
+            }
+        }
     }
 
     protected function getPreparedRules() {

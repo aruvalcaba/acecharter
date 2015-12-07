@@ -41,7 +41,7 @@ class ActivityService extends AbstractService {
         if( ! $form->isValid($data) ) {
             $messages = $form->getErrors();
 
-            return $this->not_accepted(['alerts'=>['messages'=>$messages,'class'=>['class'=>'alert alert-danger']]]);
+            return $this->not_accepted(['alerts'=>['messages'=>$messages,'class'=>['class'=>'alert alert-danger','style'=>'margin-top: 10px']]]);
         }
         
         else {
