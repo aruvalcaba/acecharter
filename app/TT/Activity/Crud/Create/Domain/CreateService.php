@@ -32,13 +32,14 @@ class CreateService extends AbstractService {
 				'description_input' => ['type'=>'file','name'=>'description','attribs'=>['class'=>'form-control','id'=>'description']],
 				'time_label' => ['val'=>$this->getMsg('constants.time')],
 				'time_input' => ['type'=>'number','name'=>'time','attribs'=>['class'=>'form-control','id'=>'time','min'=>'1','value'=>'1']],	
-               'create_btn' => ['type'=>'submit','name'=>'create','value'=>$this->getMsg('constants.create'),'attribs'=>['id'=>'create','class'=>'btn btn-skin']],
+				'cancel_btn' => ['type'=>'button','name'=>'cancel','value'=>$this->getMsg('constants.cancel'),'attribs'=>['class'=>'btn btn-skin','data-dismiss'=>'cancel']],
+				'hidden_input' => ['type'=>'hidden','name'=>'_token','value'=> csrf_token()],
+				'time_input' => ['type'=>'number','name'=>'time','attribs'=>['class'=>'form-control','id'=>'time','min'=>'1']],				
+                'create_btn' => ['type'=>'submit','name'=>'create','value'=>$this->getMsg('constants.create'),'attribs'=>['id'=>'create','class'=>'btn btn-skin']],
 				'hidden_input' => ['type'=>'hidden','name'=>'_token','value'=> csrf_token()],
 				'ace_family_link' => ['val' =>$this->getMsg('constants.ace_family_link')],
 				'changed_pwd' => $this->getMsg('constants.change_password'),
 				'logout' => $this->getMsg('logout'),
-
-               
         ];
   
     

@@ -61,5 +61,5 @@ return [
 		'activity' => 'Activity',
 		'time' => 'Time',
 		'description' => 'Description',
-
+		'activities' => 'Activities',
 ];

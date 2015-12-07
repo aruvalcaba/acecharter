@@ -5,7 +5,7 @@ echo
 $helper->tag('main') .
 	$helper->tag('section',['class'=>'home-section text-center']) .
 	$helper->tag('div',['class'=>'container wow bounceInDown','data-wow-delay'=>'2s']) .
-		$helper->tag('div',['class'=>'row']) . $helper->tag('h2') . $h('Create Activity') . $helper->tag('/h2') . $helper->tag('/div') .
+		$helper->tag('div',['class'=>'row']) . $helper->tag('h2') . $h('Edit Activity') . $helper->tag('/h2') . $helper->tag('/div') .
 		$helper->tag('div',['class'=>'col-xs-6 col-xs-offset-3 panel panel-admin']) .
 		$helper->form(array('method'=>'post','action'=>'/activity','accept-charset'=>'UTF-8','enctype'=>'multipart/form-data')) .			
 			$helper->tag('div',['class'=>'form-group']) .
@@ -25,7 +25,7 @@ $helper->tag('main') .
 				$helper->input($data['time_input']) .
 				$helper->tag('/div') .
 			$helper->input($data['hidden_input']) .
-			$helper->tag('div',['class'=>'row']) . $helper->input($data['create_btn']) . $helper->input($data['cancel_btn']) .$helper->tag('/div') .			
+			$helper->tag('div',['class'=>'row']) . $helper->input($data['edit_btn']) . $helper->input($data['cancel_btn']) .$helper->tag('/div') .			
 		$helper->tag('/form') .
 		$helper->tag('/div') .			
 	$helper->tag('/div') .

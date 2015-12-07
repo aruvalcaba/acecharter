@@ -53,7 +53,9 @@ class HomeService extends AbstractService {
 				'parents' => ['val'=>$this->getMsg('constants.parents')],
 				'teachers' => ['val'=>$this->getMsg('constants.teachers')],
 				'changed_pwd' => $this->getMsg('constants.change_password'),
-				'logout' => $this->getMsg('logout'),
+				'logout' => $this->getMsg('constants.logout'),
+				'activites' => $this->getMsg('constants.activities'),
+				'upload_activity' => $this->getmsg('messages.upload_activity'),
 ];
     }
 }
