@@ -16,12 +16,10 @@ class DeleteResponder extends AbstractResponder {
     public function notDeleted() {
         $alerts = $this->payload->getOutput()['alerts'];
         Session::flash('alerts',$alerts);
-        $this->redirect = Redirect::back()->withInput();
     }
 
     public function deleted() {
         $alerts = $this->payload->getOutput()['alerts'];
         Session::flash('alerts',$alerts);
-        $this->redirect = Redirect::route('home.admin')->withInput();
     }
 }
