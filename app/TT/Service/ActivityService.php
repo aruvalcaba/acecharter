@@ -216,15 +216,15 @@ class ActivityService extends AbstractService {
             $result = $this->activityRepo->destroy($id);
 
             if( $result ) {
-                $message = $this->getMsg('messages.entity_delete_success',['name'=>$activity['title']]);
+                $messages = [$this->getMsg('messages.entity_delete_success',['name'=>$activity['title']])];
 
-                return $this->deleted(['response'=>['message'=>$message]]);
+                return $this->deleted(['alerts'=>['messages'=>$messages,'class'=>['class'=>'alert alert-success m-t']]]);
             }
 
             else {
-                $message = $this->getMsg('messages.entity_delete_failure',['name'=>$activity['title']]);
+                $messages = [$this->getMsg('messages.entity_delete_failure',['name'=>$activity['title']])];
 
-                return $this->not_deleted(['response'=>['message'=>$message]]);
+                return $this->not_deleted(['alerts'=>['messages'=>$messages,'class'=>['class'=>'alert alert-success m-t']]]);
             }
         }
 

@@ -39,6 +39,7 @@ Route::group(['namespace'=>'TT','before'=>'auth.admin'],function() {
     Route::post('/activity',array('as'=>'activity.store','uses'=>'Activity\Crud\Store\Action\StoreAction@act'));
 	Route::get('/activity/edit/{id}',array('as'=>'activity.edit','uses'=>'Activity\Crud\Edit\Action\EditAction@act'));
 	Route::put('/activity/{id}',array('as'=>'activity.update','uses'=>'Activity\Crud\Update\Action\UpdateAction@act'));
+	Route::delete('/activity/{id}',array('as'=>'activity.delete','uses'=>'Activity\Crud\Delete\Action\DeleteAction@act'));
 });
 
 Route::group(['namespace'=>'TT','before'=>'login.parent'], function() {
