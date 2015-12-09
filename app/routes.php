@@ -31,6 +31,11 @@ Route::group(['namespace'=>'TT','before'=>'auth.teacher'], function() {
     Route::get('/teacher/home',array('as'=>'home.teacher','uses'=>'Home\Teacher\Action\HomeAction@act'));
 });
 
+Route::group(['namespace'=>'TT','before'=>'home'], function() {
+    Route::get('/home',array('as'=>'home'));
+});
+
+
 Route::group(['namespace'=>'TT','before'=>'auth.admin'],function() {
     Route::get('/admin/home',array('as'=>'home.admin','uses'=>'Home\Admin\Action\HomeAction@act'));
 

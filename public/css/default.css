@@ -5,7 +5,6 @@ a,.tp-caption a.btn:hover {
 .top-nav-collapse {
 	background: #a42a4e;
 }
-
 .navbar-custom ul.nav ul.dropdown-menu li a:hover {
 	color: #a42a4e;
 }
@@ -71,3 +70,9 @@ footer {
 	padding-left: 30px;
 	border-color: #D6E9C6;
 }
+.panel-home {
+	margin-top: 20px;
+	padding: 30px;
+	border-color: #D6E9C6;
+}
+

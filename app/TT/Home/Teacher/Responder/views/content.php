@@ -6,6 +6,8 @@
 
 $data = $this->data;
 
+	include (sprintf('%s/views/base/%s',app_path(),'alerts.php'));
+
 echo $helper->tag('div') .
     $helper->tag('div',['class'=>'col-md-8']) .
         $helper->input($data['register_btn']) .   

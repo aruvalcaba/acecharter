@@ -32,7 +32,7 @@
                 processData: false,
                 success: function(data)
                 {   
-                    window.location.href = '/parent/home';
+                    window.location.href = '/home';
                 },
                 error: function(xhr,status,error) {
                     var data = $.parseJSON(xhr.responseText);

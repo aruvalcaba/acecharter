@@ -113,6 +113,20 @@ Route::filter('logout',function() {
     return Redirect::route('login.parent.get');
 });
 
+
+Route::filter('home',function() {
+    if( Sentry::check() ) {
+        if( Sentry::getUser()->isTeacher() ) {
+            return Redirect::route('home.teacher');
+        }
+		elseif( Sentry::getUser()->isParent() ) {
+            return Redirect::route('home.parent');
+        }
+	}		
+	return Redirect::route('login.parent.get');
+        
+});
+
 Route::filter('nocache',function($route, $request, $response) {
     // No caching for pages, you can do some checks before
         $response->header("Pragma", "no-cache");

@@ -46,9 +46,9 @@ class PwdService extends AbstractService {
         $form = new $this->UserPasswordChangeForm;
 
 		if( ! $form->isValid($credentials) ) {
-            $messages = $form->getErrors();
 
-            $payload->setStatus(PayloadStatus::NOT_AUTHENTICATED);
+            $messages = $form->getErrors();
+            $payload->setStatus(PayloadStatus::NOT_VALID);
             $payload->setOutput(['response'=>['messages'=>$messages]]);
             return $payload;
         }
@@ -56,15 +56,20 @@ class PwdService extends AbstractService {
         try {
 		
 			if($this->password_service->changePassword($credentials)){
-				$messages = ['Password change sucess'];
-            	$payload->setStatus(PayloadStatus::AUTHENTICATED);
-            	$payload->setOutput(['response'=>['messages'=>$messages]]);
+				$messages = [$this->getMsg('messages.pwd_changed_success')];
+            	$payload->setStatus(PayloadStatus::ACCEPTED);
+				
+            	$payload->setOutput(
+									[
+										'response'=>[],
+										'alerts'=>['messages'=>$messages,'class'=>['class'=>'alert alert-success m-t']]]
+									);
 			}
             return $payload;
         }
 
-        catch(\Cartalyst\Sentry\Users\WrongPasswordException $e) {
-            $payload->setStatus(PayloadStatus::NOT_AUTHENTICATED);
+        catch(Exception $e) {
+            $payload->setStatus(PayloadStatus::NOT_VALID);
             $messages = [$this->getMsg('messages.wrong_password')];
             $payload->setOutput(['response'=>['messages'=>$messages]]);
             return $payload;
@@ -78,7 +83,7 @@ class PwdService extends AbstractService {
 				'new_pwd_label'=> ['val'=>$this->getMsg('constants.new_pwd')],
 				'new_pwd_input' => ['type'=>'password','name'=>'password','attribs'=>['class'=>'form-control','id'=>'password']],
 				'confirm_pwd_label'=> ['val'=>$this->getMsg('constants.confirm_pwd')],
-				'confirm_pwd_input' => ['type'=>'password','name'=>'confirm_password','attribs'=>['class'=>'form-control','id'=>'password_confirmation']],
+				'confirm_pwd_input' => ['type'=>'password','name'=>'password_confirmation','attribs'=>['class'=>'form-control','id'=>'password_confirmation']],
 				'change_pwd_btn' => ['type'=>'submit','name'=>'change_password','value'=>$this->getMsg('constants.change_pwd'),'attribs'=>['id'=>'change_password','class'=>'btn btn-success fleft']],
 				'cancel_btn' => ['type'=>'button','name'=>'cancel','value'=>$this->getMsg('constants.cancel'),'attribs'=>['class'=>'btn btn-skin','data-dismiss'=>'cancel']],
 				'ace_family_link' => ['val' =>$this->getMsg('constants.ace_family_link')],
