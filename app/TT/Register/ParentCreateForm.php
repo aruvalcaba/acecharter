@@ -8,7 +8,7 @@ class ParentCreateForm extends FormModel  {
         return [
                 'parent_fullname' => 'required',
                 'student_fullname' => 'required',
-                'student_code' => 'required|min:6|exists:teachers_codes,student_code',
+                'student_code' => 'required|min:5|exists:teachers_codes,student_code',
                 'email' => 'required|email|unique:users',
                 'relationship' => 'required'
                ];

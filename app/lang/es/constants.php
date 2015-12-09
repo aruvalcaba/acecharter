@@ -59,4 +59,9 @@ return [
 		'activity' => 'Activity',
 		'time' => 'Time',
 		'description' => 'Description',
+		'activities' => 'Activities',
+		'current_pwd' => 'Current Password',
+		'new_pwd' => 'New Password', 
+		'confirm_pwd' => 'Confirm New Password',
+		'change_pwd' => 'Change Password',
 ];

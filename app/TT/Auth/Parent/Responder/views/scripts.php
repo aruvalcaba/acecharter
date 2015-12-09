@@ -129,7 +129,7 @@
                          '&student_code='+code+
                          '&relationship='+relation;
         $.ajax({
-                url: "parent",
+                url: "/parent",
                 type: "post",
                 data: dataString,
                 dataType: "json",
@@ -168,6 +168,7 @@
                         
                         message = messages[0];
                         
+						 $('#signupModal').modal('hide');
 
                         var dialog = $('<div></div>').dialog({modal:true,height:'auto',title:'Alert',buttons: { Ok: function() { dialog.dialog('close'); }}});
                         dialog.html(message);
