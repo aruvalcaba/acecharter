@@ -1,5 +1,7 @@
 <?php namespace TT\User;
 
+use Validator;
+
 use TT\Support\FormModel;
 
 class UserPasswordChangeForm extends FormModel{

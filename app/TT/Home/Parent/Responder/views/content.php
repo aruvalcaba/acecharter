@@ -10,9 +10,14 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 				$helper->tag('i',['class'=>'fa fa-2x fa-angle-down']) . $helper->tag('/i') .
 			$helper->tag('/div') .
       	$helper->tag('/div') .
-	$helper->tag('/div') .
+	$helper->tag('/div') ;
 	//<!-- start of activity box -->
-	$helper->tag('div',['class'=>'col-lg-6 col-lg-offset-3 alert','role'=>'alert']) .
+    foreach($this->activities as $activity) {
+        $format = '%s%s';
+        $path = sprintf($format,public_path(),$activity->description_url);
+        include($path);
+		echo
+    	$helper->tag('div',['class'=>'col-lg-6 col-lg-offset-3 alert','role'=>'alert']) .
 		$helper->tag('div',['class'=>'activity alert row col-lg-10 col-md-8 col-sm-8 col-lg-offset-1 col-md-offset-2 col-sm-offset-2']) .
 		//<!-- description -->
         $helper->tag('div') .
@@ -21,12 +26,13 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 				
           	<button type="button" class="btn btn-primary ">
           		<span class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#invitation"></span>&nbsp;View</button>
-          		<span style="color:red"><?php echo $h('Please read before Tuesday, Aug 28, 2015.'); ?></span>
+          		<span style="color:red"><?php echo $activity->title . $h('Please read before Tuesday, Aug 28, 2015.'); ?></span>
           </button><?php echo
 
       	$helper->tag('/div') .
            
     $helper->tag('/div') ;
+	}
 ?>
 <!-- end of activity box -->
 
@@ -55,11 +61,11 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 <!-- end of activity spacing -->
 
  <!-- start of activity box -->
-  <div class="col-lg-6 col-lg-offset-3 alert" role="alert">
+  <!--<div class="col-lg-6 col-lg-offset-3 alert" role="alert">
         <div class="activity alert row col-lg-10 col-md-8 col-sm-8 col-lg-offset-1 col-md-offset-2 col-sm-offset-2">
           
           <!-- description -->
-          <div >
+          <!--<div >
         <h4>MESSAGE</h4>
         
         <p>IEP manager has an update for you.</p>
@@ -70,7 +76,7 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 
       </div>
            
-    </div>
+    </div> -->
 <!-- end of activity box -->
 <!-- start of activity spacing -->
 <div class="row">
@@ -81,11 +87,11 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 
 
  <!-- start of activity box -->
-  <div class="col-lg-6 col-lg-offset-3 alert" role="alert">
+ <!-- <div class="col-lg-6 col-lg-offset-3 alert" role="alert">
         <div class="activity alert row col-lg-10 col-md-8 col-sm-8 col-lg-offset-1 col-md-offset-2 col-sm-offset-2">
           
           <!-- description -->
-          <div >
+         <!-- <div >
         <h4>Invitation</h4>
         
         <p> Principal sent you an invitation for October BBQ. 
@@ -97,7 +103,7 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 
       </div>
            
-    </div>
+    </div> -->
 <!-- end of activity box -->
 <!-- start of activity spacing -->
 <div class="row">
@@ -106,13 +112,7 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 </div>
 <!-- end of activity spacing -->
 
- <?php 
-    foreach($this->activities as $activity) {
-        $format = '%s%s';
-        $path = sprintf($format,public_path(),$activity->description_url);
-        include($path);
-    }
-?>
+ 
 <!--
      
 <div class="row center-block">
