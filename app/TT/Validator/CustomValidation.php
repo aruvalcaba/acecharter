@@ -48,5 +48,10 @@ class CustomValidation extends Validator {
             return false;
         }
     }
+
+	public function validatePassword($field, $value, $params) {
+		$currentPassword = $value;
+		$user = Sentry::getUser();
+		return $user->checkPassword($currentPassword);	
+	}
 }
-?>
