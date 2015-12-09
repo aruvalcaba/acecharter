@@ -45,9 +45,7 @@ class PwdService extends AbstractService {
         
         $form = new $this->UserPasswordChangeForm;
 
-		//$this->passwordservice->changePassword($credentials);
-
-        if( ! $form->isValid($credentials) ) {
+		if( ! $form->isValid($credentials) ) {
             $messages = $form->getErrors();
 
             $payload->setStatus(PayloadStatus::NOT_AUTHENTICATED);
@@ -56,10 +54,12 @@ class PwdService extends AbstractService {
         }
 
         try {
-            $user = Sentry::authenticate($credentials,true);
-            
-            $payload->setStatus(PayloadStatus::AUTHENTICATED);
-            $payload->setOutput(['response'=>[]]);
+		
+			if($this->password_service->changePassword($credentials)){
+				$messages = ['Password change sucess'];
+            	$payload->setStatus(PayloadStatus::AUTHENTICATED);
+            	$payload->setOutput(['response'=>['messages'=>$messages]]);
+			}
             return $payload;
         }
 
