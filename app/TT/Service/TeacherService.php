@@ -91,6 +91,10 @@ class TeacherService extends AbstractService {
                     $data = array();
                     $data = array_add($data,'student_code',$code);
 
+					$user = Sentry::getUser();
+					$teacherId = $user->id;
+					$data = array_add($data,'teacher_id',$teacherId);
+
                     $code = $this->codeRepo->create($data);
 
                     $html = View::make('pages.code')->with('code',$code)->render();

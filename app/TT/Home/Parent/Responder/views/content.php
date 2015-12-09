@@ -15,6 +15,7 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 	 include (sprintf('%s/views/base/%s',app_path(),'alerts.php'));
 
 	//<!-- start of activity box -->
+	if($this->activities != null){
     foreach($this->activities as $activity) {
         $format = '%s%s';
         $path = sprintf($format,public_path(),$activity->description_url);
@@ -36,6 +37,7 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
            
     $helper->tag('/div') ;
 	}
+}
 ?>
 <!-- end of activity box -->
 
