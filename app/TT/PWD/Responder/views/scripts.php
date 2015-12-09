@@ -32,7 +32,15 @@
                 processData: false,
                 success: function(data)
                 {   
-                    window.location.href = '/home';
+					var messages = data.messages;
+                    var message;
+					message = messages[0];                        
+
+                	var dialog = $('<div></div>').dialog({modal:true,height:'auto',title:'Alert',buttons: { Ok: function() { window.location.href = '/home'; }}});
+                    dialog.html(message);
+                    dialog.dialog('open');
+					
+
                 },
                 error: function(xhr,status,error) {
                     var data = $.parseJSON(xhr.responseText);

@@ -61,7 +61,7 @@ class PwdService extends AbstractService {
 				
             	$payload->setOutput(
 									[
-										'response'=>[],
+										'response'=>['messages'=>$messages],
 										'alerts'=>['messages'=>$messages,'class'=>['class'=>'alert alert-success m-t']]]
 									);
 			}
