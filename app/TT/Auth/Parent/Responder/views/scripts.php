@@ -129,35 +129,16 @@
                          '&student_code='+code+
                          '&relationship='+relation;
         $.ajax({
-                url: "parent",
+                url: "/parent",
                 type: "post",
                 data: dataString,
                 dataType: "json",
                 processData: false,
                 success: function(data)
                 {   
-                    var success = data.success;
+                    $('#signupModal').modal('hide');
+                    $('#signupSuccessModal').modal('show');
 
-                    if( success == 1)
-                    {
-                        $('#signupModal').modal('hide');
-                        $('#signupSuccessModal').modal('show');
-                    }
-
-                    else
-                    {
-                        var errors = data.errors;
-                        
-                        if(errors)
-                        {
-                            $.each(errors, function(key, value)
-                            {
-                                $('#signup_errors').append('<li>'+value+'</li>');
-                            });
-
-                            $("#signup_alert").removeClass('hidden');
-                        }
-                    }
                 },
                 error: function(xhr,status,error) {
                     var data = $.parseJSON(xhr.responseText);
@@ -168,6 +149,7 @@
                         
                         message = messages[0];
                         
+						 $('#signupModal').modal('hide');
 
                         var dialog = $('<div></div>').dialog({modal:true,height:'auto',title:'Alert',buttons: { Ok: function() { dialog.dialog('close'); }}});
                         dialog.html(message);
