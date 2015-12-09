@@ -23,6 +23,7 @@ class HomeService extends AbstractService {
                 $user = Sentry::getUser();
                 $output['user'] = $user;
                 $output['activities'] = $this->activity_service->getActivities($user);
+				//dd($this->activity_service->getActivities($user));
                 $output['avg'] = $this->activity_service->getAvgActivityTime();
 				$output['data'] = $this->getData();
 

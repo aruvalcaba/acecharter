@@ -15,29 +15,32 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 	 include (sprintf('%s/views/base/%s',app_path(),'alerts.php'));
 
 	//<!-- start of activity box -->
-	if($this->activities != null){
-    foreach($this->activities as $activity) {
-        $format = '%s%s';
-        $path = sprintf($format,public_path(),$activity->description_url);
-        include($path);
-		echo
-    	$helper->tag('div',['class'=>'col-lg-6 col-lg-offset-3 alert','role'=>'alert']) .
-		$helper->tag('div',['class'=>'activity alert row col-lg-10 col-md-8 col-sm-8 col-lg-offset-1 col-md-offset-2 col-sm-offset-2']) .
-		//<!-- description -->
-        $helper->tag('div') .
-			$helper->tag('h4') . $data['invitation']['val'] . $helper->tag('/h4') .
-			$helper->tag('p') . $data['invitation_conference']['val'] . $helper->tag('/p') ; ?>
-				
-          	<button type="button" class="btn btn-primary ">
-          		<span class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#invitation"></span>&nbsp;View</button>
-          		<span style="color:red"><?php echo $activity->title . $h('Please read before Tuesday, Aug 28, 2015.'); ?></span>
-          </button><?php echo
 
-      	$helper->tag('/div') .
-           
-    $helper->tag('/div') ;
+	if(count($this->activities) > 0 ) {
+		foreach($this->activities as $activity){			
+		    $format = '%s%s';
+		    //$path = sprintf($format,public_path(),$activity->description_url);
+		    //echo $path;			
+			echo
+			$helper->tag('div',['class'=>'col-lg-6 col-lg-offset-3 alert','role'=>'alert']) .
+			$helper->tag('div',['class'=>'activity alert row col-lg-10 col-md-8 col-sm-8 col-lg-offset-1 col-md-offset-2 col-sm-offset-2']) .
+			//<!-- description -->
+		    $helper->tag('div') .
+				$helper->tag('h4') . $data['invitation']['val'] . $helper->tag('/h4') .
+				$helper->tag('p') . $data['invitation_conference']['val'] . $helper->tag('/p') ; ?>
+				<a href="">
+		      	<button type="button" class="btn btn-primary ">
+		      		<span class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#invitation"></span>&nbsp;View</button></a>
+		      		<span style="color:red"><?php echo  '&nbsp;' . $h('Please read before Tuesday, Aug 28, 2015.'); ?></span>
+		      </button><?php echo
+
+		  	$helper->tag('/div') .
+			$helper->tag('/div') .
+		       
+		$helper->tag('/div') ;
+				
+		}
 	}
-}
 ?>
 <!-- end of activity box -->
 
