@@ -182,7 +182,7 @@ class ActivityService extends AbstractService {
     
                     DB::commit();
 
-                    $message = $this->getMsg('messages.entity_update_success',['name'=>$data['title']]);
+                    $messages = [$this->getMsg('messages.entity_update_success',['name'=>$data['title']])];
 
                     //return $this->success(['response'=>['message'=>$message]]);
 					return $this->updated(['alerts'=>['messages'=>$messages,'class'=>['class'=>'alert alert-success m-t']]]);

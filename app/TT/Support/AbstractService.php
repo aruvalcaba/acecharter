@@ -57,6 +57,13 @@ abstract class AbstractService {
         return $payload;
     }
 
+	protected function updated($output = []) {
+        $payload = $this->payload_factory->newInstance();
+        $payload->setStatus(PayloadStatus::UPDATED);
+        $payload->setOutput($output);
+        return $payload;
+    }
+
     protected function not_found($output = []) {
         $payload = $this->payload_factory->newInstance();
         $payload->setStatus(PayloadStatus::NOT_FOUND);
