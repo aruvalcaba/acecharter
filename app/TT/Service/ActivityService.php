@@ -101,7 +101,8 @@ class ActivityService extends AbstractService {
 
         if( ! $form->isValid($data) ) {
             $messages = $form->getErrors();
-            return $this->not_accepted(['response'=>['messages'=>$messages]]);
+            //return $this->not_accepted(['response'=>['messages'=>$messages]]);
+			return $this->not_accepted(['alerts'=>['messages'=>$messages,'class'=>['class'=>'alert alert-danger m-t']]]);
         }
 
         else {
@@ -183,7 +184,8 @@ class ActivityService extends AbstractService {
 
                     $message = $this->getMsg('messages.entity_update_success',['name'=>$data['title']]);
 
-                    return $this->success(['response'=>['message'=>$message]]);
+                    //return $this->success(['response'=>['message'=>$message]]);
+					return $this->updated(['alerts'=>['messages'=>$messages,'class'=>['class'=>'alert alert-success m-t']]]);
                 }
             }
 
