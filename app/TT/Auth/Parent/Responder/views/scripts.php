@@ -52,9 +52,20 @@
                         $("#forgotPasswordModal #errorText").parent().removeClass('hidden');
                     }
                 },
-                error: function(data) 
-                {
-                    alert('Oops something went went on the server. Contact the admin.');
+               error: function(xhr,status,error) {
+                    var data = $.parseJSON(xhr.responseText);
+                    var messages = data.messages;
+                    var message;
+
+                    if( messages != undefined ) {
+                        
+                        message = messages[0];
+                        
+
+                        var dialog = $('<div></div>').dialog({modal:true,height:'auto',title:'Alert',buttons: { Ok: function() { dialog.dialog('close'); }}});
+                        dialog.html(message);
+                        dialog.dialog('open');
+                    }
                 }
         });
 
@@ -89,13 +100,9 @@
                     var message;
 
                     if( messages != undefined ) {
-                        if( $.isArray(messages[0]) ) {
-                            message = messages[0][0];
-                        }
-
-                        else {
-                            message = messages[0];
-                        }
+                        
+                        message = messages[0];
+                        
 
                         var dialog = $('<div></div>').dialog({modal:true,height:'auto',title:'Alert',buttons: { Ok: function() { dialog.dialog('close'); }}});
                         dialog.html(message);
@@ -137,23 +144,10 @@
                         $('#signupSuccessModal').modal('show');
                     }
 
-                    else
-                    {
-                        var errors = data.errors;
-                        
-                        if(errors)
-                        {
-                            $.each(errors, function(key, value)
-                            {
-                                $('#signup_errors').append('<li>'+value+'</li>');
-                            });
-
-                            $("#signup_alert").removeClass('hidden');
-                        }
-                    }
+                    
                 },
-                error: function(data) 
-                {
+                 error: function(xhr,status,error) {
+                
                     var data = $.parseJSON(xhr.responseText);
                     var messages = data.messages;
                     var message;
@@ -162,7 +156,8 @@
                         
                         
                         message = messages[0];
-                        
+                        						 
+
                         var dialog = $('<div></div>').dialog({modal:true,height:'auto',title:'Alert',buttons: { Ok: function() { dialog.dialog('close'); }}});
                         dialog.html(message);
                         dialog.dialog('open');
