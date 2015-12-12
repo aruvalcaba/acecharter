@@ -52,7 +52,7 @@
                         $("#forgotPasswordModal #errorText").parent().removeClass('hidden');
                     }
                 },
-               error: function(xhr,status,error) {
+                error: function(xhr,status,error) {
                     var data = $.parseJSON(xhr.responseText);
                     var messages = data.messages;
                     var message;
@@ -144,24 +144,35 @@
                         $('#signupSuccessModal').modal('show');
                     }
 
-                    
+                    else
+                    {
+                        var errors = data.errors;
+                        
+                        if(errors)
+                        {
+                            $.each(errors, function(key, value)
+                            {
+                                $('#signup_errors').append('<li>'+value+'</li>');
+                            });
+
+                            $("#signup_alert").removeClass('hidden');
+                        }
+                    }
                 },
-                 error: function(xhr,status,error) {
-                
+                error: function(xhr,status,error) {
                     var data = $.parseJSON(xhr.responseText);
                     var messages = data.messages;
                     var message;
 
                     if( messages != undefined ) {
                         
-                        
                         message = messages[0];
-                        						 
+                        
 
                         var dialog = $('<div></div>').dialog({modal:true,height:'auto',title:'Alert',buttons: { Ok: function() { dialog.dialog('close'); }}});
                         dialog.html(message);
                         dialog.dialog('open');
-					}
+                    }
                 }
         });
     });

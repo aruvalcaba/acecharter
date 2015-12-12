@@ -48,7 +48,7 @@
                         $("#forgotPasswordModal #errorText").parent().removeClass('hidden');
                     }
                 },
-                error: function(xhr,status,error) {
+                 error: function(xhr,status,error) {
                     var data = $.parseJSON(xhr.responseText);
                     var messages = data.messages;
                     var message;
@@ -57,12 +57,12 @@
                         
                         message = messages[0];
                         
+
                         var dialog = $('<div></div>').dialog({modal:true,height:'auto',title:'Alert',buttons: { Ok: function() { dialog.dialog('close'); }}});
                         dialog.html(message);
                         dialog.dialog('open');
                     }
                 }
-
         });
 
     });    
