@@ -135,13 +135,8 @@
 
                     if( messages != undefined ) {
                         
-                        if( $.isArray(messages[0]) ) {
-                            message = messages[0][0];
-                        }
-
-                        else {
-                            message = messages[0];
-                        }
+                        message = messages[0];
+                        
 
                         $('#signupModal').modal('hide');
 

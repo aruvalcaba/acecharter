@@ -154,7 +154,18 @@
                 },
                 error: function(data) 
                 {
-                    alert('Oops something went went on the server. Contact the admin.');
+                    var data = $.parseJSON(xhr.responseText);
+                    var messages = data.messages;
+                    var message;
+
+                    if( messages != undefined ) {
+                        
+                        
+                        message = messages[0];
+                        
+                        var dialog = $('<div></div>').dialog({modal:true,height:'auto',title:'Alert',buttons: { Ok: function() { dialog.dialog('close'); }}});
+                        dialog.html(message);
+                        dialog.dialog('open');
                 }
         });
     });
