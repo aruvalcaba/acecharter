@@ -166,6 +166,7 @@
                         var dialog = $('<div></div>').dialog({modal:true,height:'auto',title:'Alert',buttons: { Ok: function() { dialog.dialog('close'); }}});
                         dialog.html(message);
                         dialog.dialog('open');
+					}
                 }
         });
     });
