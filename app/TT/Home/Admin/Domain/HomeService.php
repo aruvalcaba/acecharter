@@ -32,6 +32,7 @@ class HomeService extends AbstractService {
                 $output = $payload->getOutput();
                 $user = Sentry::getUser();
                 $output['user'] = $user;
+				//dd($this->activity_service->all());
                 $output['activities'] = $this->activity_service->all();
                 $output['parents'] = $this->parent_service->all();
                 $output['teachers'] = $this->teacher_service->all();

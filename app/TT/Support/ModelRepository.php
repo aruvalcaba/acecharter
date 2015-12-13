@@ -12,7 +12,7 @@ abstract class ModelRepository {
     }
 
     public function getAll() {
-        return $this->model->index();
+        return $this->model->all();
     }
 
     public function getAllPaginated($count) {
