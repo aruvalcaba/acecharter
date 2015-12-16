@@ -22,9 +22,8 @@ class HomeService extends AbstractService {
                 $output = $payload->getOutput();
                 $user = Sentry::getUser();
                 $output['user'] = $user;
-                $output['activities'] = $this->activity_service->getActivities($user);
-				//dd($this->activity_service->getActivities($user));
-                $output['avg'] = $this->activity_service->getAvgActivityTime();
+                $output['acts'] = $this->activity_service->getActivities($user);
+				$output['avg'] = $this->activity_service->getAvgActivityTime();
 				$output['data'] = $this->getData();
 
                 $payload->setOutput($output);
@@ -48,6 +47,7 @@ class HomeService extends AbstractService {
 				'logout' => $this->getMsg('logout'),
 				'invitation' => ['val'=>$this->getMsg('constants.invitation')],
 				'invitation_conference' => ['val'=>$this->getMsg('messages.invitation_conference')],
+				'view' => ['val'=>$this->getMsg('constants.view')],
 ];
     }
 }

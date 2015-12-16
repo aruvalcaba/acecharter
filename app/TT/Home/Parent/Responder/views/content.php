@@ -1,6 +1,6 @@
 <?php
 $data = $this->data;
-
+$activities = $this->acts;
 echo
 $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 	$helper->tag('div',['class'=>'container']) .
@@ -16,22 +16,24 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 
 	//<!-- start of activity box -->
 
-	if(count($this->activities) > 0 ) {
-		foreach($this->activities as $activity){			
+	if(count($activities) > 0 ) {
+		foreach($activities as $activity){			
 		    $format = '%s%s';
-		    //$path = sprintf($format,public_path(),$activity->description_url);
-		    //echo $path;			
+		    $path = sprintf($format,public_path(),$activity->description_url);
+					
 			echo
 			$helper->tag('div',['class'=>'col-lg-6 col-lg-offset-3 alert','role'=>'alert']) .
 			$helper->tag('div',['class'=>'activity alert row col-lg-10 col-md-8 col-sm-8 col-lg-offset-1 col-md-offset-2 col-sm-offset-2']) .
-			//<!-- description -->
 		    $helper->tag('div') .
+			//<!-- description -->
 				$helper->tag('h4') . $data['invitation']['val'] . $helper->tag('/h4') .
 				$helper->tag('p') . $data['invitation_conference']['val'] . $helper->tag('/p') ; ?>
-				<a href="">
-		      	<button type="button" class="btn btn-primary ">
-		      		<span class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#invitation"></span>&nbsp;View</button></a>
-		      		<span style="color:red"><?php echo  '&nbsp;' . $h('Please read before Tuesday, Aug 28, 2015.'); ?></span>
+				<a href = "<?php echo $path;?>" >
+		      	<button type="button" class="btn btn-primary ">	
+								
+		      		<span class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#invitation"></span><?php echo $data['view']['val']; ?> </button></a>
+		      		<span style="color:red"><?php echo $activity->title?>
+					</span>
 		      </button><?php echo
 
 		  	$helper->tag('/div') .

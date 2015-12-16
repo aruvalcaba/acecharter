@@ -281,8 +281,8 @@ class ActivityService extends AbstractService {
 
             $studentActivities = $student->activities()->lists('id');
 
-            if( empty($studentActivities) )
-                return $this->activityRepo->getFirst();
+            //if( empty($studentActivities) )
+             //   return $this->activityRepo->getFirst();
             
             $activities = $this->all()->lists('id');
 
@@ -292,7 +292,9 @@ class ActivityService extends AbstractService {
             
             $activities = array_slice($activities,0,3);
 
-            return $this->find($activities);
+            $activities = $this->find($activities)->getOutput()['activity'];
+			
+			return $activities;
         }
 
         catch(Exception $ex) {

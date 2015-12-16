@@ -4,9 +4,9 @@ use Mail;
 
 class EmailInvite {
     private $layout = 'emails.invite';
-    private $from = 'no-reply@teachtogether.co';
-    private $subject = 'Teachtogether Invitation';
-    private $to = 'hg2355@columbia.edu';
+    private $from = 'notify@acecharter.org';
+    private $subject = 'ACE Charter Schools Invitation';
+    //private $to = 'hg2355@columbia.edu';
 
     public function send($email) {
         $data['email'] = $email;

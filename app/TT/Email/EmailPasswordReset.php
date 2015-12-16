@@ -5,7 +5,7 @@ use TT\Models\User;
 
 class EmailPasswordReset {
     private $layout = 'emails.password-reset';
-    private $from = 'no-reply@teachtogether.co';
+    private $from = 'notify@acecharter.org';
     private $subject = 'Password Reset';
 
     public function send($user, $password) {

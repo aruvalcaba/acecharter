@@ -15,7 +15,7 @@ return array(
 	|
 	*/
 
-	'driver' => 'log',
+	'driver' => 'mailgun',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => null, 'name' => null),
+	'from' => array('address' => 'notify@acecharter.org', 'name' => 'Ace Charter Notify'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return array(
 	|
 	*/
 
-	'username' => null,
+	'username' => null,//Not needed by mailgun
 
 	/*
 	|--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return array(
 	|
 	*/
 
-	'password' => null,
+	'password' => null,//Not needed by mailgun
 
 	/*
 	|--------------------------------------------------------------------------
