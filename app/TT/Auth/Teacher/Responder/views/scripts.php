@@ -27,28 +27,18 @@
         var dataString = 'email='+email;
 
         $.ajax({
-                url: "pwd/reset",
+                url: "/pwd/reset",
                 type: "post",
                 data: dataString,
                 dataType: "json",
                 processData: false,
                 success: function(data)
                 {   
-                    var success = data.success;
-
-                    if( success == 1)
-                    {
-                        $('#forgotPasswordModal').modal('hide');
-                        $('#forgotPasswordSuccessModal').modal('show');
-                    }
-
-                    else
-                    {
-                        $("#forgotPasswordModal #errorText").html('Wrong email or email does not exist.');
-                        $("#forgotPasswordModal #errorText").parent().removeClass('hidden');
-                    }
+                    $('#forgotPasswordModal').modal('hide');
+                    $('#forgotPasswordSuccessModal').modal('show');
+                    
                 },
-                 error: function(xhr,status,error) {
+                error: function(xhr,status,error) {
                     var data = $.parseJSON(xhr.responseText);
                     var messages = data.messages;
                     var message;

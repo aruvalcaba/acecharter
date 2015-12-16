@@ -111,7 +111,7 @@ $helper->tag('div',['class'=>'modal fade','id'=>'forgotPasswordSuccessModal','ta
 	$helper->tag('div',['class'=>'modal-dialog']) .
 		$helper->tag('div',['class'=>'modal-content']) .
 			$helper->tag('div',['class'=>'modal-header']) .
-				$helper->input(array('type'=>'button','name'=>'close','attribs'=>array('class'=>'close','data-dismiss'=>'modal'))) .
+				$helper->input(array('type'=>'button','name'=>'close','value'=>'X','attribs'=>array('class'=>'close','data-dismiss'=>'modal'))) .
 				$helper->tag('h2',['class'=>'modal-title','id'=>'signupSuccessModalLabel']) . $data['pwd_success']['val'] . $helper->tag('/h2') .
 			$helper->tag('/div') .
 			$helper->tag('div',['class'=>'modal-footer']) .
