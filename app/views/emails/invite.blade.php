@@ -1,3 +1,3 @@
 <body>
-{{ $email }} has requested to be invited to teachtogether.
+{{ $email }} has requested to be invited to ACE Charter Schools.
 </body>

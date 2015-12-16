@@ -5,8 +5,8 @@ use TT\Models\User;
 
 class EmailNewUser {
     private $layout = 'emails.welcome';
-    private $from = 'no-reply@teachtogether.co';
-    private $subject = 'Welcome to TeachTogether!';
+    private $from = 'notify@acecharter.org';
+    private $subject = 'Welcome to ACE Charter Schools!';
 
     public function send(User $user, $password) {
         $data['user'] = $user;
