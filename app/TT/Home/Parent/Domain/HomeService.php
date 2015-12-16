@@ -59,6 +59,6 @@ class HomeService extends AbstractService {
 				'math_proficiency' => ['val' => $this->getmsg('constants.math_proficiency')],
 				'ok' => ['type'=>'button','name'=>'ok','value'=>$this->getMsg('constants.ok'),'attribs'=>['class'=>'btn btn-success','data-dismiss'=>'modal']],
 	];
-				
+		
     }
 }
