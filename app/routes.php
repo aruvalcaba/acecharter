@@ -73,6 +73,8 @@ Route::group(['namespace' => 'TT'], function() {
 
 	Route::post('/pwd/change', array('as'=>'pwd.post','uses'=>'PWD\Action\PwdPostAction@act'));
 
+	Route::post('/pwd/reset', array('as'=>'pwd.reset.post','uses'=>'PWD\RESET_PWD\Action\PwdResetAction@act'));
+
     Route::post('/parent/login', array('as'=>'login.parent.post','uses'=>'Auth\Parent\Action\LoginPostAction@act'));
 	Route::post('/parent',array('as'=>'parent.post','uses'=>'Register\Parent\Action\RegisterAction@act'));
     Route::post('/teacher/login', array('as'=>'login.teacher.post','uses'=>'Auth\Teacher\Action\LoginPostAction@act'));
