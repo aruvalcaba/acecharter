@@ -138,28 +138,32 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
     </table>    
 </div> --> 
 
-     <div class="row">
+     <div class="row col-lg-4 col-lg-offset-4 col-sm-8 col-sm-offset-2">     
       <div class="col-lg-2 col-lg-offset-5">
-        <hr class="marginbot-50">
+        <hr class="marginbot-30">
       </div>
-    </div>
-    
-     <div class="row col-lg-4 col-lg-offset-4 col-sm-8 col-sm-offset-2">
-      <h4><?php echo $h($this->user->first_name); ?>'s Progress Monitor</h4>
+   
+      <h4><?php echo $h($this->user->first_name) . '\'s ' . $data['progress_report']['val'] ; ?> </h4>
 
       <table style="text-align:left" class="table-responsive table table-striped">
          <col width="25%">
         <col width="75%">
-        <tr>
-          <td>
-              <button type="button" class="btn btn-success" >
+        <?php 
+		echo $helper->tag('tr') .
+				$helper->tag('td') ; 
+					//$helper->input(array('type'=>'button','name'=>'status','attribs'=>array('class'=>'btn btn-success'))) .
+					//$helper->tag('span',['class'=> 'glyphicon glyphicon-ok','aria-hidden'=>'true']) . $helper->tag('/span') . ?>
+					<button type="button" class="btn btn-success" id="daily_attendance" data-toggle="modal" data-target="#dailyAttendanceModal">
                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-              </button>
-          </td>
-          <td>
-            Daily Attendance
-          </td>
-        </tr>
+              </button>			
+<?php echo
+              
+			$helper->tag('/td') .
+				$helper->tag('td') .
+					$data['daily_attendance']['val'] .
+				$helper->tag('/td') .
+        	$helper->tag('/tr') ;
+?>
          <tr>
           <td>
             <button type="button" class="btn btn-danger" >
@@ -172,8 +176,8 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
         </tr>
          <tr>
           <td>
-             <button type="button" class="btn btn-success" >
-                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+             <button type="button" class="btn btn-danger" id="behavior" data-toggle="modal" data-target="#behaviorModal">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
               </button>
           </td>
           <td>
@@ -280,6 +284,59 @@ Do you like ACE Family Link? How can we improve? Submit feedback here.
     </div>
   </div>
 </div>
+<!-- Modal -->
+<?php echo
+$helper->tag('div',['class'=>'modal fade','id'=>'dailyAttendnceModal','tabindex'=>'-1','role'=>'dialog','aria-labelledby'=>'dailyAttendanceModalLabel','aria-hidden'=>'true']) .
+	$helper->tag('div',['class'=>'modal-dialog']) .
+		$helper->tag('div',['class'=>'modal-content']) .
+			$helper->tag('div',['class'=>'modal-header']) .
+				$helper->input(array('type'=>'button','name'=>'close','value'=>'X','attribs'=>array('class'=>'close','data-dismiss'=>'modal'))) .
+				$helper->tag('h2',['class'=>'modal-title','id'=>'dailyAttendanceModalLabel']) . $data['daily_attendance']['val'] . $helper->tag('/h2') .
+			$helper->tag('/div') .
+			$helper->tag('div',['class'=>'modal-body']) .
+				$helper->tag('p',['class'=>'booktext']) . 'It is important that <student name> attend school regularly. Students that miss more than 10% of the school year, are at-risk for dropping out of high school and not graduating on time.' . $helper->tag('/p') .
+				$helper->tag('p',['class'=>'booktext']) . 'Here are five things you can do at home to help <student name> make it school on-time, every time.
+							<ul>
+								<li>First thing</li>
+								<li>Second thing</li>
+								<li>Third thing</li>
+								<li>Fourth thing</li>
+								<li>Fifth thing</li>
+							</ul>' . $helper->tag('/p') .
+			$helper->tag('/div') .
+			$helper->tag('div',['class'=>'modal-footer']) .
+				$helper->input($data['ok']) .
+			$helper->tag('/div') .
+		$helper->tag('/div') .
+	$helper->tag('/div') .
+$helper->tag('/div') .
+//<!-- Modal -->
+$helper->tag('div',['class'=>'modal fade','id'=>'behaviorModal','tabindex'=>'-1','role'=>'dialog','aria-labelledby'=>'behaviorModalLabel','aria-hidden'=>'true']) .
+	$helper->tag('div',['class'=>'modal-dialog']) .
+		$helper->tag('div',['class'=>'modal-content']) .
+			$helper->tag('div',['class'=>'modal-header']) .
+				$helper->input(array('type'=>'button','name'=>'close','value'=>'X','attribs'=>array('class'=>'close','data-dismiss'=>'modal'))) .
+				$helper->tag('h2',['class'=>'modal-title','id'=>'behaviorModalLabel']) . $data['positive_behavior']['val'] . $helper->tag('/h2') .
+			$helper->tag('/div') .
+			$helper->tag('div',['class'=>'modal-body']) .
+				$helper->tag('p',['class'=>'booktext']) . 'At ACE, student behavior is tracked using Kickboard.  We expect our students to earn merits and avoid de-merits.' . $helper->tag('/p') .
+				$helper->tag('p',['class'=>'booktext']) . 'Here are five things you can do at home to help <student name> improve their behavior at school.
+							<ul>
+								<li>First thing</li>
+								<li>Second thing</li>
+								<li>Third thing</li>
+								<li>Fourth thing</li>
+								<li>Fifth thing</li>
+							</ul>' . $helper->tag('/p') .
+			$helper->tag('/div') .
+			$helper->tag('div',['class'=>'modal-footer']) .
+				$helper->input($data['ok']) .
+			$helper->tag('/div') .
+		$helper->tag('/div') .
+	$helper->tag('/div') .
+$helper->tag('/div') ;
+
+?>
 
 <!--
 <div class="modal fade" id="invitation" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">

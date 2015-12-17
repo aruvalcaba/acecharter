@@ -48,6 +48,17 @@ class HomeService extends AbstractService {
 				'invitation' => ['val'=>$this->getMsg('constants.invitation')],
 				'invitation_conference' => ['val'=>$this->getMsg('messages.invitation_conference')],
 				'view' => ['val'=>$this->getMsg('constants.view')],
-];
+				'progress_report' => ['val' => $this->getMsg('constants.progress_report')],
+				'daily_attendance' => ['val' => $this->getMsg('constants.daily_attendance')],
+				'daily_homework' => ['val' => $this->getMsg('constants.daily_homework')],
+				'positive_behavior' => ['val' => $this->getMsg('constants.positive_behavior')],
+				'growth_mindset' => ['val' => $this->getMsg('constant.growth_mindset')],
+				'academic_achievement_ela' => ['val' => $this->getMsg('constants.academic_achievement_ela')],
+				'academic_achievement_math' => ['val' => $this->getMsg('constants.academic_achievement_math')],
+				'ela_proficiency' => ['val' => $this->getMsg('constants.ela_proficiency')],
+				'math_proficiency' => ['val' => $this->getmsg('constants.math_proficiency')],
+				'ok' => ['type'=>'button','name'=>'ok','value'=>$this->getMsg('constants.ok'),'attribs'=>['class'=>'btn btn-success','data-dismiss'=>'modal']],
+	];
+				
     }
 }
