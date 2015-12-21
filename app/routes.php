@@ -48,7 +48,7 @@ Route::group(['namespace'=>'TT','before'=>'auth.admin'],function() {
 });
 
 Route::group(['namespace'=>'TT','before'=>'login.parent'], function() {
-    Route::get('/parent/login',array('as'=>'login.parent.get','uses'=>'Auth\Parent\Action\LoginGetAction@act'));
+    Route::get('/parent/login',array('as'=>'login.parent.get','uses'=>'Auth\Parent\Action\LoginGetAction@act'));	
 });
 
 Route::group(['namespace'=>'TT','before'=>'login.teacher'], function() {
@@ -70,13 +70,15 @@ Route::group(['namespace' => 'TT'], function() {
     Route::get('/unauthorized',array('as'=>'not.auth','uses'=>'Common\Action\NotAuthAction@act'));
     Route::get('/{lang}',array('as'=>'lang','uses'=>'Lang\Action\LangAction@act'));
 	Route::get('/pwd/change',array('as'=>'pwd.get','uses'=>'PWD\Action\PwdGetAction@act'));
+	Route::get('/parent/goal/{id}',array('as'=>'goal.parent.get','uses'=>'Goal\Action\GoalAction@act'));
+
 
 	Route::post('/pwd/change', array('as'=>'pwd.post','uses'=>'PWD\Action\PwdPostAction@act'));
 
 	Route::post('/pwd/reset', array('as'=>'pwd.reset.post','uses'=>'PWD\RESET_PWD\Action\PwdResetAction@act'));
 
     Route::post('/parent/login', array('as'=>'login.parent.post','uses'=>'Auth\Parent\Action\LoginPostAction@act'));
-	Route::post('/parent',array('as'=>'parent.post','uses'=>'Register\Parent\Action\RegisterAction@act'));
+	Route::post('/parent',array('as'=>'parent.post','uses'=>'Register\Parent\Action\RegisterAction@act'));	
     Route::post('/teacher/login', array('as'=>'login.teacher.post','uses'=>'Auth\Teacher\Action\LoginPostAction@act'));
     Route::post('/admin/login', array('as'=>'login.admin.post','uses'=>'Auth\Admin\Action\LoginPostAction@act'));
     Route::post('/teacher',array('as'=>'teacher.post','uses'=>'Register\Teacher\Action\RegisterAction@act'));

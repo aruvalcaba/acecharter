@@ -303,6 +303,7 @@ $helper->tag('div',['class'=>'modal fade','id'=>'dailyAttendnceModal','tabindex'
 								<li>Fourth thing</li>
 								<li>Fifth thing</li>
 							</ul>' . $helper->tag('/p') .
+				$helper->a('/parent/goal/1','more') .
 			$helper->tag('/div') .
 			$helper->tag('div',['class'=>'modal-footer']) .
 				$helper->input($data['ok']) .
