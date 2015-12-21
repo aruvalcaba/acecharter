@@ -29,6 +29,7 @@ class GoalService extends AbstractService {
             $payload->setOutput($output);
             return $payload;
 		}
+		
           
     }
 
@@ -39,6 +40,15 @@ class GoalService extends AbstractService {
 				'teachers' => ['val'=>$this->getMsg('constants.teachers')],
 				'changed_pwd' => $this->getMsg('constants.change_password'),
 				'logout' => $this->getMsg('constants.logout'),
+				'goal_1_detail' => $this->getMsg('goals.goal_1_detail'),
+				'goal_1_detail_2' => $this->GetMsg('goals.goal_1_detail_2'),
+				'goal_2_detail' => $this->getMsg('goals.goal_2_detail'),
+				'goal_2_detail_2' => $this->GetMsg('goals.goal_2_detail_2'),				
+				'goal_3_detail' => $this->getMsg('goals.goal_3_detail'),
+				'goal_3_detail_2' => $this->GetMsg('goals.goal_3_detail_2'),
+				
+
+				
 ];
     }
 }
