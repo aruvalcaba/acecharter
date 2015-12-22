@@ -61,7 +61,10 @@ return [
 		'description' => 'Description',
 		'activities' => 'Activities',
 		'current_pwd' => 'contraseña actual',
-		'new_pwd' => 'New Password', 
+		'new_pwd' => 'Nueva contraseña', 
 		'confirm_pwd' => 'Confirmar nueva contraseña',
 		'change_pwd' => 'Cambiar la contraseña',
+		'mr' => 'Sr',
+		'mrs' => 'Sra',
+		'ms' => 'Sra',
 ];

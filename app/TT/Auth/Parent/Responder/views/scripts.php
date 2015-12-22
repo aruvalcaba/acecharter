@@ -24,7 +24,7 @@
 
         if( !$.trim(email).length ) {
             var dialog = $('<div></div>').dialog({modal:true, height:'auto',title:'Alert',buttons: { Ok: function() { dialog.dialog('close'); }}});
-                        $("#forgotPasswordModal").modal('hide');
+                        
                         dialog.html("<?php echo $data['validation_email']['val'] ?>");
                         dialog.dialog('open');
             return;

@@ -33,7 +33,7 @@ return array(
 	"different"            => "The :attribute and :other must be different.",
 	"digits"               => "The :attribute must be :digits digits.",
 	"digits_between"       => "The :attribute must be between :min and :max digits.",
-	"email"                => "The :attribute must be a valid email address.",
+	"email"                => "El :attribute debe ser una dirección válida de correo electrónico.",
 	"exists"               => "The selected :attribute is invalid.",
 	"image"                => "The :attribute must be an image.",
 	"in"                   => "The selected :attribute is invalid.",
@@ -111,5 +111,19 @@ return array(
     'student_code.min'=>'Student code must be 6 digits.',
     'student_code.exists'=>'Student code does not exist or is already registered.',
     'relationship.required' => 'Relationship is required.',
+
+	'old_password.required' => 'Current password required.',
+    'old_password.password' => 'Incorrect current password.',
+    'new_password.required'=>'New password required.',
+    'password.min'=>'Password must be a minimum of 8 characters.',
+    'password.confirmed'=>'Password confirmation required.',
+
+	
+    'email.exists'=>'Email does not exist.',
+    'password.required'=>'Password is required.',
+    'email_parent.group'=>'You are not a parent',
+	
+    'email_teacher.group'=>'You are not a teacher',
+    'password.password'=>'Password is incorrect.'
 
 );

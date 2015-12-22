@@ -66,6 +66,10 @@ return [
 		'new_pwd' => 'New Password', 
 		'confirm_pwd' => 'Confirm New Password',
 		'change_pwd' => 'Change Password',
+		'mr' => 'Mr',
+		'mrs' => 'Mrs',
+		'ms' => 'Ms',
+		
 		
 ];
 

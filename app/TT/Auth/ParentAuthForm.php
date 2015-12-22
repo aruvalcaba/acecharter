@@ -14,11 +14,11 @@ class ParentAuthForm extends FormModel {
 
     protected function getMessages() {
         return [
-                'email.required'=>'Email is required.',
-                'email.email'=>'Email must be formatted correctly.',
-                'email.exists'=>'Email does not exist.',
-                'password.required'=>'Password is required.',
-                'email.group'=>'You are not a parent'
+                'email.required'=> $this->getMsg('validation.email.required'),
+                'email.email'=> $this->getMsg('validation.email.email'),
+                'email.exists'=> $this->getMsg('validation.email.exists'),
+                'password.required'=> $this->getMsg('validation.password.required'),
+                'email.group'=> $this->getMsg('validation.email_parent.group')
                 ];
     }
 

@@ -44,7 +44,7 @@ class HomeService extends AbstractService {
 				'ace_family_link' => ['val' =>$this->getMsg('constants.ace_family_link')],
 				'parents' => ['val'=>$this->getMsg('constants.parents')],
 				'teachers' => ['val'=>$this->getMsg('constants.teachers')],
-				'logout' => $this->getMsg('logout'),
+				'logout' => $this->getMsg('constants.logout'),
 				'invitation' => ['val'=>$this->getMsg('constants.invitation')],
 				'invitation_conference' => ['val'=>$this->getMsg('messages.invitation_conference')],
 				'view' => ['val'=>$this->getMsg('constants.view')],

@@ -5,7 +5,7 @@ echo
 $helper->tag('main') .
 $helper->tag('section',['class'=>'home-section text-center']) .
     $helper->tag('div',['class'=>'container wow bounceInDown','data-wow-delay'=>'2s']) .
-        $helper->tag('div',['class'=>'row']) . $helper->tag('h2') . $h('Login below or') . $helper->tag('/h2') . $helper->tag('/div') .
+        $helper->tag('div',['class'=>'row']) . $helper->tag('h2') . $h($data['login_msg']['val']) . $helper->tag('/h2') . $helper->tag('/div') .
         $helper->tag('div',['class'=>'row']) . $helper->input($data['signup_btn']) . $helper->tag('/div') .
         $helper->tag('div',['class'=>'row']) .
             $helper->tag('div',['class'=>'col-xs-6 col-xs-offset-3 panel panel-success panel-login']) .
@@ -85,7 +85,7 @@ $helper->tag('div',['class'=>'modal fade','id'=>'forgotPasswordModal','tabindex'
 	$helper->tag('div',['class'=>'modal-dialog']) .
 		$helper->tag('div',['class'=>'modal-content']) .
 			$helper->tag('div',['class'=>'modal-header']) .
-				$helper->input(array('type'=>'button','name'=>'close','attribs'=>array('class'=>'close','data-dismiss'=>'modal'))) .
+				$helper->input(array('type'=>'button','name'=>'close', 'value'=>'x','attribs'=>array('class'=>'close','data-dismiss'=>'modal'))) .
 				$helper->tag('h2',['class'=>'modal-title','id'=>'forgotPasswordModalLabel']) . $data['reset_password']['val'] . $helper->tag('/h2') .
 			$helper->tag('/div') .
 			$helper->tag('div',['class'=>'modal-body']) .
