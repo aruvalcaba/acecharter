@@ -55,7 +55,7 @@ return array(
 	"not_in"               => "The selected :attribute is invalid.",
 	"numeric"              => "The :attribute must be a number.",
 	"regex"                => "The :attribute format is invalid.",
-	"required"             => "The :attribute field is required.",
+	"required"             => "El :attribute campo es requerido.",
 	"required_if"          => "The :attribute field is required when :other is :value.",
 	"required_with"        => "The :attribute field is required when :values is present.",
 	"required_with_all"    => "The :attribute field is required when :values is present.",
@@ -110,4 +110,19 @@ return array(
     'student_code.min'=>'Código de estudiante debe ser de 6 dígitos.',
     'student_code.exists'=>'Código de Estudiante no existe o ya está registrado.',
     'relationship.required' => 'Se requiere Relación.',
+
+	'old_password.required' => 'Requerida de contraseña actual.',
+    'old_password.password' => 'Incorrecta de la contraseña actual.',
+    'new_password.required'=>'Nueva contraseña .',
+    'password.min'=>'Contraseña debe tener un mínimo de 8 caracteres.',
+    'password.confirmed'=>'Confirmación de la contraseña necesaria.',
+
+	'email.exists'=>'Email no existe.',
+    'password.required'=>'Se requiere contraseña.',
+    'email_parent.group'=>'Usted no es un padre.',
+	'email_teacher.group'=>'Usted no es un maestro.',
+    'password.password'=>'La contraseña es incorrecta.'
+
+
+
 );

@@ -18,11 +18,11 @@ class UserPasswordChangeForm extends FormModel{
 	protected function getMessages(){
 
 		return [
-                'old_password.required' => 'Current password required.',
-                'old_password.password' => 'Incorrect current password.',
-                'password.required'=>'New password required.',
-                'password.min'=>'Password must be a minimum of 8 characters.',
-                'password.confirmed'=>'Password confirmation required.'
+                'old_password.required' => $this->getMsg('validation.old_password.required'),
+                'old_password.password' => $this->getMsg('validation.old_password.password'),
+                'password.required'=> $this->getMsg('validation.new_password.required'),
+                'password.min'=> $this->getMsg('validation.password.min'),
+                'password.confirmed'=> $this->getMsg('validation.password.confirmed')
 			 ];
 			   
 	}

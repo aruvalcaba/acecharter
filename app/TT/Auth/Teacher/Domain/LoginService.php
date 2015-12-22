@@ -47,13 +47,14 @@ class LoginService extends AbstractLoginService {
 
     public function getData() {
         return [
+				'login_msg' => ['val'=>$this->getMsg('messages.login_below')],
                 'signup_btn' => ['type'=>'button','name'=>'signup','value'=>$this->getMsg('constants.register'),'attribs'=>['id'=>'signup','class'=>'btn btn-skin','data-toggle'=>'modal','data-target'=>'#signupModal']],
                 'email_label'=> ['val'=>$this->getMsg('constants.email')],
                 'email_input' => ['type'=>'text','name'=>'email','attribs'=>['class'=>'form-control','id'=>'email','placeholder'=>$this->getMsg('messages.email_placeholder')]],
                 'pwd_label'=> ['val'=>$this->getMsg('constants.password')],
                 'pwd_input' => ['type'=>'password','name'=>'password','attribs'=>['class'=>'form-control','id'=>'password']],
                 'login_btn' => ['type'=>'submit','name'=>'login','value'=>$this->getMsg('constants.login'),'attribs'=>['id'=>'login','class'=>'btn btn-success fleft']],
-                'forgot_pwd_btn' => ['type'=>'button','name'=>'forgot_pwd','value'=>$this->getMsg('forgot_password'),'attribs'=>['class'=>'btn btn-default','data-toggle'=>'modal','data-target'=>'#forgotPasswordModal']],
+                'forgot_pwd_btn' => ['type'=>'button','name'=>'forgot_pwd','value'=>$this->getMsg('constants.forgot_password'),'attribs'=>['class'=>'btn btn-default','data-toggle'=>'modal','data-target'=>'#forgotPasswordModal']],
                 'titles_input'=>['type'=>'select','name'=>'title','value'=>'','attribs'=>['id'=>'title','class'=>'form-control','placeholder'=>$this->getMsg('messages.titles_input_placeholder')],'options'=> Lists::honorifics()],
                 'grades_input'=>['type'=>'select','name'=>'grade','value'=>'','attribs'=>['id'=>'grade','class'=>'form-control','placeholder'=>$this->getMsg('messages.grades_input_placeholder')],'options'=> Lists::grades()],
                 'schools_input'=>['type'=>'select','name'=>'school','value'=>'','attribs'=>['id'=>'school','class'=>'form-control','placeholder'=>$this->getMsg('messages.schools_input_placeholder')],'options'=> Lists::schools()],
@@ -75,8 +76,9 @@ class LoginService extends AbstractLoginService {
 				'registered_email' => ['val'=>$this->getMsg('messages.registered_email')],
 				'ace_family_link' => ['val' =>$this->getMsg('constants.ace_family_link')],
 				'parents' => ['val'=>$this->getMsg('constants.parents')],
-				'teachers' => ['val'=>$this->getMsg('constants.teachers')],
-				'login_msg' => ['val'=>$this->getMsg('messages.login_below')]
+				'teachers' => ['val'=>$this->getMsg('constants.teachers')],				
+				'validation_email_password' => ['val'=>$this->getMsg('messages.validation_email_password')],
+				'validation_email' => ['val'=>$this->getMsg('messages.validation_email')],
         ];
     }
 }

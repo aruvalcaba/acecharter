@@ -14,12 +14,12 @@ class TeacherAuthForm extends FormModel {
 
     protected function getMessages() {
         return [
-                'email.required'=>'Email is required.',
-                'email.email'=>'Email must be formatted correctly.',
-                'email.exists'=>'Email does not exist.',
-                'email.group'=>'You are not a teacher',
-                'password.required'=>'Password is required.',
-                'password.password'=>'Password is incorrect.'
+				'email.required'=> $this->getMsg('validation.email.required'),
+                'email.email'=> $this->getMsg('validation.email.email'),
+                'email.exists'=> $this->getMsg('validation.email.exists'),
+                'password.required'=> $this->getMsg('validation.password.required'),
+                'email.group'=> $this->getMsg('validation.email_teacher.group'),               
+                'password.password'=> $this->getMsg('validation.password.password')
                 ];
     }
 

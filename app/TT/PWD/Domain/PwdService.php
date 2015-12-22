@@ -85,7 +85,7 @@ class PwdService extends AbstractService {
 				'confirm_pwd_label'=> ['val'=>$this->getMsg('constants.confirm_pwd')],
 				'confirm_pwd_input' => ['type'=>'password','name'=>'password_confirmation','attribs'=>['class'=>'form-control','id'=>'password_confirmation']],
 				'change_pwd_btn' => ['type'=>'submit','name'=>'change_password','value'=>$this->getMsg('constants.change_pwd'),'attribs'=>['id'=>'change_password','class'=>'btn btn-success fleft']],
-				'cancel_btn' => ['type'=>'button','name'=>'cancel','value'=>$this->getMsg('constants.cancel'),'attribs'=>['class'=>'btn btn-skin','data-dismiss'=>'cancel']],
+				'cancel_btn' => ['type'=>'button','name'=>'cancel','value'=>$this->getMsg('constants.cancel'),'attribs'=>['id'=>'cancel', 'class'=>'btn btn-skin','data-dismiss'=>'cancel']],
 				'ace_family_link' => ['val' =>$this->getMsg('constants.ace_family_link')],
 				'parents' => ['val'=>$this->getMsg('constants.parents')],
 				'teachers' => ['val'=>$this->getMsg('constants.teachers')],

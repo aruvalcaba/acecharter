@@ -32,9 +32,9 @@ class Lists  {
 
     public static function honorifics() {
         return [
-                'Mr'=>'Mr',
-                'Mrs'=>'Mrs',
-                'Ms'=>'Ms'
+                'Mr'=> trans('constants.mr'),
+                'Mrs'=>trans('constants.mrs'),
+                'Ms'=>trans('constants.ms'),
                 ];
     }
 
