@@ -53,7 +53,7 @@ class LoginService extends AbstractLoginService {
                 'pwd_label'=> ['val'=>$this->getMsg('constants.password')],
 				'pwd_input' => ['type'=>'password','name'=>'password','attribs'=>['class'=>'form-control','id'=>'password']],
 				'login_btn' => ['type'=>'submit','name'=>'login','value'=>$this->getMsg('constants.login'),'attribs'=>['id'=>'login','class'=>'btn btn-success fleft']],
-				'forgot_pwd_btn' => ['type'=>'button','name'=>'forgot_pwd','value'=>$this->getMsg('forgot_password'),'attribs'=>['class'=>'btn btn-default','data-toggle'=>'modal','data-target'=>'#forgotPasswordModal']],
+				'forgot_pwd_btn' => ['type'=>'button','name'=>'forgot_pwd','value'=>$this->getMsg('constants.forgot_password'),'attribs'=>['class'=>'btn btn-default','data-toggle'=>'modal','data-target'=>'#forgotPasswordModal']],
 				'register_btn' => ['type'=>'button','name'=>'signup','value'=>$this->getMsg('constants.register'),'attribs'=>['id'=>'signup','class'=>'btn btn-skin','data-toggle'=>'modal','data-target'=>'#signupModal']],
 				'welcome' => ['val'=>$this->getMsg('constants.welcome')],
 				'parent' => ['val'=>$this->getmsg('constants.parent')],	
@@ -76,7 +76,8 @@ class LoginService extends AbstractLoginService {
 				'ace_family_link' => ['val' =>$this->getMsg('constants.ace_family_link')],
 				'parents' => ['val'=>$this->getMsg('constants.parents')],
 				'teachers' => ['val'=>$this->getMsg('constants.teachers')],
-				
+				'validation_email_password' => ['val'=>$this->getMsg('messages.validation_email_password')],
+				'validation_email' => ['val'=>$this->getMsg('messages.validation_email')],				
 		
 ];
     }

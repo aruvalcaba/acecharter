@@ -5,6 +5,8 @@
  */
 use Validator;
 
+use Lang;
+
 class FormModel {
     private $validator;
     protected $inputData;
@@ -107,4 +109,12 @@ class FormModel {
 	 */
 
     protected function addValidationRules(\Illuminate\Validation\Validator $v) {}
+
+	protected function getMsg($msg_path, array $args = []) {
+       if( empty($msg_path) ) {
+           return '';
+       }
+       else 
+           return trans($msg_path,$args);
+   }
 }

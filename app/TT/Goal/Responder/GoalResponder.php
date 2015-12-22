@@ -16,7 +16,7 @@ class GoalResponder extends AbstractResponder {
 	protected function init() {
         parent::init();
 
-        $view_names = ['goal_1/goal','goal_2/goal','goal_3/goal'];
+        $view_names = ['goal_1/goal','goal_2/goal','goal_3/goal','goal_4/goal'];
 
         $view_registry = $this->view->getViewRegistry();
 

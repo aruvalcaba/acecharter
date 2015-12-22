@@ -13,4 +13,13 @@
 		 $('#behaviorModal').modal('show');
 	});
 
+	$("#daily_homework").click(function(){
+		 $('#dailyHomeworkModal').modal('show');
+	});
+        
+	$("#academic_success").click(function(){
+		 $('#academicSuccessModal').modal('show');
+	});
+
+
 </script>

@@ -28,6 +28,7 @@ return [
 		'daily_homework' => 'Daily Homework',
 		'positive_behavior' => 'Positive Behavior',
 		'growth_mindset' => 'Growth Mindset',
+		'academic_success' => 'Academic Success',
 		'academic_achievement_ela' => 'Academic Achievement ELA',
 		'academic_achievement_math' => 'Academic Achievement math',
 		'ela_proficiency' => 'ELA Proficiency',

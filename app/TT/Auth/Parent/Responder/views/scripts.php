@@ -17,13 +17,15 @@
         $('.modal .modal-body').css('height', $(window).height() * 0.7);
     });
 
+	
+
     $("#reset_password").click(function() {
         var email = $("#forgotPasswordModal #email").val();
 
         if( !$.trim(email).length ) {
             var dialog = $('<div></div>').dialog({modal:true, height:'auto',title:'Alert',buttons: { Ok: function() { dialog.dialog('close'); }}});
                         $("#forgotPasswordModal").modal('hide');
-                        dialog.html("<?php echo $h('Please fill in email') ?>");
+                        dialog.html("<?php echo $data['validation_email']['val'] ?>");
                         dialog.dialog('open');
             return;
         }
@@ -67,7 +69,7 @@
         
         if( !$.trim(email).length || !$.trim(password).length ) {
             var dialog = $('<div></div>').dialog({modal:true,height:'auto',title:'Alert',buttons: { Ok: function() { dialog.dialog('close'); }}});
-                        dialog.html("<?php echo $h('Please fill in email and password') ?>");
+                        dialog.html("<?php echo $data['validation_email_password']['val'] ?>");
                         dialog.dialog('open');
             return;
         }
@@ -139,11 +141,11 @@
                         
                         message = messages[0];
                         
-						 $('#signupModal').modal('hide');
+						//$('#signupModal').modal('hide');
 
-                        var dialog = $('<div></div>').dialog({modal:true,height:'auto',title:'Alert',buttons: { Ok: function() { dialog.dialog('close'); }}});
+                        var dialog = $('<div></div>').dialog({modal:true,height:'auto', title:'Alert',buttons: { Ok: function() { dialog.dialog('close'); }}});
                         dialog.html(message);
-                        dialog.dialog('open');
+						dialog.dialog('open');
                     }
                 }
         });

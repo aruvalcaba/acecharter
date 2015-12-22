@@ -46,6 +46,8 @@ class GoalService extends AbstractService {
 				'goal_2_detail_2' => $this->GetMsg('goals.goal_2_detail_2'),				
 				'goal_3_detail' => $this->getMsg('goals.goal_3_detail'),
 				'goal_3_detail_2' => $this->GetMsg('goals.goal_3_detail_2'),
+				'goal_4_detail' => $this->getMsg('goals.goal_4_detail'),
+				'goal_4_detail_2' => $this->GetMsg('goals.goal_4_detail_2'),
 				
 
 				

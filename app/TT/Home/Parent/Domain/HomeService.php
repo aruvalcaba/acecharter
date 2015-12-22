@@ -53,11 +53,20 @@ class HomeService extends AbstractService {
 				'daily_homework' => ['val' => $this->getMsg('constants.daily_homework')],
 				'positive_behavior' => ['val' => $this->getMsg('constants.positive_behavior')],
 				'growth_mindset' => ['val' => $this->getMsg('constant.growth_mindset')],
+				'academic_success' => ['val' => $this->getMsg('constants.academic_success')],
 				'academic_achievement_ela' => ['val' => $this->getMsg('constants.academic_achievement_ela')],
 				'academic_achievement_math' => ['val' => $this->getMsg('constants.academic_achievement_math')],
 				'ela_proficiency' => ['val' => $this->getMsg('constants.ela_proficiency')],
 				'math_proficiency' => ['val' => $this->getmsg('constants.math_proficiency')],
 				'ok' => ['type'=>'button','name'=>'ok','value'=>$this->getMsg('constants.ok'),'attribs'=>['class'=>'btn btn-success','data-dismiss'=>'modal']],
+				'goal_1_detail' => $this->getMsg('goals.goal_1_detail'),
+				'goal_1_detail_2' => $this->GetMsg('goals.goal_1_detail_2'),
+				'goal_2_detail' => $this->getMsg('goals.goal_2_detail'),
+				'goal_2_detail_2' => $this->GetMsg('goals.goal_2_detail_2'),				
+				'goal_3_detail' => $this->getMsg('goals.goal_3_detail'),
+				'goal_3_detail_2' => $this->GetMsg('goals.goal_3_detail_2'),
+				'goal_4_detail' => $this->getMsg('goals.goal_4_detail'),
+				'goal_4_detail_2' => $this->GetMsg('goals.goal_4_detail_2'),
 	];
 		
     }
