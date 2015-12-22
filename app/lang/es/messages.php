@@ -44,4 +44,5 @@ return [
 		'validation_email' => 'Por favor, rellene correo electrónico',
 		'footer_msg' => '¿Te gusta el ACE Family Link ? ¿Cómo podemos mejorar? Enviar comentarios',
 		'footer_here' => 'aquí',	
+
        ];

@@ -12,4 +12,14 @@ return [
 		'goal_4_detail' => ':name is passing all their classes. Great job!',
 		'goal_4_detail_2' => '',
 
+		'goal_4_detail' => 'It is important that :name attend school regularly. Students that miss more than 10% of the school year, are at-risk for dropping out of high school and not graduating on time.',
+		'goal_4_detail_2' => 'Here are five things you can do at home to help :name make it school on-time, every time.
+							<ul>
+								<li>First thing</li>
+								<li>Second thing</li>
+								<li>Third thing</li>
+								<li>Fourth thing</li>
+								<li>Fifth thing</li>
+							</ul>',
+
 ];
