@@ -68,6 +68,6 @@ class HomeService extends AbstractService {
 				'goal_4_detail' => $this->getMsg('goals.goal_4_detail'),
 				'goal_4_detail_2' => $this->GetMsg('goals.goal_4_detail_2'),
 	];
-		
+
     }
 }

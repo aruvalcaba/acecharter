@@ -24,12 +24,11 @@ return [
 		'logout'=>'Cerrar sesión',
 		'message'=>'Mensaje',
 		'progress_report'=>'Informe de situación',
-		'daily'=>'Diariamente',
-		'attendance'=>'Asistencia',
-		'homework'=>'Deberes',
+		'daily_homework'=>'Diariamente Deberes',
+		'daily_attendance'=>'Diariamente Asistencia',		
 		'positive_behavior'=>'Comportamiento Positivo',
 		'growth_mindset'=>'Mentalidad de crecimiento',
-		'academic_achievement'=>'Logro académico',
+		'academic_success'=>'éxito académico',
 		'math'=>'Mates',
 		'proficiency'=>'Competencia',
 		'ela'=>'ELA',
@@ -67,4 +66,5 @@ return [
 		'mr' => 'Sr',
 		'mrs' => 'Sra',
 		'ms' => 'Sra',
+
 ];

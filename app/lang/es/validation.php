@@ -123,6 +123,4 @@ return array(
 	'email_teacher.group'=>'Usted no es un maestro.',
     'password.password'=>'La contraseña es incorrecta.'
 
-
-
 );
