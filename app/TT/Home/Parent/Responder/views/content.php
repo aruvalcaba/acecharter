@@ -224,6 +224,7 @@ $helper->tag('div',['class'=>'modal fade','id'=>'daily_homeworkModal','tabindex'
 				$helper->tag('p',['class'=>'booktext']) . $data['goal_1_detail'] . $helper->tag('/p') .
 				$helper->tag('p',['class'=>'booktext']) . $data['goal_1_detail_2'] . $helper->tag('/p') .
 				$helper->a('/parent/goal/1','more') .
+
 			$helper->tag('/div') .
 			$helper->tag('div',['class'=>'modal-footer']) .
 				$helper->input($data['ok']) .
