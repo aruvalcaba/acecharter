@@ -40,4 +40,8 @@ return [
 		'student_code_placeholder' => 'Enter code received from teacher',
 		'invitation_conference' => 'Teacher sent you an invitation for a parent teacher conference.',
 		'upload_activity' => 'Upload New Activity',
+		'validation_email_password' => 'Please fill in email and password',
+		'validation_email' => 'Please fill in email',
+		'parent_fullname.required' => 'Parent full name is required',
+		
 ];

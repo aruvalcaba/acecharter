@@ -95,27 +95,7 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 </div>
 <!-- end of activity spacing -->
 
-
- <!-- start of activity box -->
- <!-- <div class="col-lg-6 col-lg-offset-3 alert" role="alert">
-        <div class="activity alert row col-lg-10 col-md-8 col-sm-8 col-lg-offset-1 col-md-offset-2 col-sm-offset-2">
-          
-          <!-- description -->
-         <!-- <div >
-        <h4>Invitation</h4>
-        
-        <p> Principal sent you an invitation for October BBQ. 
-          </p>
-          <button type="button" class="btn btn-primary ">
-  <span class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#invitation"></span>&nbsp;View </button>
-          <span style="color:red">Please read before September 20, 2015.</span>
-          </div>
-
-      </div>
-           
-    </div> -->
-<!-- end of activity box -->
-<!-- start of activity spacing -->
+ <!-- start of activity spacing -->
 <div class="row">
       <div class="col-lg-2 col-lg-offset-5">
       </div>
@@ -123,43 +103,33 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 <!-- end of activity spacing -->
 
  
-<!--
-     
-<div class="row center-block">
-    <table class="table">
-    <tr>
-        <td><?php //echo $h(sprintf("%s's activity time (in minutes)",$student->first_name));?></td>
-        <td><?php echo $h('Average student activity time (in minutes)');?></td>
-    </tr>
-    <tr>
-        <td><?php //echo $student->traits()->first()->activity_total_time ?></td>
-        <td><?php echo $h($this->avg); ?></td>
-    </tr>
-    </table>    
-</div> --> 
 
-     <div class="row">
+    <div class="row col-lg-4 col-lg-offset-4 col-sm-8 col-sm-offset-2">     
       <div class="col-lg-2 col-lg-offset-5">
-        <hr class="marginbot-50">
+        <hr class="marginbot-30">
       </div>
-    </div>
-    
-     <div class="row col-lg-4 col-lg-offset-4 col-sm-8 col-sm-offset-2">
-      <h4><?php echo $h($this->user->first_name); ?>'s Progress Monitor</h4>
+   
+      <h4><?php echo $h($this->user->first_name) . '\'s ' . $data['progress_report']['val'] ; ?> </h4>
 
       <table style="text-align:left" class="table-responsive table table-striped">
          <col width="25%">
         <col width="75%">
-        <tr>
-          <td>
-              <button type="button" class="btn btn-success" >
+        <?php 
+		echo $helper->tag('tr') .
+				$helper->tag('td') ; 
+					//$helper->input(array('type'=>'button','name'=>'status','attribs'=>array('class'=>'btn btn-success'))) .
+					//$helper->tag('span',['class'=> 'glyphicon glyphicon-ok','aria-hidden'=>'true']) . $helper->tag('/span') . ?>
+					<button type="button" class="btn btn-success" id="daily_attendance" data-toggle="modal" data-target="#dailyAttendanceModal">
                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-              </button>
-          </td>
-          <td>
-            Daily Attendance
-          </td>
-        </tr>
+              </button>			
+<?php echo
+              
+			$helper->tag('/td') .
+				$helper->tag('td') .
+					$data['daily_attendance']['val'] .
+				$helper->tag('/td') .
+        	$helper->tag('/tr') ;
+?>
          <tr>
           <td>
             <button type="button" class="btn btn-danger" >
@@ -172,8 +142,8 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
         </tr>
          <tr>
           <td>
-             <button type="button" class="btn btn-success" >
-                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+             <button type="button" class="btn btn-danger" id="behavior" data-toggle="modal" data-target="#behaviorModal">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
               </button>
           </td>
           <td>
@@ -280,6 +250,85 @@ Do you like ACE Family Link? How can we improve? Submit feedback here.
     </div>
   </div>
 </div>
+<!-- Modal -->
+<?php echo
+$helper->tag('div',['class'=>'modal fade','id'=>'dailyHomeworkModal','tabindex'=>'-1','role'=>'dialog','aria-labelledby'=>'dailyHomeworkModalLabel','aria-hidden'=>'true']) .
+	$helper->tag('div',['class'=>'modal-dialog']) .
+		$helper->tag('div',['class'=>'modal-content']) .
+			$helper->tag('div',['class'=>'modal-header']) .
+				$helper->input(array('type'=>'button','name'=>'close','value'=>'X','attribs'=>array('class'=>'close','data-dismiss'=>'modal'))) .
+				$helper->tag('h2',['class'=>'modal-title','id'=>'dailyHomeworkModalLabel']) . $data['daily_homework']['val'] . $helper->tag('/h2') .
+			$helper->tag('/div') .
+			$helper->tag('div',['class'=>'modal-body']) .
+				$helper->tag('p',['class'=>'booktext']) . $data['goal_1_detail'] . $helper->tag('/p') .
+				$helper->tag('p',['class'=>'booktext']) . $data['goal_1_detail_2'] . $helper->tag('/p') .
+				$helper->a('/parent/goal/1','more') .
+			$helper->tag('/div') .
+			$helper->tag('div',['class'=>'modal-footer']) .
+				$helper->input($data['ok']) .
+			$helper->tag('/div') .
+		$helper->tag('/div') .
+	$helper->tag('/div') .
+$helper->tag('/div') .
+//<!--modal-->
+$helper->tag('div',['class'=>'modal fade','id'=>'dailyAttendnceModal','tabindex'=>'-1','role'=>'dialog','aria-labelledby'=>'dailyAttendanceModalLabel','aria-hidden'=>'true']) .
+	$helper->tag('div',['class'=>'modal-dialog']) .
+		$helper->tag('div',['class'=>'modal-content']) .
+			$helper->tag('div',['class'=>'modal-header']) .
+				$helper->input(array('type'=>'button','name'=>'close','value'=>'X','attribs'=>array('class'=>'close','data-dismiss'=>'modal'))) .
+				$helper->tag('h2',['class'=>'modal-title','id'=>'dailyAttendanceModalLabel']) . $data['daily_attendance']['val'] . $helper->tag('/h2') .
+			$helper->tag('/div') .
+			$helper->tag('div',['class'=>'modal-body']) .
+				$helper->tag('p',['class'=>'booktext']) . $data['goal_2_detail'] . $helper->tag('/p') .
+				$helper->tag('p',['class'=>'booktext']) . $data['goal_2_detail_2'] . $helper->tag('/p') .
+				$helper->a('/parent/goal/2','more') .
+			$helper->tag('/div') .
+			$helper->tag('div',['class'=>'modal-footer']) .
+				$helper->input($data['ok']) .
+			$helper->tag('/div') .
+		$helper->tag('/div') .
+	$helper->tag('/div') .
+$helper->tag('/div') .
+//<!-- Modal -->
+$helper->tag('div',['class'=>'modal fade','id'=>'behaviorModal','tabindex'=>'-1','role'=>'dialog','aria-labelledby'=>'behaviorModalLabel','aria-hidden'=>'true']) .
+	$helper->tag('div',['class'=>'modal-dialog']) .
+		$helper->tag('div',['class'=>'modal-content']) .
+			$helper->tag('div',['class'=>'modal-header']) .
+				$helper->input(array('type'=>'button','name'=>'close','value'=>'X','attribs'=>array('class'=>'close','data-dismiss'=>'modal'))) .
+				$helper->tag('h2',['class'=>'modal-title','id'=>'behaviorModalLabel']) . $data['positive_behavior']['val'] . $helper->tag('/h2') .
+			$helper->tag('/div') .
+			$helper->tag('div',['class'=>'modal-body']) .
+				$helper->tag('p',['class'=>'booktext']) . $data['goal_3_detail'] .  $helper->tag('/p') .
+				$helper->tag('p',['class'=>'booktext']) . $data['goal_3_detail_2'] . $helper->tag('/p') .
+				$helper->a('/parent/goal/3','more') .
+			$helper->tag('/div') .
+			$helper->tag('div',['class'=>'modal-footer']) .
+				$helper->input($data['ok']) .
+			$helper->tag('/div') .
+		$helper->tag('/div') .
+	$helper->tag('/div') .
+$helper->tag('/div') .
+//<!-- Modal -->
+$helper->tag('div',['class'=>'modal fade','id'=>'academicSuccessModal','tabindex'=>'-1','role'=>'dialog','aria-labelledby'=>'academicSuccessLabel','aria-hidden'=>'true']) .
+	$helper->tag('div',['class'=>'modal-dialog']) .
+		$helper->tag('div',['class'=>'modal-content']) .
+			$helper->tag('div',['class'=>'modal-header']) .
+				$helper->input(array('type'=>'button','name'=>'close','value'=>'X','attribs'=>array('class'=>'close','data-dismiss'=>'modal'))) .
+				$helper->tag('h2',['class'=>'modal-title','id'=>'academicSuccessLabel']) . $data['academic_success']['val'] . $helper->tag('/h2') .
+			$helper->tag('/div') .
+			$helper->tag('div',['class'=>'modal-body']) .
+				$helper->tag('p',['class'=>'booktext']) . $data['goal_4_detail'] .  $helper->tag('/p') .
+				$helper->tag('p',['class'=>'booktext']) . $data['goal_4_detail_2'] . $helper->tag('/p') .
+				$helper->a('/parent/goal/4','more') .
+			$helper->tag('/div') .
+			$helper->tag('div',['class'=>'modal-footer']) .
+				$helper->input($data['ok']) .
+			$helper->tag('/div') .
+		$helper->tag('/div') .
+	$helper->tag('/div') .
+$helper->tag('/div') ;
+
+?>
 
 <!--
 <div class="modal fade" id="invitation" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">

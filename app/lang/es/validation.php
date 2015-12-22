@@ -101,15 +101,13 @@ return array(
 
     'attributes' => array(
                         ),
-
-	'parent_fullname.required' => 'Parent full name is required',
-	'student_fullname.required' => 'Student full name is required.',
-    'email.required'=>'Email is required.',
-    'email.email' => 'Email must be formatted properly.',
-    'email.unique'=>'Email already taken',
-    'student_code.required' => 'Student code is required..',
-    'student_code.min'=>'Student code must be 6 digits.',
-    'student_code.exists'=>'Student code does not exist or is already registered.',
-    'relationship.required' => 'Relationship is required.',
-
+	'parent_fullname.required' => 'Se requiere el nombre completo de Padres',
+	'student_fullname.required' => 'Se requiere el nombre completo del estudiante.',
+    'email.required'=>'correo electrónico es requerido.',
+    'email.email' => 'Correo electrónico debe ser el formato correcto.',
+    'email.unique'=>'Correo ya adoptadas',
+    'student_code.required' => 'Se requiere código de Estudiantes.',
+    'student_code.min'=>'Código de estudiante debe ser de 6 dígitos.',
+    'student_code.exists'=>'Código de Estudiante no existe o ya está registrado.',
+    'relationship.required' => 'Se requiere Relación.',
 );

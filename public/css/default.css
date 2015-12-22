@@ -50,6 +50,8 @@ footer {
 
 .ui-state-default, .ui-widget-content, .ui-state-default {
     color: #666;
+	z-index : 1060; !important
+}
 }
 
 .main {
