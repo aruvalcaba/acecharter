@@ -119,87 +119,48 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 				$helper->tag('td') ; 
 					//$helper->input(array('type'=>'button','name'=>'status','attribs'=>array('class'=>'btn btn-success'))) .
 					//$helper->tag('span',['class'=> 'glyphicon glyphicon-ok','aria-hidden'=>'true']) . $helper->tag('/span') . ?>
-					<button type="button" class="btn btn-success" id="daily_attendance" data-toggle="modal" data-target="#dailyAttendanceModal">
+					<button type="button" class="btn btn-success" id="daily_homework" data-toggle="modal" data-target="#daily_homeworkModal">
                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
               </button>			
 <?php echo
               
 			$helper->tag('/td') .
 				$helper->tag('td') .
-					$data['daily_attendance']['val'] .
+					$data['daily_homework']['val'] .
 				$helper->tag('/td') .
         	$helper->tag('/tr') ;
 ?>
          <tr>
           <td>
-            <button type="button" class="btn btn-danger" >
+            <button type="button" class="btn btn-danger" id="daily_attendance" data-toggle="modal" data-target="#daily_attendanceModal">
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
               </button>
           </td>
           <td>
-            Daily Homework
+            <?php echo $data['daily_attendance']['val']; ?>
           </td>
         </tr>
          <tr>
           <td>
-             <button type="button" class="btn btn-danger" id="behavior" data-toggle="modal" data-target="#behaviorModal">
+             <button type="button" class="btn btn-danger" id="positive_behavior" data-toggle="modal" data-target="#positive_behaviorModal">
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
               </button>
           </td>
           <td>
-            Positive Behavior
+            <?php echo $data['positive_behavior']['val']; ?> 
           </td>
         </tr>
          <tr>
           <td>
-             <button type="button" class="btn btn-success" >
+             <button type="button" class="btn btn-success" id="academic_success" data-toggle="modal" data-target="#academic_successModal">
                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
               </button>
           </td>
           <td>
-            Growth Mindset
+            <?php echo $data['academic_success']['val']; ?>
           </td>
         </tr>
-         <tr>
-          <td>
-              <button type="button" class="btn btn-danger" >
-                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-              </button>
-          </td>
-          <td>
-            Academic Achievement ELA
-          </td>
-        </tr>
-         <tr>
-          <td>
-              <button type="button" class="btn btn-success" >
-                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-              </button>
-          </td>
-          <td>
-            Academic Achievement Math
-          </td>
-        </tr>
-         <tr>
-          <td>
-             <button type="button" class="btn btn-success" >
-                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-              </button>
-          </td>
-          <td>
-            ELA Proficiency
-          </td>
-        </tr>
-         <tr>
-          <td>
-              <button type="button" class="btn btn-danger" >
-                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-              </button>
-          </td>
-          <td>
-            Math Proficiency
-          </td>
-        </tr>
+         
       </table>
 
      </div>
@@ -252,7 +213,7 @@ Do you like ACE Family Link? How can we improve? Submit feedback here.
 </div>
 <!-- Modal -->
 <?php echo
-$helper->tag('div',['class'=>'modal fade','id'=>'dailyHomeworkModal','tabindex'=>'-1','role'=>'dialog','aria-labelledby'=>'dailyHomeworkModalLabel','aria-hidden'=>'true']) .
+$helper->tag('div',['class'=>'modal fade','id'=>'daily_homeworkModal','tabindex'=>'-1','role'=>'dialog','aria-labelledby'=>'dailyHomeworkModalLabel','aria-hidden'=>'true']) .
 	$helper->tag('div',['class'=>'modal-dialog']) .
 		$helper->tag('div',['class'=>'modal-content']) .
 			$helper->tag('div',['class'=>'modal-header']) .
@@ -271,7 +232,7 @@ $helper->tag('div',['class'=>'modal fade','id'=>'dailyHomeworkModal','tabindex'=
 	$helper->tag('/div') .
 $helper->tag('/div') .
 //<!--modal-->
-$helper->tag('div',['class'=>'modal fade','id'=>'dailyAttendnceModal','tabindex'=>'-1','role'=>'dialog','aria-labelledby'=>'dailyAttendanceModalLabel','aria-hidden'=>'true']) .
+$helper->tag('div',['class'=>'modal fade','id'=>'daily_attendanceModal','tabindex'=>'-1','role'=>'dialog','aria-labelledby'=>'dailyAttendanceModalLabel','aria-hidden'=>'true']) .
 	$helper->tag('div',['class'=>'modal-dialog']) .
 		$helper->tag('div',['class'=>'modal-content']) .
 			$helper->tag('div',['class'=>'modal-header']) .
@@ -290,7 +251,7 @@ $helper->tag('div',['class'=>'modal fade','id'=>'dailyAttendnceModal','tabindex'
 	$helper->tag('/div') .
 $helper->tag('/div') .
 //<!-- Modal -->
-$helper->tag('div',['class'=>'modal fade','id'=>'behaviorModal','tabindex'=>'-1','role'=>'dialog','aria-labelledby'=>'behaviorModalLabel','aria-hidden'=>'true']) .
+$helper->tag('div',['class'=>'modal fade','id'=>'positive_behaviorModal','tabindex'=>'-1','role'=>'dialog','aria-labelledby'=>'behaviorModalLabel','aria-hidden'=>'true']) .
 	$helper->tag('div',['class'=>'modal-dialog']) .
 		$helper->tag('div',['class'=>'modal-content']) .
 			$helper->tag('div',['class'=>'modal-header']) .
@@ -309,7 +270,7 @@ $helper->tag('div',['class'=>'modal fade','id'=>'behaviorModal','tabindex'=>'-1'
 	$helper->tag('/div') .
 $helper->tag('/div') .
 //<!-- Modal -->
-$helper->tag('div',['class'=>'modal fade','id'=>'academicSuccessModal','tabindex'=>'-1','role'=>'dialog','aria-labelledby'=>'academicSuccessLabel','aria-hidden'=>'true']) .
+$helper->tag('div',['class'=>'modal fade','id'=>'academic_successModal','tabindex'=>'-1','role'=>'dialog','aria-labelledby'=>'academicSuccessLabel','aria-hidden'=>'true']) .
 	$helper->tag('div',['class'=>'modal-dialog']) .
 		$helper->tag('div',['class'=>'modal-content']) .
 			$helper->tag('div',['class'=>'modal-header']) .

@@ -5,17 +5,21 @@
     echo $helper->scripts();
 ?>
 <script>
+	
+    //Shitty hack for dialogs to not automatically obtain focus
+    $.ui.dialog.prototype._focusTabbable = $.noop;    
+
+	$("#daily_homework").click(function(){
+		 $('#dailyHomeworkModal').modal('show');
+	});
+
 	$("#daily_attendance").click(function(){
 		 $('#dailyAttendnceModal').modal('show');
 	});
         
 	$("#behavior").click(function(){
 		 $('#behaviorModal').modal('show');
-	});
-
-	$("#daily_homework").click(function(){
-		 $('#dailyHomeworkModal').modal('show');
-	});
+	});	
         
 	$("#academic_success").click(function(){
 		 $('#academicSuccessModal').modal('show');
