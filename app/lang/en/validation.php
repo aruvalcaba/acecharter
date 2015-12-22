@@ -112,7 +112,6 @@ return array(
     'student_code.exists'=>'Student code does not exist or is already registered.',
     'relationship.required' => 'Relationship is required.',
 
-
 	'old_password.required' => 'Current password required.',
     'old_password.password' => 'Incorrect current password.',
     'new_password.required'=>'New password required.',

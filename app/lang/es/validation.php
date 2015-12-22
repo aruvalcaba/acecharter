@@ -106,6 +106,7 @@ return array(
     'email.required'=>'correo electrónico es requerido.',
     'email.email' => 'Correo electrónico debe ser el formato correcto.',
     'email.unique'=>'Este correo electronico ya esta apartado',
+
     'student_code.required' => 'Se requiere código de Estudiantes.',
     'student_code.min'=>'Código de estudiante debe ser de 6 dígitos.',
     'student_code.exists'=>'Código de Estudiante no existe o ya está registrado.',
