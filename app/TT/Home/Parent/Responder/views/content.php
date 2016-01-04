@@ -9,8 +9,8 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 				$helper->tag('h2') . $data['welcome']['val'] .'&nbsp;' . '&nbsp;' . $h($this->user->first_name) . $helper->tag('/h2') .
 				$helper->tag('i',['class'=>'fa fa-2x fa-angle-down']) . $helper->tag('/i') .
 			$helper->tag('/div') .
-      	$helper->tag('/div') .
-	$helper->tag('/div') ;
+      	$helper->tag('/div') ;
+	 
 
 	 include (sprintf('%s/views/base/%s',app_path(),'alerts.php'));
 
@@ -106,10 +106,12 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 
     <div class="row col-lg-4 col-lg-offset-4 col-sm-8 col-sm-offset-2">     
       <div class="col-lg-2 col-lg-offset-5">
+		<h4><?php echo $h($this->user->first_name) . '\'s ' . $data['progress_report']['val'] ; ?> </h4>
+	<div>
         <hr class="marginbot-30">
-      </div>
+     
    
-      <h4><?php echo $h($this->user->first_name) . '\'s ' . $data['progress_report']['val'] ; ?> </h4>
+      
 
       <table style="text-align:left" class="table-responsive table table-striped">
          <col width="25%">
@@ -168,15 +170,7 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 </div>
   
 </div>
-
-<div class="alert alert-info">
-
- <button type="button" class="btn btn-info" ><span class="glyphicon glyphicon-time" aria-hidden="true">&nbsc;QUESTIONS? SET-UP A PHONE SESSION WITH ACE SUPPORT TEAM</span></button>
-
-Do you like ACE Family Link? How can we improve? Submit feedback here.
-
 </div>
-
 </section>
 
 

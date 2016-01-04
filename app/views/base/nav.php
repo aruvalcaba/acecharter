@@ -31,7 +31,7 @@ $helper->tag('nav',['class'=>'navbar navbar-custom navbar-fixed-top','role'=>'na
 			
 				
 		}
-		if(Session::get('lang')=='en'){
+		if(Session::get('lang')== 'en' || Session::get('lang')== ''){
 			echo
 			$helper->ul(array('class'=>'nav navbar-nav')) .
 					$helper->ul()->rawItems(array($helper->a('/es','Español',array('style'=>'background-color: #a42a4e')))) ;

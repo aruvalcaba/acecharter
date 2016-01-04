@@ -272,7 +272,7 @@ hr {
 
 .home-section {
     padding-top: 110px;
-    padding-bottom: 110px;
+    padding-bottom: 60px;
 	display:block;
     position:relative;
 }
@@ -531,16 +531,20 @@ form#contact-form input:focus,form#contact-form select:focus,form#contact-form t
 ============================ */
 
 footer {
-	text-align: center;
-	position: absolute;
+	text-align: center;	
 	width: 100%;
-	height: 200px;
+	margin-top : 55px;	
 	bottom: 0;
 }
 
-footer p {
+ p {
 	color: #f8f8f8;
 }
+
+ .footer a {
+	color: #f8f8f8;
+
+{
 
 /* ==========================
 Parallax
@@ -929,5 +933,9 @@ img {
 
 .m-t {
     margin-top: 10px;
+}
+
+.collapse {
+	display:block;
 }
 

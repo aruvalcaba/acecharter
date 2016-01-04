@@ -43,5 +43,7 @@ return [
 		'validation_email_password' => 'Please fill in email and password',
 		'validation_email' => 'Please fill in email',
 		'parent_fullname.required' => 'Parent full name is required',
+		'footer_msg' => 'Do you like ACE Family Link? How can we improve? Submit feedback',
+		'footer_here' => 'Here',
 		
 ];
