@@ -241,7 +241,7 @@ $helper->tag('div',['class'=>'modal fade','id'=>'daily_attendanceModal','tabinde
 				$helper->tag('h2',['class'=>'modal-title','id'=>'dailyAttendanceModalLabel']) . $data['daily_attendance']['val'] . $helper->tag('/h2') .
 			$helper->tag('/div') .
 			$helper->tag('div',['class'=>'modal-body']) .
-				$helper->tag('p',['class'=>'booktext']) . $data['goal_2_detail'] . $helper->tag('/p') .
+			$helper->tag('p',['class'=>'booktext']) . $data['goal_2_detail'] . $helper->tag('/p') .
 				$helper->tag('p',['class'=>'booktext']) . $data['goal_2_detail_2'] . $helper->tag('/p') .
 				$helper->a('/parent/goal/2','more') .
 			$helper->tag('/div') .
