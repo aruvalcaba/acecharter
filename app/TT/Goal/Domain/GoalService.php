@@ -48,6 +48,14 @@ class GoalService extends AbstractService {
 				'goal_3_detail_2' => $this->GetMsg('goals.goal_3_detail_2'),
 				'goal_4_detail' => $this->getMsg('goals.goal_4_detail'),
 				'goal_4_detail_2' => $this->GetMsg('goals.goal_4_detail_2'),
+				'progress_report' => ['val' => $this->getMsg('constants.progress_report')],
+				'daily_attendance' => ['val' => $this->getMsg('constants.daily_attendance')],
+				'daily_homework' => ['val' => $this->getMsg('constants.daily_homework')],
+				'positive_behavior' => ['val' => $this->getMsg('constants.positive_behavior')],
+				'academic_success' => ['val' => $this->getMsg('constants.academic_success')],
+				'footer_msg' => $this->GetMsg('messages.footer_msg'),
+				'footer_here' => $this->GetMsg('messages.footer_here'),
+
 				
 
 				

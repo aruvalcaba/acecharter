@@ -215,12 +215,12 @@ $helper->tag('div',['class'=>'modal fade','id'=>'daily_homeworkModal','tabindex'
 				$helper->tag('h2',['class'=>'modal-title','id'=>'dailyHomeworkModalLabel']) . $data['daily_homework']['val'] . $helper->tag('/h2') .
 			$helper->tag('/div') .
 			$helper->tag('div',['class'=>'modal-body']) .
-				$helper->tag('p',['class'=>'booktext']) . $data['goal_1_detail'] . $helper->tag('/p') .
-				$helper->tag('p',['class'=>'booktext']) . $data['goal_1_detail_2'] . $helper->tag('/p') .
-				$helper->a('/parent/goal/1','more') .
-
+				$helper->tag('p',['class'=>'booktext']) . $data['goal_1_positive'] . $helper->tag('/p') .
+				
+				
 			$helper->tag('/div') .
 			$helper->tag('div',['class'=>'modal-footer']) .
+				$helper->tag('a',['href'=>'/parent/goal/1']) . $helper->input($data['more']) . $helper->tag('/a') .
 				$helper->input($data['ok']) .
 			$helper->tag('/div') .
 		$helper->tag('/div') .
@@ -235,11 +235,12 @@ $helper->tag('div',['class'=>'modal fade','id'=>'daily_attendanceModal','tabinde
 				$helper->tag('h2',['class'=>'modal-title','id'=>'dailyAttendanceModalLabel']) . $data['daily_attendance']['val'] . $helper->tag('/h2') .
 			$helper->tag('/div') .
 			$helper->tag('div',['class'=>'modal-body']) .
-			$helper->tag('p',['class'=>'booktext']) . $data['goal_2_detail'] . $helper->tag('/p') .
-				$helper->tag('p',['class'=>'booktext']) . $data['goal_2_detail_2'] . $helper->tag('/p') .
-				$helper->a('/parent/goal/2','more') .
+			$helper->tag('p',['class'=>'booktext']) . $data['goal_2_negative'] . $helper->tag('/p') .
+				
+				
 			$helper->tag('/div') .
 			$helper->tag('div',['class'=>'modal-footer']) .
+				$helper->tag('a',['href'=>'/parent/goal/2']) . $helper->input($data['more']) . $helper->tag('/a') .
 				$helper->input($data['ok']) .
 			$helper->tag('/div') .
 		$helper->tag('/div') .
@@ -254,11 +255,12 @@ $helper->tag('div',['class'=>'modal fade','id'=>'positive_behaviorModal','tabind
 				$helper->tag('h2',['class'=>'modal-title','id'=>'behaviorModalLabel']) . $data['positive_behavior']['val'] . $helper->tag('/h2') .
 			$helper->tag('/div') .
 			$helper->tag('div',['class'=>'modal-body']) .
-				$helper->tag('p',['class'=>'booktext']) . $data['goal_3_detail'] .  $helper->tag('/p') .
-				$helper->tag('p',['class'=>'booktext']) . $data['goal_3_detail_2'] . $helper->tag('/p') .
-				$helper->a('/parent/goal/3','more') .
+				$helper->tag('p',['class'=>'booktext']) . $data['goal_3_negative'] .  $helper->tag('/p') .
+				
+				
 			$helper->tag('/div') .
 			$helper->tag('div',['class'=>'modal-footer']) .
+				$helper->tag('a',['href'=>'/parent/goal/3']) . $helper->input($data['more']) . $helper->tag('/a') .
 				$helper->input($data['ok']) .
 			$helper->tag('/div') .
 		$helper->tag('/div') .
@@ -273,11 +275,10 @@ $helper->tag('div',['class'=>'modal fade','id'=>'academic_successModal','tabinde
 				$helper->tag('h2',['class'=>'modal-title','id'=>'academicSuccessLabel']) . $data['academic_success']['val'] . $helper->tag('/h2') .
 			$helper->tag('/div') .
 			$helper->tag('div',['class'=>'modal-body']) .
-				$helper->tag('p',['class'=>'booktext']) . $data['goal_4_detail'] .  $helper->tag('/p') .
-				$helper->tag('p',['class'=>'booktext']) . $data['goal_4_detail_2'] . $helper->tag('/p') .
-				$helper->a('/parent/goal/4','more') .
+				$helper->tag('p',['class'=>'booktext']) . $data['goal_4_positive'] .  $helper->tag('/p') .				
 			$helper->tag('/div') .
 			$helper->tag('div',['class'=>'modal-footer']) .
+				$helper->tag('a',['href'=>'/parent/goal/4']) . $helper->input($data['more']) . $helper->tag('/a') .
 				$helper->input($data['ok']) .
 			$helper->tag('/div') .
 		$helper->tag('/div') .

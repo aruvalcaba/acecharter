@@ -10,7 +10,7 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 			$helper->tag('h2') . $h($data['login_msg']['val']) . $helper->tag('/h2') . 
 		$helper->tag('/div') .
 		$helper->tag('div',['class'=>'row']) . $helper->input($data['register_btn']) . $helper->tag('/div') .	
-	$helper->tag('/div') .	
+		
 	$helper->tag('div',['class'=>'col-md-6 col-md-offset-3 panel panel-success panel-login']) .
 		//<!-- to calculate that do (12-6)/2. The 12 is total number of md columns, subtract by the number  and then divide by 2 --> 							
 		$helper->tag('div',['class'=>'row']) .						
@@ -23,6 +23,7 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
                          //<span id="login" class="btn btn-success fleft col-lg-6 col-lg-offset-3 col-sm-10 col-sm-offset-1" >Login &nbsp;&nbsp;<small>INICIAR SESIÓN</small></span>       <div class="row">             <br><hr><br></div>				
 		$helper->tag('div',['class'=>'row']) . $helper->input($data['forgot_pwd_btn']) . $helper->tag('/div') . 	
 	$helper->tag('/div') .	
+	$helper->tag('/div') .
 //<!-- /panel-group -->
 $helper->tag('/section') .
 $helper->tag('/main') .
