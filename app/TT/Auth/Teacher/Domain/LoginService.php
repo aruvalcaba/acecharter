@@ -79,6 +79,9 @@ class LoginService extends AbstractLoginService {
 				'teachers' => ['val'=>$this->getMsg('constants.teachers')],				
 				'validation_email_password' => ['val'=>$this->getMsg('messages.validation_email_password')],
 				'validation_email' => ['val'=>$this->getMsg('messages.validation_email')],
+				'footer_msg' => $this->GetMsg('messages.footer_msg'),
+				'footer_here' => $this->GetMsg('messages.footer_here'),
+				
         ];
     }
 }

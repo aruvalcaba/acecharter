@@ -69,6 +69,7 @@ return [
 		'mr' => 'Mr',
 		'mrs' => 'Mrs',
 		'ms' => 'Ms',
+		'more' => 'More Info',
 		
 		
 ];

@@ -38,6 +38,13 @@ p {
 p.lead {
 	font-weight: 600;
 }
+ 
+ul li {
+	font-size: 16px;
+    line-height: 1.6em;
+	text-align : left;
+
+}
 
 a {
     color: #28c3ab;
@@ -75,8 +82,8 @@ a:focus {
 
 }
 .navbar-brand {
-  height: 30px;
-  padding: 5px 15px;
+  height: 40px;
+  padding: 15px 15px;
   font-size: 18px;
   line-height: 1em;
 
@@ -283,6 +290,12 @@ hr {
 }
 .section-heading i {
 	margin-bottom: 20px;
+}
+
+	
+.home-section .intro-goal {
+	text-align: left;
+	font-size : 16px;
 }
 
 
@@ -537,7 +550,7 @@ footer {
 	bottom: 0;
 }
 
- p {
+ .footer p {
 	color: #f8f8f8;
 }
 
@@ -907,10 +920,9 @@ img {
   max-width: 100%;
 }
 
-.booktext {
-  font-size:25px;
+div booktext {
   text-align: left;
-}
+} 
 
 .zindex1 {
   z-index: -1;
@@ -938,4 +950,5 @@ img {
 .collapse {
 	display:block;
 }
+
 
