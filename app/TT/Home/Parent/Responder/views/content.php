@@ -105,9 +105,9 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
  
 
     <div class="row col-lg-4 col-lg-offset-4 col-sm-8 col-sm-offset-2">     
-      <div class="col-lg-2 col-lg-offset-5">
+      
 		<h4><?php echo $h($this->user->first_name) . '\'s ' . $data['progress_report']['val'] ; ?> </h4>
-	<div>
+	
         <hr class="marginbot-30">
      
    
