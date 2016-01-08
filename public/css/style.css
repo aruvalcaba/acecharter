@@ -557,11 +557,11 @@ footer {
 
 }
 
-.footer a:hover,
-a:focus {
+.footer a:hover, .footer a:focus {
     text-decoration: none;
     color: #f8f8f8;
 }
+
 
 /* ==========================
 Parallax
