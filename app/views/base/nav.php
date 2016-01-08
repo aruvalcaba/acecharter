@@ -5,13 +5,16 @@ echo
 $helper->tag('nav',['class'=>'navbar navbar-custom navbar-fixed-top','role'=>'navigation','style'=>'background-color: #a42a4e']) .
 	$helper->tag('div',['class'=>'container col-lg-8 col-lg-offset-2']) .
 		$helper->tag('div',['class'=>'navbar-header page-scroll']) .
-			$helper->input(array('type'=>'button','name'=>'btn','attribs'=>array('class'=>'navbar-toggle','data-toggle'=>'collapse','data-target'=>'.navbar-main-collapse'))) .
+			$helper->tag('button',['type'=>'button','class'=>'navbar-toggle','data-toggle'=>'collapse','data-target'=>'.navbar-main-collapse']) .
+				$helper->tag('i',['class'=>'fa fa-bars']) . $helper->tag('/i') .
+			$helper->tag('/button') .
+			//$helper->input(array('type'=>'button','name'=>'btn','attribs'=>array('class'=>'navbar-toggle','data-toggle'=>'collapse','data-target'=>'.navbar-main-collapse'))) .
 				//$helper->tag('i',['class'=>'fa fa-bars']) . $helper->tag('/i') .
 				$helper->tag('h1') .
 				$helper->a('/', $data['ace_family_link']['val'], array('class'=>'navbar-brand','style'=>'color:#FFF')) .	
 				$helper->tag('/h1') .
 		$helper->tag('/div') .
-		$helper->tag('div',['class'=>'navbar-collapse navbar-right navbar-main-collapse']) ;
+		$helper->tag('div',['class'=>'collapse navbar-collapse navbar-right navbar-main-collapse']) ;
 		if( ! Sentry::check() ) { 
 		echo 
 			$helper->ul(array('class'=>'nav navbar-nav')) .
