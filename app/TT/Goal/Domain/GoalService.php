@@ -34,20 +34,22 @@ class GoalService extends AbstractService {
     }
 
     public function getData() {
+		$user = Sentry::getUser();
+		$name = $user->first_name;
         return [
 				'ace_family_link' => ['val' =>$this->getMsg('constants.ace_family_link')],
 				'parents' => ['val'=>$this->getMsg('constants.parents')],
 				'teachers' => ['val'=>$this->getMsg('constants.teachers')],
 				'changed_pwd' => $this->getMsg('constants.change_password'),
 				'logout' => $this->getMsg('constants.logout'),
-				'goal_1_detail' => $this->getMsg('goals.goal_1_detail'),
-				'goal_1_detail_2' => $this->GetMsg('goals.goal_1_detail_2'),
-				'goal_2_detail' => $this->getMsg('goals.goal_2_detail'),
-				'goal_2_detail_2' => $this->GetMsg('goals.goal_2_detail_2'),				
-				'goal_3_detail' => $this->getMsg('goals.goal_3_detail'),
-				'goal_3_detail_2' => $this->GetMsg('goals.goal_3_detail_2'),
-				'goal_4_detail' => $this->getMsg('goals.goal_4_detail'),
-				'goal_4_detail_2' => $this->GetMsg('goals.goal_4_detail_2'),
+				'goal_1_detail' => $this->getMsg('goals.goal_1_detail',['name'=> $name]),
+				'goal_1_detail_2' => $this->GetMsg('goals.goal_1_detail_2',['name'=>$name]),
+				'goal_2_detail' => $this->getMsg('goals.goal_2_detail',['name'=>$name]),
+				'goal_2_detail_2' => $this->GetMsg('goals.goal_2_detail_2',['name'=>'Neeru']),				
+				'goal_3_detail' => $this->getMsg('goals.goal_3_detail',['name'=>$name]),
+				'goal_3_detail_2' => $this->GetMsg('goals.goal_3_detail_2',['name'=>$name]),
+				'goal_4_detail' => $this->getMsg('goals.goal_4_detail',['name'=>$name]),
+				'goal_4_detail_2' => $this->GetMsg('goals.goal_4_detail_2',['name'=>$name]),
 				'progress_report' => ['val' => $this->getMsg('constants.progress_report')],
 				'daily_attendance' => ['val' => $this->getMsg('constants.daily_attendance')],
 				'daily_homework' => ['val' => $this->getMsg('constants.daily_homework')],

@@ -38,6 +38,9 @@ class HomeService extends AbstractService {
     }
 
     public function getData() {
+		$user = Sentry::getUser();
+		$name = $user->first_name;
+        
         return [
 				'welcome' => ['val'=>$this->getMsg('constants.welcome')],
 				'changed_pwd' => $this->getMsg('constants.change_password'),
@@ -60,22 +63,14 @@ class HomeService extends AbstractService {
 				'math_proficiency' => ['val' => $this->getmsg('constants.math_proficiency')],
 				'ok' => ['type'=>'button','name'=>'ok','value'=>$this->getMsg('constants.ok'),'attribs'=>['class'=>'btn btn-success','data-dismiss'=>'modal']],
 				'more' => ['type'=>'button','name'=>'more','value'=>$this->getMsg('constants.more'),'attribs'=>['class'=>'btn btn-info']],
-				'goal_1_positive' => $this->getMsg('goals.goal_1_positive'),
-				'goal_1_negative' => $this->getMsg('goals.goal_1_negative'),
-				'goal_1_detail' => $this->getMsg('goals.goal_1_detail'),
-				'goal_1_detail_2' => $this->GetMsg('goals.goal_1_detail_2'),
-				'goal_2_positive' => $this->getMsg('goals.goal_2_positive'),
-				'goal_2_negative' => $this->getMsg('goals.goal_2_negative'),
-				'goal_2_detail' => $this->getMsg('goals.goal_2_detail'),
-				'goal_2_detail_2' => $this->GetMsg('goals.goal_2_detail_2'),				
-				'goal_3_positive' => $this->getMsg('goals.goal_3_positive'),
-				'goal_3_negative' => $this->getMsg('goals.goal_3_negative'),
-				'goal_3_detail' => $this->getMsg('goals.goal_3_detail'),
-				'goal_3_detail_2' => $this->GetMsg('goals.goal_3_detail_2'),
-				'goal_4_positive' => $this->getMsg('goals.goal_4_positive'),
-				'goal_4_negative' => $this->getMsg('goals.goal_4_negative'),
-				'goal_4_detail' => $this->getMsg('goals.goal_4_detail'),
-				'goal_4_detail_2' => $this->GetMsg('goals.goal_4_detail_2'),
+				'goal_1_positive' => $this->getMsg('goals.goal_1_positive',['name'=>$name]),
+				'goal_1_negative' => $this->getMsg('goals.goal_1_negative',['name'=>$name]),
+				'goal_2_positive' => $this->getMsg('goals.goal_2_positive',['name'=>$name]),
+				'goal_2_negative' => $this->getMsg('goals.goal_2_negative',['name'=>$name]),
+				'goal_3_positive' => $this->getMsg('goals.goal_3_positive',['name'=>$name]),
+				'goal_3_negative' => $this->getMsg('goals.goal_3_negative',['name'=>$name]),
+				'goal_4_positive' => $this->getMsg('goals.goal_4_positive',['name'=>$name]),
+				'goal_4_negative' => $this->getMsg('goals.goal_4_negative',['name'=>$name]),
 				'footer_msg' => $this->GetMsg('messages.footer_msg'),
 				'footer_here' => $this->GetMsg('messages.footer_here'),
 
