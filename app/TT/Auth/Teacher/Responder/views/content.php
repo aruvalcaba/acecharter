@@ -2,18 +2,16 @@
 $data = $this->data;
 
 echo 
-$helper->tag('main') .
-$helper->tag('section',['class'=>'home-section text-center']) .
+$helper->tag('main',['id'=>'page-top']) .
+$helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
     $helper->tag('div',['class'=>'container wow bounceInDown','data-wow-delay'=>'2s']) .
         $helper->tag('div',['class'=>'row']) . $helper->tag('h2') . $h($data['login_msg']['val']) . $helper->tag('/h2') . $helper->tag('/div') .
         $helper->tag('div',['class'=>'row']) . $helper->input($data['signup_btn']) . $helper->tag('/div') .
-        $helper->tag('div',['class'=>'row']) .
             $helper->tag('div',['class'=>'col-xs-6 col-xs-offset-3 panel panel-success panel-login']) .
                 $helper->tag('div',['class'=>'row']) . $helper->label($data['email_label']['val'])->before($helper->input($data['email_input'])) . $helper->tag('/div') .
                 $helper->tag('div',['class'=>'row']) . $helper->label($data['pwd_label']['val'])->before($helper->input($data['pwd_input'])) . $helper->tag('/div') .
                 $helper->tag('div',['class'=>'row']) . $helper->input($data['login_btn']) . $helper->tag('/div') .
                 $helper->tag('div',['class'=>'row']) . $helper->input($data['forgot_pwd_btn']) . $helper->tag('/div') .
-            $helper->tag('/div') .
         $helper->tag('/div') .
     $helper->tag('/div') . 
 $helper->tag('/section') .
