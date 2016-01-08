@@ -95,6 +95,15 @@ class UserSeeder extends Seeder {
                                         'password'=>'letmein1',
                                         'activated'=>'1',
                                         ]);
+			$demo = $parentRepo->create([
+                                        'first_name'=>'Demo',
+                                        'last_name'=>'Demo',
+                                        'title'=>'Ms',
+                                        'email'=>'demo@acecharter.org',
+                                        'password'=>'letmein1',
+                                        'activated'=>'1',
+                                        ]);
+
         }    
 	}
 
