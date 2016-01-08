@@ -11,7 +11,7 @@ $helper->tag('nav',['class'=>'navbar navbar-custom navbar-fixed-top','role'=>'na
 				$helper->a('/', $data['ace_family_link']['val'], array('class'=>'navbar-brand','style'=>'color:#FFF')) .	
 				$helper->tag('/h1') .
 		$helper->tag('/div') .
-		$helper->tag('div',['class'=>'collapse navbar-collapse navbar-right navbar-main-collapse']) ;
+		$helper->tag('div',['class'=>'navbar-collapse navbar-right navbar-main-collapse']) ;
 		if( ! Sentry::check() ) { 
 		echo 
 			$helper->ul(array('class'=>'nav navbar-nav')) .
