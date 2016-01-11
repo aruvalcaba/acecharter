@@ -2,6 +2,7 @@
 
 use Sentry;
 use Illuminate\Validation\Validator;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class CustomValidation extends Validator {
     public function validateGroup($field,$value,$params,$validator) {
@@ -53,5 +54,19 @@ class CustomValidation extends Validator {
 		$currentPassword = $value;
 		$user = Sentry::getUser();
 		return $user->checkPassword($currentPassword);	
-	}
+    }
+
+    public function validateCsv($field,$file,$params) {
+        if( ! ( $file instanceOf UploadedFile ) )
+        {
+            return false;
+        }
+
+        else
+        {
+            $extension = $file->getClientOriginalExtension();
+
+            return strcmp($extension,'csv') === 0 ? true : false;
+        } 
+    }
 }
