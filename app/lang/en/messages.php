@@ -46,6 +46,5 @@ return [
 		'parent_fullname.required' => 'Parent full name is required',
 		'footer_msg' => 'Do you like ACE Family Link? How can we improve? Submit feedback',
 		'footer_here' => 'here',
-
-		
+        'roster_upload' => 'Roster has been uploaded successfully.'
 ];
