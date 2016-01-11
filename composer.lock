@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "de793a79ebc49fea023b9c9d36b9295d",
-    "content-hash": "1ef2d1027f98c7a8212b43abe4015f60",
+    "hash": "136302d15807436ddb7f3a4904a72231",
+    "content-hash": "cbbc1b8e855ccd9c183a04ce078513c8",
     "packages": [
         {
             "name": "aura/accept",
@@ -884,16 +884,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v4.2.17",
+            "version": "v4.2.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "3359de6d6cd322e8a1b251c2f8d9dd42a3e4e232"
+                "reference": "ce1fc065de4e58fcf243fb7b84fe3d156e1f6ac9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/3359de6d6cd322e8a1b251c2f8d9dd42a3e4e232",
-                "reference": "3359de6d6cd322e8a1b251c2f8d9dd42a3e4e232",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/ce1fc065de4e58fcf243fb7b84fe3d156e1f6ac9",
+                "reference": "ce1fc065de4e58fcf243fb7b84fe3d156e1f6ac9",
                 "shasum": ""
             },
             "require": {
@@ -995,7 +995,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2015-02-11 20:37:15"
+            "time": "2016-01-02 20:27:55"
         },
         {
             "name": "maxxscho/laravel-tcpdf",
@@ -1104,6 +1104,51 @@
                 "testing"
             ],
             "time": "2015-04-02 19:54:00"
+        },
+        {
+            "name": "monokakure/laravel-csv",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/satkaku/laravel-csv.git",
+                "reference": "f0ee8de63673321446f090665c33af72d48e8683"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/satkaku/laravel-csv/zipball/f0ee8de63673321446f090665c33af72d48e8683",
+                "reference": "f0ee8de63673321446f090665c33af72d48e8683",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": ">=4.1.0",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*",
+                "way/phpunit-wrappers": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Monokakure\\CSV": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "satkaku"
+                }
+            ],
+            "description": "Simple CSV manipulation for Laravel. Also you can select encoding.",
+            "homepage": "https://github.com/satkaku/laravel-csv",
+            "keywords": [
+                "csv",
+                "laravel"
+            ],
+            "time": "2015-04-22 07:13:43"
         },
         {
             "name": "monolog/monolog",
@@ -1895,7 +1940,7 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v2.8.0",
+            "version": "v2.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
@@ -1955,16 +2000,16 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v2.8.0",
+            "version": "v2.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "3e661a0d521ac67496515fa6e6704bd61bcfff60"
+                "reference": "a7ad724530a764d70c168d321ac226ba3d2f10fc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/3e661a0d521ac67496515fa6e6704bd61bcfff60",
-                "reference": "3e661a0d521ac67496515fa6e6704bd61bcfff60",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/a7ad724530a764d70c168d321ac226ba3d2f10fc",
+                "reference": "a7ad724530a764d70c168d321ac226ba3d2f10fc",
                 "shasum": ""
             },
             "require": {
@@ -2000,7 +2045,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2015-11-23 10:19:46"
+            "time": "2015-12-22 10:25:57"
         },
         {
             "name": "symfony/finder",
@@ -2480,7 +2525,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "aura/payload-interface": 20,
-        "aura/payload": 20
+        "aura/payload": 20,
+        "monokakure/laravel-csv": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
