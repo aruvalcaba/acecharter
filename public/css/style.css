@@ -951,4 +951,15 @@ div booktext {
     margin-top: 10px;
 }
 
+.collapse {
+	display:block;
+}
+
+.p-t-15 {
+    padding-top: 15px;
+}
+
+.p-b-15 {
+    padding-bottom: 15px;
+}
 
