@@ -23,4 +23,9 @@ class StudentTraitRepository extends ModelRepository {
         $studentTrait = StudentTrait::where('id','=',$student->traits_id)->get()->first();
         return $studentTrait;
     }
+
+    public function getAllAceCodes()
+    {
+        return StudentTrait::lists('ace_code','ace_code');
+    }
 }
