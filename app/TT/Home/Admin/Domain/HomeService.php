@@ -32,10 +32,20 @@ class HomeService extends AbstractService {
                 $output = $payload->getOutput();
                 $user = Sentry::getUser();
                 $output['user'] = $user;
-                $output['activities'] = $this->activity_service->all();
-                $output['parents'] = $this->parent_service->all();
-                $output['teachers'] = $this->teacher_service->all();
-				$output['data'] = $this->getData();
+
+                $teachers = $this->teacher_service->all();
+                $teacherData = [];
+
+                foreach($teachers as $teacher)
+                {
+                    $studentCount = $teacher->students()->count();
+                    $teacherLastName = $teacher->last_name;
+
+                    $teacherData[] = ['studentCount'=> $studentCount, 'teacherLastName' => $teacherLastName ];
+                }
+
+                $output['teacherData'] = $teacherData;
+                $output['data'] = $this->getData();
                 $payload->setOutput($output);
             }
             

@@ -1,5 +1,6 @@
 <?php namespace TT\Support;
 
+use TT\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
 use Addata\Support\Exceptions\EntityNotFoundException;
@@ -12,7 +13,13 @@ abstract class ModelRepository {
     }
 
     public function getAll() {
-        return $this->model->all();
+        if( $this->model instanceOf User ) {
+            return $this->model->index();
+        }
+
+        else {
+            return $this->model->all();
+        }
     }
 
     public function getAllPaginated($count) {
