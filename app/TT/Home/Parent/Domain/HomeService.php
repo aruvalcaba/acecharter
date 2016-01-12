@@ -25,7 +25,7 @@ class HomeService extends AbstractService {
                 $output['acts'] = $this->activity_service->getActivities($user);
 				$output['avg'] = $this->activity_service->getAvgActivityTime();
 				$output['data'] = $this->getData();
-
+                $output['student'] = $user->students()->first();
                 $payload->setOutput($output);
             }
             

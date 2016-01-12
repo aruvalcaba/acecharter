@@ -6,7 +6,7 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 	$helper->tag('div',['class'=>'container']) .
 		$helper->tag('div',['class'=>'heading-about']) .
 			$helper->tag('div',['class'=>'row col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2']) .
-				$helper->tag('h2') . $data['welcome']['val'] .'&nbsp;' . '&nbsp;' . $h($this->user->first_name) . $helper->tag('/h2') .
+				$helper->tag('h2') . $data['welcome']['val'] .'&nbsp;' . '&nbsp;' . $h($this->student->first_name) . $helper->tag('/h2') .
 				$helper->tag('i',['class'=>'fa fa-2x fa-angle-down']) . $helper->tag('/i') .
 			$helper->tag('/div') .
       	$helper->tag('/div') ;
@@ -106,7 +106,7 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 
     <div class="row col-lg-4 col-lg-offset-4 col-sm-8 col-sm-offset-2">     
       
-		<h4><?php echo $h($this->user->first_name) . '\'s ' . $data['progress_report']['val'] ; ?> </h4>
+		<h4><?php echo $h($this->student->first_name) . '\'s ' . $data['progress_report']['val'] ; ?> </h4>
 	
         <hr class="marginbot-30">
      
