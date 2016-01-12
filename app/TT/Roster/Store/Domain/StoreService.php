@@ -20,14 +20,22 @@ use TT\Student\StudentRepository;
 
 use TT\Student\StudentTraitRepository;
 
+use TT\Teacher\TeacherRepository;
+
 class StoreService extends AbstractService
 {
-    public function __construct(RosterFormFactory $rosterFormFactory, PayloadFactory $payload_factory, StudentRepository $studentRepository, StudentTraitRepository $studentTraitRepository)
+    public function __construct(
+                                RosterFormFactory $rosterFormFactory, 
+                                PayloadFactory $payload_factory, 
+                                StudentRepository $studentRepository, 
+                                StudentTraitRepository $studentTraitRepository,
+                                TeacherRepository $teacherRepository)
     {
         $this->rosterFormFactory = $rosterFormFactory;
         $this->payload_factory = $payload_factory;
         $this->studentRepository = $studentRepository;
         $this->studentTraitRepository = $studentTraitRepository;
+        $this->teacherRepository = $teacherRepository;
     }
 
     public function store($input)
@@ -85,6 +93,7 @@ class StoreService extends AbstractService
             
             $studentGroup = Sentry::findGroupByName('Student');
             $teachers = [];
+            $studentIds = [];
             $aceCodes = $this->studentTraitRepository->getAllAceCodes();
 
             for($i = 1; $i < count($data); $i++)
@@ -98,6 +107,7 @@ class StoreService extends AbstractService
                     if( ! isset($aceCodes[$aceCode]) ) {
                                         
                         $studentFullName = explode(',',$values[1]);
+
                         $studentFirstName = $studentFullName[1];
                         $studentLastName = $studentFullName[0];
 
@@ -105,7 +115,8 @@ class StoreService extends AbstractService
                     
                         if( !isset($teachers[$teacherLastName]) )
                         {
-                            $teachers[$teacherLastName] = 1;
+                            $teachers[$teacherLastName] = $this->teacherRepository->findByLastName($teacherLastName);
+                            $studentIds[$teacherLastName] = [];
                         }
 
                         $studentTraitData = ['ace_code' => $aceCode];
@@ -115,13 +126,18 @@ class StoreService extends AbstractService
 
                         $student = $this->studentRepository->create($studentData);
                         $student->addGroup($studentGroup);
+
+                        $studentIds[$teacherLastName][] = $student->id;
                     }
                 }
+            }
+
+            foreach($teachers as $teacherName => $teacher) {
+                $teacher->students()->attach($studentIds[$teacherName]);
             }
             
             DB::commit();
 
-            dd($teachers);
             return true;
         }
 

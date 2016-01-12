@@ -17,4 +17,9 @@ class TeacherRepository extends ModelRepository {
 
         return $this->model;
     }
+
+    public function findByLastName($lastName)
+    {
+        return Teacher::where('last_name','=',$lastName)->first();
+    }
 }

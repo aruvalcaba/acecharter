@@ -42,22 +42,22 @@ class UserSeeder extends Seeder {
 
             $trait = $teacherTraitRepo->create(['grade'=>'K']);
 
-            $sophie = $teacherRepo->create([
-                                        'first_name'=>'Sophie',
-                                        'last_name'=>'Nazerian',
+            $garcia = $teacherRepo->create([
+                                        'first_name'=>'Roberto',
+                                        'last_name'=>'Garcia',
                                         'title'=>'Ms',
-                                        'email'=>'teacher1@acecharter.org',
+                                        'email'=>'rgarcia@acecharter.org',
                                         'password'=>'letmein1',
                                         'activated'=>1,
                                         'traits_id'=>$trait->id
                                         ]);
             $trait = $teacherTraitRepo->create(['grade'=>'K']);
 
-            $harpreet = $teacherRepo->create([
+            $gill = $teacherRepo->create([
                                         'first_name'=>'Harpreet',
                                         'last_name'=>'Gill',
                                         'title'=>'Mr',
-                                        'email'=>'teacher2@acecharter.org',
+                                        'email'=>'hgill@acecharter.org',
                                         'password'=>'letmein1',
                                         'activated'=>1,
                                         'traits_id'=>$trait->id
@@ -66,16 +66,28 @@ class UserSeeder extends Seeder {
             
             $trait = $teacherTraitRepo->create(['grade'=>'K']);
 
-            $thea = $teacherRepo->create([
-                                        'first_name'=>'Thea',
-                                        'last_name'=>'Hogarth',
+            $smith = $teacherRepo->create([
+                                        'first_name'=>'Jim',
+                                        'last_name'=>'Smith',
                                         'title'=>'Ms',
-                                        'email'=>'teacher3@acecharter.org',
+                                        'email'=>'jsmith@acecharter.org',
                                         'password'=>'letmein1',
                                         'activated'=>1,
                                         'traits_id'=>$trait->id
                                     ]);
             
+            $trait = $teacherTraitRepo->create(['grade'=>'K']);
+
+            $smith = $teacherRepo->create([
+                                        'first_name'=>'Jordan',
+                                        'last_name'=>'Williams',
+                                        'title'=>'Ms',
+                                        'email'=>'jwilliams@acecharter.org',
+                                        'password'=>'letmein1',
+                                        'activated'=>1,
+                                        'traits_id'=>$trait->id
+                                    ]);
+
             $parentGroup = Sentry::findGroupByName('Parent');
             $parentRepo = new ParentRepository(new StudentParent);
 
