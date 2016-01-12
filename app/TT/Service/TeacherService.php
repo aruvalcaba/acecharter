@@ -127,7 +127,7 @@ class TeacherService extends AbstractService {
             catch(Exception $e) {
                 Log::error($e);
                 DB::rollback();
-                return $this->error(['exception'=>$e->getMessage()]);
+                return $this->error($e);
             }
         }
     }
