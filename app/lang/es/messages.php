@@ -39,10 +39,10 @@ return [
 		'email_placeholder' =>'Entre su dirección de correo electrónico',
 		'student_code_placeholder' => 'Entre el código que recibio del maestro',
 		'invitation_conference' => 'Maestro le envió una invitación para una conferencia de padres y maestros.',
-		'upload_activity' => 'Suba Nueva Actividad',
+        'upload_activity' => 'Suba Nueva Actividad',
+        'upload_classroom'=>'Subir Lista de Estudiantes', 
 		'validation_email_password' => 'Por favor, rellene correo electrónico y contraseña',
 		'validation_email' => 'Por favor, rellene correo electrónico',
 		'footer_msg' => '¿Te gusta el ACE Family Link ? ¿Cómo podemos mejorar? Enviar comentarios',
 		'footer_here' => 'aquí',	
-
        ];

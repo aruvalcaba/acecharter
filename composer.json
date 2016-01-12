@@ -15,7 +15,8 @@
         "aura/accept": "2.2.2",
         "aura/payload-interface": "3.x-dev",
         "aura/payload": "3.x-dev",
-        "mockery/mockery" :"0.9.4"
+        "mockery/mockery" :"0.9.4",
+        "monokakure/laravel-csv": "dev-master"
 	},
 	"autoload": {
         "classmap": [

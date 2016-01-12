@@ -6,7 +6,9 @@ $helper->tag('main') .
 	$helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 		$helper->tag('div',['class'=>'container']) .  
 			$helper->tag('h2') . $data['activites'] . $helper->tag('/h2') .
-			$helper->a('/activity/create', $data['upload_activity'] , array('class'=>'btn btn-large btn-danger')) ;
+            $helper->tag('div',['class'=>'row p-b-15']) . $helper->a('/activity/create', $data['upload_activity'] , array('class'=>'btn btn-large btn-danger')) . $helper->tag('/div') .
+            $helper->tag('div',['class'=>'row p-b-15']) . $helper->a('/roster/upload', $data['upload_roster'] , array('class'=>'btn btn-large btn-danger')) . $helper->tag('/div');
+
 
 include (sprintf('%s/views/base/%s',app_path(),'alerts.php'));
 

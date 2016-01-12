@@ -39,12 +39,12 @@ return [
 		'email_placeholder' =>'Enter your e-mail address',
 		'student_code_placeholder' => 'Enter code received from teacher',
 		'invitation_conference' => 'Teacher sent you an invitation for a parent teacher conference.',
-		'upload_activity' => 'Upload New Activity',
+        'upload_activity' => 'Upload New Activity',
+        'upload_roster'=>'Upload Classroom Roster',
 		'validation_email_password' => 'Please fill in email and password',
 		'validation_email' => 'Please fill in email',
 		'parent_fullname.required' => 'Parent full name is required',
 		'footer_msg' => 'Do you like ACE Family Link? How can we improve? Submit feedback',
 		'footer_here' => 'here',
-
-		
+        'roster_upload' => 'Roster has been uploaded successfully.'
 ];
