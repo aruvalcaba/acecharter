@@ -1,3 +1,5 @@
-<body>
-    <b>Student Code</b>: {{ $code->student_code }} 
-</body>
+<div class="row">
+    <div class="col-xs-12">
+        <strong>Student Code: {{ $code->student_code }}</strong>
+    </div>
+</div>
