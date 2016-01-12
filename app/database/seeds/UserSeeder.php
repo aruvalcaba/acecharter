@@ -3,9 +3,10 @@
 use TT\Models\Teacher;
 use TT\Models\TeacherTrait;
 use TT\Models\StudentParent;
+use TT\Models\Student;
 
 use TT\Parent\ParentRepository;
-
+use TT\Student\StudentRepository;
 use TT\Teacher\TeacherRepository;
 use TT\Teacher\TeacherTraitRepository;
 
@@ -90,6 +91,7 @@ class UserSeeder extends Seeder {
 
             $parentGroup = Sentry::findGroupByName('Parent');
             $parentRepo = new ParentRepository(new StudentParent);
+            $studentRepo = new StudentRepository(new Student);
 
             $alan = $parentRepo->create([
                                         'first_name'=>'Alan',
@@ -114,7 +116,19 @@ class UserSeeder extends Seeder {
                                         'email'=>'demo@acecharter.org',
                                         'password'=>'letmein1',
                                         'activated'=>'1',
-                                        ]);
+                                    ]);
+
+            $child = $studentRepo->create([
+                                        'first_name'=>'Child',
+                                        'last_name'=>'Demo',
+                                        'title'=>'Ms',
+                                        'email'=>'studentdemo@acecharter.org',
+                                        'password'=>'letmein1',
+                                        'activated'=>'0',
+                                    ]);
+            $demo->students()->attach($child->id);
+
+            
 
         }    
 	}
