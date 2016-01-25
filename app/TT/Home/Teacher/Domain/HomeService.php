@@ -22,7 +22,7 @@ class HomeService extends AbstractService {
                 $output = $payload->getOutput();
                 
                 $user = Sentry::getUser();
-                 $students = $this->getFakeStudents();
+                $students = $this->getFakeStudents();
 
                 $output['user'] = $user;
                 $output['students'] = ! empty($students) ? $students : [];
