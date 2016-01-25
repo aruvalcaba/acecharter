@@ -25,7 +25,7 @@ $helper->tag('div',['class'=>'modal fade','id'=>'signupModal','tableindex'=>'-1'
 				$helper->tag('/h2') .
 			$helper->tag('/div') .	
 			$helper->tag('div',['class'=>'modal-body']) .
-				$helper->form() .
+				$helper->form(array('id'=>'signup-form')) .
 					$helper->tag('div',['class'=>'form-group']) .
 						$helper->label($data['title']['val']) .
 						$helper->input($data['titles_input']) .

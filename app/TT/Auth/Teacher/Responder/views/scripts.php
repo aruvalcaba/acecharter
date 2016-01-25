@@ -98,13 +98,15 @@
     });
 
     $("#teacher_signup").click(function(){
-        var firstName = $("#first_name").val();
-        var lastName = $("#last_name").val();
-        var email = $("#signup_email").val();
-        var grade = ( $("#grade").val() == null ) ? '' : $("#grade").val();
-        var zipcode = $("#zipcode").val();
-        var school = ( $("#school").val() == null ) ? '' : $("#school").val();
-        var title = ( $("#title").val() == null ) ? '' : $("#title").val();
+        var form = $('#signup-form');
+
+        var firstName = form.find('input[name="first_name"]').val();
+        var lastName = form.find('input[name="last_name"]').val();
+        var email = form.find('input[name="email"]').val();
+        var grade = ( form.find('select[name="grade"]').val() === null ) ? '' : form.find('select[name="grade"]').val();
+        var zipcode = form.find('input[name="zipcode"]').val();
+        var school = ( form.find('select[name="school"]').val() === null ) ? '' : form.find('select[name="school"]').val();
+        var title = ( form.find('select[name="title"]').val() === null ) ? '' : form.find('select[name="title"]').val();
 
         var dataString = 'first_name='+firstName+
                          '&last_name='+lastName+

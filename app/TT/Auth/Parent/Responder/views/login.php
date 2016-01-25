@@ -4,5 +4,3 @@
     include ('content.php');
     include ('scripts.php');
     include (sprintf('%s/views/base/%s',app_path(),'footer.php'));
-?>
-

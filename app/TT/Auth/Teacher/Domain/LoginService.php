@@ -67,7 +67,6 @@ class LoginService extends AbstractLoginService {
 				'zip_code' => ['val'=>$this->getMsg('constants.zip_code')],
 				'school_name' => ['val'=>$this->getMsg('constants.school_name')],
 				'create_account_btn' => ['type'=>'button','name'=>'create_account', 'value'=>$this->getMsg('constants.create_account'),'attribs'=>array('id'=>'teacher_signup','class'=>'btn btn-success')],
-
 				'signup_success' => ['val' =>$this->getMsg('messages.signup_success')],
 				'ok' => ['type'=>'button','name'=>'ok','value'=>$this->getMsg('constants.ok'),'attribs'=>['class'=>'btn btn-success','data-dismiss'=>'modal']],
 				'reset_password' => ['val'=>$this->getMsg('constants.reset_password')],
@@ -81,7 +80,6 @@ class LoginService extends AbstractLoginService {
 				'validation_email' => ['val'=>$this->getMsg('messages.validation_email')],
 				'footer_msg' => $this->GetMsg('messages.footer_msg'),
 				'footer_here' => $this->GetMsg('messages.footer_here'),
-				
         ];
     }
 }
