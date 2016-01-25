@@ -4,8 +4,7 @@ use Sentry;
 
 use TT\Support\AbstractService;
 
-
-class HomeService extends AbstractService{
+class HomeService extends AbstractService {
     public function home() {
         try {
             $payload = $this->success();
@@ -32,7 +31,6 @@ class HomeService extends AbstractService{
 				'ace_family_link' => ['val' =>$this->getMsg('constants.ace_family_link')],
 				'parents' => ['val'=>$this->getMsg('constants.parents')],
 				'teachers' => ['val'=>$this->getMsg('constants.teachers')],
-	
-];
+                ];
     }
 }
