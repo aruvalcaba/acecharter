@@ -6,9 +6,12 @@ use TT\Support\AbstractService;
 
 use Aura\Payload\PayloadFactory;
 
+use Faker\Factory as FakerFactory;
+
 class HomeService extends AbstractService {
     public function __construct(PayloadFactory $payload_factory) {
         $this->payload_factory = $payload_factory;
+		$this->faker = FakerFactory::create();
     }
 
     public function home() {
@@ -19,7 +22,7 @@ class HomeService extends AbstractService {
                 $output = $payload->getOutput();
                 
                 $user = Sentry::getUser();
-                $students = $user->students();
+                 $students = $this->getFakeStudents();
 
                 $output['user'] = $user;
                 $output['students'] = ! empty($students) ? $students : [];
@@ -46,5 +49,20 @@ class HomeService extends AbstractService {
 				'changed_pwd' => $this->getMsg('constants.change_password'),
 				'logout' => $this->getMsg('constants.logout')
                ];
+    }
+
+	public function getFakeStudents() {
+        $students = [];
+        for($i = 0; $i < 25; $i++) {
+            $student = new \stdClass();
+            $student->fullname = $this->faker->name;
+            $student->parentName = $this->faker->name;
+            $student->last_login = $this->faker->dateTimeThisMonth->format('Y-m-d');
+            $student->code = $this->faker->randomNumber(6);
+            $student->goal1 = $this->faker->randomElement(array(0,1));
+            $student->goal2 = $this->faker->randomElement(array(0,1));
+            $students[] = $student;
+        }
+        return $students;
     }
 }
