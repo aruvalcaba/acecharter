@@ -26,13 +26,8 @@ class UploadResponder extends AbstractResponder
 
     public function show()
     {
-        if( $this->negotiateMediaType() )
-        {
-            if( $this->payload )
-            {
-                $this->response->status->setCode('200');
-                $this->renderView('upload');
-            }
+        if( $this->payload ) {
+            return $this->renderView('upload');
         }
     }
 }

@@ -2,42 +2,26 @@
 
 use Redirect;
 
+use Response;
+
 use Aura\View\View;
 
-use Aura\Web\Response;
-
-use Aura\Accept\Accept;
-
 use Aura\Payload\Payload;
-
-use Response as LaraResponse;
 
 use Aura\Payload_Interface\PayloadStatus;
 
 use Aura\Payload_Interface\PayloadInterface;
 
 abstract class AbstractResponder {
-    protected $accept;
-    
-    protected $available = [ 'text/html'=>'','application/json'=>'.json' ];
-
-    protected $response;
-
     protected $payload;
 
     protected $payload_method = array();
 
-    protected $view;
-    
-    protected $redirect;
+    protected $views_registry = array();
 
-    public function __construct(
-        Accept $accept,
-        Response $response,
-        View $view
-    ) {
-        $this->accept = $accept;
-        $this->response = $response;
+    protected $view;
+
+    public function __construct(View $view) {
         $this->view = $view;
         $this->init();
     }
@@ -54,15 +38,7 @@ abstract class AbstractResponder {
                 ? $this->payload_method[$status]
                 : 'notRecognized';
         
-        $this->$method();
-        
-        if( $this->redirect ) {
-            return $this->redirect;
-        }
-
-        else {
-            return LaraResponse::make($this->response->content->get(),$this->response->status->getCode());
-        }
+        return $this->$method();
     }
 
     public function setPayload(PayloadInterface $payload) {
@@ -71,47 +47,21 @@ abstract class AbstractResponder {
 
     protected function notRecognized() {
         $domain_status = $this->payload->getStatus();
-        $this->response->status->set(500);
-        $this->response->content->set("Unknown domain payload status: '$domain_status'");
-        return $this->response;
+        return Response::make("<html><head><title>Unknown domain payload</title></head><body>Unknown payload status {$domain_status}</body></html>",500);
     }
 
-    protected function negotiateMediaType() {
-        if (! $this->available || ! $this->accept) {
-            return true;
-        }
-
-        $available = array_keys($this->available);
-        $media = $this->accept->negotiateMedia($available);
-        if (! $media) {
-            $this->response->status->set(406);
-            $this->response->content->setType('text/plain');
-            $this->response->content->set(implode(',', $available));
-            return false;
-        }
-
-        $this->response->content->setType($media->getValue());
-        return true;
-    }
-
-    protected function renderView($view) {
-        $content_type = $this->response->content->getType();
-        if ($content_type) {
-            $view .= $this->available[$content_type];
-        }
-
+    protected function renderView($view,$statusCode = 200) {
         $this->view->setView($view);
         $this->view->addData($this->payload->getOutput());
-        $this->response->content->set($this->view->__invoke());
-    }
 
+        return Response::make($this->view->__invoke(),$statusCode);
+    }
+    
     protected function notFound() {
-        $this->response->status->set(404);
-        $this->response->content->set("<html><head><title>404 Not found</title></head><body>404 Not found</body></html>");
+        return Response::make("<html><head><title>404 Not found</title></head><body>404 Not found</body></html>",404)->header('Content-type','text/html');
     }
 
     protected function error() {
-        $this->response->status->set(500);
-        $this->response->content->set('Oops something went wrong');
+        return Response::make("<html><head><title>Oops something went wrong</title></head><body>Oops something went wrong</body></html>",500)->header('Content-type','text/html');
     }
 }

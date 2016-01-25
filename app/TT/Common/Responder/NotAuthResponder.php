@@ -22,11 +22,8 @@ class NotAuthResponder extends AbstractResponder {
     }
 
     public function notAuthorized() {
-         if( $this->negotiateMediaType() ) {
-            if( $this->payload ) {
-                $this->renderView('unauthorized');
-            }
-        }    
-    
+        if( $this->payload ) {
+            return $this->renderView('unauthorized',401);
+        }
     }
 }

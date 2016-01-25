@@ -19,8 +19,8 @@ abstract class AbstractHomeResponder extends AbstractResponder {
     }
 
     protected function home() {
-        if( $this->negotiateMediaType() ) {
-            $this->renderView('home');
+        if( $this->payload ) {
+            return $this->renderView('home');
         }
     }
 }
