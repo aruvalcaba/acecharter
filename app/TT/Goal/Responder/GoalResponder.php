@@ -30,7 +30,7 @@ class GoalResponder extends AbstractResponder {
             if( $this->payload ) {
 				$id = $this->payload->getOutput()['goal_id'];
 				$view = 'goal_'.$id.'/goal';
-				$this->renderView($view);
+				return $this->renderView($view);
             }
         
     }
