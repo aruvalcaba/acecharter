@@ -19,10 +19,8 @@ class AbstractEditResponder extends AbstractResponder {
     }
 
     protected function getEdit() {
-        if( $this->negotiateMediaType() ) {
-            if( $this->payload ) {
-                $this->renderView('edit');
-            }
+        if( $this->payload ) {
+            return $this->renderView('edit');
         }
     }
 }

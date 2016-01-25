@@ -22,19 +22,14 @@ class PrintCodesResponder extends AbstractResponder {
     }
 
     public function notAccepted() {
-        if( $this->negotiateMediaType() ) {
-            if( $this->payload ) {
-                $this->response->status->setCode('422');
-                $this->renderView('response.json');
-            }
+        if( $this->payload ) {
+            return $this->renderView('response.json',406);
         }
     }
 
     public function success() {
-         if( $this->negotiateMediaType() ) {
-            if( $this->payload ) {
-                $this->renderView('response.json');
-            }
+        if( $this->payload ) {
+            return $this->renderView('response.json');
         }
     }
 }

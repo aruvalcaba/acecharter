@@ -10,6 +10,6 @@ class LangResponder extends AbstractResponder{
     protected $payload_method = [ PayloadStatus::NOT_FOUND=>'notFound', PayloadStatus::FOUND=>'found' ];
 
     protected function found() {
-        $this->redirect = Redirect::back();
+        return $this->redirect = Redirect::back();
     }
 }

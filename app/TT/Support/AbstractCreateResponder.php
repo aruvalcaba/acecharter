@@ -19,10 +19,8 @@ class AbstractCreateResponder extends AbstractResponder {
     }
 
     protected function getCreate() {
-        if( $this->negotiateMediaType() ) {
-            if( $this->payload ) {
-                $this->renderView('create');
-            }
+        if( $this->payload ) {
+            return $this->renderView('create',201);
         }
     }
 }

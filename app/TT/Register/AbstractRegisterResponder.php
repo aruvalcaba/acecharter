@@ -21,29 +21,20 @@ abstract class AbstractRegisterResponder extends AbstractResponder {
     }
 
     public function notCreated() {
-        if( $this->negotiateMediaType() ) {
-            if( $this->payload ) {
-                $this->response->status->setCode('409');
-                $this->renderView('create.json');
-            }
+        if( $this->payload ) {
+            return $this->renderView('create.json',500);
         }
     }
 
     public function created() {
-          if( $this->negotiateMediaType() ) {
-            if( $this->payload ) {
-                $this->response->status->setCode('201');
-                $this->renderView('create.json');
-            }
+        if( $this->payload ) {
+            return $this->renderView('create.json',201);
         }
     }
 
     public function notAccepted() {
-         if( $this->negotiateMediaType() ) {
-            if( $this->payload ) {
-                $this->response->status->setCode('422');
-                $this->renderView('create.json');
-            }
+        if( $this->payload ) {
+            return $this->renderView('create.json',406);
         }
     }
 }

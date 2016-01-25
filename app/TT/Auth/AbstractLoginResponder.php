@@ -12,38 +12,29 @@ abstract class AbstractLoginResponder extends AbstractResponder {
 
         $view_names = ['login','login.json'];
 
-        $view_registry = $this->view->getViewRegistry();
+        $views_registry = $this->view->getViewRegistry();
 
         foreach( $view_names as $name ) {
             $path = sprintf('%s/views/%s.php',$this->views_path,$name);
-            $view_registry->set($name,$path);
+            $views_registry->set($name,$path);
         } 
     }
 
     protected function getLogin() {
-        if( $this->negotiateMediaType() ) {
-            if( $this->payload ) {
-                $this->renderView('login');
-            }
+        if( $this->payload ) {
+            return $this->renderView('login',200);
         }    
     }
 
     protected function authenticated() {
-        if( $this->negotiateMediaType() ) {
-            if( $this->payload ) {
-                $this->renderView('login.json');
-            }
+        if( $this->payload ) {
+            return $this->renderView('login.json',200);
         }
     }
 
     protected function notAuthenticated() {
-        if( $this->negotiateMediaType() ) {
-            if( $this->payload ) {
-                $this->response->status->setCode('401');
-                $this->renderView('login.json');
-            }
+        if( $this->payload ) {
+            return $this->renderView('login.json',406);
         }
     }
 }
-
-?>

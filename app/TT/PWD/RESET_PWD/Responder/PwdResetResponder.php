@@ -25,20 +25,16 @@ class PwdResetResponder extends AbstractResponder {
     }	
 
 	protected function accepted() {
-            if( $this->payload ) {
-				$alerts = $this->payload->getOutput()['alerts'];
-       			Session::flash('alerts',$alerts);
-                $this->renderView('pwd.json');
-            }
-        
+        if( $this->payload ) {
+		    $alerts = $this->payload->getOutput()['alerts'];
+       		Session::flash('alerts',$alerts);
+            return $this->renderView('pwd.json',202);
+        }
     }
 
     protected function notValid() {
-        if( $this->negotiateMediaType() ) {
-            if( $this->payload ) {
-                $this->response->status->setCode('401');
-                $this->renderView('pwd.json');
-            }
+        if( $this->payload ) {
+            return $this->renderView('pwd.json',406);
         }
     }
     

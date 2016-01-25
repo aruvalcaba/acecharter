@@ -16,12 +16,12 @@ class UpdateResponder extends AbstractResponder {
     public function notAccepted() {
         $alerts = $this->payload->getOutput()['alerts'];
         Session::flash('alerts',$alerts);
-        $this->redirect = Redirect::back()->withInput();
+        return Redirect::back()->withInput();
     }
 
     public function updated() {
         $alerts = $this->payload->getOutput()['alerts'];
         Session::flash('alerts',$alerts);
-        $this->redirect = Redirect::route('home.admin')->withInput();
+        return Redirect::route('home.admin')->withInput();
     }
 }

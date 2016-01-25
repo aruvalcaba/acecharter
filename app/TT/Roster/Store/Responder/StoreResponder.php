@@ -14,27 +14,19 @@ class StoreResponder extends AbstractResponder
 
     public function notAccepted()
     {
-        if( $this->negotiateMediaType() )
-        {
-            if( $this->payload )
-            {
-                $alerts = $this->payload->getOutput()['alerts'];
-                Session::flash('alerts',$alerts);
-                $this->redirect = Redirect::route('roster.upload.show');
-            }
+        if( $this->payload ) {
+            $alerts = $this->payload->getOutput()['alerts'];
+            Session::flash('alerts',$alerts);
+            return Redirect::route('roster.upload.show');
         }
     }
 
     public function uploaded()
     {
-        if( $this->negotiateMediaType() )
-        {
-            if( $this->payload )
-            {
-                $alerts = $this->payload->getOutput()['alerts'];
-                Session::flash('alerts',$alerts);
-                $this->redirect = Redirect::route('home.admin');
-            }
+        if( $this->payload ) {
+            $alerts = $this->payload->getOutput()['alerts'];
+            Session::flash('alerts',$alerts);
+            return Redirect::route('home.admin');
         }
     }
 }
