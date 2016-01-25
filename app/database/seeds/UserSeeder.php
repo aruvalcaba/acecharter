@@ -1,17 +1,24 @@
 <?php
 
-use TT\Models\Teacher;
-use TT\Models\TeacherTrait;
-use TT\Models\StudentParent;
-use TT\Models\Student;
-
 use TT\Parent\ParentRepository;
 use TT\Student\StudentRepository;
 use TT\Teacher\TeacherRepository;
 use TT\Teacher\TeacherTraitRepository;
 
-
 class UserSeeder extends Seeder {
+    
+
+    public function __construct(
+                        ParentRepository $parentRepository,
+                        StudentRepository $studentRepository,
+                        TeacherRepository $teacherRepository,
+                        TeacherTraitRepository $teacherTraitRepository)
+    {
+        $this->parentRepository = $parentRepository;
+        $this->studentRepository = $studentRepository;
+        $this->teacherRepository = $teacherRepository;
+        $this->teacherTraitRepository = $teacherTraitRepository;
+    }
 
 	/**
 	 * Run the database seeds.
@@ -37,13 +44,10 @@ class UserSeeder extends Seeder {
         if( App::environment('local') )
         {
             $teacherGroup = Sentry::findGroupByName('Teacher');
-            $teacherRepo = new TeacherRepository(new Teacher);
 
-            $teacherTraitRepo = new TeacherTraitRepository(new TeacherTrait);
+            $trait = $this->teacherTraitRepository->create(['grade'=>'K']);
 
-            $trait = $teacherTraitRepo->create(['grade'=>'K']);
-
-            $garcia = $teacherRepo->create([
+            $garcia = $this->teacherRepository->create([
                                         'first_name'=>'Roberto',
                                         'last_name'=>'Garcia',
                                         'title'=>'Ms',
@@ -52,9 +56,9 @@ class UserSeeder extends Seeder {
                                         'activated'=>1,
                                         'traits_id'=>$trait->id
                                         ]);
-            $trait = $teacherTraitRepo->create(['grade'=>'K']);
+            $trait = $this->teacherTraitRepository->create(['grade'=>'K']);
 
-            $gill = $teacherRepo->create([
+            $gill = $this->teacherRepository->create([
                                         'first_name'=>'Harpreet',
                                         'last_name'=>'Gill',
                                         'title'=>'Mr',
@@ -65,9 +69,9 @@ class UserSeeder extends Seeder {
                                         ]);
 
             
-            $trait = $teacherTraitRepo->create(['grade'=>'K']);
+            $trait = $this->teacherTraitRepository->create(['grade'=>'K']);
 
-            $smith = $teacherRepo->create([
+            $smith = $this->teacherRepository->create([
                                         'first_name'=>'Jim',
                                         'last_name'=>'Smith',
                                         'title'=>'Ms',
@@ -77,9 +81,9 @@ class UserSeeder extends Seeder {
                                         'traits_id'=>$trait->id
                                     ]);
             
-            $trait = $teacherTraitRepo->create(['grade'=>'K']);
+            $trait = $this->teacherTraitRepository->create(['grade'=>'K']);
 
-            $smith = $teacherRepo->create([
+            $smith = $this->teacherRepository->create([
                                         'first_name'=>'Jordan',
                                         'last_name'=>'Williams',
                                         'title'=>'Ms',
@@ -90,10 +94,8 @@ class UserSeeder extends Seeder {
                                     ]);
 
             $parentGroup = Sentry::findGroupByName('Parent');
-            $parentRepo = new ParentRepository(new StudentParent);
-            $studentRepo = new StudentRepository(new Student);
 
-            $alan = $parentRepo->create([
+            $alan = $this->parentRepository->create([
                                         'first_name'=>'Alan',
                                         'last_name'=>'Ruvalcaba',
                                         'title'=>'Mr',
@@ -101,7 +103,7 @@ class UserSeeder extends Seeder {
                                         'password'=>'letmein1',
                                         'activated'=>'1',
                                     ]);
-            $neeru = $parentRepo->create([
+            $neeru = $this->parentRepository->create([
                                         'first_name'=>'Neeru',
                                         'last_name'=>'Bansal',
                                         'title'=>'Ms',
@@ -109,7 +111,7 @@ class UserSeeder extends Seeder {
                                         'password'=>'letmein1',
                                         'activated'=>'1',
                                         ]);
-			$demo = $parentRepo->create([
+			$demo = $this->parentRepository->create([
                                         'first_name'=>'Demo',
                                         'last_name'=>'Demo',
                                         'title'=>'Ms',
@@ -118,7 +120,7 @@ class UserSeeder extends Seeder {
                                         'activated'=>'1',
                                     ]);
 
-            $child = $studentRepo->create([
+            $child = $this->studentRepository->create([
                                         'first_name'=>'Child',
                                         'last_name'=>'Demo',
                                         'title'=>'Ms',
