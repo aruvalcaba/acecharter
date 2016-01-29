@@ -19,4 +19,18 @@ class GoalHelper {
             return $goal;
         }
     }
+
+    public static function unformat($goal)
+    {
+        if( is_null($goal) )
+        {
+            return $goal;
+        }
+        
+        else
+        {
+            $goal = str_replace('_',' ',$goal);
+            return ucwords($goal);
+        }
+    }
 }
