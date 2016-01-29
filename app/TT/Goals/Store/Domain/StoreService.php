@@ -58,17 +58,8 @@ class StoreService extends AbstractService
 
             else
             {
-                $uploaded = $this->uploadGoals($input['goals']);
+                $payload = $this->uploadGoals($input['goals']);
                 
-                if( $uploaded ) {
-                    $messages = [$this->getMsg('messages.goals_upload')];
-                    $payload = $this->success(['alerts'=>['messages'=>$messages,'class'=>['class'=>'alert alert-success m-t']]]);
-                }
-
-                else {
-                    $messages = [$this->getMsg('messages.goals_not_upload')];
-                    $payload = $this->error(['alerts'=>['messages'=>$messages,'class'=>['class'=>'alert alert-danger m-t']]]);
-                }
             }
             
             $payload->getOutput()['user'] = Sentry::getUser();
@@ -112,9 +103,10 @@ class StoreService extends AbstractService
             //Check diff, if count > 0, then our csv has too many or too
             //few valid goals
             $diff = array_diff($goals,$goalsMapKeys);
+
             if( count($diff) > 0 )
             {
-                return false;
+                throw new Exception('Goals do not match');
             }
 
             $studentAceCodes = DB::table('students_traits')->lists('student_id','ace_code');
@@ -159,19 +151,21 @@ class StoreService extends AbstractService
                     $goalId = $studentUpdateGoal['goal_id'];
                     
                     //REALLY INEFFICIENT
-                    DB::table('students_goals')->where('student_id','=',$studentId)->update($studentUpdateGoal);
+                    DB::table('students_goals')->where('student_id','=',$studentId)->where('goal_id','=',$goalId)->update($studentUpdateGoal);
                 }
             }
 
             DB::commit();
+            
+            $messages = [$this->getMsg('messages.goals_upload')];
+            $payload = $this->success(['alerts'=>['messages'=>$messages,'class'=>['class'=>'alert alert-success m-t']]]);
 
-            return true;
+            return $payload;
         }
 
         catch(Exception $e)
         {
-            DB::rollback();
-            return false;
+            return $this->error($e);
         }
     }
 }
