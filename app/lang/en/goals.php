@@ -19,7 +19,8 @@ Login to ACE Family Link every Thursday to review your child’s attendance. If 
 You should set weekday medical and dental appointments only during after-school hours. If you are planning a vacation, check with the school calendar to make sure your child will not miss any school.</li>
 <li>Find a relative, friend, or neighbor who can  take your child to school if you cannot make it or if your child has missed the bus. If transportation is a problem, you can also ask the school principal for help.</li>
 <li>Your child may be missing school in order to avoid bullying. Talk to your child and the principal if necessary.</li></ul>',
-		'goal_2_detail_2' => 'Learn more by watching these videos: <a target="_blank" href="https://vimeo.com/101425388">https://vimeo.com/101425388</a> <br><br>Material adapted from <a target="_blank" href="http://attendanceworks.org">attendanceworks.org</a>',
+		'goal_2_detail_2' => 'Learn more by watching these videos: <iframe src="https://player.vimeo.com/video/101425388" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<p><a href="https://vimeo.com/101425388">Bringing Attendance Home: Parent Video</a> from <a href="https://vimeo.com/user30379536">Rachel Auerbach</a> on <a href="https://vimeo.com">Vimeo</a>.</p> <a target="_blank" href="https://vimeo.com/101425388">https://vimeo.com/101425388</a> <br><br>Material adapted from <a target="_blank" href="http://attendanceworks.org">attendanceworks.org</a>',
 		'goal_3_positive' => ':name has positive behavior at school meaning no detentions or suspensions. Great job!',
 		'goal_3_negative' => ':name does not have positive behavior at school. Students that misbehave are at-risk for falling behind academically. Click “more info” below to learn what you can do at home to help.
 ',

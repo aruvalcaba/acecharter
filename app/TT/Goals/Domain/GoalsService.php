@@ -1,4 +1,4 @@
-<?php namespace TT\Goal\Domain;
+<?php namespace TT\Goals\Domain;
 
 use Sentry;
 
@@ -10,7 +10,7 @@ use TT\Support\AbstractService;
 
 use Aura\Payload\Payload;
 
-class GoalService extends AbstractService {
+class GoalsService extends AbstractService {
     public function __construct(PayloadFactory $payload_factory ) {
         $this->payload_factory = $payload_factory;
     }
@@ -57,11 +57,7 @@ class GoalService extends AbstractService {
 				'academic_success' => ['val' => $this->getMsg('constants.academic_success')],
 				'footer_msg' => $this->GetMsg('messages.footer_msg'),
 				'footer_here' => $this->GetMsg('messages.footer_here'),
-
-				
-
-				
-];
+            ];
     }
 }
 

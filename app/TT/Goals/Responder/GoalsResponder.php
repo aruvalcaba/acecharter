@@ -1,4 +1,4 @@
-<?php namespace TT\Goal\Responder;
+<?php namespace TT\Goals\Responder;
 
 use Session;
 
@@ -8,7 +8,7 @@ use Aura\Payload_Interface\PayloadStatus;
 
 use Aura\Payload\Payload;
 
-class GoalResponder extends AbstractResponder {
+class GoalsResponder extends AbstractResponder {
 	protected $views_path = __DIR__;
 	protected $payload_method = [ PayloadStatus::SUCCESS=>'success' ];
 
@@ -30,11 +30,8 @@ class GoalResponder extends AbstractResponder {
             if( $this->payload ) {
 				$id = $this->payload->getOutput()['goal_id'];
 				$view = 'goal_'.$id.'/goal';
-				$this->renderView($view);
+				return $this->renderView($view);
             }
         
     }
-
-   
-    
 }

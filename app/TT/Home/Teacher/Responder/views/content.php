@@ -96,16 +96,9 @@ You can automatically print a note home with student code using the button below
         <tbody >
                 <?php foreach($this->students as $student) { ?>
                 <tr>
-                    <td style="text-align:left; vertical-align:middle"> 
-                    <?php echo $h($student->fullname); ?> <br><small>[Code]</small></td>
-                    <td style="text-align:left; vertical-align:middle"> 
-                    Member name <br>
-                    <small><?php $relationship = $student->partners()->first()->relationship ?>
-                    <?php $format = '%s\'s ';?>
-                    <?php echo $relationship ?></small></td>
-                    <td style="text-align:left; vertical-align:middle"> 
-                     <?php echo $student->traits()->first()->activity_total_time; ?> days ago
-                     </td> 
+                    <td style="text-align:left; vertical-align:middle"><?php echo $h($student->fullname) ?> <small><?php echo "[".$h($student->code)."]"?></small></td>
+                    <td style="text-align:left; vertical-align:middle"> <br><small><?php echo $h($student->parentName)?></small></td>
+                    <td style="text-align:left; vertical-align:middle"><?php echo $h($student->last_login)?></td>  
                 <?php } ?>
         </tbody>
     </table>
@@ -144,9 +137,9 @@ You can automatically print a note home with student code using the button below
                 <?php               
                     foreach( $this->students as $student ) { ?>
                 <tr>
-                    <td style="text-align:left; vertical-align:middle"> <?php echo $h($student->fullname) ?> </td>
-                    <td style="text-align:left; vertical-align:middle"> 0/1 </td>
-                    <td style="text-align:left; vertical-align:middle"> 0/1 </td> 
+                     <td style="text-align:left; vertical-align:middle"> <?php echo $h($student->fullname) ?> <small><?php echo "[".$h($student->code)."]"?></small></td>
+                    <td style="text-align:left; vertical-align:middle"> <?php echo sprintf('%d/1',$student->goal1)?> </td>
+                    <td style="text-align:left; vertical-align:middle"> <?php echo sprintf('%d/1',$student->goal2)?> </td>  
                 <?php } ?>
         </tbody>
     </table>

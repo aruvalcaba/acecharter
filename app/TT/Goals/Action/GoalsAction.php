@@ -1,14 +1,14 @@
-<?php namespace TT\Goal\Action;
+<?php namespace TT\Goals\Action;
 
 use Input;
 
 use TT\Support\AbstractAction;
-use TT\Goal\Domain\GoalService;
+use TT\Goals\Domain\GoalsService;
 
-use TT\Goal\Responder\GoalResponder;
+use TT\Goals\Responder\GoalsResponder;
 
-class GoalAction extends AbstractAction {
-    public function __construct(GoalService $domain, GoalResponder $responder) {
+class GoalsAction extends AbstractAction {
+    public function __construct(GoalsService $domain, GoalsResponder $responder) {
         $this->domain = $domain;   
         $this->responder = $responder;
     }
