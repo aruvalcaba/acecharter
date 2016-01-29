@@ -66,7 +66,8 @@ class HomeService extends AbstractService {
 				'logout' => $this->getMsg('constants.logout'),
 				'activites' => $this->getMsg('constants.activities'),
                 'upload_activity' => $this->getMsg('messages.upload_activity'),
-                'upload_roster'=> $this->getMsg('messages.upload_roster')
+                'upload_roster'=> $this->getMsg('messages.upload_roster'),
+                'upload_goals'=> $this->getMsg('messages.upload_goals')
 ];
     }
 }

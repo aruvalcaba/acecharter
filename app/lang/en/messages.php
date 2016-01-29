@@ -41,10 +41,13 @@ return [
 		'invitation_conference' => 'Teacher sent you an invitation for a parent teacher conference.',
         'upload_activity' => 'Upload New Activity',
         'upload_roster'=>'Upload Classroom Roster',
+        'upload_goals'=>'Upload Goals',
 		'validation_email_password' => 'Please fill in email and password',
 		'validation_email' => 'Please fill in email',
 		'parent_fullname.required' => 'Parent full name is required',
 		'footer_msg' => 'Do you like ACE Family Link? How can we improve? Submit feedback',
 		'footer_here' => 'here',
-        'roster_upload' => 'Roster has been uploaded successfully.'
+        'roster_upload' => 'Roster has been uploaded successfully.',
+        'goals_upload' => 'Goals have been uploaded successfully.',
+        'goals_not_upload' => 'Goals have failed to upload.'
 ];
