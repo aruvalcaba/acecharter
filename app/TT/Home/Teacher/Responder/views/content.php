@@ -96,7 +96,7 @@ You can automatically print a note home with student code using the button below
         <tbody >
                 <?php foreach($this->students as $student) { ?>
                 <tr>
-                    <td style="text-align:left; vertical-align:middle"><?php echo $h($student->fullname) ?> <small><?php echo "[".$h($student->code)."]"?></small></td>
+                    <td style="text-align:left; vertical-align:middle"><?php echo $h($student->fullname) ?> <small><?php echo "[".$h($student->ace_code)."]"?></small></td>
                     <td style="text-align:left; vertical-align:middle"> <br><small><?php echo $h($student->parentName)?></small></td>
                     <td style="text-align:left; vertical-align:middle"><?php echo $h($student->last_login)?></td>  
                 <?php } ?>
@@ -119,28 +119,31 @@ You can automatically print a note home with student code using the button below
 <div class="col-lg-8 col-lg-offset-2">
    
 <div class="container-fluid" id="dispData">
-     <table class="table table-bordered sttable table-striped">
+     <table class="table table-bordered sttable table-condensed">
         
-        <col width="35%">
-        <col width="35%">
-        <col width="30%">
- 
+
                 <thead>
         <tr>
             <th style="vertical-align:bottom">Student Name [Code]</th>
+
+            <?php foreach( $this->goals as $goal ) { ?>
+                <th style="vertical-align:bottom" data-sortable="true"><?php echo $goal->name ?></th>
+            <?php } ?>
             
-            <th style="vertical-align:bottom" data-sortable="true">Goal1</th>
-            
-            <th style="vertical-align:bottom" data-sortable="true">Goal2</th>
         </tr></thead>
         <tbody >
                 <?php               
-                    foreach( $this->students as $student ) { ?>
-                <tr>
-                     <td style="text-align:left; vertical-align:middle"> <?php echo $h($student->fullname) ?> <small><?php echo "[".$h($student->code)."]"?></small></td>
-                    <td style="text-align:left; vertical-align:middle"> <?php echo sprintf('%d/1',$student->goal1)?> </td>
-                    <td style="text-align:left; vertical-align:middle"> <?php echo sprintf('%d/1',$student->goal2)?> </td>  
-                <?php } ?>
+                    foreach( $this->students as $student ) { 
+                        echo '<tr>';
+                        echo '<td style="text-align:left; vertical-align:middle">'.$h($student->fullname).'<small>['.$h($student->ace_code).']</small></td>';
+
+                        foreach($this->goals as $goal)
+                        {
+                            echo '<td style="text-align:left; vertical-align:middle">'. sprintf('%d/1',$student->goals[$goal->id]) .'</td>';
+                        }
+
+                        echo '<tr>';
+                    }?>
         </tbody>
     </table>
 </div>

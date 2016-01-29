@@ -1,7 +1,10 @@
 <?php namespace TT\Home\Teacher\Domain;
 
+use DB;
+
 use Sentry;
 
+use TT\Support\GoalHelper;
 use TT\Support\AbstractService;
 
 use Aura\Payload\PayloadFactory;
@@ -22,11 +25,42 @@ class HomeService extends AbstractService {
                 $output = $payload->getOutput();
                 
                 $user = Sentry::getUser();
-                $students = $this->getFakeStudents();
+                $students = $user->students;
+
+                $studentIds = array();
+
+                foreach($students as $student) 
+                {
+                    $studentIds[] = $student->id;
+                }
+
+                $aceCodes = DB::table('students_traits')->whereIn('student_id',$studentIds)->lists('ace_code','student_id');
+                $studentGoals = DB::table('students_goals')->whereIn('student_id',$studentIds)->select(['student_id','goal_id','value'])->get();
+                $studentGoalsFlat = array();
+
+                foreach($studentGoals as $studentGoal)
+                {
+                    $studentGoalsFlat[$studentGoal->student_id][$studentGoal->goal_id] = $studentGoal->value; 
+                }
+
+                foreach($students as $student)
+                {
+                    $student->ace_code = $aceCodes[$student->id];
+                    $student->goals = $studentGoalsFlat[$student->id];
+                }
+
+                $goals = DB::table('goals')->get();
+
+                foreach($goals as $goal) 
+                {
+                    $goal->name = GoalHelper::unformat($goal->name);
+                }
 
                 $output['user'] = $user;
                 $output['students'] = ! empty($students) ? $students : [];
                 $output['data'] = $this->getData();
+                $output['goals'] = $goals;
+                
                 $payload->setOutput($output);
             }
             
@@ -49,20 +83,5 @@ class HomeService extends AbstractService {
 				'changed_pwd' => $this->getMsg('constants.change_password'),
 				'logout' => $this->getMsg('constants.logout')
                ];
-    }
-
-	public function getFakeStudents() {
-        $students = [];
-        for($i = 0; $i < 25; $i++) {
-            $student = new \stdClass();
-            $student->fullname = $this->faker->name;
-            $student->parentName = $this->faker->name;
-            $student->last_login = $this->faker->dateTimeThisMonth->format('Y-m-d');
-            $student->code = $this->faker->randomNumber(6);
-            $student->goal1 = $this->faker->randomElement(array(0,1));
-            $student->goal2 = $this->faker->randomElement(array(0,1));
-            $students[] = $student;
-        }
-        return $students;
     }
 }
