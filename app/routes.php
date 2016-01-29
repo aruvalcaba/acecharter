@@ -49,6 +49,10 @@ Route::group(['namespace'=>'TT','before'=>'auth.admin'],function() {
     //Upload roster
     Route::get('/roster/upload',array('as'=>'roster.upload.show','uses'=>'Roster\Upload\Action\UploadAction@act'));
     Route::post('/roster/upload',array('as'=>'roster.upload.store','uses'=>'Roster\Store\Action\StoreAction@act'));
+  
+    //Goals roster
+    Route::get('/goals/upload',array('as'=>'goals.upload.show','uses'=>'Goals\Upload\Action\UploadAction@act'));
+    Route::post('/goals/upload',array('as'=>'goals.upload.store','uses'=>'Goals\Store\Action\StoreAction@act'));
 
 });
 
