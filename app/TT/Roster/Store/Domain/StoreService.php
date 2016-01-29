@@ -119,12 +119,13 @@ class StoreService extends AbstractService
                             $studentIds[$teacherLastName] = [];
                         }
 
-                        $studentTraitData = ['ace_code' => $aceCode];
+                        
+                        $studentData = ['first_name'=> $studentFirstName, 'last_name'=> $studentLastName];
+                        $student = $this->studentRepository->create($studentData);
+
+                        $studentTraitData = ['ace_code' => $aceCode,'student_id'=>$student->id];
                         $studentTrait = $this->studentTraitRepository->create($studentTraitData);
 
-                        $studentData = ['first_name'=> $studentFirstName, 'last_name'=> $studentLastName,'traits_id'=>$studentTrait->id];
-
-                        $student = $this->studentRepository->create($studentData);
                         $student->addGroup($studentGroup);
 
                         $studentIds[$teacherLastName][] = $student->id;

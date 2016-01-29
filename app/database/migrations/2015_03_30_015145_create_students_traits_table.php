@@ -14,7 +14,9 @@ class CreateStudentsTraitsTable extends Migration {
 	{
 		Schema::create('students_traits', function(Blueprint $table)
 		{
-			$table->increments('id');
+            $table->increments('id');
+            $table->integer('student_id')->unsigned();
+            $table->foreign('student_id')->references('id')->on('users')->onDelete('cascade');
 			$table->string('student_code');
 		});
 	}
