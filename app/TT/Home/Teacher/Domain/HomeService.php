@@ -9,12 +9,9 @@ use TT\Support\AbstractService;
 
 use Aura\Payload\PayloadFactory;
 
-use Faker\Factory as FakerFactory;
-
 class HomeService extends AbstractService {
     public function __construct(PayloadFactory $payload_factory) {
         $this->payload_factory = $payload_factory;
-		$this->faker = FakerFactory::create();
     }
 
     public function home() {
@@ -46,7 +43,12 @@ class HomeService extends AbstractService {
                 foreach($students as $student)
                 {
                     $student->ace_code = $aceCodes[$student->id];
-                    $student->goals = $studentGoalsFlat[$student->id];
+
+		    $studentGoals = isset($studentGoalsFlat[$student->id]) ? $studentGoalsFlat[$student->id] : [];
+
+
+			
+                    $student->goals = $studentGoals;
                 }
 
                 $goals = DB::table('goals')->get();
