@@ -47,11 +47,7 @@ $helper->tag('div',['class'=>'modal fade','id'=>'signupModal','tabindex'=>'-1','
 				$helper->tag('div',['class'=>'form-group']) .
 					$helper->label($data['parent']['val']. ' ' . $data['email_label']['val']) .
 					$helper->input($data['email_input']) .
-				$helper->tag('/div') .
-				$helper->tag('div',['class'=>'form-group']) .
-					$helper->label($data['student']['val']. ' ' . $data['full_name']['val']) .
-					$helper->input($data['student_fullname_input']) .
-				$helper->tag('/div') .
+				$helper->tag('/div') .				
 				$helper->tag('div',['class'=>'form-group']) .
 					$helper->label($data['student']['val']. ' ' . $data['code']['val']) .
 					$helper->input($data['student_code_input']) .
