@@ -101,7 +101,9 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
       </div>
 </div>
 <!-- end of activity spacing -->
+<?php
 
+	 foreach( $this->students as $student ) { ?>
  
 
     <div class="row col-lg-4 col-lg-offset-4 col-sm-8 col-sm-offset-2">     
@@ -117,55 +119,38 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
          <col width="25%">
         <col width="75%">
         <?php 
+		foreach($this->goals as $goal){
+		$goalValue = isset($student->goals[$goal->id]) ? $student->goals[$goal->id] : 0;
 		echo $helper->tag('tr') .
 				$helper->tag('td') ; 
-					//$helper->input(array('type'=>'button','name'=>'status','attribs'=>array('class'=>'btn btn-success'))) .
-					//$helper->tag('span',['class'=> 'glyphicon glyphicon-ok','aria-hidden'=>'true']) . $helper->tag('/span') . ?>
-					<button type="button" class="btn btn-success" id="daily_homework" data-toggle="modal" data-target="#daily_homeworkModal">
+				if($goalValue){?>
+				
+					<button type="button" class="btn btn-success" id="<?php echo $goal->name ?>" data-toggle="modal" data-target="#<?php echo $goal->name?>Modal">							
                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-              </button>			
+					</button>
+	
+				<?php
+				}else{?>
+
+					<button type="button" class="btn btn-danger" id="<?php echo $goal->name ?>" data-toggle="modal" data-target="#<?php echo $goal->name?>Modal">
+					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+					</button>
+	
+				<?php } ?>
+              		
 <?php echo
               
 			$helper->tag('/td') .
 				$helper->tag('td') .
-					$data['daily_homework']['val'] .
+					$data[$goal->name]['val'] .
 				$helper->tag('/td') .
         	$helper->tag('/tr') ;
-?>
-         <tr>
-          <td>
-            <button type="button" class="btn btn-danger" id="daily_attendance" data-toggle="modal" data-target="#daily_attendanceModal">
-                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-              </button>
-          </td>
-          <td>
-            <?php echo $data['daily_attendance']['val']; ?>
-          </td>
-        </tr>
-         <tr>
-          <td>
-             <button type="button" class="btn btn-danger" id="positive_behavior" data-toggle="modal" data-target="#positive_behaviorModal">
-                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-              </button>
-          </td>
-          <td>
-            <?php echo $data['positive_behavior']['val']; ?> 
-          </td>
-        </tr>
-         <tr>
-          <td>
-             <button type="button" class="btn btn-success" id="academic_success" data-toggle="modal" data-target="#academic_successModal">
-                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-              </button>
-          </td>
-          <td>
-            <?php echo $data['academic_success']['val']; ?>
-          </td>
-        </tr>
-         
+		}
+?>         
       </table>
 
      </div>
+<?php } ?>
    
 </div>
   

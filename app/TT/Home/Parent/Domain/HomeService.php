@@ -1,6 +1,10 @@
 <?php namespace TT\Home\Parent\Domain;
 
+use DB;
+
 use Sentry;
+
+use TT\Support\GoalHelper;
 
 use TT\Support\AbstractService;
 
@@ -21,11 +25,48 @@ class HomeService extends AbstractService {
             if( Sentry::check() ) {
                 $output = $payload->getOutput();
                 $user = Sentry::getUser();
+
+				$students = $user->students;
+
+                $studentIds = array();
+
+                foreach($students as $student) 
+                {
+                    $studentIds[] = $student->id;
+                }
+
+				$studentGoals = DB::table('students_goals')->whereIn('student_id',$studentIds)->select(['student_id','goal_id','value'])->get();
+                $studentGoalsFlat = array();
+
+                foreach($studentGoals as $studentGoal)
+                {
+                    $studentGoalsFlat[$studentGoal->student_id][$studentGoal->goal_id] = $studentGoal->value; 
+                }
+				
+				foreach($students as $student)
+                {
+                    
+					$studentGoals = isset($studentGoalsFlat[$student->id]) ? $studentGoalsFlat[$student->id] : [];
+			
+                    $student->goals = $studentGoals;
+                }
+
+				//get goals
+				$goals = DB::table('goals')->get();
+
+                foreach($goals as $goal) 
+                {
+                    $goal->name_unformat = GoalHelper::unformat($goal->name);
+                }
+
+
                 $output['user'] = $user;
                 $output['acts'] = $this->activity_service->getActivities($user);
 				$output['avg'] = $this->activity_service->getAvgActivityTime();
 				$output['data'] = $this->getData();
+				$output['students'] = ! empty($students) ? $students : [];
                 $output['student'] = $user->students()->first();
+				$output['goals'] = $goals;
                 $payload->setOutput($output);
             }
             
@@ -39,7 +80,8 @@ class HomeService extends AbstractService {
 
     public function getData() {
 		$user = Sentry::getUser();
-		$name = $user->first_name;
+		$student = $user->students()->first();
+		$name = $student->first_name;
         
         return [
 				'welcome' => ['val'=>$this->getMsg('constants.welcome')],
