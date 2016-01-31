@@ -38,10 +38,10 @@ class ParentService  {
             DB::beginTransaction();
 
             $parentFullName = array_pull($data,'parent_fullname');
-            $studentFullName = array_pull($data,'student_fullname');
 
             $index = strpos($parentFullName,' ');
 
+			//Parent might just enter first name, code below andles this case
             if( $index <= 0 ) {
                 $parentFirstName = $parentFullName;
                 $parentLastName = '';
@@ -52,20 +52,9 @@ class ParentService  {
                 $parentLastName = substr($parentFullName,$index+1);
             }
 
-            $index = strpos($studentFullName,' ');
-
-            if( $index <= 0 ) {
-                $studentFirstName = $studentFullName;
-                $studentLastName = '';
-            }
-
-            else {
-                $studentFirstName = substr($studentFullName,0,$index);
-                $studentLastName = substr($studentFullName,$index+1);
-            }
-
             $parentEmail = $data['email'];
             $relation = $data['relationship'];
+			$studentCode = $data['student_code'];
             
             $activated = 1;
 
@@ -75,6 +64,7 @@ class ParentService  {
                 $parentPassword = str_random(16);
 
 
+			//Create parent
             $parentData = array();
             $parentData['email'] = $parentEmail;
             $parentData['activated'] = $activated;
@@ -82,23 +72,17 @@ class ParentService  {
             $parentData['last_name'] = $parentLastName;
             $parentData['password'] = $parentPassword;
 
-            $trait = $this->studentTraitRepo->create($studentTraitData);
-
-            $studentData['first_name'] = $studentFirstName;
-            $studentData['last_name'] = $studentLastName;
-            $studentData['traits_id'] = $trait->id;
-
             $parent = $this->parentRepo->create($parentData);
-            $student = $this->studentRepo->create($studentData);
             
             $parentGroup = Sentry::findGroupByName('Parent');
-            $studentGroup = Sentry::findGroupByName('Student');
 
             $parent->addGroup($parentGroup);
-            $student->addGroup($studentGroup);
 
-            $parent->students()->attach($student->id,['relationship'=>$relation]);
-            $teacher->students()->attach($student->id);
+			$studentTrait = DB::table('students_traits')->where('ace_code',$studentCode)->select(['student_id'])->first();
+			$studentId = $studentTrait->student_id;
+			
+			//Attach student to parent
+            $parent->students()->attach($studentId,['relationship'=>$relation]);
 
             Event::fire('user.created',[$parent,$parentPassword]);            
 

@@ -109,14 +109,12 @@
         $('#signup_errors').empty();
         $("#signup_alert").addClass('hidden');
     
-        var parentFullName = $("#parent_fullname").val();
-        var studentFullName = $("#student_fullname").val();
+        var parentFullName = $("#parent_fullname").val();        
         var email = $("#signupModal #email").val();
         var code = $("#student_code").val();
         var relation = $("#relationship").val();
 
-        var dataString = 'parent_fullname='+parentFullName+
-                         '&student_fullname='+studentFullName+
+        var dataString = 'parent_fullname='+parentFullName+                         
                          '&email='+email+
                          '&student_code='+code+
                          '&relationship='+relation;

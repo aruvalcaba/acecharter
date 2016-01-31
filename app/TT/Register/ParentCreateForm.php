@@ -6,9 +6,8 @@ use TT\Support\FormModel;
 class ParentCreateForm extends FormModel  {
     protected function getPreparedRules() {
         return [
-                'parent_fullname' => 'required',
-                'student_fullname' => 'required',
-                'student_code' => 'required|min:5|exists:teachers_codes,student_code',
+                'parent_fullname' => 'required',                
+                'student_code' => 'required|min:5|exists:students_traits,ace_code',
                 'email' => 'required|email|unique:users',
                 'relationship' => 'required'
                ];
@@ -17,7 +16,6 @@ class ParentCreateForm extends FormModel  {
     protected function getMessages() {
         return [ 
         'parent_fullname.required' => $this->getMsg('validation.parent_fullname.required'),
-        'student_fullname.required' => $this->getMsg('validation.student_fullname.required'),
         'email.required'=> $this->getMsg('validation.email.required'),
         'email.email' => $this->getMsg('validation.email.email.'),
         'email.unique'=> $this->getMsg('validation.email.unique'),
