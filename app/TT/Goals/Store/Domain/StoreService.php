@@ -100,42 +100,61 @@ class StoreService extends AbstractService
 
             $goalsMapKeys = array_keys($goalsMap);
             
-            //Check diff, if count > 0, then our csv has too many or too
-            //few valid goals
-            $diff = array_diff($goals,$goalsMapKeys);
+            //Find goals to add to goals table
+            $newGoals = array_diff($goals,$goalsMapKeys);
+            $newGoals = array_values($newGoals);
 
-            if( count($diff) > 0 )
+            if( count($newGoals) > 0 )
             {
-                throw new Exception('Goals do not match');
+                foreach($newGoals as &$newGoal)
+                {
+                    $goalName = $newGoal;
+
+                    $newGoal = array('name'=>$goalName);
+                }
+
+                DB::table('goals')->insert($newGoals);
+                $goalsMap = DB::table('goals')->lists('id','name');
             }
 
             $studentAceCodes = DB::table('students_traits')->lists('student_id','ace_code');
             $studentCreateGoals = array();
             $studentUpdateGoals = array();
-            $studentGoals = DB::table('students_goals')->lists('id','student_id');
 
             while( !feof($fileHandle) )
             {
                 $data = fgetcsv($fileHandle);
 
                 $aceCode = $data[0];
+                $studentId = isset($studentAceCodes[$aceCode]) ? intval($studentAceCodes[$aceCode]) : null;
+                $studentGoals = DB::table('students_goals')->where('student_id','=',$studentId)->get();
 
-                for($i = 1; $i < count($data); $i++)
-                {
-                    $goal = $goals[$i-1];
+                if( ! is_null($studentId) ) {
+                
+                    for($i = 1; $i < count($data); $i++)
+                    {
+                        $goal = $goals[$i-1];
 
-                    if( isset($goalsMap[$goal]) && isset($studentAceCodes[$aceCode]) ) {
+                        if( isset($goalsMap[$goal]) && isset($studentAceCodes[$aceCode]) ) {
 
-                        $goalId = intval($goalsMap[$goal]);
-                        $studentId = intval($studentAceCodes[$aceCode]);
-                        $value = $data[$i];
+                            $goalId = intval($goalsMap[$goal]);
+                            $value = $data[$i];
+                        
+                            $studentHasGoal = false;
 
-                        if( ! isset($studentGoals[$studentId]) )
-                            $studentCreateGoals[] = ['goal_id'=>$goalId,'student_id'=>$studentId,'value'=>$value];
-                        else
-                            $studentUpdateGoals[] = ['goal_id'=>$goalId,'student_id'=>$studentId,'value'=>$value];
+                            foreach($studentGoals as $studentGoal) {
+                                if( intval($studentGoal->goal_id) === $goalId) {
+                                    $studentHasGoal = true;
+                                    break;
+                                }
+                            }
+
+                            if( ! $studentHasGoal )
+                                $studentCreateGoals[] = ['goal_id'=>$goalId,'student_id'=>$studentId,'value'=>$value];
+                            else
+                                $studentUpdateGoals[] = ['goal_id'=>$goalId,'student_id'=>$studentId,'value'=>$value];
+                        }
                     }
-
                 }
             }
             
