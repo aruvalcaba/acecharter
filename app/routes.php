@@ -11,14 +11,6 @@
 |
 */
 
-/**
-Route::group(['before'=>'session','namespace' => 'TT\Controllers'],function()
-{
-    Route::post('/teacher',array('as'=>'teacher.post','uses'=>'Teacher\SignUpController@store'));
-    Route::post('/parent',array('as'=>'parent.post','uses'=>'Parent\SignUpController@store'));
-    Route::post('/pwd/reset', array('as'=>'pwd.reset.post','uses'=>'PasswordResetController@postReset'));
-});
-**/
 Route::group(['namespace'=>'TT','before'=>'logout'], function() {
     Route::get('/logout',array('as'=>'logout'));
 });
@@ -71,15 +63,11 @@ Route::group(['namespace'=>'TT','before'=>'login.parent'],function() {
     Route::get('/',array('as'=>'login.parent.get','uses'=>'Auth\Parent\Action\LoginGetAction@act'));
 });
 
-
-
-
 Route::group(['namespace' => 'TT'], function() {
-    //Route::get('/', array('as'=>'home','uses'=>'Home\Action\HomeAction@act'));
     Route::get('/unauthorized',array('as'=>'not.auth','uses'=>'Common\Action\NotAuthAction@act'));
     Route::get('/{lang}',array('as'=>'lang','uses'=>'Lang\Action\LangAction@act'));
 	Route::get('/pwd/change',array('as'=>'pwd.get','uses'=>'PWD\Action\PwdGetAction@act'));
-	Route::get('/parent/goal/{id}',array('as'=>'goal.parent.get','uses'=>'Goal\Action\GoalAction@act'));
+	Route::get('/parent/goal/{id}',array('as'=>'goal.parent.get','uses'=>'Goals\Action\GoalsAction@act'));
 
 
 	Route::post('/pwd/change', array('as'=>'pwd.post','uses'=>'PWD\Action\PwdPostAction@act'));
@@ -94,27 +82,3 @@ Route::group(['namespace' => 'TT'], function() {
     Route::post('/print-codes',array('as'=>'printcodes.teacher','uses'=>'Teacher\Codes\Action\PrintCodesAction@act'));
 });
 
-
-/**
-Route::group(['namespace' => 'TT\Controllers'],function() 
-{
-    //Route::get('/privacy', array('as'=>'privacy','uses'=>'HomeController@getPrivacy'));
-    //Route::get('/terms-of-service', array('as'=>'tos','uses'=>'HomeController@getTOS'));
-
-
-    //Route::post('/invite',array('as'=>'invite','uses'=>'WelcomeController@postInvite'));   
-});
-
-Route::group(['before' => 'auth','after' => 'nocache', 'namespace' => 'TT\Controllers'], function()
-{
-    Route::post('/print-codes',array('as'=>'print.codes','uses'=>'Teacher\StudentController@printCodes'));
-    Route::resource('activity','ActivityController');
-
-    Route::get('/activity/{id}/complete',array('as'=>'activity.complete.get','uses'=>'ActivityController@getComplete'));
-    Route::post('/activity/{id}/complete',array('as'=>'activity.complete.post','uses'=>'ActivityController@postComplete'));
-    
-    Route::get('pwd/change',array('as'=>'pwd.change.get','uses'=>'PasswordResetController@getChange'));
-    Route::post('pwd/change',array('as'=>'pwd.change.post','uses'=>'PasswordResetController@postChange'));
-
-});
-**/
