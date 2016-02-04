@@ -1,13 +1,6 @@
 $("#print_codes").click(function() {
-        var count = $("#student_count").val();
-
-        var dataString = 'count='+count;
-
         $.ajax({
-                url: "/print-codes",
-                type: "post",
-                data: dataString,
-                processData: false,
+                url: "/print/codes",
                 success: function(data) {
 
                     var response = $.parseJSON(data);
@@ -19,7 +12,15 @@ $("#print_codes").click(function() {
                 },
                 error: function(x,status,error) {
                     if( x.status == 403 )
-                        window.location.href = '/login';
+                        window.location.href = '/teacher/login';
+                    else if( x.status == 406 ) {
+                        var data = $.parseJSON(x.responseText);
+                        var messages = data.messages;
+
+                        var message = messages[0];
+
+                        alert(message);
+                    }
                     else
                         alert('Oops something went wrong on the server. Contact the admin.');
                 }

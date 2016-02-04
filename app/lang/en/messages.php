@@ -49,5 +49,6 @@ return [
 		'footer_here' => 'here',
         'roster_upload' => 'Roster has been uploaded successfully.',
         'goals_upload' => 'Goals have been uploaded successfully.',
-        'goals_not_upload' => 'Goals have failed to upload.'
+        'goals_not_upload' => 'Goals have failed to upload.',
+        'no_students' => 'No students available. Make sure admin uploads roster with your students.'
 ];

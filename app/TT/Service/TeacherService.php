@@ -54,19 +54,23 @@ class TeacherService extends AbstractService {
         }
     }
    
-    public function generateCodes(array $data) {
+    public function generateCodes() {
 
         $payload = $this->payload_factory->newInstance();
-        $form = $this->code_form_factory->newPrintCodesForm();
 
-        if( ! $form->isValid($data) ) {
-            $messages = $form->getErrors();
+        $user = Sentry::getUser();
 
-            $payload->setStatus(PayloadStatus::NOT_ACCEPTED);
-            $payload->setOutput(['response'=>['messages'=>$messages]]);
-            return $payload;
+        $students = $user->students->sortBy('last_name');
+
+        if( count($students) == 0 )
+        {
+            $message = $this->getMsg('messages.no_students');
+
+            $messages = array($message);
+            
+            return $this->not_accepted(['response'=>['messages'=>$messages]]);
         }
-        
+
         else {
             try {
                 DB::beginTransaction();
@@ -75,20 +79,21 @@ class TeacherService extends AbstractService {
                 PDF::setPrintFooter(false);
                 PDF::AddPage();
 
-                $count = (int)$data['count'];
+                $count = count($students);
                 
-                for($i = 0; $i < $count; $i++) {
-                    $code = $this->codeRepo->generateCode();
+                $studentAceCodes = DB::table('students_traits')->lists('ace_code','student_id');
 
+                for($i = 0; $i < $count; $i++) {
                     $data = array();
 
-					$user = Sentry::getUser();
-					$teacherId = $user->id;
-					$data = array_add($data,'teacher_id',$teacherId);
+                    $student = $students[$i];
 
-                    $html = View::make('pages.code')->with('code',$code)->render();
+                    $output['fullname'] = $student->fullname;
+                    $output['ace_code'] = $studentAceCodes[$student->id];
+
+                    $html = View::make('pages.code')->with('output',$output)->render();
                     
-                    if($i % 5 === 0 && $i !== 0) {
+                    if($i % 10 === 0 && $i !== 0) {
                         PDF::AddPage();
                         PDF::writeHTML($html,false,false,false,false,'L');
                     }

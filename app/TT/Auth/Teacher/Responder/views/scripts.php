@@ -133,9 +133,6 @@
                     if( messages != undefined ) {
                         
                         message = messages[0];
-                        
-
-                        //$('#signupModal').modal('hide');
 
                         var dialog = $('<div></div>').dialog({modal:true,height:'auto',title:'Alert',buttons: { Ok: function() { dialog.dialog('close'); }}});
                         dialog.html(message);

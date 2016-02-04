@@ -90,7 +90,7 @@ class StoreService extends AbstractService
         try
         {
             DB::beginTransaction();
-            
+
             $studentGroup = Sentry::findGroupByName('Student');
             $teachers = [];
             $studentIds = [];
