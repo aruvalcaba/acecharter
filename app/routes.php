@@ -68,7 +68,7 @@ Route::group(['namespace' => 'TT'], function() {
     Route::get('/{lang}',array('as'=>'lang','uses'=>'Lang\Action\LangAction@act'));
 	Route::get('/pwd/change',array('as'=>'pwd.get','uses'=>'PWD\Action\PwdGetAction@act'));
 	Route::get('/parent/goal/{id}',array('as'=>'goal.parent.get','uses'=>'Goals\Action\GoalsAction@act'));
-
+    Route::get('/print/codes',array('as'=>'printcodes.teacher','uses'=>'Teacher\Codes\Action\PrintCodesAction@act'));
 
 	Route::post('/pwd/change', array('as'=>'pwd.post','uses'=>'PWD\Action\PwdPostAction@act'));
 
@@ -79,6 +79,5 @@ Route::group(['namespace' => 'TT'], function() {
     Route::post('/teacher/login', array('as'=>'login.teacher.post','uses'=>'Auth\Teacher\Action\LoginPostAction@act'));
     Route::post('/admin/login', array('as'=>'login.admin.post','uses'=>'Auth\Admin\Action\LoginPostAction@act'));
     Route::post('/teacher',array('as'=>'teacher.post','uses'=>'Register\Teacher\Action\RegisterAction@act'));
-    Route::post('/print-codes',array('as'=>'printcodes.teacher','uses'=>'Teacher\Codes\Action\PrintCodesAction@act'));
 });
 

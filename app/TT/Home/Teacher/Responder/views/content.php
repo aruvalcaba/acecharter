@@ -163,27 +163,7 @@ You can automatically print a note home with student code using the button below
         <h2 class="modal-title" id="signupModalLabel">Student Codes
       <button type="button" class="close" data-dismiss="modal">
           <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button></h2></div>
-      <div class="modal-body">
-        <table class="table table-hover table-striped">
-          <tr><td>
-          <p>
-            <?php 
-                    echo 'How many students do you have?&nbsp;&nbsp;<input id="student_count" value="1" type="number" min="1" step"1">
-                            <br>
-                            <p>The note to parents will include information to register (website URL and special codes) 
-                            with the following message to parents.
-                            <div id="message">
-                            <hr><div class="row"><br><br></div>
-                            Dear Parent,<br><br>
-                            ACE is starting a new service called Family Link. 
-                            To register for the service, use your smartphone or computer and visit this website:</p>
-                            <br><br>
-                            <b>Website:</b> acecharter.org/family <br>
-                            
-                            </div>'; 
-            ?>
-          </p></td></tr></table>
-      </div>
+      <div class="modal-body"></div>
       <div class="modal-footer">
         <span type="button" class="btn btn-default" data-dismiss="modal">Cancel</span>
         <span id="print_codes" type="button" class="btn btn-success" >Print Codes</span>

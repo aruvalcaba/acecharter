@@ -16,15 +16,11 @@ use Sentry;
 
 use Exception;
 
-use TT\Code\CodeRepository;
-
 use TT\School\SchoolRepository;
 
 use TT\Teacher\TeacherRepository;
 
 use TT\Teacher\TeacherTraitRepository;
-
-use TT\Teacher\Codes\CodeFormFactory;
 
 use TT\Support\AbstractService;
 
@@ -41,15 +37,11 @@ class TeacherService extends AbstractService {
                                 TeacherRepository $teacherRepo, 
                                 SchoolRepository $schoolRepo, 
                                 TeacherTraitRepository $teacherTraitRepo, 
-                                CodeRepository $codeRepo, 
-                                PayloadFactory $payload_factory,
-                                CodeFormFactory $code_form_factory) {
+                                PayloadFactory $payload_factory) {
         $this->teacherRepo = $teacherRepo;
         $this->schoolRepo = $schoolRepo;
         $this->teacherTraitRepo = $teacherTraitRepo;
-        $this->codeRepo = $codeRepo;
         $this->payload_factory = $payload_factory;
-        $this->code_form_factory = $code_form_factory;
     }
 
     public function all() {
@@ -62,19 +54,23 @@ class TeacherService extends AbstractService {
         }
     }
    
-    public function generateCodes(array $data) {
+    public function generateCodes() {
 
         $payload = $this->payload_factory->newInstance();
-        $form = $this->code_form_factory->newPrintCodesForm();
 
-        if( ! $form->isValid($data) ) {
-            $messages = $form->getErrors();
+        $user = Sentry::getUser();
 
-            $payload->setStatus(PayloadStatus::NOT_ACCEPTED);
-            $payload->setOutput(['response'=>['messages'=>$messages]]);
-            return $payload;
+        $students = $user->students->sortBy('last_name');
+
+        if( count($students) == 0 )
+        {
+            $message = $this->getMsg('messages.no_students');
+
+            $messages = array($message);
+            
+            return $this->not_accepted(['response'=>['messages'=>$messages]]);
         }
-        
+
         else {
             try {
                 DB::beginTransaction();
@@ -83,23 +79,21 @@ class TeacherService extends AbstractService {
                 PDF::setPrintFooter(false);
                 PDF::AddPage();
 
-                $count = (int)$data['count'];
+                $count = count($students);
                 
+                $studentAceCodes = DB::table('students_traits')->lists('ace_code','student_id');
+
                 for($i = 0; $i < $count; $i++) {
-                    $code = $this->codeRepo->generateCode();
-
                     $data = array();
-                    $data = array_add($data,'student_code',$code);
 
-					$user = Sentry::getUser();
-					$teacherId = $user->id;
-					$data = array_add($data,'teacher_id',$teacherId);
+                    $student = $students[$i];
 
-                    $code = $this->codeRepo->create($data);
+                    $output['fullname'] = $student->fullname;
+                    $output['ace_code'] = $studentAceCodes[$student->id];
 
-                    $html = View::make('pages.code')->with('code',$code)->render();
+                    $html = View::make('pages.code')->with('output',$output)->render();
                     
-                    if($i % 5 === 0 && $i !== 0) {
+                    if($i % 10 === 0 && $i !== 0) {
                         PDF::AddPage();
                         PDF::writeHTML($html,false,false,false,false,'L');
                     }

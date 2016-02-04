@@ -1,7 +1,5 @@
 <?php namespace TT\Teacher\Codes\Action;
 
-use Input;
-
 use TT\Support\AbstractAction;
 
 use TT\Teacher\Codes\Domain\PrintCodesService;
@@ -15,9 +13,7 @@ class PrintCodesAction extends AbstractAction {
     }
 
     public function act() {
-        $data = Input::all();
-        $payload = $this->domain->printCodes($data);
-        
+        $payload = $this->domain->printCodes();
         $this->responder->setPayload($payload);
         return $this->responder->__invoke();
     }

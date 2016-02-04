@@ -9,7 +9,7 @@ class PrintCodesService extends AbstractService {
         $this->teacher_service = $teacher_service;
     }
 
-    public function printCodes(array $data) {
-        return $this->teacher_service->generateCodes($data);
+    public function printCodes() {
+        return $this->teacher_service->generateCodes();
     }
 }
