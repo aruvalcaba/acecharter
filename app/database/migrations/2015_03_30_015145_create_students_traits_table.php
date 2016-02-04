@@ -17,7 +17,6 @@ class CreateStudentsTraitsTable extends Migration {
             $table->increments('id');
             $table->integer('student_id')->unsigned();
             $table->foreign('student_id')->references('id')->on('users')->onDelete('cascade');
-			$table->string('student_code');
 		});
 	}
 

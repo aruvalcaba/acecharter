@@ -16,15 +16,11 @@ use Sentry;
 
 use Exception;
 
-use TT\Code\CodeRepository;
-
 use TT\School\SchoolRepository;
 
 use TT\Teacher\TeacherRepository;
 
 use TT\Teacher\TeacherTraitRepository;
-
-use TT\Teacher\Codes\CodeFormFactory;
 
 use TT\Support\AbstractService;
 
@@ -41,15 +37,11 @@ class TeacherService extends AbstractService {
                                 TeacherRepository $teacherRepo, 
                                 SchoolRepository $schoolRepo, 
                                 TeacherTraitRepository $teacherTraitRepo, 
-                                CodeRepository $codeRepo, 
-                                PayloadFactory $payload_factory,
-                                CodeFormFactory $code_form_factory) {
+                                PayloadFactory $payload_factory) {
         $this->teacherRepo = $teacherRepo;
         $this->schoolRepo = $schoolRepo;
         $this->teacherTraitRepo = $teacherTraitRepo;
-        $this->codeRepo = $codeRepo;
         $this->payload_factory = $payload_factory;
-        $this->code_form_factory = $code_form_factory;
     }
 
     public function all() {
@@ -89,13 +81,10 @@ class TeacherService extends AbstractService {
                     $code = $this->codeRepo->generateCode();
 
                     $data = array();
-                    $data = array_add($data,'student_code',$code);
 
 					$user = Sentry::getUser();
 					$teacherId = $user->id;
 					$data = array_add($data,'teacher_id',$teacherId);
-
-                    $code = $this->codeRepo->create($data);
 
                     $html = View::make('pages.code')->with('code',$code)->render();
                     
