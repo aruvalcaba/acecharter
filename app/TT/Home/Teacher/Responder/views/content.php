@@ -139,7 +139,8 @@ You can automatically print a note home with student code using the button below
 
                         foreach($this->goals as $goal)
                         {
-                            echo '<td style="text-align:left; vertical-align:middle">'. sprintf('%d/1',$student->goals[$goal->id]) .'</td>';
+			    $goalValue = isset($student->goals[$goal->id]) ? $student->goals[$goal->id] : 0;
+                            echo '<td style="text-align:left; vertical-align:middle">'. sprintf('%d/1',$goalValue) .'</td>';
                         }
 
                         echo '<tr>';
