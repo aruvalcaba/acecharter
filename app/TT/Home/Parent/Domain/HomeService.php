@@ -115,6 +115,13 @@ class HomeService extends AbstractService {
 				'goal_4_negative' => $this->getMsg('goals.goal_4_negative',['name'=>$name]),
 				'footer_msg' => $this->GetMsg('messages.footer_msg'),
 				'footer_here' => $this->GetMsg('messages.footer_here'),
+				'addChild_btn' => ['type'=>'button','name'=>'addChild','value'=>$this->getMsg('constants.add_child'),'attribs'=>['id'=>'addChild','class'=>'btn btn-skin','data-toggle'=>'modal','data-target'=>'#addChildModal']],
+				'add_child' => ['val' => $this->getMsg('constants.add_child')],
+				'cancel_btn' => ['type'=>'button', 'name'=>'cancel', 'value'=>$this->getMsg('constants.cancel'),'attribs'=>['class'=>'btn btn-default','data-dismiss'=>'modal']],
+				'child_btn' => ['type'=>'button', 'name'=>'add_child', 'value'=>$this->getMsg('constants.add_child'),'attribs'=>['class'=>'btn btn-success','id'=>'add_child']],
+				'student' => ['val'=>$this->getMsg('constants.student')],					
+				'code' => ['val'=>$this->getMsg('constants.code')],	
+				'student_code_input' => ['type'=>'text','name'=>'student_code','attribs'=>['maxlength'=>'6','class'=>'form-control','id'=>'student_code','placeholder'=>$this->getMsg('messages.student_code_placeholder')]],
 
 	];
 

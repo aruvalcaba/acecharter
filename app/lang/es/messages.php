@@ -44,5 +44,12 @@ return [
 		'validation_email_password' => 'Por favor, rellene correo electrónico y contraseña',
 		'validation_email' => 'Por favor, rellene correo electrónico',
 		'footer_msg' => '¿Te gusta el ACE Family Link ? ¿Cómo podemos mejorar? Enviar comentarios',
-		'footer_here' => 'aquí',	
+		'footer_here' => 'aquí',
+		'roster_upload' => 'Roster has been uploaded successfully.',
+        'goals_upload' => 'Goals have been uploaded successfully.',
+        'goals_not_upload' => 'Goals have failed to upload.',
+        'no_students' => 'No students available. Make sure admin uploads roster with your students.',
+		'add_child_fail' => 'Failed to add child',
+		'add_child_exist' => 'Child already associated with parent',
+		'add_child_success' => 'Child added successfully'	
        ];

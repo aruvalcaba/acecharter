@@ -70,6 +70,7 @@ return [
 		'mrs' => 'Mrs',
 		'ms' => 'Ms',
 		'more' => 'More Info',
-		'roster'=>'Roster'
+		'roster'=>'Roster',
+		'add_child' => 'Add Child'
 ];
 

@@ -66,5 +66,8 @@ return [
 		'mr' => 'Sr',
 		'mrs' => 'Sra',
 		'ms' => 'Sra',
+		'more' => 'More Info',
+		'roster'=>'Roster',
+		'add_child' => 'Add Child'
 
 ];
