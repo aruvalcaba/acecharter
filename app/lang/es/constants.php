@@ -68,6 +68,6 @@ return [
 		'ms' => 'Sra',
 		'more' => 'More Info',
 		'roster'=>'Roster',
-		'add_child' => 'Add Child'
+		'add_child' => 'Añadir niño'
 
 ];
