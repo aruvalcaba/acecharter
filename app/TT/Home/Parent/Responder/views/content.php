@@ -6,7 +6,8 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 	$helper->tag('div',['class'=>'container']) .
 		$helper->tag('div',['class'=>'heading-about']) .
 			$helper->tag('div',['class'=>'row col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2']) .
-				$helper->tag('h2') . $data['welcome']['val'] .'&nbsp;' . '&nbsp;' . $h($this->student->first_name) . $helper->tag('/h2') .
+				$helper->tag('h2') . $data['welcome']['val'] .'&nbsp;' . '&nbsp;' . $h($this->user->first_name) . $helper->tag('/h2') .
+				$helper->tag('div',['class'=>'row']) . $helper->input($data['addChild_btn']) . $helper->tag('/div') .	
 				$helper->tag('i',['class'=>'fa fa-2x fa-angle-down']) . $helper->tag('/i') .
 			$helper->tag('/div') .
       	$helper->tag('/div') ;
@@ -268,7 +269,35 @@ $helper->tag('div',['class'=>'modal fade','id'=>'academic_successModal','tabinde
 			$helper->tag('/div') .
 		$helper->tag('/div') .
 	$helper->tag('/div') .
+$helper->tag('/div') .
+//Add Child Model
+$helper->tag('div',['class'=>'modal fade','id'=>'addChildModal','tabindex'=>'-1','role'=>'dialog','aria-labelledby'=>'addChildModalLabel','aria-hidden'=>'true']) .
+	$helper->tag('div',['class'=>'modal-dialog']) .
+		$helper->tag('div',['class'=>'modal-content']) .
+			$helper->tag('div',['class'=>'modal-header']) .
+				$helper->tag('h2',['class'=>'modal-title','id'=>'AddChildModalLabel']) . $data['add_child']['val'] . '&nbsp;'  . 
+				$helper->input(array('type'=>'button','name'=>'close','value'=>'X','attribs'=>array('class'=>'close','data-dismiss'=>'modal'))) . 
+				$helper->tag('/h2') .
+			$helper->tag('/div') .
+			$helper->tag('div',['class'=>'modal-body','style'=>'position: static']) .
+				$helper->tag('div',['id'=>'addChild_alert','class'=>'alert alert-danger hidden','role'=>'alert']) .
+					$helper->tag('ul',['id'=>'addChild_errors']) . $helper->tag('/ul') .
+				$helper->tag('/div') .			
+				$helper->form() .
+				$helper->tag('div',['class'=>'form-group']) .
+					$helper->label($data['student']['val']. ' ' . $data['code']['val']) .
+					$helper->input($data['student_code_input']) .
+				$helper->tag('/div') .				
+				$helper->tag('div',['class'=>'modal-footer']) .
+					$helper->input($data['cancel_btn']) .
+					$helper->input($data['child_btn']) .			        	
+    			$helper->tag('/div') .
+				$helper->tag('/form') .
+			$helper->tag('/div') .
+		$helper->tag('/div') .
+    $helper->tag('/div') .	
 $helper->tag('/div') ;
+
 
 ?>
 
