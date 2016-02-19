@@ -16,20 +16,20 @@
 
 	
     
-	$("#daily_homework").click(function(){
-		 $('#dailyHomeworkModal').modal('show');
+	$("#daily_homework_23").click(function(){
+		 $('#daily_HomeworkModal_23').modal('show');
 	});
 
-	$("#daily_attendance").click(function(){
-		 $('#dailyAttendnceModal').modal('show');
+	$("#daily_attendance_23").click(function(){
+		 $('#daily_AttendnceModal_23').modal('show');
 	});
         
-	$("#behavior").click(function(){
-		 $('#behaviorModal').modal('show');
+	$("#positive_behavior_23").click(function(){
+		 $('#postive_behavior_Modal_23').modal('show');
 	});	
         
-	$("#academic_success").click(function(){
-		 $('#academicSuccessModal').modal('show');
+	$("#academic_success_23").click(function(){
+		 $('#academic_SuccessModal_23').modal('show');
 	});
 
 	$("#add_child").click(function(){

@@ -103,19 +103,14 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 </div>
 <!-- end of activity spacing -->
 <?php
+	echo $helper->tag('div',['class'=>'row col-lg-4 col-lg-offset-4 col-sm-8 col-sm-offset-2']) ;
 
-	 foreach( $this->students as $student ) { ?>
- 
-
-    <div class="row col-lg-4 col-lg-offset-4 col-sm-8 col-sm-offset-2">     
-      
-		<h4><?php echo $h($this->student->first_name) . '\'s ' . $data['progress_report']['val'] ; ?> </h4>
 	
-        <hr class="marginbot-30">
-     
-   
-      
-
+	 foreach( $this->students as $student ) { 
+		echo 		
+			$helper->tag('h4') . $h($student->first_name) . '\'s ' . $data['progress_report']['val'] . $helper->tag('/h4') .
+			$helper->tag('hr',['class'=>'marginbot-30']) ; ?>
+ 
       <table style="text-align:left" class="table-responsive table table-striped">
          <col width="25%">
         <col width="75%">
@@ -126,38 +121,87 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 				$helper->tag('td') ; 
 				if($goalValue){?>
 				
-					<button type="button" class="btn btn-success" id="<?php echo $goal->name ?>" data-toggle="modal" data-target="#<?php echo $goal->name?>Modal">							
+					<button type="button" class="btn btn-success" id="<?php echo $goal->name . '_' . $student->id ?>" data-toggle="modal" data-target="#<?php echo $goal->name?>Modal_<?php echo $student->id?>">							
                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 					</button>
 	
 				<?php
 				}else{?>
 
-					<button type="button" class="btn btn-danger" id="<?php echo $goal->name ?>" data-toggle="modal" data-target="#<?php echo $goal->name?>Modal">
+					<button type="button" class="btn btn-danger" id="<?php echo $goal->name . '_' . $student->id; ?>" data-toggle="modal" data-target="#<?php echo $goal->name?>Modal_<?php echo $student->id?>">
 					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 					</button>
 	
-				<?php } ?>
-              		
-<?php echo
+				<?php }
               
+			echo
 			$helper->tag('/td') .
 				$helper->tag('td') .
 					$data[$goal->name]['val'] .
 				$helper->tag('/td') .
-        	$helper->tag('/tr') ;
+        	$helper->tag('/tr') .
+//model
+			$helper->tag('div',['class'=>'modal fade','id'=> $goal->name . 'Modal_'.$student->id ,'tabindex'=>'-1','role'=>'dialog','aria-labelledby'=> $goal->name . 'ModalLabel','aria-hidden'=>'true']) .
+				$helper->tag('div',['class'=>'modal-dialog']) .
+					$helper->tag('div',['class'=>'modal-content']) .
+						$helper->tag('div',['class'=>'modal-header']) .
+							$helper->input(array('type'=>'button','name'=>'close','value'=>'X','attribs'=>array('class'=>'close','data-dismiss'=>'modal'))) .
+							$helper->tag('h2',['class'=>'modal-title','id'=>"'". $goal->name.'ModalLabel']) . $data[$goal->name]['val'] . $helper->tag('/h2') .
+						$helper->tag('/div') .
+						$helper->tag('div',['class'=>'modal-body']) .
+							$helper->tag('p',['class'=>'booktext']) . $data[$goal->name . '_' . $goalValue] . $helper->tag('/p') .
+				
+				
+						$helper->tag('/div') .
+						$helper->tag('div',['class'=>'modal-footer']) .
+							$helper->tag('a',['href'=>'/parent/goal/'.$goal->id]) . $helper->input($data['more']) . $helper->tag('/a') .
+							$helper->input($data['ok']) .
+						$helper->tag('/div') .
+					$helper->tag('/div') .
+				$helper->tag('/div') .
+			$helper->tag('/div') ;
 		}
-?>         
-      </table>
+	echo 
+	$helper->tag('/table') ;
+	//$helper->tag('/div') ;
+	
+	} 
+	echo
+$helper->tag('/div') .
+$helper->tag('/div') .
+$helper->tag('/div') .
+$helper->tag('/section') .
 
-     </div>
-<?php } ?>
-   
-</div>
-  
-</div>
-</div>
-</section>
+//Add Child Model
+$helper->tag('div',['class'=>'modal fade','id'=>'addChildModal','tabindex'=>'-1','role'=>'dialog','aria-labelledby'=>'addChildModalLabel','aria-hidden'=>'true']) .
+	$helper->tag('div',['class'=>'modal-dialog']) .
+		$helper->tag('div',['class'=>'modal-content']) .
+			$helper->tag('div',['class'=>'modal-header']) .
+				$helper->tag('h2',['class'=>'modal-title','id'=>'AddChildModalLabel']) . $data['add_child']['val'] . '&nbsp;'  . 
+				$helper->input(array('type'=>'button','name'=>'close','value'=>'X','attribs'=>array('class'=>'close','data-dismiss'=>'modal'))) . 
+				$helper->tag('/h2') .
+			$helper->tag('/div') .
+			$helper->tag('div',['class'=>'modal-body','style'=>'position: static']) .
+				$helper->tag('div',['id'=>'addChild_alert','class'=>'alert alert-danger hidden','role'=>'alert']) .
+					$helper->tag('ul',['id'=>'addChild_errors']) . $helper->tag('/ul') .
+				$helper->tag('/div') .			
+				$helper->form() .
+				$helper->tag('div',['class'=>'form-group']) .
+					$helper->label($data['student']['val']. ' ' . $data['code']['val']) .
+					$helper->input($data['student_code_input']) .
+				$helper->tag('/div') .				
+				$helper->tag('div',['class'=>'modal-footer']) .
+					$helper->input($data['cancel_btn']) .
+					$helper->input($data['child_btn']) .			        	
+    			$helper->tag('/div') .
+				$helper->tag('/form') .
+			$helper->tag('/div') .
+		$helper->tag('/div') .
+    $helper->tag('/div') .	
+$helper->tag('/div') ;
+
+
+?>
 
 
 <div class="modal fade" id="invitation" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">
@@ -191,184 +235,6 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
     </div>
   </div>
 </div>
-<!-- Modal -->
-<?php echo
-$helper->tag('div',['class'=>'modal fade','id'=>'daily_homeworkModal','tabindex'=>'-1','role'=>'dialog','aria-labelledby'=>'dailyHomeworkModalLabel','aria-hidden'=>'true']) .
-	$helper->tag('div',['class'=>'modal-dialog']) .
-		$helper->tag('div',['class'=>'modal-content']) .
-			$helper->tag('div',['class'=>'modal-header']) .
-				$helper->input(array('type'=>'button','name'=>'close','value'=>'X','attribs'=>array('class'=>'close','data-dismiss'=>'modal'))) .
-				$helper->tag('h2',['class'=>'modal-title','id'=>'dailyHomeworkModalLabel']) . $data['daily_homework']['val'] . $helper->tag('/h2') .
-			$helper->tag('/div') .
-			$helper->tag('div',['class'=>'modal-body']) .
-				$helper->tag('p',['class'=>'booktext']) . $data['goal_1_positive'] . $helper->tag('/p') .
-				
-				
-			$helper->tag('/div') .
-			$helper->tag('div',['class'=>'modal-footer']) .
-				$helper->tag('a',['href'=>'/parent/goal/1']) . $helper->input($data['more']) . $helper->tag('/a') .
-				$helper->input($data['ok']) .
-			$helper->tag('/div') .
-		$helper->tag('/div') .
-	$helper->tag('/div') .
-$helper->tag('/div') .
-//<!--modal-->
-$helper->tag('div',['class'=>'modal fade','id'=>'daily_attendanceModal','tabindex'=>'-1','role'=>'dialog','aria-labelledby'=>'dailyAttendanceModalLabel','aria-hidden'=>'true']) .
-	$helper->tag('div',['class'=>'modal-dialog']) .
-		$helper->tag('div',['class'=>'modal-content']) .
-			$helper->tag('div',['class'=>'modal-header']) .
-				$helper->input(array('type'=>'button','name'=>'close','value'=>'X','attribs'=>array('class'=>'close','data-dismiss'=>'modal'))) .
-				$helper->tag('h2',['class'=>'modal-title','id'=>'dailyAttendanceModalLabel']) . $data['daily_attendance']['val'] . $helper->tag('/h2') .
-			$helper->tag('/div') .
-			$helper->tag('div',['class'=>'modal-body']) .
-			$helper->tag('p',['class'=>'booktext']) . $data['goal_2_negative'] . $helper->tag('/p') .
-				
-				
-			$helper->tag('/div') .
-			$helper->tag('div',['class'=>'modal-footer']) .
-				$helper->tag('a',['href'=>'/parent/goal/2']) . $helper->input($data['more']) . $helper->tag('/a') .
-				$helper->input($data['ok']) .
-			$helper->tag('/div') .
-		$helper->tag('/div') .
-	$helper->tag('/div') .
-$helper->tag('/div') .
-//<!-- Modal -->
-$helper->tag('div',['class'=>'modal fade','id'=>'positive_behaviorModal','tabindex'=>'-1','role'=>'dialog','aria-labelledby'=>'behaviorModalLabel','aria-hidden'=>'true']) .
-	$helper->tag('div',['class'=>'modal-dialog']) .
-		$helper->tag('div',['class'=>'modal-content']) .
-			$helper->tag('div',['class'=>'modal-header']) .
-				$helper->input(array('type'=>'button','name'=>'close','value'=>'X','attribs'=>array('class'=>'close','data-dismiss'=>'modal'))) .
-				$helper->tag('h2',['class'=>'modal-title','id'=>'behaviorModalLabel']) . $data['positive_behavior']['val'] . $helper->tag('/h2') .
-			$helper->tag('/div') .
-			$helper->tag('div',['class'=>'modal-body']) .
-				$helper->tag('p',['class'=>'booktext']) . $data['goal_3_negative'] .  $helper->tag('/p') .
-				
-				
-			$helper->tag('/div') .
-			$helper->tag('div',['class'=>'modal-footer']) .
-				$helper->tag('a',['href'=>'/parent/goal/3']) . $helper->input($data['more']) . $helper->tag('/a') .
-				$helper->input($data['ok']) .
-			$helper->tag('/div') .
-		$helper->tag('/div') .
-	$helper->tag('/div') .
-$helper->tag('/div') .
-//<!-- Modal -->
-$helper->tag('div',['class'=>'modal fade','id'=>'academic_successModal','tabindex'=>'-1','role'=>'dialog','aria-labelledby'=>'academicSuccessLabel','aria-hidden'=>'true']) .
-	$helper->tag('div',['class'=>'modal-dialog']) .
-		$helper->tag('div',['class'=>'modal-content']) .
-			$helper->tag('div',['class'=>'modal-header']) .
-				$helper->input(array('type'=>'button','name'=>'close','value'=>'X','attribs'=>array('class'=>'close','data-dismiss'=>'modal'))) .
-				$helper->tag('h2',['class'=>'modal-title','id'=>'academicSuccessLabel']) . $data['academic_success']['val'] . $helper->tag('/h2') .
-			$helper->tag('/div') .
-			$helper->tag('div',['class'=>'modal-body']) .
-				$helper->tag('p',['class'=>'booktext']) . $data['goal_4_positive'] .  $helper->tag('/p') .				
-			$helper->tag('/div') .
-			$helper->tag('div',['class'=>'modal-footer']) .
-				$helper->tag('a',['href'=>'/parent/goal/4']) . $helper->input($data['more']) . $helper->tag('/a') .
-				$helper->input($data['ok']) .
-			$helper->tag('/div') .
-		$helper->tag('/div') .
-	$helper->tag('/div') .
-$helper->tag('/div') .
-//Add Child Model
-$helper->tag('div',['class'=>'modal fade','id'=>'addChildModal','tabindex'=>'-1','role'=>'dialog','aria-labelledby'=>'addChildModalLabel','aria-hidden'=>'true']) .
-	$helper->tag('div',['class'=>'modal-dialog']) .
-		$helper->tag('div',['class'=>'modal-content']) .
-			$helper->tag('div',['class'=>'modal-header']) .
-				$helper->tag('h2',['class'=>'modal-title','id'=>'AddChildModalLabel']) . $data['add_child']['val'] . '&nbsp;'  . 
-				$helper->input(array('type'=>'button','name'=>'close','value'=>'X','attribs'=>array('class'=>'close','data-dismiss'=>'modal'))) . 
-				$helper->tag('/h2') .
-			$helper->tag('/div') .
-			$helper->tag('div',['class'=>'modal-body','style'=>'position: static']) .
-				$helper->tag('div',['id'=>'addChild_alert','class'=>'alert alert-danger hidden','role'=>'alert']) .
-					$helper->tag('ul',['id'=>'addChild_errors']) . $helper->tag('/ul') .
-				$helper->tag('/div') .			
-				$helper->form() .
-				$helper->tag('div',['class'=>'form-group']) .
-					$helper->label($data['student']['val']. ' ' . $data['code']['val']) .
-					$helper->input($data['student_code_input']) .
-				$helper->tag('/div') .				
-				$helper->tag('div',['class'=>'modal-footer']) .
-					$helper->input($data['cancel_btn']) .
-					$helper->input($data['child_btn']) .			        	
-    			$helper->tag('/div') .
-				$helper->tag('/form') .
-			$helper->tag('/div') .
-		$helper->tag('/div') .
-    $helper->tag('/div') .	
-$helper->tag('/div') ;
 
 
-?>
 
-<!--
-<div class="modal fade" id="invitation" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-
-        <h2 class="modal-title" >Invitation
-      <button type="button" class="close" data-dismiss="modal">
-          <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button></h2></div>
-      <div class="modal-body"><center>
-      </center>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<div class="modal fade" id="grit" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-
-        <h2 class="modal-title" >Grit
-      <button type="button" class="close" data-dismiss="modal">
-          <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button></h2></div>
-      <div class="modal-body">
-        <p><b>
-           <span class="glyphicon glyphicon-question " aria-hidden="true"></span>&nbsp;What is grit?&nbsp;</b>
-           Grit is perseverance and passion for long-term goals. Being gritty means:<Br>
-            <ul><li>Finishing what you begin</li><li>Staying committed to your goals</li><li>
-Working hard even after experiencing failure or when you feel like quitting</li><li>
-Sticking with a project or activity for more than a few weeks</li></ul>
-</p><p>
-        <b>
-        <span class="glyphicon glyphicon-info " aria-hidden="true"></span>&nbsp;Why teach grit?</b>&nbsp;Research shows
-        that grit is predictive of achievement, e.g. gritty students are more likely to excel at school.<br>
-
-
-      </div>
-      <div class="modal-footer">
-       <button type="button" class="btn btn-success" data-dismiss="modal" data-toggle="modal"  data-target="grit2">
-        Start activity</button><a href="/parents/activity" style="color:black">Start</a>
-        <span type="button" class="btn btn-info" data-dismiss="modal">Save for later</span>
-      </div>
-   
-    </div>
-  </div>
-</div>
-
-
-<div class="modal fade" id="numbersense" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-
-        <h2 class="modal-title" >Number Sense
-      <button type="button" class="close" data-dismiss="modal">
-          <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button></h2></div>
-      <div class="modal-body"><center>
-        open
-      </center>
-      </div>
-   <div class="modal-footer">
-        <button type="button" class="btn btn-success" data-dismiss="modal" data-toggle="modal"  data-target="">Start activity</button>
-        <span type="button" class="btn btn-info" data-dismiss="modal">Save for later</span>
-      </div>
-    </div>
-  </div>
-</div>
-
--->
