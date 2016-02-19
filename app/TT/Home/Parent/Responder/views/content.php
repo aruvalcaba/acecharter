@@ -128,7 +128,7 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 				<?php
 				}else{?>
 
-					<button type="button" class="btn btn-danger" id="<?php echo $goal->name . '_' . $student->id; ?>" data-toggle="modal" data-target="#<?php echo $goal->name?>Modal_<?php echo $student->id?>">
+					<button type="button" class="btn btn-danger" id="<?php echo $goal->name . '_' . $student->id; ?>" data-toggle="modal" data-target="#<?php echo $goal->name .'_'. $student->id?>Modal">
 					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 					</button>
 	
@@ -141,7 +141,7 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 				$helper->tag('/td') .
         	$helper->tag('/tr') .
 //model
-			$helper->tag('div',['class'=>'modal fade','id'=> $goal->name . 'Modal_'.$student->id ,'tabindex'=>'-1','role'=>'dialog','aria-labelledby'=> $goal->name . 'ModalLabel','aria-hidden'=>'true']) .
+			$helper->tag('div',['class'=>'modal fade','id'=> $goal->name . "_" . $student->id . '_Modal','tabindex'=>'-1','role'=>'dialog','aria-labelledby'=> $goal->name . 'ModalLabel','aria-hidden'=>'true']) .
 				$helper->tag('div',['class'=>'modal-dialog']) .
 					$helper->tag('div',['class'=>'modal-content']) .
 						$helper->tag('div',['class'=>'modal-header']) .
