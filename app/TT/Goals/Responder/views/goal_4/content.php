@@ -9,10 +9,25 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 	$helper->tag('h2') . $data['academic_success']['val'] . $helper->tag('/h2') .
 	$helper->tag('i',['class'=>'fa fa-2x fa-angle-down']) . $helper->tag('/i') .
 	
-				$helper->tag('div',['class'=>'intro-goal']) . $data['goal_4_detail'] . $helper->tag('/div') .
-				$helper->tag('div',['class'=>'intro-goal']) . $data['goal_4_detail_2'] . $helper->tag('/div') .
+	$helper->tag('div',['class'=>'intro-goal']) . $data['goal_4_intro'] . $helper->tag('/div') .
+	
+
+		$helper->tag('div',['class'=>'text']) ;
+		if($this->goal){?>
+			<button type="button" class="btn btn-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button> <?php
+			echo $data['goal_4_positive'] ;
+		}
+		else{?>
+			<button type="button" class="btn btn-remove"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button> <?php
+			
+			echo $data['goal_4_negative']  ;
+		}		
+	
 				
-			$helper->tag('/div') .
+		echo
+		$helper->tag('/div') .
+				
+	$helper->tag('/div') .
 	$helper->tag('/div') .	
 	$helper->tag('/div') .
 $helper->tag('/section') .

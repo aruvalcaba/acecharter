@@ -122,6 +122,7 @@ class HomeService extends AbstractService {
 				'student' => ['val'=>$this->getMsg('constants.student')],					
 				'code' => ['val'=>$this->getMsg('constants.code')],	
 				'student_code_input' => ['type'=>'text','name'=>'student_code','attribs'=>['maxlength'=>'6','class'=>'form-control','id'=>'student_code','placeholder'=>$this->getMsg('messages.student_code_placeholder')]],
+				'studentCodeText' => ['val'=>$this->getMsg('messages.student_code_text')],
 
 	];
 

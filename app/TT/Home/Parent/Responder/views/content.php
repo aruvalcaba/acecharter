@@ -7,7 +7,7 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 		$helper->tag('div',['class'=>'heading-about']) .
 			$helper->tag('div',['class'=>'row col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2']) .
 				$helper->tag('h2') . $data['welcome']['val'] .'&nbsp;' . '&nbsp;' . $h($this->user->first_name) . $helper->tag('/h2') .
-				$helper->tag('div',['class'=>'row']) . $helper->input($data['addChild_btn']) . $helper->tag('/div') .	
+				
 				$helper->tag('i',['class'=>'fa fa-2x fa-angle-down']) . $helper->tag('/i') .
 			$helper->tag('/div') .
       	$helper->tag('/div') ;
@@ -104,7 +104,10 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 <!-- end of activity spacing -->
 <?php
 	echo $helper->tag('div',['class'=>'row col-lg-4 col-lg-offset-4 col-sm-8 col-sm-offset-2']) ;
-
+	$studentcount = count($this->students);
+	if(count($this->students)>1){
+		
+	}
 	
 	 foreach( $this->students as $student ) { 
 		echo 		
@@ -119,54 +122,41 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 		$goalValue = isset($student->goals[$goal->id]) ? $student->goals[$goal->id] : 0;
 		echo $helper->tag('tr') .
 				$helper->tag('td') ; 
-				if($goalValue){?>
+				if($goalValue){
 				
-					<button type="button" class="btn btn-success" id="<?php echo $goal->name . '_' . $student->id ?>" data-toggle="modal" data-target="#<?php echo $goal->name?>Modal_<?php echo $student->id?>">							
+					echo $helper->tag('a',['href'=>'/parent/goal/'.$goal->id]);?>
+					<button type="button" class="btn btn-success" id="<?php echo $goal->name . '_' . $student->id ?>" >							
                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 					</button>
 	
 				<?php
-				}else{?>
+				echo $helper->tag('/a');
+				}else{
+					echo $helper->tag('a',['href'=>'/parent/goal/'.$goal->id]);?>
 
-					<button type="button" class="btn btn-danger" id="<?php echo $goal->name . '_' . $student->id; ?>" data-toggle="modal" data-target="#<?php echo $goal->name .'_'. $student->id?>Modal">
+					<button type="button" class="btn btn-danger" id="<?php echo $goal->name . '_' . $student->id; ?>">
 					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 					</button>
 	
-				<?php }
+				<?php 
+					echo $helper->tag('/a');
+				}
               
 			echo
 			$helper->tag('/td') .
 				$helper->tag('td') .
 					$data[$goal->name]['val'] .
 				$helper->tag('/td') .
-        	$helper->tag('/tr') .
-//model
-			$helper->tag('div',['class'=>'modal fade','id'=> $goal->name . "_" . $student->id . '_Modal','tabindex'=>'-1','role'=>'dialog','aria-labelledby'=> $goal->name . 'ModalLabel','aria-hidden'=>'true']) .
-				$helper->tag('div',['class'=>'modal-dialog']) .
-					$helper->tag('div',['class'=>'modal-content']) .
-						$helper->tag('div',['class'=>'modal-header']) .
-							$helper->input(array('type'=>'button','name'=>'close','value'=>'X','attribs'=>array('class'=>'close','data-dismiss'=>'modal'))) .
-							$helper->tag('h2',['class'=>'modal-title','id'=>"'". $goal->name.'ModalLabel']) . $data[$goal->name]['val'] . $helper->tag('/h2') .
-						$helper->tag('/div') .
-						$helper->tag('div',['class'=>'modal-body']) .
-							$helper->tag('p',['class'=>'booktext']) . $data[$goal->name . '_' . $goalValue] . $helper->tag('/p') .
-				
-				
-						$helper->tag('/div') .
-						$helper->tag('div',['class'=>'modal-footer']) .
-							$helper->tag('a',['href'=>'/parent/goal/'.$goal->id]) . $helper->input($data['more']) . $helper->tag('/a') .
-							$helper->input($data['ok']) .
-						$helper->tag('/div') .
-					$helper->tag('/div') .
-				$helper->tag('/div') .
-			$helper->tag('/div') ;
+        	$helper->tag('/tr') ;
+
 		}
 	echo 
 	$helper->tag('/table') ;
-	//$helper->tag('/div') ;
+	
 	
 	} 
 	echo
+	$helper->tag('div',['class'=>'row']) . $data['studentCodeText']['val'] . '  ' . $helper->input($data['addChild_btn']) . $helper->tag('/div') .	
 $helper->tag('/div') .
 $helper->tag('/div') .
 $helper->tag('/div') .
