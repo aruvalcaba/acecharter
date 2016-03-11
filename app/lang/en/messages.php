@@ -53,5 +53,6 @@ return [
         'no_students' => 'No students available. Make sure admin uploads roster with your students.',
 		'add_child_fail' => 'Failed to add child',
 		'add_child_exist' => 'Child already associated with parent',
-		'add_child_success' => 'Child added successfully'
+		'add_child_success' => 'Child added successfully',
+		'student_code_text' => 'Add more Student Code'
 ];
