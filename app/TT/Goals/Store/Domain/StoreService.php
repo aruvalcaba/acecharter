@@ -91,20 +91,27 @@ class StoreService extends AbstractService
 
             $fileHandle = fopen($path,'r');
             $data = fgetcsv($fileHandle); //skip first line
-
-            for($i = 1; $i < count($data); $i++) {
-                $goals[] = GoalHelper::format($data[$i]);
+			
+			//for goal names only
+            for($i = 1; $i < 5; $i++) {
+                $goalsNames[] = GoalHelper::format($data[$i]);
             }
+			//for all goal data
+			for($i = 1; $i < count($data); $i++) {
+                $goals[] = GoalHelper::format($data[$i]);
+            }			
 
             $goalsMap = DB::table('goals')->lists('id','name');
 
             $goalsMapKeys = array_keys($goalsMap);
             
             //Find goals to add to goals table
-            $newGoals = array_diff($goals,$goalsMapKeys);
+            $newGoals = array_diff($goalsNames,$goalsMapKeys);
             $newGoals = array_values($newGoals);
 
-            if( count($newGoals) > 0 )
+			// comment - no future change in goal table
+
+            /*if( count($newGoals) > 0 )
             {
                 foreach($newGoals as &$newGoal)
                 {
@@ -116,6 +123,7 @@ class StoreService extends AbstractService
                 DB::table('goals')->insert($newGoals);
                 $goalsMap = DB::table('goals')->lists('id','name');
             }
+			*/
 
             $studentAceCodes = DB::table('students_traits')->lists('student_id','ace_code');
             $studentCreateGoals = array();
@@ -126,6 +134,9 @@ class StoreService extends AbstractService
                 $data = fgetcsv($fileHandle);
 
                 $aceCode = $data[0];
+
+				
+				
                 $studentId = isset($studentAceCodes[$aceCode]) ? intval($studentAceCodes[$aceCode]) : null;
                 $studentGoals = DB::table('students_goals')->where('student_id','=',$studentId)->get();
 
@@ -148,6 +159,8 @@ class StoreService extends AbstractService
                                     break;
                                 }
                             }
+
+							
 
                             if( ! $studentHasGoal )
                                 $studentCreateGoals[] = ['goal_id'=>$goalId,'student_id'=>$studentId,'value'=>$value];

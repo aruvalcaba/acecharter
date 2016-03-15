@@ -27,6 +27,7 @@ return [
 		'daily_attendance' => 'Daily Attendance',
 		'daily_homework' => 'Daily Homework',
 		'positive_behavior' => 'Positive Behavior',
+		'punctuality' => 'Punctuality',
 		'growth_mindset' => 'Growth Mindset',
 		'academic_success' => 'Academic Success',
 		'academic_achievement_ela' => 'Academic Achievement ELA',

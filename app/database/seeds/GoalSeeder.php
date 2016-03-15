@@ -13,7 +13,7 @@ class GoalSeeder extends Seeder {
     {
         $this->command->info('Importing goals...');
 
-        $goals = ['Positive Behavior','Daily Attendance','Daily Homework'];
+        $goals = ['Academic Success','Daily Attendance','Punctuality','Positive Behavior'];
 
         foreach($goals as $goal) 
         {

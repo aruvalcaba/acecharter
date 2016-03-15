@@ -65,6 +65,11 @@
         });
     });
 
+	$("select").change(function(){
+		
+		window.location.href = '/parent/home?studentid=' + this.value
+	});
+
 
 
 

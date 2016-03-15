@@ -1,6 +1,7 @@
 <?php
 $data = $this->data;
 $activities = $this->acts;
+
 echo
 $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 	$helper->tag('div',['class'=>'container']) .
@@ -14,6 +15,8 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 	 
 
 	 include (sprintf('%s/views/base/%s',app_path(),'alerts.php'));
+
+
 
 	//<!-- start of activity box -->
 
@@ -104,12 +107,26 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 <!-- end of activity spacing -->
 <?php
 	echo $helper->tag('div',['class'=>'row col-lg-4 col-lg-offset-4 col-sm-8 col-sm-offset-2']) ;
+
+	//students dropdown
+	
 	$studentcount = count($this->students);
 	if(count($this->students)>1){
+		$select = $helper->input(array('type'=>'select','name'=>'student','attribs'=>array('id'=>'student','class'=>'form-group'))) ;
+		$select->option('','Select Student');
+		foreach( $this->students as $student ) { 
+			$select->option($student->id,$student->first_name);
+		}
+		echo $select;
 		
 	}
+	//selected Student Id
+	$selectedStudentId = isset($_REQUEST['studentid']) ? $_REQUEST['studentid'] : $this->students[0]->id;
 	
 	 foreach( $this->students as $student ) { 
+		
+	
+		if($student->id == $selectedStudentId){
 		echo 		
 			$helper->tag('h4') . $h($student->first_name) . '\'s ' . $data['progress_report']['val'] . $helper->tag('/h4') .
 			$helper->tag('hr',['class'=>'marginbot-30']) ; ?>
@@ -124,7 +141,7 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 				$helper->tag('td') ; 
 				if($goalValue){
 				
-					echo $helper->tag('a',['href'=>'/parent/goal/'.$goal->id]);?>
+					echo $helper->tag('a',['href'=>'/parent/goal/'.$goal->id.'?studentid='.$selectedStudentId]);?>
 					<button type="button" class="btn btn-success" id="<?php echo $goal->name . '_' . $student->id ?>" >							
                 <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 					</button>
@@ -132,7 +149,7 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 				<?php
 				echo $helper->tag('/a');
 				}else{
-					echo $helper->tag('a',['href'=>'/parent/goal/'.$goal->id]);?>
+					echo $helper->tag('a',['href'=>'/parent/goal/'.$goal->id.'?studentid='.$selectedStudentId]);?>
 
 					<button type="button" class="btn btn-danger" id="<?php echo $goal->name . '_' . $student->id; ?>">
 					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
@@ -150,13 +167,13 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
         	$helper->tag('/tr') ;
 
 		}
+		}
 	echo 
-	$helper->tag('/table') ;
-	
+	$helper->tag('/table') ;	
 	
 	} 
 	echo
-	$helper->tag('div',['class'=>'row']) . $data['studentCodeText']['val'] . '  ' . $helper->input($data['addChild_btn']) . $helper->tag('/div') .	
+	$helper->tag('div',['class'=>'row']) . $helper->input($data['addChild_btn']) . $helper->tag('/div') .	
 $helper->tag('/div') .
 $helper->tag('/div') .
 $helper->tag('/div') .

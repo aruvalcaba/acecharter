@@ -21,7 +21,7 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 			echo $data['goal_2_positive'] ;
 		}
 		else{?>
-			<button type="button" class="btn btn-remove"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button> <?php
+			<button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button> <?php
 			
 			echo $data['goal_2_negative']  ;
 		}		

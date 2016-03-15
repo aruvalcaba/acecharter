@@ -103,6 +103,7 @@ class HomeService extends AbstractService {
 				'academic_achievement_math' => ['val' => $this->getMsg('constants.academic_achievement_math')],
 				'ela_proficiency' => ['val' => $this->getMsg('constants.ela_proficiency')],
 				'math_proficiency' => ['val' => $this->getmsg('constants.math_proficiency')],
+				'punctuality' => ['val' => $this->getMsg('constants.punctuality')],
 				'ok' => ['type'=>'button','name'=>'ok','value'=>$this->getMsg('constants.ok'),'attribs'=>['class'=>'btn btn-success','data-dismiss'=>'modal']],
 				'more' => ['type'=>'button','name'=>'more','value'=>$this->getMsg('constants.more'),'attribs'=>['class'=>'btn btn-info']],
 				'positive_behavior_1' => $this->getMsg('goals.positive_behavior_positive',['name'=>$name]),

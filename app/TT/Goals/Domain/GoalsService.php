@@ -4,6 +4,8 @@ use DB;
 
 use Sentry;
 
+use Request;
+
 use Aura\Payload\PayloadFactory;
 
 use Aura\Payload_Interface\PayloadStatus;
@@ -11,6 +13,8 @@ use Aura\Payload_Interface\PayloadStatus;
 use TT\Support\AbstractService;
 
 use Aura\Payload\Payload;
+
+
 
 class GoalsService extends AbstractService {
     public function __construct(PayloadFactory $payload_factory ) {
@@ -23,18 +27,19 @@ class GoalsService extends AbstractService {
 		if($id!=="") { 
 
 			//get goals
-			$goal = DB::table('goals')->where('id','=',$id)->get();
-			
-            
+			$goal = DB::table('goals')->where('id','=',$id)->get();            
 
-			$output['goal_id'] = $id;           
+			$output['goal_id'] = $id; 
+
+			$selectedStudentId = Request::input('studentid');			
+          
             $payload->setStatus(PayloadStatus::SUCCESS);
 			 if(Sentry::check() ) {
 					$user = Sentry::getUser();
 					$students = $user->students;
 					
-					$studentId = $students[0]->id;
-					
+					$studentId = isset($selectedStudentId) ? $selectedStudentId : $students[0]->id;
+
 					$studentGoal = DB::table('students_goals')->where('student_id',$studentId)->where('goal_id',$id)->select(['student_id','goal_id','value'])->get();
 
 					$output['goal'] = $studentGoal[0]->value;
@@ -52,8 +57,11 @@ class GoalsService extends AbstractService {
     }
 
     public function getData() {
-		$user = Sentry::getUser();
-		$name = $user->students[0]->first_name;
+		
+		//get selected student name 
+		$selectedStudentId = Request::input('studentid');		
+		$student = DB::table('users')->where('id',$selectedStudentId)->select(['first_name'])->get();
+		$name = $student[0]->first_name;
         return [
 				'ace_family_link' => ['val' =>$this->getMsg('constants.ace_family_link')],
 				'parents' => ['val'=>$this->getMsg('constants.parents')],
@@ -76,6 +84,7 @@ class GoalsService extends AbstractService {
 				'daily_attendance' => ['val' => $this->getMsg('constants.daily_attendance')],
 				'daily_homework' => ['val' => $this->getMsg('constants.daily_homework')],
 				'positive_behavior' => ['val' => $this->getMsg('constants.positive_behavior')],
+				'punctuality' => ['val' => $this->getMsg('constants.punctuality')],
 				'academic_success' => ['val' => $this->getMsg('constants.academic_success')],
 				'footer_msg' => $this->GetMsg('messages.footer_msg'),
 				'footer_here' => $this->GetMsg('messages.footer_here'),
