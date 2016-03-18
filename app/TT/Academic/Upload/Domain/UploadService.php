@@ -1,4 +1,4 @@
-<?php namespace TT\Goals\Upload\Domain;
+<?php namespace TT\Academic\Upload\Domain;
 
 use Input;
 
@@ -35,10 +35,10 @@ class UploadService extends AbstractService
                 'changed_pwd' => $this->getMsg('constants.change_password'),
                 'logout' => $this->getMsg('logout'),
                 'create_btn' => ['type'=>'submit','name'=>'create','value'=>$this->getMsg('constants.create'),'attribs'=>['id'=>'create','class'=>'btn btn-skin']],
-                'cancel_btn' => ['type'=>'button','name'=>'cancel','value'=>$this->getMsg('constants.cancel'),'attribs'=>['id'=>'cancel','class'=>'btn btn-skin','data-dismiss'=>'cancel']],
+				'cancel_btn' => ['type'=>'button','name'=>'cancel','value'=>$this->getMsg('constants.cancel'),'attribs'=>['id'=>'cancel', 'class'=>'btn btn-skin','data-dismiss'=>'cancel']],
                 'hidden_input'=>['type'=>'hidden','name'=>'_token','value'=> csrf_token()],
-                'goals_label'=>['val'=>$this->getMsg('constants.goals')],
-                'goals_input'=>['type'=>'file','name'=>'goals','attribs'=>['class'=>'form-control','id'=>'goals','accept'=>'.csv']]
+                'academic_label'=>['val'=>$this->getMsg('constants.academic')],
+                'academic_input'=>['type'=>'file','name'=>'academic','attribs'=>['class'=>'form-control','id'=>'academic','accept'=>'.csv']]
                ];
     }
 }

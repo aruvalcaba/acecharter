@@ -46,6 +46,11 @@ Route::group(['namespace'=>'TT','before'=>'auth.admin'],function() {
     Route::get('/goals/upload',array('as'=>'goals.upload.show','uses'=>'Goals\Upload\Action\UploadAction@act'));
     Route::post('/goals/upload',array('as'=>'goals.upload.store','uses'=>'Goals\Store\Action\StoreAction@act'));
 
+	// Upload Academic Goals
+    Route::get('/academic/upload',array('as'=>'academic.upload.show','uses'=>'Academic\Upload\Action\UploadAction@act'));
+    Route::post('/academic/upload',array('as'=>'academic.upload.store','uses'=>'Academic\Store\Action\StoreAction@act'));
+
+
 });
 
 Route::group(['namespace'=>'TT','before'=>'login.parent'], function() {

@@ -72,6 +72,7 @@ return [
 		'ms' => 'Ms',
 		'more' => 'More Info',
 		'roster'=>'Roster',
-		'add_child' => 'Add Student Code'
+		'add_child' => 'Add Student Code',
+		'academic' => 'Academic Goals'
 ];
 

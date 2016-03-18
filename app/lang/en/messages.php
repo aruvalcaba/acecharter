@@ -54,5 +54,9 @@ return [
 		'add_child_fail' => 'Failed to add child',
 		'add_child_exist' => 'Child already associated with parent',
 		'add_child_success' => 'Child added successfully',
-		'student_code_text' => 'Add more Student Code'
+		'student_code_text' => 'Add more Student Code',
+		'academic_goals_upload' => 'Academic Goals have been uploaded successfully.',
+        'academic_goals_not_upload' => 'Academic Goals have failed to upload.',
+		'upload_academic_goals'=>'Upload Academic Goals',
+        
 ];
