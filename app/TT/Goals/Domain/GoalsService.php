@@ -42,6 +42,8 @@ class GoalsService extends AbstractService {
 
 					$studentGoal = DB::table('students_goals')->where('student_id',$studentId)->where('goal_id',$id)->select(['student_id','goal_id','value'])->get();
 
+					
+
 					$output['goal'] = $studentGoal[0]->value;
 
 					

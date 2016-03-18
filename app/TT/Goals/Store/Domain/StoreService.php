@@ -139,7 +139,7 @@ class StoreService extends AbstractService
 				
                 $studentId = isset($studentAceCodes[$aceCode]) ? intval($studentAceCodes[$aceCode]) : null;
                 $studentGoals = DB::table('students_goals')->where('student_id','=',$studentId)->get();
-
+				
                 if( ! is_null($studentId) ) {
                 
                     for($i = 1; $i < count($data); $i++)
