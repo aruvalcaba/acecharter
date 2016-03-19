@@ -95,47 +95,52 @@ class StoreService extends AbstractService
             $studentUpdateGoals = array();
 			
                             
-                    for($i = 1; $i < count($data); $i++)
+            for($i = 1; $i < count($data); $i++)
                     {
-						$values = $data[$i];
+				$values = $data[$i];
 						
-  						$aceCode = isset($values['7']) ? $values[7] : null;
-												
-						$studentId = isset($studentAceCodes[$aceCode]) ? intval($studentAceCodes[$aceCode]) : null;
-											
-						$grade = isset($values['2']) ? $values[2] : null;
-						$percentage = isset($values['3']) ? $values[3] : null;
-						$course = isset($values['4']) ? $values[4] : null;
-						$teacher = isset($values['5']) ? $values[5] : null;					
+  				$aceCode = isset($values['7']) ? $values[7] : null;
+
+																		
+				$studentId = isset($studentAceCodes[$aceCode]) ? intval($studentAceCodes[$aceCode]) : null;
+														
+				$grade = isset($values['2']) ? $values[2] : null;
+				$percentage = isset($values['3']) ? $values[3] : null;
+				$course = isset($values['4']) ? $values[4] : null;
+				$teacher = isset($values['5']) ? $values[5] : null;					
 						
-						$studentAcademicGoals = DB::table('academic_goals')->where('student_id','=',$studentId)->get();
+						//$studentAcademicGoals = DB::table('academic_goals')->where('student_id','=',$studentId)->get();
 
-                        $studentHasGoal = false;
+                       // $studentHasGoal = false;
 						
-						if(! is_null($studentId)){
-
-                        foreach($studentAcademicGoals as $studentAcademicGoal) {
-                       		if( intval($studentAcademicGoal->student_id) === $studentId) {
-                                    $studentHasGoal = true;
-                                    break;
-                                }
-                            }
-
+				if(! is_null($studentId)){
+//dd($studentId);		
+                        //foreach($studentAcademicGoals as $studentAcademicGoal) {
+                       	//	if( intval($studentAcademicGoal->student_id) === $studentId) {
+                              //      $studentHasGoal = true;
+                         //           break;
+                         //       }
+                           // }
+		
 							
 
-                            if( ! $studentHasGoal )
-                                $studentCreateGoals[] = ['student_id'=>$studentId,'grade'=>$grade,'percentage'=>$percentage,'course'=>$course,'teacher_name'=>$teacher];
-                            else
-                                $studentUpdateGoals[] = ['student_id'=>$studentId,'grade'=>$grade,'percentage'=>$percentage,'course'=>$course,'teacher_name'=>$teacher];
+                          //  if( ! $studentHasGoal )
+                $studentCreateGoals[] = ['student_id'=>$studentId,'grade'=>$grade,'percentage'=>$percentage,'course'=>$course,'teacher_name'=>$teacher];
+                           // else
+                           //     $studentUpdateGoals[] = ['student_id'=>$studentId,'grade'=>$grade,'percentage'=>$percentage,'course'=>$course,'teacher_name'=>$teacher];
                         
-                   		 }
-					}
+                }
+			}
             
             
-			if( count($studentCreateGoals) > 0 ) 
+			if( count($studentCreateGoals) > 0 ){
+	
+				DB::table('academic_goals')->truncate();
+			
                 DB::table('academic_goals')->insert($studentCreateGoals);
+			}
             
-            if( count($studentUpdateGoals) > 0 ) {
+           /* if( count($studentUpdateGoals) > 0 ) {
 
                 foreach($studentUpdateGoals as $studentUpdateGoal)
                 {
@@ -144,7 +149,7 @@ class StoreService extends AbstractService
                     //REALLY INEFFICIENT
                     DB::table('academic_goals')->where('student_id','=',$studentId)->update($studentUpdateGoal);
                 }
-            }
+            }*/
 
             DB::commit();
             

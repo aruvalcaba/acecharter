@@ -42,7 +42,12 @@ class GoalsService extends AbstractService {
 
 					$studentGoal = DB::table('students_goals')->where('student_id',$studentId)->where('goal_id',$id)->select(['student_id','goal_id','value'])->get();
 
+					//get Academic Goal Data for Student Id
+					$studentAcademicGoals = DB::table('academic_goals')->where('student_id',$studentId)->get();
 					
+
+					$output['academicGoals'] = $studentAcademicGoals;
+
 
 					$output['goal'] = $studentGoal[0]->value;
 
@@ -90,6 +95,10 @@ class GoalsService extends AbstractService {
 				'academic_success' => ['val' => $this->getMsg('constants.academic_success')],
 				'footer_msg' => $this->GetMsg('messages.footer_msg'),
 				'footer_here' => $this->GetMsg('messages.footer_here'),
+				'course' => ['val'=>$this->getMsg('constants.course')],
+				'teacher' => ['val'=>$this->getMsg('constants.teacher')],
+				'percentage' => ['val'=>$this->getMsg('constants.percentage')],
+				'grade' => ['val'=>$this->getMsg('constants.grade')],
             ];
     }
 }
