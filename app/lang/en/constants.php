@@ -73,6 +73,9 @@ return [
 		'more' => 'More Info',
 		'roster'=>'Roster',
 		'add_child' => 'Add Student Code',
-		'academic' => 'Academic Goals'
+		'academic' => 'Academic Goals',
+		'course' => 'Course',
+		'percentage' => 'Percentage',
+		'grade' => 'Grade'
 ];
 

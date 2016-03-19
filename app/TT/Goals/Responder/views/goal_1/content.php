@@ -11,10 +11,10 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 
 	$helper->tag('div',['class'=>'intro-goal']) . $data['goal_1_intro'] . $helper->tag('/div') .
 
-	$helper->tag('div') . '&nbsp;' .$helper->tag('/div') .
+	$helper->tag('div',['class'=>'row']) . '&nbsp;' .$helper->tag('/div') .
 	
 
-		$helper->tag('div',['class'=>'text']) ;
+		$helper->tag('div',['class'=>'row']) ;
 		if($this->goal){?>
 			<button type="button" class="btn btn-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button> <?php
 			echo $data['goal_1_positive'] ;
@@ -28,6 +28,39 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 				
 		echo
 		$helper->tag('/div') .
+		$helper->tag('div',['class'=>'row']) . '&nbsp;' .$helper->tag('/div') .
+		//show table 
+		$helper->tag('div',['class'=>'row']) .		
+		$helper->tag('div',['id'=>'dispData','class'=>'container-fluid']) ; ?>
+		
+		<table class="table table-bordered sttable table-condensed">
+			<thead>
+				<tr><?php
+					echo '<th style="vertical-align:bottom">' . $data['course']['val'] . '</th>';
+					echo '<th style="vertical-align:bottom">' . $data['teacher']['val'] . '</th>';
+					echo '<th style="vertical-align:bottom">' . $data['percentage']['val'] . '</th>';
+					echo '<th style="vertical-align:bottom">' . $data['grade']['val'] . '</th>';
+					?>				       
+        		</tr>
+			</thead>
+			<tbody >
+                <?php               
+                    foreach( $this->academicGoals as $academicGoal ) { 
+                        echo '<tr>';
+                       
+                            echo '<td style="text-align:left; vertical-align:middle">'. $academicGoal->course .'</td>';
+                       		echo '<td style="text-align:left; vertical-align:middle">'.$academicGoal->teacher_name .'</td>';
+							echo '<td style="text-align:left; vertical-align:middle">'. $academicGoal->percentage .'</td>';
+                       		echo '<td style="text-align:left; vertical-align:middle">'. $academicGoal->grade.'</td>';
+							
+                        echo '<tr>';
+                    }?>
+        	</tbody>
+    	</table> <?php echo
+
+	$helper->tag('/div') .	
+	$helper->tag('/div') . 
+
 	$helper->tag('/div') .
 	$helper->tag('/div') .	
 	$helper->tag('/div') .
