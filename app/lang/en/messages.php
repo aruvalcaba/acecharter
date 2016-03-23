@@ -58,5 +58,9 @@ return [
 		'academic_goals_upload' => 'Academic Goals have been uploaded successfully.',
         'academic_goals_not_upload' => 'Academic Goals have failed to upload.',
 		'upload_academic_goals'=>'Upload Academic Goals',
+		'upload_daily_attendance_goals'=>'Upload Daily Attendance Goals',
+		'daily_attendance_goals_upload' => 'Daily Attendance Goals have been uploaded successfully.',
+        'daily_attendance_goals_not_upload' => 'Daily Attendance Goals have failed to upload.',
+		
         
 ];

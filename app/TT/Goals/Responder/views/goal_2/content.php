@@ -15,7 +15,7 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 	$helper->tag('div') . '&nbsp;' .$helper->tag('/div') .
 	
 
-		$helper->tag('div',['class'=>'text']) ;
+		$helper->tag('div',['class'=>'row']) ;
 		if($this->goal){?>
 			<button type="button" class="btn btn-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button> <?php
 			echo $data['goal_2_positive'] ;
@@ -29,7 +29,8 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 				
 		echo
 		$helper->tag('/div') .
-		
+
+				
 	$helper->tag('/div') .
 	$helper->tag('/div') .	
 	$helper->tag('/div') .
