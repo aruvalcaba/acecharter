@@ -42,16 +42,23 @@ class GoalsService extends AbstractService {
 
 					$studentGoal = DB::table('students_goals')->where('student_id',$studentId)->where('goal_id',$id)->select(['student_id','goal_id','value'])->get();
 
+					$output['goal'] = $studentGoal[0]->value;
+
 					//get Academic Goal Data for Student Id
-					$studentAcademicGoals = DB::table('academic_goals')->where('student_id',$studentId)->get();
-					
+					$studentAcademicGoals = DB::table('academic_goals')->where('student_id',$studentId)->get();					
 
 					$output['academicGoals'] = $studentAcademicGoals;
 
-
-					$output['goal'] = $studentGoal[0]->value;
-
+					//get Daily Attendance Goals data for Student Id
+					$studentDailyAttendance = DB::table('daily_attendance_goals')->where('student_id',$studentId)->first();
+					$schoolId = $studentDailyAttendance->school_id;
+					$output['studentDailyAttendance'] = $studentDailyAttendance;
 					
+					//get average of school
+					$SchoolAverage = DB::table('daily_attendance_goals')->where('school_id',$schoolId)->avg('attendance');
+					
+					$output['SchoolAverage'] = $SchoolAverage;
+										
                     $output['user'] = $user;
                 }
 				
@@ -80,7 +87,7 @@ class GoalsService extends AbstractService {
 				'goal_1_negative' => $this->GetMsg('goals.goal_1_negative',['name'=>$name]),
 				'goal_2_intro' => $this->getMsg('goals.goal_2_intro'),
 				'goal_2_positive' => $this->getMsg('goals.goal_2_positive',['name'=>$name]),
-				'goal_2_negative' => $this->GetMsg('goals.goal_2_negative',['name'=>'Neeru']),				
+				'goal_2_negative' => $this->GetMsg('goals.goal_2_negative',['name'=>$name]),				
 				'goal_3_intro' => $this->getMsg('goals.goal_3_intro'),
 				'goal_3_positive' => $this->getMsg('goals.goal_3_positive',['name'=>$name]),
 				'goal_3_negative' => $this->GetMsg('goals.goal_3_negative',['name'=>$name]),
