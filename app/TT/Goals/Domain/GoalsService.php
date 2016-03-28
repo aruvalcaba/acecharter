@@ -14,11 +14,14 @@ use TT\Support\AbstractService;
 
 use Aura\Payload\Payload;
 
+use Khill\Lavacharts\Lavacharts;
+
 
 
 class GoalsService extends AbstractService {
-    public function __construct(PayloadFactory $payload_factory ) {
+    public function __construct(PayloadFactory $payload_factory) {
         $this->payload_factory = $payload_factory;
+		
     }
 
     public function goal($id) {
@@ -60,6 +63,30 @@ class GoalsService extends AbstractService {
 					$output['SchoolAverage'] = $SchoolAverage;
 										
                     $output['user'] = $user;
+					
+					$studentAttendance = $studentDailyAttendance->attendance;
+
+					//dd($SchoolAverage);
+
+					// Attendance Chart 
+					$lava = new Lavacharts;
+					$attendance = $lava->DataTable();
+					$attendance->addStringColumn('Student')
+					 ->addNumberColumn('No Of Classes Missed')
+					 ->addRow(['Student Name', $studentAttendance])
+					 ->addRow(['Average Student', $SchoolAverage]);
+
+					$lava->ColumnChart('Attendance', $attendance, [
+    					'title' => 'Attendance',
+						'vAxis' => ['title' =>'No Of Classes Missed'],
+						'titleTextStyle' => [
+        				'color'    => '#eb6b2c',
+        				'fontSize' => 14
+    					]
+					]);
+						
+					$output['lavac'] = $lava;
+	
                 }
 				
 			$output['data'] = $this->getData();

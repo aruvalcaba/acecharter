@@ -1,5 +1,6 @@
 <?php 
 $data = $this->data;
+//dd($this->lavac);
 echo 
 $helper->tag('main') .
 $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
@@ -24,8 +25,12 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 			<button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button> <?php
 			
 			echo $data['goal_2_negative']  ;
-		}		
+		}	?>	
 	
+<div id="perf_div"></div><?php
+echo $this->lavac->render('ColumnChart', 'Attendance', 'perf_div');
+//dd($this->lava);
+
 				
 		echo
 		$helper->tag('/div') .
