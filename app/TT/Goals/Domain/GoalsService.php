@@ -43,6 +43,12 @@ class GoalsService extends AbstractService {
 					
 					$studentId = isset($selectedStudentId) ? $selectedStudentId : $students[0]->id;
 
+					//get selected student name 
+					$student = DB::table('users')->where('id',$studentId)->select(['first_name'])->get();
+					$name = $student[0]->first_name;
+
+					
+					// get goal 1/0 for slected student Id
 					$studentGoal = DB::table('students_goals')->where('student_id',$studentId)->where('goal_id',$id)->select(['student_id','goal_id','value'])->get();
 
 					$output['goal'] = $studentGoal[0]->value;
@@ -69,23 +75,78 @@ class GoalsService extends AbstractService {
 					//dd($SchoolAverage);
 
 					// Attendance Chart 
-					$lava = new Lavacharts;
-					$attendance = $lava->DataTable();
+					$lavaAttendance = new Lavacharts;
+					$attendance = $lavaAttendance->DataTable();
 					$attendance->addStringColumn('Student')
-					 ->addNumberColumn('No Of Classes Missed')
-					 ->addRow(['Student Name', $studentAttendance])
+					 ->addColumn('number','no of')
+					 ->addRow([$name, $studentAttendance])
 					 ->addRow(['Average Student', $SchoolAverage]);
 
-					$lava->ColumnChart('Attendance', $attendance, [
-    					'title' => 'Attendance',
-						'vAxis' => ['title' =>'No Of Classes Missed'],
+					$lavaAttendance->ColumnChart('Attendance', $attendance, [
+						'vAxis' => ['title' =>'No Of Classes Missed',
+						'minValue'=> 0],
+						'titleTextStyle' => [
+        				'color'    => '#eb6b2c',
+        				'fontSize' => 14,
+						'title' => 'none'
+    					],
+						'legend' => 'none'
+											
+					]);
+
+					$output['lavaAttendance'] = $lavaAttendance;
+
+
+					//get punctulaity
+					$studentPunctuality = $studentDailyAttendance->tardy;
+					$SchoolAverageTardy = DB::table('daily_attendance_goals')->where('school_id',$schoolId)->avg('tardy');
+					
+					$output['SchoolAverageTardy'] = $SchoolAverageTardy;
+
+					// Punctuality Chart 
+					$lavaPunctuality = new Lavacharts;
+					$punctuality = $lavaPunctuality->DataTable();
+					$punctuality->addStringColumn('Student')
+					 ->addNumberColumn(' ')
+					 ->addRow([$name, $studentPunctuality])
+					 ->addRow(['Average Student', $SchoolAverageTardy]);
+
+					$lavaPunctuality->ColumnChart('Punctuality', $punctuality, [
+						'vAxis' => ['title' =>'No Of Tardies',
+						'minValue'=> 0],
 						'titleTextStyle' => [
         				'color'    => '#eb6b2c',
         				'fontSize' => 14
-    					]
+    					],
+						'legend' => 'none'
 					]);
+					
 						
-					$output['lavac'] = $lava;
+					$output['lavaPunctuality'] = $lavaPunctuality;
+
+					//get infraction
+					$studentInfraction = $studentDailyAttendance->infraction;
+					$SchoolAverageInfraction = DB::table('daily_attendance_goals')->where('school_id',$schoolId)->avg('infraction');
+
+					// Infraction Chart 
+					$lavaInfraction = new Lavacharts;
+					$infraction = $lavaInfraction->DataTable();
+					$infraction->addStringColumn('Student')
+					 ->addNumberColumn(' ')
+					 ->addRow([$name, $studentInfraction])
+					 ->addRow(['Average Student', $SchoolAverageInfraction]);
+
+					$lavaInfraction->ColumnChart('Infraction', $infraction, [
+						'vAxis' => ['title' =>'No Of Infraction',
+						'minValue'=> 0],
+						'titleTextStyle' => [
+        				'color'    => '#eb6b2c',
+        				'fontSize' => 14
+    					],
+						'legend' => 'none'
+					]);
+
+					$output['lavaInfraction'] = $lavaInfraction;
 	
                 }
 				
@@ -133,6 +194,7 @@ class GoalsService extends AbstractService {
 				'teacher' => ['val'=>$this->getMsg('constants.teacher')],
 				'percentage' => ['val'=>$this->getMsg('constants.percentage')],
 				'grade' => ['val'=>$this->getMsg('constants.grade')],
+				'last_update' => ['val'=>$this->getMsg('constants.last_update')],
             ];
     }
 }

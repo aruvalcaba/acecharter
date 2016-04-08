@@ -1,6 +1,6 @@
 <?php 
 $data = $this->data;
-//dd($this->lavac);
+
 echo 
 $helper->tag('main') .
 $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
@@ -11,26 +11,28 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 	$helper->tag('i',['class'=>'fa fa-2x fa-angle-down']) . $helper->tag('/i') .
 
 	
-	$helper->tag('div',['class'=>'intro-goal']) . $data['goal_2_intro'] . $helper->tag('/div') .
+	$helper->tag('div',['class'=>'row']) . $data['goal_2_intro'] . $helper->tag('/div') .
 
 	$helper->tag('div') . '&nbsp;' .$helper->tag('/div') .
 	
 
-		$helper->tag('div',['class'=>'row']) ;
+		$helper->tag('div',['class'=>'row']) ; ?>
+		<table class="row table-responsive table">
+		<tr><?php
+		
 		if($this->goal){?>
-			<button type="button" class="btn btn-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button> <?php
-			echo $data['goal_2_positive'] ;
+			<td><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button></td>
+			<td><?php echo $data['goal_2_positive'] ; ?></td> <?php
 		}
 		else{?>
-			<button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button> <?php
-			
-			echo $data['goal_2_negative']  ;
-		}	?>	
+			<td><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td>
+			<td><?php echo $data['goal_2_negative']  ; ?></td> <?php
+		}	?>
+		</tr>
+		</table>	
 	
 <div id="perf_div"></div><?php
-echo $this->lavac->render('ColumnChart', 'Attendance', 'perf_div');
-//dd($this->lava);
-
+echo $this->lavaAttendance->render('ColumnChart', 'Attendance', 'perf_div');
 				
 		echo
 		$helper->tag('/div') .

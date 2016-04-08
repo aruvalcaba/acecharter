@@ -101,11 +101,13 @@ class StoreService extends AbstractService
 				$schoolId = isset($values['1']) ? intval($values[1]) : null;
 				$attendance = isset($values['2']) ? intval($values[2]) : null;
 				$tardy = isset($values['3']) ? intval($values[3]) : null;
+				$infraction = isset($values['4']) ? intval($values[4]) : null;
+
 									
 						
 						
 				if(! is_null($studentId)){
-                	$studentCreateGoals[] = ['student_id'=>$studentId,'school_id'=>$schoolId,'attendance'=>$attendance,'tardy'=>$tardy];                          
+                	$studentCreateGoals[] = ['student_id'=>$studentId,'school_id'=>$schoolId,'attendance'=>$attendance,'tardy'=>$tardy,'infraction'=>$infraction];                          
                         
                 }
 			}

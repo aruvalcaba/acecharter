@@ -14,32 +14,39 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 	$helper->tag('div',['class'=>'row']) . '&nbsp;' .$helper->tag('/div') .
 	
 
-		$helper->tag('div',['class'=>'row']) ;
+		$helper->tag('div',['class'=>'row']) ; ?>
+		<table class="row table-responsive table">
+		<tr> <?php
 		if($this->goal){?>
-			<button type="button" class="btn btn-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button> <?php
-			echo $data['goal_1_positive'] ;
+			<td><button type="button" class="btn btn-success"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button></td>
+			<td><?php echo $data['goal_1_positive'] ; ?> </td> <?php
 		}
 		else{?>
-			<button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button> <?php
-			
-			echo $data['goal_1_negative']  ;
+			<td><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td>
+			<td><?php echo $data['goal_1_negative']  ; ?> </td> <?php
 		}		
 	
 				
-		echo
+		?>
+		</tr>
+		</table><?php echo
 		$helper->tag('/div') .
 		$helper->tag('div',['class'=>'row']) . '&nbsp;' .$helper->tag('/div') .
 		//show table 
 		$helper->tag('div',['class'=>'row']) .		
-		$helper->tag('div',['id'=>'dispData','class'=>'container-fluid']) ; ?>
+		$helper->tag('div',['id'=>'dispData','class'=>'container-fluid']) ; 
+
+		if(count($this->academicGoals)>1){?>
 		
 		<table class="table table-bordered sttable table-condensed">
 			<thead>
 				<tr><?php
 					echo '<th style="vertical-align:bottom">' . $data['course']['val'] . '</th>';
-					echo '<th style="vertical-align:bottom">' . $data['teacher']['val'] . '</th>';
-					echo '<th style="vertical-align:bottom">' . $data['percentage']['val'] . '</th>';
 					echo '<th style="vertical-align:bottom">' . $data['grade']['val'] . '</th>';
+					echo '<th style="vertical-align:bottom">' . $data['percentage']['val'] . '</th>';
+					echo '<th style="vertical-align:bottom">' . $data['teacher']['val'] . '</th>';
+					echo '<th style="vertical-align:bottom">' . $data['last_update']['val'] . '</th>';
+					
 					?>				       
         		</tr>
 			</thead>
@@ -49,14 +56,17 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
                         echo '<tr>';
                        
                             echo '<td style="text-align:left; vertical-align:middle">'. $academicGoal->course .'</td>';
-                       		echo '<td style="text-align:left; vertical-align:middle">'.$academicGoal->teacher_name .'</td>';
+                       		echo '<td style="text-align:left; vertical-align:middle">'.$academicGoal->grade .'</td>';
 							echo '<td style="text-align:left; vertical-align:middle">'. $academicGoal->percentage .'</td>';
-                       		echo '<td style="text-align:left; vertical-align:middle">'. $academicGoal->grade.'</td>';
+                       		echo '<td style="text-align:left; vertical-align:middle">'. $academicGoal->teacher_name .'</td>';
+							echo '<td style="text-align:left; vertical-align:middle">'. $academicGoal->last_update .'</td>';
 							
                         echo '<tr>';
                     }?>
         	</tbody>
-    	</table> <?php echo
+    	</table> <?php 
+	}
+	echo
 
 	$helper->tag('/div') .	
 	$helper->tag('/div') . 
