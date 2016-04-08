@@ -21,7 +21,10 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 			<button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button> <?php
 			
 			echo $data['goal_4_negative']  ;
-		}		
+		}	?>
+		<div id="perf_div"></div><?php
+echo $this->lavaInfraction->render('ColumnChart', 'Infraction', 'perf_div');
+	
 	
 				
 		echo
