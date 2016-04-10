@@ -128,7 +128,7 @@ return array(
         'TT\Provider\UserProvider',
         'TT\Provider\ValidationServiceProvider',
         'Monokakure\CSV\CSVServiceProvider',
-		'Khill\Lavacharts\Laravel\LavachartsServiceProvider',
+		//'Khill\Lavacharts\Laravel\LavachartsServiceProvider',
 	),
 
 	/*
