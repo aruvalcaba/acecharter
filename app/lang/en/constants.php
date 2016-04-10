@@ -76,6 +76,7 @@ return [
 		'academic' => 'Academic Goals',
 		'course' => 'Course',
 		'percentage' => 'Percentage',
-		'grade' => 'Grade'
+		'grade' => 'Grade',
+		'infraction' => 'Infraction'
 ];
 

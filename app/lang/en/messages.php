@@ -61,6 +61,9 @@ return [
 		'upload_daily_attendance_goals'=>'Upload Daily Attendance Goals',
 		'daily_attendance_goals_upload' => 'Daily Attendance Goals have been uploaded successfully.',
         'daily_attendance_goals_not_upload' => 'Daily Attendance Goals have failed to upload.',
+		'infractions_goals_upload' => 'Infraction Goals have been uploaded successfully.',
+        'infractions_goals_not_upload' => 'Infraction Goals have failed to upload.',
+		'upload_infractions_goals'=>'Upload Behaviour Goals',
 		
         
 ];
