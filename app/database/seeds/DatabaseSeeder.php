@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder {
         $this->call('GroupSeeder');
         $this->call('UserSeeder');
         $this->call('GoalSeeder');
+		$this->call('SchoolSeeder');
 	}
 
 }

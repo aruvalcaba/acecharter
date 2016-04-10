@@ -14,11 +14,14 @@ use TT\Support\AbstractService;
 
 use Aura\Payload\Payload;
 
+use Khill\Lavacharts\Lavacharts;
+
 
 
 class GoalsService extends AbstractService {
-    public function __construct(PayloadFactory $payload_factory ) {
+    public function __construct(PayloadFactory $payload_factory) {
         $this->payload_factory = $payload_factory;
+		
     }
 
     public function goal($id) {
@@ -40,19 +43,114 @@ class GoalsService extends AbstractService {
 					
 					$studentId = isset($selectedStudentId) ? $selectedStudentId : $students[0]->id;
 
-					$studentGoal = DB::table('students_goals')->where('student_id',$studentId)->where('goal_id',$id)->select(['student_id','goal_id','value'])->get();
+					//get selected student name 
+					$student = DB::table('users')->where('id',$studentId)->select(['first_name'])->get();
+					$name = $student[0]->first_name;
 
-					//get Academic Goal Data for Student Id
-					$studentAcademicGoals = DB::table('academic_goals')->where('student_id',$studentId)->get();
 					
-
-					$output['academicGoals'] = $studentAcademicGoals;
-
+					// get goal 1/0 for slected student Id
+					$studentGoal = DB::table('students_goals')->where('student_id',$studentId)->where('goal_id',$id)->select(['student_id','goal_id','value'])->get();
 
 					$output['goal'] = $studentGoal[0]->value;
 
+					//get Academic Goal Data for Student Id
+					$studentAcademicGoals = DB::table('academic_goals')->where('student_id',$studentId)->get();					
+
+					$output['academicGoals'] = $studentAcademicGoals;
+
+					//get Daily Attendance Goals data for Student Id
+					$studentDailyAttendance = DB::table('daily_attendance_goals')->where('student_id',$studentId)->first();
+					$schoolId = $studentDailyAttendance->school_id;
+					$output['studentDailyAttendance'] = $studentDailyAttendance;
 					
+					//get average of school
+					$SchoolAverage = DB::table('daily_attendance_goals')->where('school_id',$schoolId)->avg('attendance');
+					
+					$output['SchoolAverage'] = $SchoolAverage;
+										
                     $output['user'] = $user;
+					
+					$studentAttendance = $studentDailyAttendance->attendance;
+
+					// Attendance Chart 
+					$lavaAttendance = new Lavacharts;
+					$attendance = $lavaAttendance->DataTable();
+					$attendance->addStringColumn('Student')
+					 ->addColumn('number','no of')
+					 ->addRow([$name, $studentAttendance])
+					 ->addRow(['Average Student', $SchoolAverage]);
+
+					$lavaAttendance->ColumnChart('Attendance', $attendance, [
+						'vAxis' => ['title' =>'No Of Classes Missed',
+						'minValue'=> 0],
+						'titleTextStyle' => [
+        				'color'    => '#eb6b2c',
+        				'fontSize' => 14,
+						'title' => 'none'
+    					],
+						'legend' => 'none'
+											
+					]);
+
+					$output['lavaAttendance'] = $lavaAttendance;
+
+
+					//get punctulaity
+					$studentPunctuality = $studentDailyAttendance->tardy;
+					$SchoolAverageTardy = DB::table('daily_attendance_goals')->where('school_id',$schoolId)->avg('tardy');
+					
+					$output['SchoolAverageTardy'] = $SchoolAverageTardy;
+
+					// Punctuality Chart 
+					$lavaPunctuality = new Lavacharts;
+					$punctuality = $lavaPunctuality->DataTable();
+					$punctuality->addStringColumn('Student')
+					 ->addNumberColumn(' ')
+					 ->addRow([$name, $studentPunctuality])
+					 ->addRow(['Average Student', $SchoolAverageTardy]);
+
+					$lavaPunctuality->ColumnChart('Punctuality', $punctuality, [
+						'vAxis' => ['title' =>'No Of Tardies',
+						'minValue'=> 0],
+						'titleTextStyle' => [
+        				'color'    => '#eb6b2c',
+        				'fontSize' => 14
+    					],
+						'legend' => 'none'
+					]);
+					
+						
+					$output['lavaPunctuality'] = $lavaPunctuality;
+
+					//get infraction
+					$studentInfraction = $studentDailyAttendance->infraction;
+					$SchoolAverageInfraction = DB::table('daily_attendance_goals')->where('school_id',$schoolId)->avg('infraction');
+
+					// Infraction Chart 
+					$lavaInfraction = new Lavacharts;
+					$infraction = $lavaInfraction->DataTable();
+					$infraction->addStringColumn('Student')
+					 ->addNumberColumn(' ')
+					 ->addRow([$name, $studentInfraction])
+					 ->addRow(['Average Student', $SchoolAverageInfraction]);
+
+					$lavaInfraction->ColumnChart('Infraction', $infraction, [
+						'vAxis' => ['title' =>'No Of Infraction',
+						'minValue'=> 0],
+						'titleTextStyle' => [
+        				'color'    => '#eb6b2c',
+        				'fontSize' => 14
+    					],
+						'legend' => 'none'
+					]);
+
+					$output['lavaInfraction'] = $lavaInfraction;
+
+					//Infraction Data
+					$studentInfraction = DB::table('infractions_goals')->where('student_id',$studentId)->get();					
+
+					$output['infractions'] = $studentInfractions;
+	
                 }
 				
 			$output['data'] = $this->getData();
@@ -80,7 +178,7 @@ class GoalsService extends AbstractService {
 				'goal_1_negative' => $this->GetMsg('goals.goal_1_negative',['name'=>$name]),
 				'goal_2_intro' => $this->getMsg('goals.goal_2_intro'),
 				'goal_2_positive' => $this->getMsg('goals.goal_2_positive',['name'=>$name]),
-				'goal_2_negative' => $this->GetMsg('goals.goal_2_negative',['name'=>'Neeru']),				
+				'goal_2_negative' => $this->GetMsg('goals.goal_2_negative',['name'=>$name]),				
 				'goal_3_intro' => $this->getMsg('goals.goal_3_intro'),
 				'goal_3_positive' => $this->getMsg('goals.goal_3_positive',['name'=>$name]),
 				'goal_3_negative' => $this->GetMsg('goals.goal_3_negative',['name'=>$name]),
@@ -99,6 +197,7 @@ class GoalsService extends AbstractService {
 				'teacher' => ['val'=>$this->getMsg('constants.teacher')],
 				'percentage' => ['val'=>$this->getMsg('constants.percentage')],
 				'grade' => ['val'=>$this->getMsg('constants.grade')],
+				'last_update' => ['val'=>$this->getMsg('constants.last_update')],
             ];
     }
 }

@@ -50,6 +50,15 @@ Route::group(['namespace'=>'TT','before'=>'auth.admin'],function() {
     Route::get('/academic/upload',array('as'=>'academic.upload.show','uses'=>'Academic\Upload\Action\UploadAction@act'));
     Route::post('/academic/upload',array('as'=>'academic.upload.store','uses'=>'Academic\Store\Action\StoreAction@act'));
 
+	// Upload Daily Attendance Goals
+    Route::get('/dailyattendance/upload',array('as'=>'dailyattendance.upload.show','uses'=>'DailyAttendance\Upload\Action\UploadAction@act'));
+    Route::post('/dailyattendance/upload',array('as'=>'dailyattendance.upload.store','uses'=>'DailyAttendance\Store\Action\StoreAction@act'));
+
+	// Upload Infraction Goals
+    Route::get('/goals/infraction/upload',array('as'=>'infraction.upload.show','uses'=>'Goals\Infraction\Upload\Action\UploadAction@act'));
+    Route::post('/goals/infraction/upload',array('as'=>'infraction.upload.store','uses'=>'Goals\Infraction\Store\Action\StoreAction@act'));
+
+
 
 });
 

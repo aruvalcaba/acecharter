@@ -28,6 +28,7 @@ class GoalsResponder extends AbstractResponder {
 
 	protected function success() {
             if( $this->payload ) {
+				
 				$id = $this->payload->getOutput()['goal_id'];
 				$view = 'goal_'.$id.'/goal';
 				return $this->renderView($view);

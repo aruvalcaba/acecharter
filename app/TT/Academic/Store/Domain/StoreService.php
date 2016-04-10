@@ -107,7 +107,10 @@ class StoreService extends AbstractService
 				$grade = isset($values['2']) ? $values[2] : null;
 				$percentage = isset($values['3']) ? $values[3] : null;
 				$course = isset($values['4']) ? $values[4] : null;
-				$teacher = isset($values['5']) ? $values[5] : null;					
+				$teacher = isset($values['5']) ? $values[5] : null;		
+				$date = isset($values['6']) ? strtotime($values[6]) : null;	
+
+				$last_update = date('Y-m-d',$date);		
 						
 						//$studentAcademicGoals = DB::table('academic_goals')->where('student_id','=',$studentId)->get();
 
@@ -125,7 +128,7 @@ class StoreService extends AbstractService
 							
 
                           //  if( ! $studentHasGoal )
-                $studentCreateGoals[] = ['student_id'=>$studentId,'grade'=>$grade,'percentage'=>$percentage,'course'=>$course,'teacher_name'=>$teacher];
+                $studentCreateGoals[] = ['student_id'=>$studentId,'grade'=>$grade,'percentage'=>$percentage,'course'=>$course,'teacher_name'=>$teacher,'last_update'=>$last_update];
                            // else
                            //     $studentUpdateGoals[] = ['student_id'=>$studentId,'grade'=>$grade,'percentage'=>$percentage,'course'=>$course,'teacher_name'=>$teacher];
                         
