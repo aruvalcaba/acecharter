@@ -147,9 +147,9 @@ class GoalsService extends AbstractService {
 					$output['lavaInfraction'] = $lavaInfraction;
 
 					//Infraction Data
-					$studentInfraction = DB::table('infractions_goals')->where('student_id',$studentId)->get();					
+					//$studentInfraction = DB::table('infractions_goals')->where('student_id',$studentId)->get();					
 
-					$output['infractions'] = $studentInfractions;
+					//$output['infractions'] = $studentInfractions;
 	
                 }
 				
