@@ -72,8 +72,6 @@ class GoalsService extends AbstractService {
 					
 					$studentAttendance = $studentDailyAttendance->attendance;
 
-					//dd($SchoolAverage);
-
 					// Attendance Chart 
 					$lavaAttendance = new Lavacharts;
 					$attendance = $lavaAttendance->DataTable();
@@ -147,6 +145,11 @@ class GoalsService extends AbstractService {
 					]);
 
 					$output['lavaInfraction'] = $lavaInfraction;
+
+					//Infraction Data
+					$studentInfraction = DB::table('infractions_goals')->where('student_id',$studentId)->get();					
+
+					$output['infractions'] = $studentInfractions;
 	
                 }
 				

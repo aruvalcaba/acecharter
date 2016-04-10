@@ -17,7 +17,7 @@ class SchoolSeeder extends Seeder {
         foreach($schools as $id=>$school) 
         {
             
-            DB::table('schools')->insert(['school_id'=>intval($id),'school_name'=> $school]);
+            DB::table('schools')->insert(['school_id'=>intval($id),'name'=> $school]);
         }
 	}
 

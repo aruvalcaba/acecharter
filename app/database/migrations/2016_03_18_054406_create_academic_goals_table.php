@@ -20,6 +20,7 @@ class CreateAcademicGoalsTable extends Migration {
 			$table->string('teacher_name');
 			$table->string('percentage');
 			$table->string('grade');
+			$table->date('last_update');
 			$table->foreign('student_id')->references('id')->on('users')->onDelete('cascade');
 			$table->timestamps();
 		});
