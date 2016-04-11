@@ -16,9 +16,9 @@
         "aura/payload-interface": "3.x-dev",
         "aura/payload": "3.x-dev",
         "mockery/mockery" :"0.9.4",
+		"khill/lavacharts" : "3.0.*",
         "monokakure/laravel-csv": "dev-master",
-		"fzaninotto/faker": "^1.5",
-		"khill/lavacharts" : "3.0.*"
+		"fzaninotto/faker": "^1.5"
 	},
 	"autoload": {
         "classmap": [
