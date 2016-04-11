@@ -21,7 +21,6 @@ class CreateDailyAttendanceGoals extends Migration {
 			$table->integer('tardy');		
 			$table->integer('infraction');		
 			$table->foreign('student_id')->references('id')->on('users')->onDelete('cascade');
-			$table->foreign('school_id')->references('school_id')->on('schools')->onDelete('cascade');
 			$table->timestamps();
 		});
 	}
