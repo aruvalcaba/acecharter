@@ -77,6 +77,10 @@ return [
 		'course' => 'Course',
 		'percentage' => 'Percentage',
 		'grade' => 'Grade',
-		'infraction' => 'Infraction'
+		'infraction' => 'Infraction',
+		'type_of_infraction' => 'Type Of Infraction',
+		'date_of_infraction' => 'Date Of Infraction',
+		'staff_name' => 'Staff Name',
+		'comments' => 'Comments',
 ];
 

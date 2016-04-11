@@ -147,9 +147,9 @@ class GoalsService extends AbstractService {
 					$output['lavaInfraction'] = $lavaInfraction;
 
 					//Infraction Data
-					//$studentInfraction = DB::table('infractions_goals')->where('student_id',$studentId)->get();					
+					$studentInfractions = DB::table('infractions_goals')->where('student_id',$studentId)->get();					
 
-					//$output['infractions'] = $studentInfractions;
+					$output['infractions'] = $studentInfractions;
 	
                 }
 				
@@ -198,6 +198,10 @@ class GoalsService extends AbstractService {
 				'percentage' => ['val'=>$this->getMsg('constants.percentage')],
 				'grade' => ['val'=>$this->getMsg('constants.grade')],
 				'last_update' => ['val'=>$this->getMsg('constants.last_update')],
+				'date_of_infraction' => ['val'=>$this->getMsg('constants.date_of_infraction')],
+				'type_of_infraction' => ['val'=>$this->getMsg('constants.type_of_infraction')],
+				'staff_name' => ['val'=>$this->getMsg('constants.staff_name')],
+				'comments' => ['val'=>$this->getMsg('constants.comments')],
             ];
     }
 }

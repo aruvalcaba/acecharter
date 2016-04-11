@@ -94,15 +94,16 @@ class StoreService extends AbstractService
 				$values = $data[$i];
 						
   				$aceCode = isset($values['0']) ? $values[0] : null;
+				
 																		
 				$studentId = isset($studentAceCodes[$aceCode]) ? intval($studentAceCodes[$aceCode]) : null;
 														
 				$typeOfInfraction = isset($values['1']) ? $values[1] : null;
-				$date = isset($values['2']) ? ($values[2]) : null;
+				$date = isset($values['2']) ? strtotime($values[2]) : null;
 				$staff = isset($values['3']) ? $values[3] : null;
 				$comments = isset($values['4']) ? $values[4] : null;
 
-									
+				$date = date('Y-m-d',$date);						
 						
 						
 				if(! is_null($studentId)){
