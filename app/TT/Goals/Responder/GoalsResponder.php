@@ -1,6 +1,7 @@
 <?php namespace TT\Goals\Responder;
 
 use Session;
+use Redirect;
 
 use TT\Support\AbstractResponder;
 
@@ -10,7 +11,7 @@ use Aura\Payload\Payload;
 
 class GoalsResponder extends AbstractResponder {
 	protected $views_path = __DIR__;
-	protected $payload_method = [ PayloadStatus::SUCCESS=>'success' ];
+	protected $payload_method = [ PayloadStatus::SUCCESS=>'success',PayloadStatus::NOT_VALID => 'notValid' ];
 
 	
 	protected function init() {
@@ -34,5 +35,14 @@ class GoalsResponder extends AbstractResponder {
 				return $this->renderView($view);
             }
         
+    }
+	
+	public function notValid()
+    {
+        if( $this->payload ) {
+            $alerts = $this->payload->getOutput()['alerts'];
+            Session::flash('alerts',$alerts);
+            return Redirect::route('home.parent');
+        }
     }
 }

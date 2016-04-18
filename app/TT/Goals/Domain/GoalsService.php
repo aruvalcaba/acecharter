@@ -40,8 +40,23 @@ class GoalsService extends AbstractService {
 			 if(Sentry::check() ) {
 					$user = Sentry::getUser();
 					$students = $user->students;
+
+					 $studentIds = array();
+
+                	foreach($students as $student) 
+                	{
+                    	$studentIds[] = $student->id;
+                	}
 					
 					$studentId = isset($selectedStudentId) ? $selectedStudentId : $students[0]->id;
+				
+					//dd($studentId);
+					if(!in_array($studentId, $studentIds)){
+						 $payload->setStatus(PayloadStatus::NOT_VALID);
+						 $messages = ['Student Code Not Valid'];
+						 $output['alerts'] = ['messages'=>$messages,'class'=>['class'=>'alert alert-danger m-t']];
+					}
+					else{
 
 					//get selected student name 
 					$student = DB::table('users')->where('id',$studentId)->select(['first_name'])->get();
@@ -150,6 +165,7 @@ class GoalsService extends AbstractService {
 					$studentInfractions = DB::table('infractions_goals')->where('student_id',$studentId)->get();					
 
 					$output['infractions'] = $studentInfractions;
+					}
 	
                 }
 				
@@ -164,7 +180,10 @@ class GoalsService extends AbstractService {
     public function getData() {
 		
 		//get selected student name 
-		$selectedStudentId = Request::input('studentid');		
+		$selectedStudentId = Request::input('studentid');
+		$user = Sentry::getUser();
+		$students = $user->students;
+		$selectedStudentId = isset($selectedStudentId) ? $selectedStudentId : $students[0]->id;		
 		$student = DB::table('users')->where('id',$selectedStudentId)->select(['first_name'])->get();
 		$name = $student[0]->first_name;
         return [

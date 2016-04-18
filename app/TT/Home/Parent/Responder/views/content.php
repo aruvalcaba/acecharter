@@ -5,7 +5,9 @@ $activities = $this->acts;
 echo
 $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 	$helper->tag('div',['class'=>'container']) .
-		$helper->tag('div',['class'=>'heading-about']) .
+		$helper->tag('div',['class'=>'heading-about']) ;
+			include (sprintf('%s/views/base/%s',app_path(),'alerts.php'));
+			echo
 			$helper->tag('div',['class'=>'row col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2']) .
 				$helper->tag('h2') . $data['welcome']['val'] .'&nbsp;' . '&nbsp;' . $h($this->user->first_name) . $helper->tag('/h2') .
 				
@@ -14,8 +16,7 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
       	$helper->tag('/div') ;
 	 
 
-	 include (sprintf('%s/views/base/%s',app_path(),'alerts.php'));
-
+	 
 
 
 	//<!-- start of activity box -->

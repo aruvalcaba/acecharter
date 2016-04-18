@@ -51,5 +51,16 @@ return [
         'no_students' => 'No students available. Make sure admin uploads roster with your students.',
 		'add_child_fail' => 'Failed to add child',
 		'add_child_exist' => 'Child already associated with parent',
-		'add_child_success' => 'Child added successfully'	
+		'add_child_success' => 'Child added successfully',
+		'student_code_text' => 'Add more Student Code',
+		'academic_goals_upload' => 'Academic Goals have been uploaded successfully.',
+        'academic_goals_not_upload' => 'Academic Goals have failed to upload.',
+		'upload_academic_goals'=>'Upload Academic Goals',
+		'upload_daily_attendance_goals'=>'Upload Daily Attendance Goals',
+		'daily_attendance_goals_upload' => 'Daily Attendance Goals have been uploaded successfully.',
+        'daily_attendance_goals_not_upload' => 'Daily Attendance Goals have failed to upload.',
+		'infractions_goals_upload' => 'Infraction Goals have been uploaded successfully.',
+        'infractions_goals_not_upload' => 'Infraction Goals have failed to upload.',
+		'upload_infractions_goals'=>'Upload Behaviour Goals',
+		
        ];

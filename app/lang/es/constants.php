@@ -68,6 +68,15 @@ return [
 		'ms' => 'Sra',
 		'more' => 'More Info',
 		'roster'=>'Roster',
-		'add_child' => 'Añadir niño'
+		'add_child' => 'Añadir niño',
+		'academic' => 'Objetivos académicos',
+		'course' => 'Curso',
+		'percentage' => 'Porcentaje',
+		'grade' => 'Grado',
+		'infraction' => 'Infracción',
+		'type_of_infraction' => 'Tipo de infracción',
+		'date_of_infraction' => 'Fecha de la infracción',
+		'staff_name' => 'Nombre del personal',
+		'comments' => 'comentarios',
 
 ];
