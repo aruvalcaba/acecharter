@@ -115,7 +115,7 @@ class StoreService extends AbstractService
 						//$studentAcademicGoals = DB::table('academic_goals')->where('student_id','=',$studentId)->get();
 
                        // $studentHasGoal = false;
-						
+				//dd($studentId);				
 				if(! is_null($studentId)){
 //dd($studentId);		
                         //foreach($studentAcademicGoals as $studentAcademicGoal) {

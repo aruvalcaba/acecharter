@@ -41,7 +41,7 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 		$helper->tag('div',['class'=>'row']) .		
 		$helper->tag('div',['id'=>'dispData','class'=>'container-fluid']) ; 
 
-		if(count($this->academicGoals)>1){?>
+		if(count($this->academicGoals)>0){?>
 		
 		<table class="table table-bordered sttable table-condensed">
 			<thead>

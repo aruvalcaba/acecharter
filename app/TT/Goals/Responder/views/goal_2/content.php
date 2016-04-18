@@ -16,7 +16,7 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 	$helper->tag('div',['class'=>'intro-goal']) . $data['goal_2_intro'] . $helper->tag('/div') .
 
 	$helper->tag('div') . '&nbsp;' .$helper->tag('/div') ; ?>
-		<table class="row table-responsive table">
+		<table class="table-responsive table">
 		<tr><?php
 		
 		if($this->goal){?>
