@@ -91,7 +91,8 @@ class PwdService extends AbstractService {
 				'teachers' => ['val'=>$this->getMsg('constants.teachers')],
 				'changed_pwd' => $this->getMsg('constants.change_password'),
 				'logout' => $this->getMsg('constants.logout'),
-				
+				'footer_msg' => $this->GetMsg('messages.footer_msg'),
+				'footer_here' => $this->GetMsg('messages.footer_here'),
 		
 ];
     }
