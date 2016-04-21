@@ -50,7 +50,6 @@ class GoalsService extends AbstractService {
 					
 					$studentId = isset($selectedStudentId) ? $selectedStudentId : $students[0]->id;
 				
-					//dd($studentId);
 					if(!in_array($studentId, $studentIds)){
 						 $payload->setStatus(PayloadStatus::NOT_VALID);
 						 $messages = ['Student Code Not Valid'];
@@ -93,10 +92,10 @@ class GoalsService extends AbstractService {
 					$attendance->addStringColumn('Student')
 					 ->addColumn('number','no of')
 					 ->addRow([$name, $studentAttendance])
-					 ->addRow(['Average Student', $SchoolAverage]);
+					 ->addRow([$this->getMsg('constants.average_student'), $SchoolAverage]);
 
 					$lavaAttendance->ColumnChart('Attendance', $attendance, [
-						'vAxis' => ['title' =>'No Of Classes Missed',
+						'vAxis' => ['title' => $this->getMsg('constants.No_Of_Classes_Missed'),
 						'minValue'=> 0],
 						'titleTextStyle' => [
         				'color'    => '#eb6b2c',
@@ -122,10 +121,10 @@ class GoalsService extends AbstractService {
 					$punctuality->addStringColumn('Student')
 					 ->addNumberColumn(' ')
 					 ->addRow([$name, $studentPunctuality])
-					 ->addRow(['Average Student', $SchoolAverageTardy]);
+					 ->addRow([$this->getMsg('constants.average_student'), $SchoolAverageTardy]);
 
 					$lavaPunctuality->ColumnChart('Punctuality', $punctuality, [
-						'vAxis' => ['title' =>'No Of Tardies',
+						'vAxis' => ['title' => $this->getMsg('constants.No_Of_Tardies'),
 						'minValue'=> 0],
 						'titleTextStyle' => [
         				'color'    => '#eb6b2c',
@@ -147,7 +146,7 @@ class GoalsService extends AbstractService {
 					$infraction->addStringColumn('Student')
 					 ->addNumberColumn(' ')
 					 ->addRow([$name, $studentInfraction])
-					 ->addRow(['Average Student', $SchoolAverageInfraction]);
+					 ->addRow([$this->getMsg('constants.average_student'), $SchoolAverageInfraction]);
 
 					$lavaInfraction->ColumnChart('Infraction', $infraction, [
 						'vAxis' => ['title' => $this->getMsg('constants.No_Of_Infraction'),

@@ -83,5 +83,8 @@ return [
 		'staff_name' => 'Staff Name',
 		'comments' => 'Comments',
 		'No_Of_Infraction' => 'No Of Infraction',
+		'average_student' => 'Average Student',
+		'No_Of_Classes_Missed' => 'No Of Classes Missed',
+		'No_Of_Tardies' => 'No Of Tardies',
 ];
 

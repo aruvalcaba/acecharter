@@ -80,5 +80,8 @@ return [
 		'staff_name' => 'Nombre del personal',
 		'comments' => 'comentarios',
 		'No_Of_Infraction' => 'No de la infracción',
+		'average_student' => 'El estudiante promedio',
+		'No_Of_Classes_Missed' => 'No De las clases perdidas',
+		'No_Of_Tardies' => 'No De Los retardos',
 
 ];
