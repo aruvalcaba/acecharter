@@ -150,7 +150,7 @@ class GoalsService extends AbstractService {
 					 ->addRow(['Average Student', $SchoolAverageInfraction]);
 
 					$lavaInfraction->ColumnChart('Infraction', $infraction, [
-						'vAxis' => ['title' =>'No Of Infraction',
+						'vAxis' => ['title' => $this->getMsg('constants.No_Of_Infraction')',
 						'minValue'=> 0],
 						'titleTextStyle' => [
         				'color'    => '#eb6b2c',

@@ -82,5 +82,6 @@ return [
 		'date_of_infraction' => 'Date Of Infraction',
 		'staff_name' => 'Staff Name',
 		'comments' => 'Comments',
+		'No_Of_Infraction' => 'No Of Infraction',
 ];
 

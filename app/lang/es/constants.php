@@ -79,5 +79,6 @@ return [
 		'date_of_infraction' => 'Fecha de la infracción',
 		'staff_name' => 'Nombre del personal',
 		'comments' => 'comentarios',
+		'No_Of_Infraction' => 'No de la infracción',
 
 ];
