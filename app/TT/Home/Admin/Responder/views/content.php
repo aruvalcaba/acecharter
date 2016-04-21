@@ -10,10 +10,12 @@ $helper->tag('main') .
             $helper->tag('div') . '(ACE Code, Student Name, Teacher)' . $helper->tag('/div') .
 			$helper->tag('div',['class'=>'row p-b-15']) . $helper->a('/roster/upload', $data['upload_roster'] , array('class'=>'btn btn-large btn-danger')) . $helper->tag('/div') .
 			$helper->tag('div') . '(Student_Number, Academic Success, Daily Attendance, Punctuality	, Positive Behavior)' . $helper->tag('/div') . 
-            $helper->tag('div',['class'=>'row p-b-15']) . $helper->a('/goals/upload', $data['upload_goals'] , array('class'=>'btn btn-large btn-danger')) . $helper->tag('/div') .
-			$helper->tag('div',['class'=>'row p-b-15']) . $helper->a('/academic/upload'
-, $data['upload_academic_goals'] , array('class'=>'btn btn-large btn-danger')) . $helper->tag('/div') .
+            $helper->tag('div',['class'=>'row p-b-15']) . $helper->a('/goals/upload', $data['upload_goals'] , array('class'=>'btn btn-large btn-danger')) . $helper->tag('/div') .			
 			$helper->tag('div') . '(Student,	Grade Level, Grade,	Percent, Course, Teacher, Last Update, Student Number)' . $helper->tag('/div') .
+			$helper->tag('div',['class'=>'row p-b-15']) . $helper->a('/academic/upload'
+, $data['upload_academic_goals'] , array('class'=>'btn btn-large btn-danger')) . $helper->tag('/div') .			
+			$helper->tag('div') . '(Student_Number,	SchoolID, Attendance, Tardy, Infractions
+)' . $helper->tag('/div') .
 			$helper->tag('div',['class'=>'row p-b-15']) . $helper->a('/dailyattendance/upload', $data['upload_daily_attendance_goals'] , array('class'=>'btn btn-large btn-danger')) . $helper->tag('/div').
 			$helper->tag('div') . '(External ID,	Behavior, Behavior Date, Staff, Commentsc)' . $helper->tag('/div') .
 			$helper->tag('div',['class'=>'row p-b-15']) . $helper->a('/goals/infraction/upload', $data['upload_infractions_goals'] , array('class'=>'btn btn-large btn-danger')) . $helper->tag('/div');
