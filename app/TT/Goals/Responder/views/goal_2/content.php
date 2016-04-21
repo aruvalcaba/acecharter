@@ -11,7 +11,7 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 	$helper->tag('i',['class'=>'fa fa-2x fa-angle-down']) . $helper->tag('/i') .
 	$helper->tag('/div') .
 	$helper->tag('/div') .
-	$helper->tag('div',['class'=>'row col-lg-6 col-lg-offset-2 col-sm-12']).
+	$helper->tag('div',['class'=>'row col-lg-6 col-lg-offset-3 col-sm-12']).
 	
 	$helper->tag('div',['class'=>'intro-goal']) . $data['goal_2_intro'] . $helper->tag('/div') .
 
