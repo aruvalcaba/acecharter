@@ -3,6 +3,6 @@
     include (sprintf('%s/views/base/%s',app_path(),'nav.php'));
    	include ('content.php');
    	include ('scripts.php');
-   	include ('footer.php');
+   	include (sprintf('%s/views/base/%s',app_path(),'footer.php'));
 ?>
 
