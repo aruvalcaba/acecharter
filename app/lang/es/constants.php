@@ -27,6 +27,7 @@ return [
 		'daily_homework'=>'Diario Tarea',
 		'daily_attendance'=>'Diario Asistencia',		
 		'positive_behavior'=>'Comportamiento Positivo',
+		'punctuality' => 'Puntualidad',
 		'growth_mindset'=>'Mentalidad de crecimiento',
 		'academic_success'=>'éxito académico',
 		'math'=>'Matemáticas',
