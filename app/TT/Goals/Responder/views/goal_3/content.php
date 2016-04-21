@@ -5,12 +5,12 @@ $helper->tag('main') .
 $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 	$helper->tag('div',['class'=>'container']) .
 	$helper->tag('div',['class'=>'heading-about']) .
-	$helper->tag('div',['class'=>'row col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2']) .
+	$helper->tag('div',['class'=>'row col-lg-6 col-lg-offset-3 col-sm-12']) .
 	$helper->tag('h2') . $data['punctuality']['val'] . $helper->tag('/h2') .
 	$helper->tag('i',['class'=>'fa fa-2x fa-angle-down']) . $helper->tag('/i') .
 	$helper->tag('/div') .
 	$helper->tag('/div') .
-	$helper->tag('div',['class'=>'row col-lg-4 col-lg-offset-4 col-sm-8 col-sm-offset-2']).
+	$helper->tag('div',['class'=>'row col-lg-6 col-lg-offset-3 col-sm-12']).
 	
 	$helper->tag('div',['class'=>'intro-goal']) . $data['goal_3_intro'] . $helper->tag('/div') .
 	$helper->tag('div') . '&nbsp;' .$helper->tag('/div') ; ?>
