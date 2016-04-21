@@ -17,7 +17,7 @@ $helper->tag('main') .
 			$helper->tag('div') . '(Student_Number,	SchoolID, Attendance, Tardy, Infractions
 )' . $helper->tag('/div') .
 			$helper->tag('div',['class'=>'row p-b-15']) . $helper->a('/dailyattendance/upload', $data['upload_daily_attendance_goals'] , array('class'=>'btn btn-large btn-danger')) . $helper->tag('/div').
-			$helper->tag('div') . '(External ID,	Behavior, Behavior Date, Staff, Commentsc)' . $helper->tag('/div') .
+			$helper->tag('div') . '(External ID,	Behavior, Behavior Date, Staff, Comments)' . $helper->tag('/div') .
 			$helper->tag('div',['class'=>'row p-b-15']) . $helper->a('/goals/infraction/upload', $data['upload_infractions_goals'] , array('class'=>'btn btn-large btn-danger')) . $helper->tag('/div');
 
 include (sprintf('%s/views/base/%s',app_path(),'alerts.php'));
