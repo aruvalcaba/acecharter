@@ -7,7 +7,7 @@ $helper->tag('main') .
 		$helper->tag('div',['class'=>'container']) .  
 			$helper->tag('h2') . $data['activites'] . $helper->tag('/h2') .
             $helper->tag('div',['class'=>'row p-b-15']) . $helper->a('/activity/create', $data['upload_activity'] , array('class'=>'btn btn-large btn-danger')) . $helper->tag('/div') .
-            $helper->tag('div',['class'=>'row p-b-15']) . $helper->a('/roster/upload', $data['upload_roster'] , array('class'=>'btn btn-large btn-danger')) . $helper->tag('/div') .
+            $helper->tag('div',['class'=>'row p-b-15']) . $helper->a('/roster/upload', $data['upload_roster'] , array('class'=>'btn btn-large btn-danger')) . '(ACE Code, Student Name, Teacher)' .$helper->tag('/div') .
             $helper->tag('div',['class'=>'row p-b-15']) . $helper->a('/goals/upload', $data['upload_goals'] , array('class'=>'btn btn-large btn-danger')) . $helper->tag('/div') .
 			$helper->tag('div',['class'=>'row p-b-15']) . $helper->a('/academic/upload', $data['upload_academic_goals'] , array('class'=>'btn btn-large btn-danger')) . $helper->tag('/div') .
 			$helper->tag('div',['class'=>'row p-b-15']) . $helper->a('/dailyattendance/upload', $data['upload_daily_attendance_goals'] , array('class'=>'btn btn-large btn-danger')) . $helper->tag('/div').
