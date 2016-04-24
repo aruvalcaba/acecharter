@@ -35,12 +35,13 @@ class HomeService extends AbstractService {
                     $studentIds[] = $student->id;
                 }
 
-				$studentGoals = DB::table('students_goals')->whereIn('student_id',$studentIds)->select(['student_id','goal_id','value'])->get();
+				$studentGoals = DB::table('students_goals')->whereIn('student_id',$studentIds)->select(['student_id','goal_id','value','updated_at'])->get();
                 $studentGoalsFlat = array();
 
                 foreach($studentGoals as $studentGoal)
                 {
                     $studentGoalsFlat[$studentGoal->student_id][$studentGoal->goal_id] = $studentGoal->value; 
+					$studentGoalsFlat[$studentGoal->student_id]['updated_at'] = $studentGoal->updated_at; 
                 }
 				
 				foreach($students as $student)
@@ -124,6 +125,7 @@ class HomeService extends AbstractService {
 				'code' => ['val'=>$this->getMsg('constants.code')],	
 				'student_code_input' => ['type'=>'text','name'=>'student_code','attribs'=>['maxlength'=>'6','class'=>'form-control','id'=>'student_code','placeholder'=>$this->getMsg('messages.student_code_placeholder')]],
 				'studentCodeText' => ['val'=>$this->getMsg('messages.student_code_text')],
+				'data_updated' => ['val' => $this->getMsg('messages.data_updated')],
 
 	];
 

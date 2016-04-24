@@ -126,7 +126,7 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 	
 	 foreach( $this->students as $student ) { 
 		
-	
+	//dd($student);
 		if($student->id == $selectedStudentId){
 		echo 		
 			$helper->tag('h4') . $h($student->first_name) . '\'s ' . $data['progress_report']['val'] . $helper->tag('/h4') .
@@ -140,6 +140,7 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 		$goalValue = isset($student->goals[$goal->id]) ? $student->goals[$goal->id] : 0;
 		echo $helper->tag('tr') .
 				$helper->tag('td') ; 
+				$updated_at = $student->goals['updated_at'];
 				if($goalValue){
 				
 					echo $helper->tag('a',['href'=>'/parent/goal/'.$goal->id.'?studentid='.$selectedStudentId]);?>
@@ -175,6 +176,7 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 	} 
 	echo
 	$helper->tag('div',['class'=>'row']) . $helper->input($data['addChild_btn']) . $helper->tag('/div') .	
+	$helper->tag('div',['class'=>'row']) . $data['data_updated']['val'] . $updated_at . $helper->tag('/div') .	
 $helper->tag('/div') .
 $helper->tag('/div') .
 $helper->tag('/div') .

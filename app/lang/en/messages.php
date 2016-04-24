@@ -64,6 +64,6 @@ return [
 		'infractions_goals_upload' => 'Infraction Goals have been uploaded successfully.',
         'infractions_goals_not_upload' => 'Infraction Goals have failed to upload.',
 		'upload_infractions_goals'=>'Upload Behaviour Goals',
-		
+		'data_updated' => 'Data was updated on ',
         
 ];

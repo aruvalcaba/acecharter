@@ -128,6 +128,8 @@ class StoreService extends AbstractService
             $studentAceCodes = DB::table('students_traits')->lists('student_id','ace_code');
             $studentCreateGoals = array();
             $studentUpdateGoals = array();
+			$updated_at = date("Y-m-d H:i:s");
+			//dd($updated_at);
 
             while( !feof($fileHandle) )
             {
@@ -163,9 +165,9 @@ class StoreService extends AbstractService
 							
 
                             if( ! $studentHasGoal )
-                                $studentCreateGoals[] = ['goal_id'=>$goalId,'student_id'=>$studentId,'value'=>$value];
+                                $studentCreateGoals[] = ['goal_id'=>$goalId,'student_id'=>$studentId,'value'=>$value,'updated_at' => $updated_at];
                             else
-                                $studentUpdateGoals[] = ['goal_id'=>$goalId,'student_id'=>$studentId,'value'=>$value];
+                                $studentUpdateGoals[] = ['goal_id'=>$goalId,'student_id'=>$studentId,'value'=>$value,'updated_at' => $updated_at];
                         }
                     }
                 }
