@@ -111,24 +111,7 @@ class UserSeeder extends Seeder {
                                         'password'=>'letmein1',
                                         'activated'=>'1',
                                         ]);
-			$demo = $this->parentRepository->create([
-                                        'first_name'=>'Demo',
-                                        'last_name'=>'Demo',
-                                        'title'=>'Ms',
-                                        'email'=>'demo@acecharter.org',
-                                        'password'=>'letmein1',
-                                        'activated'=>'1',
-                                    ]);
-
-            $child = $this->studentRepository->create([
-                                        'first_name'=>'Child',
-                                        'last_name'=>'Demo',
-                                        'title'=>'Ms',
-                                        'email'=>'studentdemo@acecharter.org',
-                                        'password'=>'letmein1',
-                                        'activated'=>'0',
-                                    ]);
-            $demo->students()->attach($child->id);
+			
 
             
 

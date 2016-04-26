@@ -27,6 +27,7 @@ class HomeService extends AbstractService {
                 $user = Sentry::getUser();
 
 				$students = $user->students;
+				//dd($students);
 
                 $studentIds = array();
 
@@ -34,9 +35,11 @@ class HomeService extends AbstractService {
                 {
                     $studentIds[] = $student->id;
                 }
+				//dd($studentIds);
 
 				$studentGoals = DB::table('students_goals')->whereIn('student_id',$studentIds)->select(['student_id','goal_id','value','updated_at'])->get();
                 $studentGoalsFlat = array();
+				//dd($studentGoals);
 
                 foreach($studentGoals as $studentGoal)
                 {
