@@ -177,7 +177,7 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 	echo
 	$helper->tag('div',['class'=>'row']) . $helper->input($data['addChild_btn']) . $helper->tag('/div') .	
 	$helper->tag('div',['class'=>'row']) . '&nbsp;' . $helper->tag('/div') .
-	$helper->tag('div',['class'=>'row']) . $data['data_updated']['val'] . $updated_at . $helper->tag('/div') .	
+	$helper->tag('div',['class'=>'row']) . $data['data_updated']['val'] . date("jS F, Y", strtotime($updated_at)) . $helper->tag('/div') .	
 $helper->tag('/div') .
 $helper->tag('/div') .
 $helper->tag('/div') .
