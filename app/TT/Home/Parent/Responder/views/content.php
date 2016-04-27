@@ -7,6 +7,18 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 	$helper->tag('div',['class'=>'container']) .
 		$helper->tag('div',['class'=>'heading-about']) ;
 			include (sprintf('%s/views/base/%s',app_path(),'alerts.php'));
+			if(Session::get('lang')== 'en' || Session::get('lang')== ''){
+			echo
+			$helper->tag('div',['class'=>'text-right']) . 
+			$helper->tag('div',['class'=>'btn btn-skin']) . $helper->a('/es','Español',array('style'=>'color: #fff')) . $helper->tag('/div') .
+			$helper->tag('/div') ;
+		}
+		else { 
+			echo
+			$helper->tag('div',['class'=>'text-right']) . 
+			$helper->tag('div',['class'=>'btn btn-skin']). $helper->a('/en','English',array('style'=>'color: #FFF')) . $helper->tag('/div') .
+			$helper->tag('/div');
+		}
 			echo
 			$helper->tag('div',['class'=>'row col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2']) .
 				$helper->tag('h2') . $data['welcome']['val'] .'&nbsp;' . '&nbsp;' . $h($this->user->first_name) . $helper->tag('/h2') .
