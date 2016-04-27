@@ -8,13 +8,13 @@ $helper->tag('section',['id'=>'service','class'=>'home-section text-center']) .
 	$helper->tag('div',['class'=>'container wow bounceInDown','data-wow-delay'=>'2s']) ;
 		if(Session::get('lang')== 'en' || Session::get('lang')== ''){
 			echo
-			$helper->tag('div',['class'=>'text-right']) . 
+			$helper->tag('div',['class'=>'text-right','style'=>'padding-bottom:20px']) . 
 			$helper->tag('div',['class'=>'btn btn-skin']) . $helper->a('/es','Español',array('style'=>'color: #fff')) . $helper->tag('/div') .
 			$helper->tag('/div') ;
 		}
 		else { 
 			echo
-			$helper->tag('div',['class'=>'text-right']) . 
+			$helper->tag('div',['class'=>'text-right','style'=>'padding-bottom:20px']) . 
 			$helper->tag('div',['class'=>'btn btn-skin']). $helper->a('/en','English',array('style'=>'color: #FFF')) . $helper->tag('/div') .
 			$helper->tag('/div');
 		}
