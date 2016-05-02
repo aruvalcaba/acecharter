@@ -78,7 +78,7 @@ class StoreService extends AbstractService
     {
         try
         {
-			ini_set('max_execution_time', 120);
+			//ini_set('max_execution_time', 120);
             DB::beginTransaction();
             
             $path = $file->getRealPath();
@@ -108,7 +108,7 @@ class StoreService extends AbstractService
 						
 						
 				if(! is_null($studentId)){
-                	$studentCreateGoals[] = ['student_id'=>$studentId,'type_of_infraction'=>$typeOfInfraction,'date_of_infraction'=>$date,'staff_name'=>$staff,'comments'=>$comments];                          
+                	$studentCreateGoals[] = ['student_id'=>$studentId,'type_of_infraction'=>$typeOfInfraction,'date_of_infraction'=>$date,'staff_name'=>$staff,'comments'=>'$comments'];                          
                         
                 }
 			}
