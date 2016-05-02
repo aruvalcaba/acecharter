@@ -78,6 +78,7 @@ class StoreService extends AbstractService
     {
         try
         {
+			ini_set('max_execution_time', 120);
             DB::beginTransaction();
             
             $path = $file->getRealPath();
