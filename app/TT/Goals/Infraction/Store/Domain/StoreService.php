@@ -108,7 +108,7 @@ class StoreService extends AbstractService
 						
 						
 				if(! is_null($studentId)){
-                	$studentCreateGoals[] = ['student_id'=>$studentId,'type_of_infraction'=>$typeOfInfraction,'date_of_infraction'=>$date,'staff_name'=>$staff];                          
+                	$studentCreateGoals[] = ['student_id'=>$studentId,'type_of_infraction'=>$typeOfInfraction,'date_of_infraction'=>$date,'staff_name'=>$staff,'comments'=>$comments];                          
                         
                 }
 			}
