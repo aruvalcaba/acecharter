@@ -23,7 +23,7 @@ class HomeService extends AbstractService {
                 
                 $user = Sentry::getUser();
                 $students = $user->students;
-
+//dd($students);
                 $studentIds = array();
 
                 foreach($students as $student) 
@@ -32,6 +32,14 @@ class HomeService extends AbstractService {
                 }
 
                 $aceCodes = DB::table('students_traits')->whereIn('student_id',$studentIds)->lists('ace_code','student_id');
+				$parents = DB::table('parents_students')->whereIn('student_id',$studentIds)->lists('relationship','student_id');
+				$parents_info = DB::table('users')->join('parents_students','users.id','=','parents_students.parent_id')->whereIn('student_id',$studentIds)->select('student_id','first_name','last_name')->get();
+				 foreach($parents_info as $parent_info)
+                {
+                    $studentParentInfo[$parent_info->student_id] = $parent_info->first_name . ' ' .  $parent_info->last_name; 
+                }
+		
+				//dd($studentParentInfo);
                 $studentGoals = DB::table('students_goals')->whereIn('student_id',$studentIds)->select(['student_id','goal_id','value'])->get();
                 $studentGoalsFlat = array();
 
@@ -43,6 +51,10 @@ class HomeService extends AbstractService {
                 foreach($students as $student)
                 {
                     $student->ace_code = $aceCodes[$student->id];
+					$student->parent_realtionship = isset($parents[$student->id]) ? $parents[$student->id] : '';
+					$parentName = isset($studentParentInfo[$student->id]) ? $studentParentInfo[$student->id] : '';
+
+					$student->parentName = $parentName;
 
 		    $studentGoals = isset($studentGoalsFlat[$student->id]) ? $studentGoalsFlat[$student->id] : [];
 

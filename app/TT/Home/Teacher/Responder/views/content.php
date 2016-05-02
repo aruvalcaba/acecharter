@@ -81,13 +81,15 @@ You can automatically print a note home with student code using the button below
 <div class="container-fluid" id="dispData">
      <table class="table table-bordered sttable table-striped">
         
-        <col width="35%">
-        <col width="35%">
+        <col width="30%">
+		<col width="10%">
+        <col width="30%">
         <col width="30%">
  
                 <thead>
         <tr>
-            <th style="vertical-align:bottom">Student Name [Code]</th>
+            <th style="vertical-align:bottom">Student Name</th>
+			<th style="vertical-align:bottom">Student Code</th> 
             
             <th style="vertical-align:bottom">Registered Family Member</th>
             
@@ -96,8 +98,9 @@ You can automatically print a note home with student code using the button below
         <tbody >
                 <?php foreach($this->students as $student) { ?>
                 <tr>
-                    <td style="text-align:left; vertical-align:middle"><?php echo $h($student->fullname) ?> <small><?php echo "[".$h($student->ace_code)."]"?></small></td>
-                    <td style="text-align:left; vertical-align:middle"> <br><small><?php echo $h($student->parentName)?></small></td>
+                    <td style="text-align:left; vertical-align:middle"><?php echo $h($student->fullname) ?> </td>
+					<td><small><?php echo $h($student->ace_code)?></small></td>
+                    <td style="text-align:left; vertical-align:middle"> <small><?php echo $h($student->parentName) . "[".$h($student->parent_realtionship)."]" ?></small></td>
                     <td style="text-align:left; vertical-align:middle"><?php echo $h($student->last_login)?></td>  
                 <?php } ?>
         </tbody>
