@@ -113,7 +113,7 @@ class StoreService extends AbstractService
                 }
 			}
             
-            
+            dd($studentCreateGoals);
 			if( count($studentCreateGoals) > 0 ){
 	
 				DB::table('infractions_goals')->truncate();
