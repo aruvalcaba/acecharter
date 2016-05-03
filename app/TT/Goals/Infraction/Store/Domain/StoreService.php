@@ -98,7 +98,7 @@ class StoreService extends AbstractService
 				
 																		
 				$studentId = isset($studentAceCodes[$aceCode]) ? intval($studentAceCodes[$aceCode]) : null;
-														
+											
 				$typeOfInfraction = isset($values['1']) ? $values[1] : null;
 				$date = isset($values['2']) ? strtotime($values[2]) : null;
 				$staff = isset($values['3']) ? $values[3] : null;
@@ -109,12 +109,13 @@ class StoreService extends AbstractService
 						
 						
 				if(! is_null($studentId)){
+					//dd($studentId)	;		
                 	$studentCreateGoals[] = ['student_id'=>$studentId,'type_of_infraction'=>$typeOfInfraction,'date_of_infraction'=>$date,'staff_name'=>$staff,'comments'=>$comments];                          
                         
                 }
 			}
             
-            
+            dd($studentCreateGoals);
 			if( count($studentCreateGoals) > 0 ){
 	
 				DB::table('infractions_goals')->truncate();
