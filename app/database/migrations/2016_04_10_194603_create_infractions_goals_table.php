@@ -19,7 +19,7 @@ class CreateInfractionsGoalsTable extends Migration {
 			$table->string('type_of_infraction');
 			$table->date('date_of_infraction');		
 			$table->string('staff_name');
-			$table->string('comments');	
+			$table->mediumText('comments');	
 			$table->timestamps();
 		});
 	}
