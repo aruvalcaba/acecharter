@@ -1,6 +1,9 @@
 <section id="service" class="home-section text-center">
 
 
+</section>
+
+<!--
  <div class="col-lg-8 col-lg-offset-2 btn-group pull-left" role="group"  aria-label="...">
      <button type="button" class="btn btn-default active">
     Registration</button>
@@ -148,7 +151,6 @@ You can automatically print a note home with student code using the button below
   </div>
   
 
-</section>
 
 
 
@@ -221,3 +223,5 @@ You can automatically print a note home with student code using the button below
     </div>
   </div>
 </div>
+
+-->
